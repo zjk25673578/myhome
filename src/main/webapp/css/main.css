@@ -1,0 +1,14 @@
+.layui-form-label {
+    width: 100px;
+    padding: 5px 15px;
+}
+
+.layui-input {
+    height: 30px;
+    line-height: 30px;
+}
+
+.layui-table-cell .layui-form-checkbox[lay-skin="primary"] {
+    top: 50%;
+    transform: translateY(-50%);
+}
