@@ -11,12 +11,21 @@
         <result column="COMM" jdbcType="DECIMAL" property="comm"/>
     </resultMap>
     <sql id="Base_Column_List">
-		EMPNO, ENAME, SEX, AGE, HIREDATE, SAL, COMM
-	</sql>
-    <select id="selectUsers" resultMap="BaseResultMap">
-        select
+        EMPNO, ENAME, SEX, AGE, HIREDATE, SAL, COMM
+    </sql>
+
+    <select id="selectEmps" resultMap="BaseResultMap">
+        SELECT
         <include refid="Base_Column_List"/>
-        from emp
+        FROM (SELECT <include refid="Base_Column_List"/>, ROWNUM rnum FROM emp
+        WHERE ROWNUM<![CDATA[<=]]>#{maxpage}) r
+        WHERE r.rnum<![CDATA[>]]>#{minpage}
+    </select>
+
+    <select id="selectEmpsCounts" resultType="Integer">
+        SELECT
+        count(1)
+        FROM emp
     </select>
 
     <insert id="insertEmp" parameterType="Emp">
@@ -64,4 +73,15 @@
             </if>
         </trim>
     </insert>
+
+    <delete id="deleteEmp">
+        delete from emp where empno=#{empno}
+    </delete>
+
+    <delete id="delMultipleEmp">
+        delete from emp where empno in
+        <foreach collection="array" close=")" index="idx" item="eno" open="(" separator=",">
+            #{eno}
+        </foreach>
+    </delete>
 </mapper>

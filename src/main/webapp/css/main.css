@@ -1,6 +1,5 @@
 .layui-form-label {
-    width: 100px;
-    padding: 5px 15px;
+    padding: 5px 5px 5px 15px;
 }
 
 .layui-input {
@@ -8,6 +7,25 @@
     line-height: 30px;
 }
 
+.layui-col-xs3 .layui-input-inline {
+    width: 50%;
+}
+
+.layui-col-xs4 .layui-input-inline {
+    width: 70%;
+}
+
+.between-and-text {
+    display: inline-block;
+    width: 70px;
+}
+
+.between-and-date {
+    display: inline-block;
+    width: 95px;
+}
+
+/* 修正数据表格复选框不垂直居中 */
 .layui-table-cell .layui-form-checkbox[lay-skin="primary"] {
     top: 50%;
     transform: translateY(-50%);

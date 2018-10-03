@@ -7,51 +7,86 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
         laytpl = layui.laytpl,
         $ = layui.$;
 
-
     layer.msg("Hello World", {
         offset: "50%"
     });
 
+    laydate.render({elem: "#start_hiredate"});
+    laydate.render({elem: "#end_hiredate"});
+
+    // 定义页面中的方法
     var active = {
+        search: function () {
+            // search_form  form表单的id
+        },
         add: function () {
-            var tpl = form_emp.innerHTML;
+            var tpl = document.getElementById("form_emp").innerHTML;
             var idx = openDialog(tpl, "添加员工信息", ["350px", "390px"], ["#hiredate"], function () {
                 var formdata = $("#form_data_emp").serializeArray();
                 $.ajax({
-                    url: _ctx + "emp/addEmp",
+                    url: _ctx + "/emp/addEmp",
                     type: "post",
                     data: formdata,
                     dataType: "json",
                     success: function (data) {
+                        // 关闭对话框
                         layer.close(idx);
-                        var index = layer.alert(data.action, {icon: data.type}, function () {
+                        layer.alert(data.action, {icon: data.type}, function (index) {
                             table.reload("#emps_table");
+                            // 关闭提示消息
                             layer.close(index);
                         });
                     },
                     error: function () {
-                        layer.close(idx);
+                        // layer.close(idx);
                         layer.msg("出现异常 !");
                     }
                 });
             });
         },
-        del: function () {
-            layer.alert("删除所选项 ?", {
-                btn: ["确定", "取消"],
-                btn1: function () {
-                    alert("点击了确定");
-                },
-                btn2: function () {
-                    alert("点击了取消");
-                }
+        update: function () {
+            alert(123);
+        },
+        del: function (obj) {
+            var row = obj.data;
+            layer.confirm("确定删除 <font color='blue'>" + row.ename + " </font>吗 ?", function (index) {
+                var empno = row.empno;
+                $.post(_ctx + "/emp/deleteEmp", {empno: empno}, function (data) {
+                    layer.close(index);
+                    table.reload("#emps_table");
+                    layer.msg(data.action);
+                }, "json");
             });
         },
-        update: function () {
-
+        del_multiple: function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id);
+            var len = checkStatus.data.length;
+            layer.alert("确定删除所选<font color='blue'> " + len + " </font>项 ?", {
+                btn: ["确定", "取消"],
+                btn1: function (index) {
+                    if (len > 0) {
+                        var data = checkStatus.data;
+                        var ids = "";
+                        for (var i = 0; i < len; i++) {
+                            ids += data[i].empno;
+                            if (i != len - 1) {
+                                ids += ",";
+                            }
+                        }
+                        $.post(_ctx + "/emp/delMultipleEmp", {ids: ids}, function (data) {
+                            layer.close(index);
+                            table.reload("#emps_table");
+                            layer.msg(data.action);
+                        }, "json");
+                    } else {
+                        layer.msg("Please Select The Data !", {icon: 5});
+                    }
+                }
+            });
         }
     };
 
+    // 渲染表格
     table.render({
         elem: '#emps_table'
         , id: '#emps_table'
@@ -81,18 +116,34 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
             }
             , {field: 'sal', title: '工资'}
             , {field: 'comm', title: '奖金'}
-            , {field: '', title: '操作', templet: '#opera_btns'}
+            , {field: '', title: '操作', toolbar: '#opera_btns'}
         ]]
     });
 
+    // 监听表格左上方按钮的事件
     table.on("toolbar(emptable)", function (obj) {
-        active[obj.event]();
+        active[obj.event](obj);
     });
 
-    table.on("tool(emptable)", function (obj) {
-        alert(obj.event);
+    // 监听表格右侧的工具栏
+    table.on('tool(emptable)', function (obj) {
+        active[obj.event](obj);
     });
 
+    // 监听查询表单的提交事件
+    form.on("submit(search_form)", function (data) {
+
+        return false; // button必须使用 lay-submit 属性这个返回 false 才管用 !
+    });
+
+    /**
+     * @param tpl 需要渲染的模板
+     * @param title 对话框的标题
+     * @param area 对话框的宽高
+     * @param dates 需要渲染的日期框的id
+     * @param callback 点击确定的回调函数
+     * @returns {*} 当前打开的对话框的layui索引
+     */
     function openDialog(tpl, title, area, dates, callback) {
         var idx = layer.open({
             type: 1,
@@ -112,7 +163,6 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
             });
         }
         form.render();
-
         return idx;
     }
 });

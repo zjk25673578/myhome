@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.mynba.model.Emp;
 import com.mynba.model.Message;
 import com.mynba.service.EmpService;
+import com.mynba.util.MyUtil;
+import com.mynba.util.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,21 +28,32 @@ public class EmpController {
     @ResponseBody
     @RequestMapping("/addEmp")
     public String addEmp(Emp emp) {
-        System.out.println(emp);
-        Message msg;
-        int i = empService.insertEmp(emp);
-        if (i > 0) {
-            msg = new Message(true, "数据操作成功 !", 1);
-        } else {
-            msg = new Message(false, "操作失败 !", 5);
-        }
+        int result = empService.insertEmp(emp);
+        Message msg = MyUtil.msg(result);
+        return msg.toString();
+    }
+
+    @ResponseBody
+    @RequestMapping("/deleteEmp")
+    public String deleteEmp(Integer empno) {
+        int result = empService.deleteEmp(empno);
+        Message msg = MyUtil.msg(result);
         return msg.toString();
     }
 
     @ResponseBody
     @RequestMapping("/list")
-    public String list() {
-        Map<String, Object> resultMap = empService.selectEmps();
+    public String list(int page, int limit) {
+        PageBean pageBean = new PageBean(limit, page);
+        Map<String, Object> resultMap = empService.selectEmps(pageBean);
         return JSON.toJSONString(resultMap);
+    }
+
+    @ResponseBody
+    @RequestMapping("/delMultipleEmp")
+    public String delMultipleEmp(String ids) {
+        int result = empService.delMultipleEmp(ids);
+        Message msg = MyUtil.msg(result);
+        return msg.toString();
     }
 }
