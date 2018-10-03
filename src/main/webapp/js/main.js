@@ -61,10 +61,10 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
         del_multiple: function (obj) {
             var checkStatus = table.checkStatus(obj.config.id);
             var len = checkStatus.data.length;
-            layer.alert("确定删除所选<font color='blue'> " + len + " </font>项 ?", {
-                btn: ["确定", "取消"],
-                btn1: function (index) {
-                    if (len > 0) {
+            if (len > 0) {
+                layer.alert("确定删除所选<font color='blue'> " + len + " </font>项 ?", {
+                    btn: ["确定", "取消"],
+                    btn1: function (index) {
                         var data = checkStatus.data;
                         var ids = "";
                         for (var i = 0; i < len; i++) {
@@ -78,11 +78,11 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
                             table.reload("#emps_table");
                             layer.msg(data.action);
                         }, "json");
-                    } else {
-                        layer.msg("Please Select The Data !", {icon: 5});
                     }
-                }
-            });
+                });
+            } else {
+                layer.msg("Please Select The Data !", {icon: 5});
+            }
         }
     };
 
@@ -132,8 +132,10 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
 
     // 监听查询表单的提交事件
     form.on("submit(search_form)", function (data) {
-
-        return false; // button必须使用 lay-submit 属性这个返回 false 才管用 !
+        console.log(data.value);
+        // button必须使用 lay-submit 属性
+        // 这里返回 false 才管用 !
+        return false;
     });
 
     /**
