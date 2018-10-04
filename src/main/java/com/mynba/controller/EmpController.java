@@ -9,7 +9,6 @@ import com.mynba.util.MyUtil;
 import com.mynba.util.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,11 +46,10 @@ public class EmpController {
     @ResponseBody
     @RequestMapping("/list")
     public String list(@RequestParam(defaultValue = "1") int page,
-                       @RequestParam(defaultValue = "10") int limit,
-                       @RequestBody(required = false) EmpSearchEntity empSearchEntity) {
-        System.err.println(empSearchEntity);
+                       @RequestParam(defaultValue = "10") int limit, String key) {
         PageBean pageBean = new PageBean(limit, page);
-        Map<String, Object> resultMap = empService.selectEmps(pageBean);
+        EmpSearchEntity empSearchEntity = JSON.parseObject(key, EmpSearchEntity.class);
+        Map<String, Object> resultMap = empService.selectEmps(empSearchEntity, pageBean);
         return JSON.toJSONString(resultMap);
     }
 

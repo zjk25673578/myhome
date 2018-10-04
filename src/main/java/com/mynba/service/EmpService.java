@@ -1,7 +1,6 @@
 package com.mynba.service;
 
 import com.mynba.model.Emp;
-import com.mynba.util.PageBean;
 
 import java.util.Map;
 
@@ -9,10 +8,10 @@ public interface EmpService {
 
     /**
      * 获取员工列表
-     * @param pageBean
+     * @param objects
      * @return
      */
-    Map<String, Object> selectEmps(PageBean pageBean);
+    Map<String, Object> selectEmps(Object... objects);
 
     /**
      * 添加一条记录

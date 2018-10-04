@@ -17,15 +17,70 @@
     <select id="selectEmps" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List"/>
-        FROM (SELECT <include refid="Base_Column_List"/>, ROWNUM rnum FROM emp
+        FROM (SELECT <include refid="Base_Column_List"/>, ROWNUM rnum FROM
+        (SELECT <include refid="Base_Column_List"/>
+        FROM emp
+        <where>
+            <if test="ename != null and ename != ''">
+                and ename like '%'||#{ename}||'%'
+            </if>
+            <if test="sex != null">
+                and sex=#{sex}
+            </if>
+            <if test="min_sal != null">
+                and sal<![CDATA[>]]>#{min_sal}
+            </if>
+            <if test="max_sal != null">
+                and sal<![CDATA[<]]>#{max_sal}
+            </if>
+            <if test="min_age != null">
+                and age<![CDATA[>]]>#{min_age}
+            </if>
+            <if test="max_age != null">
+                and age<![CDATA[<]]>#{max_age}
+            </if>
+            <if test="start_hiredate != null">
+                and trunc(hiredate)<![CDATA[>]]>trunc(#{start_hiredate})
+            </if>
+            <if test="end_hiredate != null">
+                and trunc(hiredate)<![CDATA[<]]>trunc(#{end_hiredate})
+            </if>
+        </where>
+        order by empno desc
+        )
         WHERE ROWNUM<![CDATA[<=]]>#{maxpage}) r
-        WHERE r.rnum<![CDATA[>]]>#{minpage}
+        where r.rnum<![CDATA[>]]>#{minpage}
     </select>
 
     <select id="selectEmpsCounts" resultType="Integer">
-        SELECT
-        count(1)
+        SELECT count(1)
         FROM emp
+        <where>
+            <if test="ename != null and ename != ''">
+                and ename like '%'||#{ename}||'%'
+            </if>
+            <if test="sex != null">
+                and sex=#{sex}
+            </if>
+            <if test="min_sal != null">
+                and sal<![CDATA[>]]>#{min_sal}
+            </if>
+            <if test="max_sal != null">
+                and sal<![CDATA[<]]>#{max_sal}
+            </if>
+            <if test="min_age != null">
+                and age<![CDATA[>]]>#{min_age}
+            </if>
+            <if test="max_age != null">
+                and age<![CDATA[<]]>#{max_age}
+            </if>
+            <if test="start_hiredate != null">
+                and trunc(hiredate)<![CDATA[>]]>trunc(#{start_hiredate})
+            </if>
+            <if test="end_hiredate != null">
+                and trunc(hiredate)<![CDATA[<]]>trunc(#{end_hiredate})
+            </if>
+        </where>
     </select>
 
     <insert id="insertEmp" parameterType="Emp">
@@ -75,7 +130,8 @@
     </insert>
 
     <delete id="deleteEmp">
-        delete from emp where empno=#{empno}
+        delete from emp
+        where empno = #{empno}
     </delete>
 
     <delete id="delMultipleEmp">

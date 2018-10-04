@@ -98,42 +98,42 @@
     <div class="layui-form-item"></div>
     <form id="form_data_emp" class="layui-form">
         <div class="layui-form-item">
-            <label class="layui-form-label">员工姓名</label>
+            <label class="layui-form-label">员工姓名：</label>
             <div class="layui-input-inline">
                 <input type="text" name="ename" required lay-verify="required" placeholder="请输入员工姓名"
                        class="layui-input"/>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">性别</label>
+            <label class="layui-form-label">性别：</label>
             <div class="layui-input-inline">
                 <input type="radio" name="sex" value="1" title="男">
                 <input type="radio" name="sex" value="0" title="女" checked>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">年龄</label>
+            <label class="layui-form-label">年龄：</label>
             <div class="layui-input-inline">
                 <input type="text" name="age" placeholder="请输入年齡"
                        class="layui-input"/>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">入职时间</label>
+            <label class="layui-form-label">入职时间：</label>
             <div class="layui-input-inline">
                 <input type="text" id="hiredate" name="hiredate" placeholder="请选择入职时间"
                        class="layui-input"/>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">工资</label>
+            <label class="layui-form-label">工资：</label>
             <div class="layui-input-inline">
                 <input type="text" name="sal" placeholder="请填入工资"
                        class="layui-input"/>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">奖金</label>
+            <label class="layui-form-label">奖金：</label>
             <div class="layui-input-inline">
                 <input type="text" name="comm" placeholder="请输入奖金"
                        class="layui-input"/>

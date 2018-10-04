@@ -3,11 +3,10 @@ package com.mynba.service.impl;
 import com.mynba.dao.EmpDao;
 import com.mynba.model.Emp;
 import com.mynba.service.EmpService;
-import com.mynba.util.PageBean;
+import com.mynba.util.MyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,13 +17,16 @@ public class EmpServiceImpl implements EmpService {
     private EmpDao empDao;
 
     @Override
-    public Map<String, Object> selectEmps(PageBean pageBean) {
-        List<Emp> list = empDao.selectEmps(pageBean);
-        Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("code", 0);
-        resultMap.put("msg", "返回的消息");
-        resultMap.put("count", empDao.selectEmpsCounts());
-        resultMap.put("data", list);
+    public Map<String, Object> selectEmps(Object...objects) {
+        Map<String, Object> args = null;
+        try {
+            args = MyUtil.bean2Map(objects);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        List<Emp> list = empDao.selectEmps(args);
+        int count = empDao.selectEmpsCounts(args);
+        Map<String, Object> resultMap = MyUtil.layData(0, "返回的消息", count, list);
         return resultMap;
     }
 

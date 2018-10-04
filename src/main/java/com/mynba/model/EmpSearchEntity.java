@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class EmpSearchEntity {
     private String ename;
-    private int sex;
-    private int min_sal;
-    private int max_sal;
-    private int min_age;
-    private int max_age;
+    private Integer sex;
+    private Integer min_sal;
+    private Integer max_sal;
+    private Integer min_age;
+    private Integer max_age;
     private Date start_hiredate;
     private Date end_hiredate;
 
@@ -20,43 +20,43 @@ public class EmpSearchEntity {
         this.ename = ename;
     }
 
-    public int getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(int sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
-    public int getMin_sal() {
+    public Integer getMin_sal() {
         return min_sal;
     }
 
-    public void setMin_sal(int min_sal) {
+    public void setMin_sal(Integer min_sal) {
         this.min_sal = min_sal;
     }
 
-    public int getMax_sal() {
+    public Integer getMax_sal() {
         return max_sal;
     }
 
-    public void setMax_sal(int max_sal) {
+    public void setMax_sal(Integer max_sal) {
         this.max_sal = max_sal;
     }
 
-    public int getMin_age() {
+    public Integer getMin_age() {
         return min_age;
     }
 
-    public void setMin_age(int min_age) {
+    public void setMin_age(Integer min_age) {
         this.min_age = min_age;
     }
 
-    public int getMax_age() {
+    public Integer getMax_age() {
         return max_age;
     }
 
-    public void setMax_age(int max_age) {
+    public void setMax_age(Integer max_age) {
         this.max_age = max_age;
     }
 

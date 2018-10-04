@@ -20,19 +20,28 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
             // search_form  form表单的id
             var key = JSON.stringify(field);
 
-            var tableReload = table.reload("#emps_table");
-            console.log(tableReload);
+            table.reload("#emps_table", {
+                where: {
+                    key: key
+                },
+                method: "post"
+                , page: {
+                    curr: 1
+                }
+            });
 
+            /*
             $.ajax({
                 type: "POST",
-                contentType: "application/json;charset=UTF-8", // 向后台传递字符串绑定数据模型的必须参数
+                contentType: "application/json;charset=UTF-8", // 使用@RequestBody向后台传递字符串绑定数据模型的必须参数
                 url: _ctx + '/emp/list',
-                data: key,
+                data: JSON.stringify(field),
                 dataType: 'json',
                 success: function (data) {
                     console.log(data);
                 }
             });
+            */
         },
         add: function () {
             var tpl = document.getElementById("form_emp").innerHTML;
