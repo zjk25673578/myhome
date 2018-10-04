@@ -7,12 +7,14 @@ public class PageBean {
     private int minpage;
 
     public PageBean() {
+        this.setPage(1);
+        this.setRows(10);
         calMaxAndMin();
     }
 
     public PageBean(int rows, int page) {
-        this.rows = rows;
-        this.page = page;
+        this.setPage(page);
+        this.setRows(rows);
         calMaxAndMin();
     }
 
@@ -25,16 +27,8 @@ public class PageBean {
         return maxpage;
     }
 
-    public void setMaxpage(int maxpage) {
-        this.maxpage = maxpage;
-    }
-
     public int getMinpage() {
         return minpage;
-    }
-
-    public void setMinpage(int minpage) {
-        this.minpage = minpage;
     }
 
     public int getPage() {
@@ -42,10 +36,18 @@ public class PageBean {
     }
 
     public void setPage(int page) {
+        if (page < 1) {
+            this.page = 1;
+            return;
+        }
         this.page = page;
     }
 
     public void setRows(int rows) {
+        if (rows < 1) {
+            this.rows = 1;
+            return;
+        }
         this.rows = rows;
     }
 

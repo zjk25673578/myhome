@@ -12,12 +12,10 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
     <!-- 配置spring扫描器 -->
-    <context:component-scan
-            base-package="com.mynba.service.impl"/>
+    <context:component-scan base-package="com.mynba.service.impl"/>
 
     <!-- 引入数据库的信息文件 -->
-    <context:property-placeholder location="classpath:db_orcl.properties"
-    />
+    <context:property-placeholder location="classpath:db_orcl.properties"/>
     <!--    <context:property-override
                 location="classpath:db_orcl.properties"/>-->
 
@@ -29,15 +27,15 @@
         <property name="username" value="${dataSource.username}"/>
         <property name="password" value="${dataSource.password}"/>
         <!-- 初始化连接大小 -->
-        <property name="initialSize" value="${dataSource.initialSize}" />
+        <property name="initialSize" value="${dataSource.initialSize}"/>
         <!-- 连接池最大数量 -->
-        <property name="maxActive" value="${dataSource.maxActive}" />
+        <property name="maxActive" value="${dataSource.maxActive}"/>
         <!-- 连接池最大空闲 -->
-        <property name="maxIdle" value="${dataSource.maxIdle}" />
+        <property name="maxIdle" value="${dataSource.maxIdle}"/>
         <!-- 连接池最小空闲 -->
-        <property name="minIdle" value="${dataSource.minIdle}" />
+        <property name="minIdle" value="${dataSource.minIdle}"/>
         <!-- 获取连接最大等待时间 -->
-        <property name="maxWait" value="${dataSource.maxWait}" />
+        <property name="maxWait" value="${dataSource.maxWait}"/>
     </bean>
     <!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
         p:username="${jdbc.username}" p:password="${jdbc.password}" p:url="${jdbc.url}"
@@ -68,45 +66,33 @@
           p:dataSource-ref="dataSource"/>
 
     <!-- 开启声明式事务的注解 -->
-    <tx:annotation-driven
-            transaction-manager="transactionManager"/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!-- 自己声明的一个切面类 -->
     <bean id="logginAspect" class="com.mynba.util.LogginAspect"/>
 
     <!-- AOP -->
     <aop:config proxy-target-class="true">
-        <aop:pointcut
-                expression="execution(* com.mynba.service.*.*(..))" id="aoppointcut"/>
+        <aop:pointcut expression="execution(* com.mynba.service.*.*(..))" id="aoppointcut"/>
         <!-- 关联事务的传播属性 -->
-        <aop:advisor pointcut-ref="aoppointcut"
-                     advice-ref="txadvice"/>
+        <aop:advisor pointcut-ref="aoppointcut" advice-ref="txadvice"/>
         <!-- 定义切面类的执行方法 -->
         <aop:aspect ref="logginAspect">
             <aop:after method="after" pointcut-ref="aoppointcut"/>
-            <aop:before method="before"
-                        pointcut-ref="aoppointcut"/>
-            <aop:after-returning method="returnObject" returning="object"
-                                 pointcut-ref="aoppointcut"/>
-            <aop:after-throwing method="throwObject" throwing="exception"
-                                pointcut-ref="aoppointcut"/>
+            <aop:before method="before" pointcut-ref="aoppointcut"/>
+            <aop:after-returning method="returnObject" returning="object" pointcut-ref="aoppointcut"/>
+            <aop:after-throwing method="throwObject" throwing="exception" pointcut-ref="aoppointcut"/>
         </aop:aspect>
     </aop:config>
 
-    <tx:advice id="txadvice"
-               transaction-manager="transactionManager">
+    <tx:advice id="txadvice" transaction-manager="transactionManager">
         <!-- 配置事务的传播属性 -->
         <tx:attributes>
             <!-- 指定哪些方法使用事务 -->
-            <tx:method name="insert*" propagation="REQUIRED"
-                       read-only="false"/>
-            <tx:method name="delete*" propagation="REQUIRED"
-                       read-only="false"/>
-            <tx:method name="update*" propagation="REQUIRED"
-                       read-only="false"/>
-            <tx:method name="select*" propagation="SUPPORTS"
-                       read-only="true"/>
+            <tx:method name="insert*" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="delete*" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="update*" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
         </tx:attributes>
     </tx:advice>
-
 </beans>

@@ -16,8 +16,23 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
 
     // 定义页面中的方法
     var active = {
-        search: function () {
+        search: function (field) {
             // search_form  form表单的id
+            var key = JSON.stringify(field);
+
+            var tableReload = table.reload("#emps_table");
+            console.log(tableReload);
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json;charset=UTF-8", // 向后台传递字符串绑定数据模型的必须参数
+                url: _ctx + '/emp/list',
+                data: key,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                }
+            });
         },
         add: function () {
             var tpl = document.getElementById("form_emp").innerHTML;
@@ -88,35 +103,35 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
 
     // 渲染表格
     table.render({
-        elem: '#emps_table'
-        , id: '#emps_table'
+        elem: "#emps_table"
+        , id: "#emps_table"
         , toolbar: false
-        , url: _ctx + '/emp/list' //数据接口
-        // , height: 'full-100'
+        , url: _ctx + "/emp/list" //数据接口
+        // , height: "full-100"
         , page: true //开启分页
-        , toolbar: '#toolbarDemo'
+        , toolbar: "#toolbarDemo"
         , limit: 10
         , limits: [5, 10, 20]
         , cols: [[ //表头
             {type: "checkbox"}
-            , {field: 'empno', title: '员工编号'}
-            , {field: 'ename', title: '员工名称'}
+            , {field: "empno", title: "员工编号"}
+            , {field: "ename", title: "员工名称"}
             , {
-                field: 'sex', title: '性别', templet: function (d) {
+                field: "sex", title: "性别", templet: function (d) {
                     return d.sex == "1" ? "男" : "女"
                 }
             }
-            , {field: 'age', title: '年龄'}
+            , {field: "age", title: "年龄"}
             , {
-                field: 'hiredate', title: '入职日期', templet: function (d) {
+                field: "hiredate", title: "入职日期", templet: function (d) {
                     var date = new Date(d.hiredate);
                     var dateinfo = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
                     return dateinfo;
                 }
             }
-            , {field: 'sal', title: '工资'}
-            , {field: 'comm', title: '奖金'}
-            , {field: '', title: '操作', toolbar: '#opera_btns'}
+            , {field: "sal", title: "工资"}
+            , {field: "comm", title: "奖金"}
+            , {field: "", title: "操作", toolbar: "#opera_btns"}
         ]]
     });
 
@@ -126,13 +141,13 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
     });
 
     // 监听表格右侧的工具栏
-    table.on('tool(emptable)', function (obj) {
+    table.on("tool(emptable)", function (obj) {
         active[obj.event](obj);
     });
 
     // 监听查询表单的提交事件
     form.on("submit(search_form)", function (data) {
-        console.log(data.value);
+        active["search"](data.field);
         // button必须使用 lay-submit 属性
         // 这里返回 false 才管用 !
         return false;
@@ -152,7 +167,7 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
             content: tpl,
             title: title,
             area: area,
-            shade: 0.2,
+            // shade: 0.2,
             offset: "100px",
             btn: ["保存", "取消"],
             yes: function () {
