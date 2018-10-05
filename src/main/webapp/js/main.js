@@ -1,6 +1,6 @@
 layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
 
-    var form = layui.form,
+    let form = layui.form,
         table = layui.table,
         layer = layui.layer,
         laydate = layui.laydate,
@@ -14,11 +14,48 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
     laydate.render({elem: "#start_hiredate"});
     laydate.render({elem: "#end_hiredate"});
 
+    // 添加, 修改表单的数据模型
+    let data = {
+        empno: "",
+        ename: "",
+        sex: "",
+        age: "",
+        hiredate: "",
+        sal: "",
+        comm: ""
+    };
+
+    // 自定义表单验证规则
+    let form_validation = {
+        ename: function (value) {
+            if (!value.length > 0) {
+                layer.msg("员工姓名不能为空 !", {icon: 5});
+                return false;
+            }
+            return true;
+        },
+        sex: function (value) {
+            if (value == null || value == undefined || value == "") {
+                layer.msg("请选择性别 !", {icon: 5});
+                return false;
+            }
+            return true;
+        },
+        hiredate: function (value) {
+            if (value == null || value == undefined || value == "") {
+                layer.msg("请选择日期 !", {icon: 5});
+                return false;
+            }
+            return true;
+        }
+    };
+
     // 定义页面中的方法
-    var active = {
+    let active = {
+        // 查询数据
         search: function (field) {
             // search_form  form表单的id
-            var key = JSON.stringify(field);
+            let key = JSON.stringify(field);
 
             table.reload("#emps_table", {
                 where: {
@@ -43,38 +80,23 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
             });
             */
         },
+
+        // 添加数据
         add: function () {
-            var tpl = document.getElementById("form_emp").innerHTML;
-            var idx = openDialog(tpl, "添加员工信息", ["350px", "390px"], ["#hiredate"], function () {
-                var formdata = $("#form_data_emp").serializeArray();
-                $.ajax({
-                    url: _ctx + "/emp/addEmp",
-                    type: "post",
-                    data: formdata,
-                    dataType: "json",
-                    success: function (data) {
-                        // 关闭对话框
-                        layer.close(idx);
-                        layer.alert(data.action, {icon: data.type}, function (index) {
-                            table.reload("#emps_table");
-                            // 关闭提示消息
-                            layer.close(index);
-                        });
-                    },
-                    error: function () {
-                        // layer.close(idx);
-                        layer.msg("出现异常 !");
-                    }
-                });
-            });
+            saveOrUpdate(data, "添加员工信息");
         },
-        update: function () {
-            alert(123);
+
+        // 修改数据
+        update: function (obj) {
+            console.log(obj);
+            saveOrUpdate(parseData(obj.data), "修改员工信息");
         },
+
+        // 删除数据
         del: function (obj) {
-            var row = obj.data;
+            let row = obj.data;
             layer.confirm("确定删除 <font color='blue'>" + row.ename + " </font>吗 ?", function (index) {
-                var empno = row.empno;
+                let empno = row.empno;
                 $.post(_ctx + "/emp/deleteEmp", {empno: empno}, function (data) {
                     layer.close(index);
                     table.reload("#emps_table");
@@ -82,16 +104,18 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
                 }, "json");
             });
         },
+
+        // 批量删除数据
         del_multiple: function (obj) {
-            var checkStatus = table.checkStatus(obj.config.id);
-            var len = checkStatus.data.length;
+            let checkStatus = table.checkStatus(obj.config.id);
+            let len = checkStatus.data.length;
             if (len > 0) {
                 layer.alert("确定删除所选<font color='blue'> " + len + " </font>项 ?", {
                     btn: ["确定", "取消"],
                     btn1: function (index) {
-                        var data = checkStatus.data;
-                        var ids = "";
-                        for (var i = 0; i < len; i++) {
+                        let data = checkStatus.data;
+                        let ids = "";
+                        for (let i = 0; i < len; i++) {
                             ids += data[i].empno;
                             if (i != len - 1) {
                                 ids += ",";
@@ -114,11 +138,11 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
     table.render({
         elem: "#emps_table"
         , id: "#emps_table"
-        , toolbar: false
-        , url: _ctx + "/emp/list" //数据接口
-        // , height: "full-100"
         , page: true //开启分页
         , toolbar: "#toolbarDemo"
+        // , toolbar: false
+        , url: _ctx + "/emp/list" //数据接口
+        // , height: "full-100"
         , limit: 10
         , limits: [5, 10, 20]
         , cols: [[ //表头
@@ -133,8 +157,8 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
             , {field: "age", title: "年龄"}
             , {
                 field: "hiredate", title: "入职日期", templet: function (d) {
-                    var date = new Date(d.hiredate);
-                    var dateinfo = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+                    let date = new Date(d.hiredate);
+                    let dateinfo = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
                     return dateinfo;
                 }
             }
@@ -155,12 +179,18 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
     });
 
     // 监听查询表单的提交事件
-    form.on("submit(search_form)", function (data) {
+    form.on("submit(search_form_submit)", function (data) {
         active["search"](data.field);
         // button必须使用 lay-submit 属性
         // 这里返回 false 才管用 !
         return false;
     });
+
+    // 自定义两个按钮, 可以监听form的submit事件, 但是表单验证规则需要自己定义
+    /*    form.on("submit(test_submit)", function (data) {
+            console.log(data);
+            return false;
+        });*/
 
     /**
      * @param tpl 需要渲染的模板
@@ -171,7 +201,7 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
      * @returns {*} 当前打开的对话框的layui索引
      */
     function openDialog(tpl, title, area, dates, callback) {
-        var idx = layer.open({
+        layer.open({
             type: 1,
             content: tpl,
             title: title,
@@ -179,16 +209,79 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
             // shade: 0.2,
             offset: "100px",
             btn: ["保存", "取消"],
-            yes: function () {
-                callback();
+            yes: function (idx) {
+                callback(idx);
             }
         });
-        for (var i = 0; i < dates.length; i++) {
+        for (let i = 0; i < dates.length; i++) {
             laydate.render({
                 elem: dates[i]
             });
         }
         form.render();
-        return idx;
+    }
+
+    /**
+     * 格式化一下数据
+     * layui表格中取出的行对象如果没有对应的值则设置为空字符串
+     * @param updateData
+     * @returns {*}
+     */
+    function parseData(updateData) {
+        for (let p in data) {
+            if (updateData[p] == undefined) {
+                updateData[p] = "";
+            }
+        }
+        return updateData;
+    }
+
+    function validateForm(formObj) {
+        for (let i = 0; i < formObj.length; i++) {
+            if (!form_validation[formObj[i].name]) {
+                continue;
+            }
+            let r = form_validation[formObj[i].name](formObj[i].value);
+            if (!r) {
+                return r;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 添加或者修改的方法
+     * @param data
+     * @param title
+     */
+    function saveOrUpdate(data, title) {
+        let tpl = document.getElementById("form_emp").innerHTML;
+        laytpl(tpl).render(data, function (html) {
+            openDialog(html, title, ["320px", "390px"], ["#hiredate"], function (idx) {
+                let formdata = $("#form_data_emp").serializeArray();
+                let result = validateForm(formdata); // 表单验证
+                if (result) {
+                    $.ajax({
+                        url: _ctx + "/emp/saveOrUpdateEmp",
+                        type: "post",
+                        data: formdata,
+                        dataType: "json",
+                        success: function (data) {
+                            // 关闭对话框
+                            layer.close(idx);
+                            layer.alert(data.action, {icon: data.type}, function (index) {
+                                table.reload("#emps_table");
+                                // 关闭提示消息
+                                layer.close(index);
+                            });
+                        },
+                        error: function () {
+                            // layer.close(idx);
+                            layer.msg("出现异常 !");
+                        }
+                    });
+                }
+            });
+        });
     }
 });

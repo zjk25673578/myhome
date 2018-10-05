@@ -40,4 +40,11 @@ public interface EmpDao {
      * @return
      */
     int delMultipleEmp(String[] ids_split);
+
+    /**
+     * 修改一条记录
+     * @param emp
+     * @return
+     */
+    int updateEmp(Emp emp);
 }

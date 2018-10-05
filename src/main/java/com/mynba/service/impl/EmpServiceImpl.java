@@ -45,4 +45,9 @@ public class EmpServiceImpl implements EmpService {
         String[] ids_split = ids.split(",");
         return empDao.delMultipleEmp(ids_split);
     }
+
+    @Override
+    public int updateEmp(Emp emp) {
+        return empDao.updateEmp(emp);
+    }
 }

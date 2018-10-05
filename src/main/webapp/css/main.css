@@ -25,6 +25,10 @@
     width: 95px;
 }
 
+.layui-form-radio {
+    margin: 1px 10px 0 0;
+}
+
 /* 修正数据表格复选框不垂直居中 */
 .layui-table-cell .layui-form-checkbox[lay-skin="primary"] {
     top: 50%;

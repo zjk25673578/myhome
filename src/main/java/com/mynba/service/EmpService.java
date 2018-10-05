@@ -33,4 +33,11 @@ public interface EmpService {
      * @return
      */
     int delMultipleEmp(String ids);
+
+    /**
+     * 修改一条记录
+     * @param emp
+     * @return
+     */
+    int updateEmp(Emp emp);
 }

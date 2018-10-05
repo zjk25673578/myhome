@@ -28,9 +28,14 @@ public class EmpController {
     }
 
     @ResponseBody
-    @RequestMapping("/addEmp")
+    @RequestMapping("/saveOrUpdateEmp")
     public String addEmp(Emp emp) {
-        int result = empService.insertEmp(emp);
+        int result;
+        if(emp.getEmpno() == null) {
+            result = empService.insertEmp(emp);
+        } else {
+            result = empService.updateEmp(emp);
+        }
         Message msg = MyUtil.msg(result);
         return msg.toString();
     }
