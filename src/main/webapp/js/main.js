@@ -1,10 +1,11 @@
-layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
+layui.use(["form", "layer", "laydate", "laytpl", "table", "element", "jquery"], function () {
 
     let form = layui.form,
         table = layui.table,
         layer = layui.layer,
         laydate = layui.laydate,
         laytpl = layui.laytpl,
+        element = layui.element,
         $ = layui.$;
 
     layer.msg("Hello World", {
@@ -213,7 +214,7 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
             title: title,
             area: area,
             // shade: 0.2,
-            offset: "100px",
+            offset: "30%",
             btn: ["保存", "取消"],
             yes: function (idx) {
                 callback(idx);

@@ -10,75 +10,142 @@
 </head>
 <body>
 <div class="layui-container">
-    <div class="layui-form-item"></div>
-    <div class="layui-row">
-        <!-- 查询的搜索框 -->
-        <form id="search_form" class="layui-form">
-            <div class="layui-form-item">
-                <div class="layui-col-xs3">
-                    <label class="layui-form-label" for="ename">员工名称：</label>
-                    <div class="layui-input-inline">
-                        <input id="ename" name="ename" type="text" class="layui-input">
-                    </div>
+    <div class="layui-tab">
+        <ul class="layui-tab-title">
+            <li class="layui-this">员工管理</li>
+            <li>随便测试</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <div class="layui-row">
+                    <!-- 查询的搜索框 -->
+                    <form id="search_form" class="layui-form">
+                        <div class="layui-form-item">
+                            <div class="layui-col-xs3">
+                                <label class="layui-form-label" for="ename">员工名称：</label>
+                                <div class="layui-input-inline">
+                                    <input id="ename" name="ename" type="text" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-col-xs3">
+                                <label class="layui-form-label" for="sex">性别：</label>
+                                <div class="layui-input-inline">
+                                    <select id="sex" name="sex">
+                                        <option value="">全部</option>
+                                        <option value="1">男</option>
+                                        <option value="0">女</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs3">
+                                <label class="layui-form-label">工资区间：</label>
+                                <div class="layui-inline">
+                                    <div class="between-and-text">
+                                        <input type="text" name="min_sal" class="layui-input"/>
+                                    </div>
+                                    -
+                                    <div class="between-and-text">
+                                        <input type="text" name="max_sal" class="layui-input"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs3">
+                                <label class="layui-form-label">年龄区间：</label>
+                                <div class="layui-inline">
+                                    <div class="between-and-text">
+                                        <input type="text" name="min_age" class="layui-input"/>
+                                    </div>
+                                    -
+                                    <div class="between-and-text">
+                                        <input type="text" name="max_age" class="layui-input"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-col-xs4">
+                                <label class="layui-form-label">入职日期：</label>
+                                <div class="layui-inline">
+                                    <div class="between-and-date">
+                                        <input type="text" id="start_hiredate" name="start_hiredate" class="layui-input"/>
+                                    </div>
+                                    -
+                                    <div class="between-and-date">
+                                        <input type="text" id="end_hiredate" name="end_hiredate" class="layui-input"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs3">
+                                <button lay-submit class="layui-btn layui-btn-sm" lay-filter="search_form_submit">查询</button>
+                                <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="layui-col-xs3">
-                    <label class="layui-form-label" for="sex">性别：</label>
-                    <div class="layui-input-inline">
-                        <select id="sex" name="sex">
-                            <option value="">全部</option>
-                            <option value="1">男</option>
-                            <option value="0">女</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="layui-col-xs3">
-                    <label class="layui-form-label">工资区间：</label>
-                    <div class="layui-inline">
-                        <div class="between-and-text">
-                            <input type="text" name="min_sal" class="layui-input"/>
-                        </div>
-                        -
-                        <div class="between-and-text">
-                            <input type="text" name="max_sal" class="layui-input"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-col-xs3">
-                    <label class="layui-form-label">年龄区间：</label>
-                    <div class="layui-inline">
-                        <div class="between-and-text">
-                            <input type="text" name="min_age" class="layui-input"/>
-                        </div>
-                        -
-                        <div class="between-and-text">
-                            <input type="text" name="max_age" class="layui-input"/>
-                        </div>
-                    </div>
+                <div class="layui-row">
+                    <table id="emps_table" lay-filter="emptable"></table>
                 </div>
             </div>
-            <div class="layui-form-item">
-                <div class="layui-col-xs4">
-                    <label class="layui-form-label">入职日期：</label>
-                    <div class="layui-inline">
-                        <div class="between-and-date">
-                            <input type="text" id="start_hiredate" name="start_hiredate" class="layui-input"/>
-                        </div>
-                        -
-                        <div class="between-and-date">
-                            <input type="text" id="end_hiredate" name="end_hiredate" class="layui-input"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-col-xs3">
-                    <button lay-submit class="layui-btn layui-btn-sm" lay-filter="search_form_submit">查询</button>
-                    <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary">重置</button>
-                </div>
+            <div class="layui-tab-item">
+                <h1>SpringMVC接收参数</h1>
+                <hr class="layui-bg-green">
+                <table class="layui-table">
+                    <tr>
+                        <td>
+                            接收单个String类型的参数
+                        </td>
+                        <td>
+                            接收实体类
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="${ctx}/zhaojk/test1?str=abc" target="_blank">测试链接</a>
+                        </td>
+                        <td>
+                            <a href="${ctx}/zhaojk/test2?ename=嘿嘿嘿&age5" target="_blank">测试链接</a>
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="${ctx}/zhaojk/test1?str=" target="_blank">测试链接(.../test1?str=)</a>
+                        </td>
+                        <td>
+                            <a href="${ctx}/zhaojk/test2?ename=&age5" target="_blank">测试链接(.../test2?ename=&age5)</a>
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                </table>
             </div>
-        </form>
+        </div>
     </div>
-    <div class="layui-row">
-        <table id="emps_table" lay-filter="emptable"></table>
-    </div>
+
 </div>
 <script type="text/html" id="opera_btns">
     <!-- 右侧的菜单 -->
