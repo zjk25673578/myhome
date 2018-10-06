@@ -88,7 +88,6 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
 
         // 修改数据
         update: function (obj) {
-            console.log(obj);
             saveOrUpdate(parseData(obj.data), "修改员工信息");
         },
 
@@ -151,7 +150,14 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
             , {field: "ename", title: "员工名称"}
             , {
                 field: "sex", title: "性别", templet: function (d) {
-                    return d.sex == "1" ? "男" : "女"
+                    let formatValue = "--";
+                    if (d.sex == "1") {
+                        formatValue = "男";
+                    }
+                    if (d.sex == "0") {
+                        formatValue = "女";
+                    }
+                    return formatValue;
                 }
             }
             , {field: "age", title: "年龄"}
@@ -218,7 +224,7 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
                 elem: dates[i]
             });
         }
-        form.render();
+        return form.render();
     }
 
     /**
@@ -236,14 +242,20 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
         return updateData;
     }
 
+    /**
+     * 表单验证
+     * @param formObj
+     * @returns {*}
+     */
     function validateForm(formObj) {
-        for (let i = 0; i < formObj.length; i++) {
-            if (!form_validation[formObj[i].name]) {
-                continue;
-            }
-            let r = form_validation[formObj[i].name](formObj[i].value);
+        let temp = {};
+        for (let attr in formObj) {
+            temp[formObj[attr].name] = formObj[attr].value;
+        }
+        for (let attr in form_validation) {
+            let r = form_validation[attr](temp[attr]);
             if (!r) {
-                return r;
+                return false;
             }
         }
         return true;

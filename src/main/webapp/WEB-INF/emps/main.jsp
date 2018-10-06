@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="layui-form-item">
-                <div class="layui-col-xs6">
+                <div class="layui-col-xs4">
                     <label class="layui-form-label">入职日期：</label>
                     <div class="layui-inline">
                         <div class="between-and-date">
@@ -96,7 +96,7 @@
 </script>
 <script type="text/html" id="form_emp">
     <div class="layui-form-item"></div>
-    <form id="form_data_emp" class="layui-form">
+    <form id="form_data_emp" lay-filter="form_add_emp" class="layui-form">
         <input type="hidden" name="empno" value="{{ d.empno }}" />
         <div class="layui-form-item">
             <label class="layui-form-label">员工姓名：</label>
