@@ -54,7 +54,7 @@
                     <a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a>
                 </dd>
                 <dd>
-                    <a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a>
+                    <a onclick="x_admin_show('切换帐号')">切换帐号</a>
                 </dd>
                 <dd>
                     <a href="${ctx}/login">退出</a>

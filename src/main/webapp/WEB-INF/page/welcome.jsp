@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="${ctx}/css/xadmin.css">
 </head>
 <body>
-<div class="x-body layui-anim layui-anim-up">
+<div class="x-body">
     <blockquote class="layui-elem-quote">欢迎管理员：
         <span class="x-red">test</span>！当前时间:2018-04-25 20:50:53
     </blockquote>
@@ -32,7 +32,8 @@
                                         <a href="javascript:;" class="x-admin-backlog-body">
                                             <h3>文章数</h3>
                                             <p>
-                                                <cite>66</cite></p>
+                                                <cite>66</cite>
+                                            </p>
                                         </a>
                                     </li>
                                     <li class="layui-col-xs2">
