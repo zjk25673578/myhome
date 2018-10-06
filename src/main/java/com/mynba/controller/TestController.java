@@ -5,7 +5,7 @@ import com.mynba.model.Emp;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController // ResponseBody + Controller
 @RequestMapping("/zhaojk")
 public class TestController {
 
