@@ -279,13 +279,12 @@ layui.use(["form", "layer", "laydate", "laytpl", "table"], function () {
                         data: formdata,
                         dataType: "json",
                         success: function (data) {
-                            // 关闭对话框
-                            layer.close(idx);
-                            layer.alert(data.action, {icon: data.type}, function (index) {
-                                table.reload("#emps_table");
-                                // 关闭提示消息
-                                layer.close(index);
-                            });
+                            // 关闭对话框, 这里模拟ajax延迟, 多次点击会多次提交的问题
+                            setTimeout(function () {
+                                layer.close(idx);
+                            }, 500);
+                            table.reload("#emps_table");
+                            // layer.alert(data.action, {icon: data.type, time: 1000});
                         },
                         error: function () {
                             // layer.close(idx);
