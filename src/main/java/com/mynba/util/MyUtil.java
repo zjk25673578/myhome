@@ -1,11 +1,14 @@
 package com.mynba.util;
 
 import com.mynba.model.Message;
+import com.mynba.model.Sysmenu;
+import com.mynba.model.TreeModel;
 
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +34,7 @@ public class MyUtil {
     /**
      * 用于将多个javabean转换成Map<String, Object><br>
      * 应当注意重复的key值
+     *
      * @param objects
      * @return
      * @throws Exception
@@ -70,6 +74,7 @@ public class MyUtil {
 
     /**
      * 组装layui-data-table所需的数据格式
+     *
      * @param code
      * @param msg
      * @param count
@@ -83,5 +88,28 @@ public class MyUtil {
         resultMap.put("count", count);
         resultMap.put("data", data);
         return resultMap;
+    }
+
+    public static int safecount = 1;
+
+    public static List<TreeModel> convert(List<Sysmenu> list, Integer parentid, List<TreeModel> temp) {
+        safecount++;
+        if (temp == null) {
+            temp = new ArrayList<>();
+        }
+        for (Sysmenu sysmenu : list) {
+            if (sysmenu.getParentid() == parentid) {
+                TreeModel treeModel = new TreeModel();
+                treeModel.setLabel(sysmenu.getMname());
+                temp.add(treeModel);
+                convert(list, sysmenu.getParentid(), temp);
+            }
+        }
+
+
+        if (safecount > 1000) {
+            return null;
+        }
+        return temp;
     }
 }

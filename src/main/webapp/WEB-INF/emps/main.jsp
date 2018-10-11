@@ -5,15 +5,17 @@
     <title>员工管理 - 增删改查</title>
     <link rel="stylesheet" href="${ctx}/lib/layui/css/layui.css">
     <link rel="stylesheet" href="${ctx}/css/main.css">
+    <link rel="stylesheet" href="${ctx}/css/eleTree.css">
     <script src="${ctx}/lib/layui/layui.js"></script>
     <script src="${ctx}/js/main.js"></script>
+    <script src="${ctx}/js/laytree.js"></script>
 </head>
 <body>
 <div class="layui-container">
     <div class="layui-tab">
         <ul class="layui-tab-title">
             <li class="layui-this">员工管理</li>
-            <li>随便测试</li>
+            <li>树形菜单</li>
         </ul>
         <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
@@ -87,61 +89,7 @@
                 </div>
             </div>
             <div class="layui-tab-item">
-                <h1>SpringMVC接收参数</h1>
-                <hr class="layui-bg-green">
-                <table class="layui-table">
-                    <tr>
-                        <td>
-                            接收单个String类型的参数
-                        </td>
-                        <td>
-                            接收实体类
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="${ctx}/zhaojk/test1?str=abc" target="_blank">测试链接</a>
-                        </td>
-                        <td>
-                            <a href="${ctx}/zhaojk/test2?ename=嘿嘿嘿&age5" target="_blank">测试链接</a>
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="${ctx}/zhaojk/test1?str=" target="_blank">测试链接(.../test1?str=)</a>
-                        </td>
-                        <td>
-                            <a href="${ctx}/zhaojk/test2?ename=&age5" target="_blank">测试链接(.../test2?ename=&age5)</a>
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                </table>
+                <div id="elem-tree"></div>
             </div>
         </div>
     </div>

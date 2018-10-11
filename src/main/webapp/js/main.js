@@ -8,9 +8,9 @@ layui.use(["form", "layer", "laydate", "laytpl", "table", "element", "jquery"], 
         element = layui.element,
         $ = layui.$;
 
-    layer.msg("Hello World", {
+/*    layer.msg("Hello World", {
         offset: "50%"
-    });
+    });*/
 
     laydate.render({elem: "#start_hiredate"});
     laydate.render({elem: "#end_hiredate"});
@@ -214,7 +214,7 @@ layui.use(["form", "layer", "laydate", "laytpl", "table", "element", "jquery"], 
             title: title,
             area: area,
             // shade: 0.2,
-            offset: "30%",
+            offset: "25%",
             btn: ["保存", "取消"],
             yes: function (idx) {
                 callback(idx);
