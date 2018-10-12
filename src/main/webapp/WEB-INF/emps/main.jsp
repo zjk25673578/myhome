@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <title>员工管理 - 增删改查</title>
     <link rel="stylesheet" href="${ctx}/lib/layui/css/layui.css">
-    <link rel="stylesheet" href="${ctx}/css/main.css">
     <link rel="stylesheet" href="${ctx}/css/eleTree.css">
+    <link rel="stylesheet" href="${ctx}/css/main.css">
     <script src="${ctx}/lib/layui/layui.js"></script>
     <script src="${ctx}/js/main.js"></script>
     <script src="${ctx}/js/laytree.js"></script>
@@ -14,11 +14,11 @@
 <div class="layui-container">
     <div class="layui-tab">
         <ul class="layui-tab-title">
-            <li class="layui-this">员工管理</li>
-            <li>树形菜单</li>
+            <li>员工管理</li>
+            <li class="layui-this">树形菜单</li>
         </ul>
         <div class="layui-tab-content">
-            <div class="layui-tab-item layui-show">
+            <div class="layui-tab-item">
                 <div class="layui-row">
                     <!-- 查询的搜索框 -->
                     <form id="search_form" class="layui-form">
@@ -88,8 +88,10 @@
                     <table id="emps_table" lay-filter="emptable"></table>
                 </div>
             </div>
-            <div class="layui-tab-item">
-                <div id="elem-tree"></div>
+            <div class="layui-tab-item layui-show">
+                <div class="container">
+                    <div id="elem-tree"></div>
+                </div>
             </div>
         </div>
     </div>

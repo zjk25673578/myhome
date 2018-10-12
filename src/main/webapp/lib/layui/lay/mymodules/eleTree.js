@@ -58,10 +58,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                             self.init();
                             return;
                         }
-                        layer.alert(data.msg, {
-                            title: "选择器" + self.elem + "获取数据失败",
-                            icon: 2
-                        });
+                        layer.alert(data.Msg, {title: "选择器" + self.elem + "获取数据失败", icon: 2});
                     }
                 });
                 return;
@@ -208,7 +205,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                 });
 
                 $("#tree-menu").hide().remove();
-            });
+            })
             $(document).on("click", function () {
                 $("#tree-menu").hide().remove();
             });
@@ -260,7 +257,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                         d.children ? "" : d.children = [];
                         var obj = {
                             label: value,
-                        };
+                        }
                         isChecked ? obj.checked = true : "";
                         d.children.push(obj);
                         d.spread = true;
@@ -563,7 +560,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                             temData: temData,
                             childIndex: childIndex
                         };
-                    };
+                    }
 
                     // 判断是否是同一个dom树
                     var isOwnTarget = target.parents(".eleTree").length === 0 ? target.get(0) : target.parents(".eleTree").get(0);
@@ -686,8 +683,8 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                 var node = $(item).parent(".eleTree-node-content").parent(".eleTree-node ");
                 var d = self.reInitData(node).currentData;
                 self.checkedData.push(d);
-            });
-            return this.checkedData;
+            })
+            return this.checkedData
         },
         // 通过dom节点找对应数据
         reInitData: function (node) {
@@ -722,13 +719,13 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                 index: arr
             }
         },
-    };
+    }
 
     var thisEleTree = function () {
         thisEleTree.o[this.elem] = this;
         thisEleTree.config[this.elem] = this.option;
         thisEleTree.getCheckedData[this.elem] = this.getCheckedData;
-    };
+    }
     // 保存当前对象(为了获取选中元素时改变this指向)
     thisEleTree.o = {};
     // 保存对象的option
@@ -751,7 +748,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
             var config = thisEleTree.config[elem];
             this.render($.extend({}, config, option));
         }
-    };
+    }
 
     exports('eleTree', eleTree);
-});
+})

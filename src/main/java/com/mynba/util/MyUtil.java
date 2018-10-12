@@ -1,17 +1,14 @@
 package com.mynba.util;
 
-import com.mynba.model.Message;
-import com.mynba.model.Sysmenu;
-import com.mynba.model.TreeModel;
-
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+import com.mynba.model.Message;
+import com.mynba.model.Sysmenu;
+import com.mynba.model.TreeModel;
 
 public class MyUtil {
 
@@ -92,24 +89,24 @@ public class MyUtil {
 
     public static int safecount = 1;
 
-    public static List<TreeModel> convert(List<Sysmenu> list, Integer parentid, List<TreeModel> temp) {
-        safecount++;
-        if (temp == null) {
-            temp = new ArrayList<>();
-        }
-        for (Sysmenu sysmenu : list) {
-            if (sysmenu.getParentid() == parentid) {
-                TreeModel treeModel = new TreeModel();
-                treeModel.setLabel(sysmenu.getMname());
-                temp.add(treeModel);
-                convert(list, sysmenu.getParentid(), temp);
+    /**
+     * @param list 源数据
+     * @param id   从哪一级的id开始
+     * @return
+     */
+    public static List<TreeModel> convertMenuList(List<Sysmenu> list, Integer id) {
+        List<TreeModel> treeList = new LinkedList<>();
+        if (list.size() > 0) {
+            for (int i = 0; i < list.size(); i++) {
+                Sysmenu sysmenu = list.get(i);
+                if (sysmenu.getParentid() == id) {
+                    TreeModel treeModel = new TreeModel(list.get(i));
+                    List<TreeModel> temp = convertMenuList(list, treeModel.getIds());
+                    treeModel.setChildren(temp);
+                    treeList.add(treeModel);
+                }
             }
         }
-
-
-        if (safecount > 1000) {
-            return null;
-        }
-        return temp;
+        return treeList;
     }
 }

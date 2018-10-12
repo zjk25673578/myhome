@@ -1,18 +1,21 @@
 package com.mynba.model;
 
-public class TreeModel {
-    private String label; // 节点名称
+import java.util.List;
+
+public class TreeModel extends Sysmenu {
     private boolean spread; // 是否展开
     private boolean disabled; // 是否禁用
     private boolean checked; // 是否选中
-    private TreeModel[] children; // 子节点数据
+    private List<TreeModel> children; // 子节点数据
 
-    public String getLabel() {
-        return label;
+    public TreeModel() {
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public TreeModel(Sysmenu sysmenu) {
+        this.setIds(sysmenu.getIds());
+        this.setParentid(sysmenu.getParentid());
+        this.setIcon(sysmenu.getIcon());
+        this.setLabel(sysmenu.getLabel());
     }
 
     public boolean isSpread() {
@@ -39,11 +42,21 @@ public class TreeModel {
         this.checked = checked;
     }
 
-    public TreeModel[] getChildren() {
+    public List<TreeModel> getChildren() {
         return children;
     }
 
-    public void setChildren(TreeModel[] children) {
+    public void setChildren(List<TreeModel> children) {
         this.children = children;
+    }
+
+    @Override
+    public String toString() {
+        return "TreeModel{" +
+                "spread=" + spread +
+                ", disabled=" + disabled +
+                ", checked=" + checked +
+                ", children=" + children +
+                '}';
     }
 }

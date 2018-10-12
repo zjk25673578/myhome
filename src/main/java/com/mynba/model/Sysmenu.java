@@ -2,7 +2,7 @@ package com.mynba.model;
 
 public class Sysmenu {
     private Integer ids;
-    private String mname;
+    private String label;
     private String icon;
     private Integer parentid;
 
@@ -14,12 +14,12 @@ public class Sysmenu {
         this.ids = ids;
     }
 
-    public String getMname() {
-        return mname;
+    public String getLabel() {
+        return label;
     }
 
-    public void setMname(String mname) {
-        this.mname = mname;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     public String getIcon() {
@@ -42,7 +42,7 @@ public class Sysmenu {
     public String toString() {
         return "Sysmenu{" +
                 "ids=" + ids +
-                ", mname='" + mname + '\'' +
+                ", mname='" + label + '\'' +
                 ", icon='" + icon + '\'' +
                 ", parentid=" + parentid +
                 '}';

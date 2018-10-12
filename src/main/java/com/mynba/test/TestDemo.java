@@ -1,8 +1,5 @@
 package com.mynba.test;
 
-import com.alibaba.fastjson.JSON;
-import com.mynba.model.EmpSearchEntity;
-
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -12,12 +9,13 @@ import java.util.Map;
 
 public class TestDemo {
     public static void main(String[] args) {
-        String key = "{\"ename\":\"小明\",\"sex\":\"1\",\"min_sal\":\"22\",\"max_sal\":\"1200\"," +
+/*        String key = "{\"ename\":\"小明\",\"sex\":\"1\",\"min_sal\":\"22\",\"max_sal\":\"1200\"," +
                 "\"min_age\":\"\",\"max_age\":\"\",\"start_hiredate\":\"2012-09-15\",\"end_hiredate\":\"\"}";
-        EmpSearchEntity empSearchEntity = JSON.parseObject(key, EmpSearchEntity.class);
+        EmpSearchEntity empSearchEntity = JSON.parseObject(key, EmpSearchEntity.class); // 竟然可以兼容数据类型进行转换
 
         Map<String, Object> map = transBean2Map(empSearchEntity);
-        System.out.println(map);
+        System.out.println(map);*/
+
     }
 
     public static Map<String, Object> transBean2Map(Object obj) {

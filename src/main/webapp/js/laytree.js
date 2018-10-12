@@ -7,9 +7,9 @@ layui.config({
         elem: "#elem-tree",
         type: "post",
         url: _ctx + "/elemtree/trees",
-        showCheckbox: true,
-        contextmenuList: ["copy", "add", "edit", "remove"],
-        drag: true,
-        accordion: true
+        // showCheckbox: true,
+        // contextmenuList: ["copy", "add", "edit", "remove"],
+        // drag: true,
+        accordion: false
     });
 });
