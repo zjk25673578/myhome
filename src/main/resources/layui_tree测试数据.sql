@@ -8,7 +8,7 @@ prompt Creating SYSMENU...
 create table SYSMENU
 (
   ids      NUMBER(8) not null,
-  mname    VARCHAR2(30),
+  label    VARCHAR2(30),
   icon     VARCHAR2(20),
   parentid NUMBER(8)
 )
@@ -42,57 +42,57 @@ alter table SYSMENU
 prompt Disabling triggers for SYSMENU...
 alter table SYSMENU disable all triggers;
 prompt Loading SYSMENU...
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (42, '库存管理', null, 0);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (43, '客户信息', null, 0);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (44, '日程管理', null, 0);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (45, '会议管理', null, 0);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (46, '系统设置', null, 0);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (47, '入库记录', null, 42);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (48, '出库记录', null, 42);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (49, '库存盘点', null, 42);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (50, '潜在客户', null, 43);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (51, '新增客户', null, 43);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (52, 'A类客户', null, 43);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (53, 'B类客户', null, 43);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (54, 'C类客户', null, 43);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (55, 'D类客户', null, 43);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (56, '我的日程', null, 44);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (57, '日程提醒', null, 44);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (58, '我的会议', null, 45);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (59, '会议提醒', null, 45);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (60, '更换皮肤', null, 46);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (61, '自动退出时间', null, 46);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (62, '重新登陆', null, 46);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (63, '个人中心', null, 46);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (64, '我参加的会议', null, 58);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (65, '我发起的会议', null, 58);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (66, '更换头像', null, 63);
-insert into SYSMENU (ids, mname, icon, parentid)
+insert into SYSMENU (ids, label, icon, parentid)
 values (67, '密码修改', null, 63);
 commit;
 prompt 26 records loaded

@@ -58,7 +58,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                             self.init();
                             return;
                         }
-                        layer.alert(data.Msg, {title: "选择器" + self.elem + "获取数据失败", icon: 2});
+                        layer.alert(data.msg, {title: "选择器" + self.elem + "获取数据失败", icon: 2});
                     }
                 });
                 return;
@@ -84,7 +84,6 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
 
             this.contextmenuList.length && this.contextmenuList.length > 0 && this.rightClickMenu();
             this.checkInit();
-
         },
         // dom生成
         nodeInit: function (arr, count, spread) {
@@ -94,20 +93,25 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
             var a = [];
             arr.forEach(function (val, index) {
                 var b = ['<div class="eleTree-node ', spread ? 'eleTree-hide' : "", '" eleTree-floor="' + count + '">'
-                    , '<div class="eleTree-node-content" style="padding-left: ' + 18 * count + 'px;">'
+                    , '<div class="eleTree-node-content" style="padding-left:' + 18 * count + 'px;">'
                     , '<span class="eleTree-node-content-icon">'
                     // 判断叶子节点
                     , (function () {
-                        if (val.children && val.children.length > 0) {
-                            var s = '<i class="layui-icon layui-icon-triangle-r ';
-                            if (val.spread) {
-                                s += 'icon-rotate';
-                            }
-                            s += ' "></i>'
-                            return s;
-                        } else {
-                            return '<i class="layui-icon layui-icon-triangle-r" style="color: transparent;"></i>'
+                        /*                        if (val.children && val.children.length > 0) {
+                                                    var s = '<i class="layui-icon layui-icon-triangle-r ';
+                                                    if (val.spread) {
+                                                        s += 'icon-rotate';
+                                                    }
+                                                    s += ' "></i>'
+                                                    return s;
+                                                } else {
+                                                    return '<i class="layui-icon layui-icon-triangle-r" style="color: transparent;"></i>'
+                                                }*/
+                        var s = '<i class="layui-icon layui-event-flag layui-icon-triangle-r" style="color: transparent;"></i>';
+                        if (val.icon) {
+                            s = '<i class="layui-icon layui-event-flag ' + val.icon + '" style="color: inherit;"></i>';
                         }
+                        return s;
                     })()
                     , '</span>'
                     // 判断是否启用checkbox
@@ -116,17 +120,16 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                         if (self.showCheckbox) {
                             s += '<input type="checkbox" name="eleTree-node"';
                             if (val.checked) {
-                                s += ' eleTree-status="1" checked '
+                                s += ' eleTree-status="1" checked ';
                             } else {
-                                s += ' eleTree-status="0"'
+                                s += ' eleTree-status="0"';
                             }
-                            s += 'class="eleTree-hideen '
+                            s += 'class="eleTree-hideen ';
                             if (val.disabled) {
-                                s += 'eleTree-disabled'
+                                s += 'eleTree-disabled';
                             }
                             s += '" >';
                         }
-
                         return s;
                     })()
 
@@ -171,6 +174,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
         // 展开合并动画
         eleTreeEvent: function () {
             var self = this;
+            // 展开树节点的事件在这里
             $(this.elem).on("click", ".eleTree-node-content", function (e) {
                 e.stopPropagation();
                 // 添加active背景
@@ -181,20 +185,19 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                 var data = self.reInitData(node);
                 var d = data.currentData;
                 // 切换下拉
-                var el = $(this).find(".layui-icon-triangle-r");
-                if (el.hasClass("icon-rotate")) {
+                // var el = $(this).find(".layui-icon-triangle-r");
+                var el = $(this).find(".layui-event-flag");
+                if (el.hasClass("icon-rotate1")) {
                     $(this).siblings(".eleTree-node-group").children().slideUp("fast");
-                    el.removeClass("icon-rotate");
+                    el.removeClass("icon-rotate1");
                     // 数据修改
                     delete d.spread;
                 } else {
                     $(this).siblings(".eleTree-node-group").children().slideDown("fast");
-                    el.addClass("icon-rotate");
+                    el.addClass("icon-rotate1");
                     // 数据修改
                     d.spread = true;
-
                     self.accordionFn($(this), data);
-
                 }
                 self.prevClickEle = $(this);
 
@@ -205,7 +208,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                 });
 
                 $("#tree-menu").hide().remove();
-            })
+            });
             $(document).on("click", function () {
                 $("#tree-menu").hide().remove();
             });
@@ -257,7 +260,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                         d.children ? "" : d.children = [];
                         var obj = {
                             label: value,
-                        }
+                        };
                         isChecked ? obj.checked = true : "";
                         d.children.push(obj);
                         d.spread = true;
@@ -285,7 +288,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                                 var s = "";
                                 if (self.showCheckbox) {
                                     s += '<input type="checkbox" name="eleTree-node" class="eleTree-hideen"';
-                                    s += isChecked ? ' eleTree-status="1"' : ' eleTree-status="0"'
+                                    s += isChecked ? ' eleTree-status="1"' : ' eleTree-status="0"';
                                     s += '>'
                                 }
                                 return s;
@@ -390,7 +393,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                 siblingNode.each(function (index, item) {
                     var siblingIsChecked = $(item).children(".eleTree-node-content").children("input[name='eleTree-node']").attr("eleTree-status");
                     arr.push(siblingIsChecked);
-                })
+                });
                 // 父元素的实际input
                 var parentInput = eleNode.parent(".eleTree-node-group").siblings(".eleTree-node-content").children("input[name='eleTree-node']");
                 // 父元素的checkbox替代
@@ -471,7 +474,6 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                     childNode.siblings(".eleTree-checkbox").children("i").removeClass("layui-icon-ok eleTree-checkbox-line");
                 })();
 
-
                 var eleNode = $(inp).parent(".eleTree-node-content").parent(".eleTree-node");
                 var siblingNode = eleNode.siblings(".eleTree-node");
                 // 点击子孙层选中祖父层(递归)
@@ -507,7 +509,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                     position: "absolute",
                     "background-color": "#f5f5f5",
                     width: "100%"
-                })
+                });
                 $("#tree-menu").hide().remove();
 
                 $(document.body).on("mousemove", function (e) {
@@ -560,7 +562,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                             temData: temData,
                             childIndex: childIndex
                         };
-                    }
+                    };
 
                     // 判断是否是同一个dom树
                     var isOwnTarget = target.parents(".eleTree").length === 0 ? target.get(0) : target.parents(".eleTree").get(0);
@@ -650,10 +652,8 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                         }
                     }
 
-                })
-
-
-            })
+                });
+            });
         },
         // 初始化checkbox选中状态
         checkInit: function (arr, floor) {
@@ -683,7 +683,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                 var node = $(item).parent(".eleTree-node-content").parent(".eleTree-node ");
                 var d = self.reInitData(node).currentData;
                 self.checkedData.push(d);
-            })
+            });
             return this.checkedData
         },
         // 通过dom节点找对应数据
@@ -719,13 +719,13 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                 index: arr
             }
         },
-    }
+    };
 
     var thisEleTree = function () {
         thisEleTree.o[this.elem] = this;
         thisEleTree.config[this.elem] = this.option;
         thisEleTree.getCheckedData[this.elem] = this.getCheckedData;
-    }
+    };
     // 保存当前对象(为了获取选中元素时改变this指向)
     thisEleTree.o = {};
     // 保存对象的option
@@ -748,7 +748,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
             var config = thisEleTree.config[elem];
             this.render($.extend({}, config, option));
         }
-    }
+    };
 
     exports('eleTree', eleTree);
-})
+});

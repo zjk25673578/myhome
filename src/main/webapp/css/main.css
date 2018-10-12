@@ -62,5 +62,5 @@
 
 /* 选中状态的颜色 */
 .eleTree-node-content.eleTree-node-content-active {
-    background-color: yellow;
+    background-color: red;
 }

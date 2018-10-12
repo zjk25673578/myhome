@@ -1,14 +1,17 @@
 package com.mynba.util;
 
+import com.mynba.model.Message;
+import com.mynba.model.Sysmenu;
+import com.mynba.model.TreeModel;
+
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
-import java.util.*;
-
-import com.mynba.model.Message;
-import com.mynba.model.Sysmenu;
-import com.mynba.model.TreeModel;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class MyUtil {
 
@@ -31,7 +34,6 @@ public class MyUtil {
     /**
      * 用于将多个javabean转换成Map<String, Object><br>
      * 应当注意重复的key值
-     *
      * @param objects
      * @return
      * @throws Exception
