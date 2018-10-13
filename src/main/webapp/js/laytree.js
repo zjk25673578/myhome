@@ -10,6 +10,7 @@ layui.config({
         // showCheckbox: true,
         // contextmenuList: ["copy", "add", "edit", "remove"],
         // drag: true,
+        indent: 18,
         accordion: false
     });
 });
