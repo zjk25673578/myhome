@@ -88,9 +88,24 @@
                     <table id="emps_table" lay-filter="emptable"></table>
                 </div>
             </div>
-            <div class="layui-tab-item layui-show">
-                <div class="container">
-                    <div id="elem-tree"></div>
+            <div class="layui-tab-item layui-show layui-col-space10">
+                <div class="layui-col-md2">
+                    <div class="container">
+                        <div id="elem-tree" lay-filter="elemtree"></div>
+                    </div>
+                </div>
+                <div class="layui-col-md10">
+                    <div class="layui-btn-container">
+                        <button id="getAll" class="layui-btn layui-btn-xs layui-btn-normal">所有的数据</button>
+                        <button id="getSelect" class="layui-btn layui-btn-sm layui-btn-normal">选中的数据</button>
+                        <button id="expand" class="layui-btn layui-btn-md layui-btn-normal">全部展开</button>
+                        <button id="reduce" class="layui-btn layui-btn-lg layui-btn-normal">全部收起</button>
+                    </div>
+                    <div class="layui-row">
+                        <div id="content">
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

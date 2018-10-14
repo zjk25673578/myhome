@@ -16,6 +16,7 @@ public class TreeModel extends Sysmenu {
         this.setParentid(sysmenu.getParentid());
         this.setIcon(sysmenu.getIcon());
         this.setLabel(sysmenu.getLabel());
+        this.setUrl(sysmenu.getUrl());
     }
 
     public boolean isSpread() {

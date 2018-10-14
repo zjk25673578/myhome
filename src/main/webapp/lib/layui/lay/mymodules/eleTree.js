@@ -287,7 +287,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                         var s = ['<div class="eleTree-node" eleTree-floor="' + floor + '">'
                             , '<div class="eleTree-node-content" style="padding-left: ' + self.indent * floor + 'px;">'
                             , '<span class="eleTree-node-content-icon">'
-                            , '<i class="layui-icon layui-icon-triangle-r" style="color: transparent;"></i>'
+                            , '<i class="layui-icon layui-flag layui-icon-triangle-r" style="color: transparent;"></i>'
                             , '</span>'
                             // 判断是否启用checkbox
                             , (function () {
@@ -357,6 +357,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                     layui.event.call(_self, "eleTree", 'remove(' + self.filter + ')', {
                         data: self.data
                         , parentData: d
+                        , deleteData: data.currentData
                     });
                     // dom删除
                     var tem = $(_self).parent(".eleTree-node").parent(".eleTree-node-group");
@@ -699,6 +700,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
             }
         },
     };
+
     var thisEleTree = function () {
         thisEleTree.o[this.elem] = this;
         thisEleTree.config[this.elem] = this.option;
@@ -711,7 +713,10 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
     // 获取选中的元素
     thisEleTree.getCheckedData = {};
     var eleTree = {
-        checkedData(elem) {
+        checkedData(elem, flag) {
+            if (flag) {
+                return thisEleTree.o[elem].data;
+            }
             return thisEleTree.getCheckedData[elem].call(thisEleTree.o[elem]);
         },
         render: function (option) {

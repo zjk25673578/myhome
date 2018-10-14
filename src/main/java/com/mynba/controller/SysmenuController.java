@@ -28,7 +28,6 @@ public class SysmenuController {
             msg = "返回数据成功 !";
         }
         Map<String, Object> r = MyUtil.layData(0, msg, result.size(), result);
-        System.out.println(result);
         return JSON.toJSONString(r);
     }
 }

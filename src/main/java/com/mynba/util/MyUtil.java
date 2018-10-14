@@ -89,8 +89,6 @@ public class MyUtil {
         return resultMap;
     }
 
-    public static int safecount = 1;
-
     /**
      * @param list 源数据
      * @param id   从哪一级的id开始
