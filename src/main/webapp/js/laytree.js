@@ -13,7 +13,7 @@ layui.config({
         // contextmenuList: ["copy", "add", "edit", "remove"],
         // drag: true,
         indent: 18,
-        accordion: false
+        accordion: true
     });
 
     // 右键菜单的添加事件

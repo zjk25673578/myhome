@@ -160,7 +160,8 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
             // 手风琴
             var parentSibling = ele.parent(".eleTree-node").siblings(".eleTree-node");
             parentSibling.children(".eleTree-node-group").children().slideUp("fast");
-            parentSibling.children(".eleTree-node-content").find(".layui-icon-triangle-r").removeClass("icon-rotate");
+            // parentSibling.children(".eleTree-node-content").find(".layui-icon-triangle-r").removeClass("icon-rotate");
+            parentSibling.children(".eleTree-node-content").find(".layui-flag").removeClass("icon-rotate");
             var parentData = d.parentData;
             // 最外层判断
             if (d.index.length === 1) {
