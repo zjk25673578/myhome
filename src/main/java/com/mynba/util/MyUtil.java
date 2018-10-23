@@ -90,6 +90,7 @@ public class MyUtil {
     }
 
     /**
+     * 将查询结果转换成elemTree可以解析的格式
      * @param list 源数据
      * @param id   从哪一级的id开始
      * @return
