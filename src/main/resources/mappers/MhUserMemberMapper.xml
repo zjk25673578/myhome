@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mynba.dao.MhUserMemberMapper" >
+  <resultMap id="BaseResultMap" type="com.mynba.model.MhUserMember" >
+    <id column="IDS" property="ids" jdbcType="DECIMAL" />
+    <result column="USERID" property="userid" jdbcType="DECIMAL" />
+    <result column="MEMBERID" property="memberid" jdbcType="DECIMAL" />
+    <result column="RELATION" property="relation" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    IDS, USERID, MEMBERID, RELATION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from TEST.MH_USER_MEMBER
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from TEST.MH_USER_MEMBER
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.mynba.model.MhUserMember" useGeneratedKeys="true" keyProperty="ids" >
+    insert into TEST.MH_USER_MEMBER (USERID, MEMBERID, RELATION
+      )
+    values (#{userid,jdbcType=DECIMAL}, #{memberid,jdbcType=DECIMAL}, #{relation,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mynba.model.MhUserMember" useGeneratedKeys="true" keyProperty="ids" >
+    insert into TEST.MH_USER_MEMBER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="memberid != null" >
+        MEMBERID,
+      </if>
+      <if test="relation != null" >
+        RELATION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="memberid != null" >
+        #{memberid,jdbcType=DECIMAL},
+      </if>
+      <if test="relation != null" >
+        #{relation,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mynba.model.MhUserMember" >
+    update TEST.MH_USER_MEMBER
+    <set >
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="memberid != null" >
+        MEMBERID = #{memberid,jdbcType=DECIMAL},
+      </if>
+      <if test="relation != null" >
+        RELATION = #{relation,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mynba.model.MhUserMember" >
+    update TEST.MH_USER_MEMBER
+    set USERID = #{userid,jdbcType=DECIMAL},
+      MEMBERID = #{memberid,jdbcType=DECIMAL},
+      RELATION = #{relation,jdbcType=DECIMAL}
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </update>
+</mapper>

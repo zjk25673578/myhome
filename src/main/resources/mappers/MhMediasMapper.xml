@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mynba.dao.MhMediasMapper" >
+  <resultMap id="BaseResultMap" type="com.mynba.model.MhMedias" >
+    <id column="IDS" property="ids" jdbcType="DECIMAL" />
+    <result column="FNAME" property="fname" jdbcType="VARCHAR" />
+    <result column="FILENAME" property="filename" jdbcType="VARCHAR" />
+    <result column="FILEPATH" property="filepath" jdbcType="VARCHAR" />
+    <result column="FILETYPE" property="filetype" jdbcType="DECIMAL" />
+    <result column="COMLEVL" property="comlevl" jdbcType="DECIMAL" />
+    <result column="PHOTOS" property="photos" jdbcType="DECIMAL" />
+    <result column="FILESIZE" property="filesize" jdbcType="VARCHAR" />
+    <result column="DESCP" property="descp" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    IDS, FNAME, FILENAME, FILEPATH, FILETYPE, COMLEVL, PHOTOS, FILESIZE, DESCP, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from TEST.MH_MEDIAS
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from TEST.MH_MEDIAS
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.mynba.model.MhMedias" useGeneratedKeys="true" keyProperty="ids" >
+    insert into TEST.MH_MEDIAS (FNAME, FILENAME, FILEPATH, 
+      FILETYPE, COMLEVL, PHOTOS, 
+      FILESIZE, DESCP, STATUS
+      )
+    values (#{fname,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, #{filepath,jdbcType=VARCHAR}, 
+      #{filetype,jdbcType=DECIMAL}, #{comlevl,jdbcType=DECIMAL}, #{photos,jdbcType=DECIMAL}, 
+      #{filesize,jdbcType=VARCHAR}, #{descp,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mynba.model.MhMedias" useGeneratedKeys="true" keyProperty="ids" >
+    insert into TEST.MH_MEDIAS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fname != null" >
+        FNAME,
+      </if>
+      <if test="filename != null" >
+        FILENAME,
+      </if>
+      <if test="filepath != null" >
+        FILEPATH,
+      </if>
+      <if test="filetype != null" >
+        FILETYPE,
+      </if>
+      <if test="comlevl != null" >
+        COMLEVL,
+      </if>
+      <if test="photos != null" >
+        PHOTOS,
+      </if>
+      <if test="filesize != null" >
+        FILESIZE,
+      </if>
+      <if test="descp != null" >
+        DESCP,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fname != null" >
+        #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null" >
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null" >
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="filetype != null" >
+        #{filetype,jdbcType=DECIMAL},
+      </if>
+      <if test="comlevl != null" >
+        #{comlevl,jdbcType=DECIMAL},
+      </if>
+      <if test="photos != null" >
+        #{photos,jdbcType=DECIMAL},
+      </if>
+      <if test="filesize != null" >
+        #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="descp != null" >
+        #{descp,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mynba.model.MhMedias" >
+    update TEST.MH_MEDIAS
+    <set >
+      <if test="fname != null" >
+        FNAME = #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null" >
+        FILENAME = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null" >
+        FILEPATH = #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="filetype != null" >
+        FILETYPE = #{filetype,jdbcType=DECIMAL},
+      </if>
+      <if test="comlevl != null" >
+        COMLEVL = #{comlevl,jdbcType=DECIMAL},
+      </if>
+      <if test="photos != null" >
+        PHOTOS = #{photos,jdbcType=DECIMAL},
+      </if>
+      <if test="filesize != null" >
+        FILESIZE = #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="descp != null" >
+        DESCP = #{descp,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mynba.model.MhMedias" >
+    update TEST.MH_MEDIAS
+    set FNAME = #{fname,jdbcType=VARCHAR},
+      FILENAME = #{filename,jdbcType=VARCHAR},
+      FILEPATH = #{filepath,jdbcType=VARCHAR},
+      FILETYPE = #{filetype,jdbcType=DECIMAL},
+      COMLEVL = #{comlevl,jdbcType=DECIMAL},
+      PHOTOS = #{photos,jdbcType=DECIMAL},
+      FILESIZE = #{filesize,jdbcType=VARCHAR},
+      DESCP = #{descp,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL}
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </update>
+</mapper>

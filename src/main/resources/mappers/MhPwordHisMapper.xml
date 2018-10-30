@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mynba.dao.MhPwordHisMapper" >
+  <resultMap id="BaseResultMap" type="com.mynba.model.MhPwordHis" >
+    <id column="IDS" property="ids" jdbcType="DECIMAL" />
+    <result column="ACCID" property="accid" jdbcType="DECIMAL" />
+    <result column="PWORD" property="pword" jdbcType="VARCHAR" />
+    <result column="UPDATETIME" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    IDS, ACCID, PWORD, UPDATETIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from TEST.MH_PWORD_HIS
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from TEST.MH_PWORD_HIS
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.mynba.model.MhPwordHis" useGeneratedKeys="true" keyProperty="ids" >
+    insert into TEST.MH_PWORD_HIS (ACCID, PWORD, UPDATETIME
+      )
+    values (#{accid,jdbcType=DECIMAL}, #{pword,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mynba.model.MhPwordHis" useGeneratedKeys="true" keyProperty="ids" >
+    insert into TEST.MH_PWORD_HIS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="accid != null" >
+        ACCID,
+      </if>
+      <if test="pword != null" >
+        PWORD,
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="accid != null" >
+        #{accid,jdbcType=DECIMAL},
+      </if>
+      <if test="pword != null" >
+        #{pword,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mynba.model.MhPwordHis" >
+    update TEST.MH_PWORD_HIS
+    <set >
+      <if test="accid != null" >
+        ACCID = #{accid,jdbcType=DECIMAL},
+      </if>
+      <if test="pword != null" >
+        PWORD = #{pword,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null" >
+        UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mynba.model.MhPwordHis" >
+    update TEST.MH_PWORD_HIS
+    set ACCID = #{accid,jdbcType=DECIMAL},
+      PWORD = #{pword,jdbcType=VARCHAR},
+      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP}
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </update>
+</mapper>

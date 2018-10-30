@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mynba.dao.MhFinanceMapper" >
+  <resultMap id="BaseResultMap" type="com.mynba.model.MhFinance" >
+    <id column="IDS" property="ids" jdbcType="DECIMAL" />
+    <result column="USERID" property="userid" jdbcType="DECIMAL" />
+    <result column="FTYPE" property="ftype" jdbcType="DECIMAL" />
+    <result column="CASH" property="cash" jdbcType="DECIMAL" />
+    <result column="CREATETYPE" property="createtype" jdbcType="DECIMAL" />
+    <result column="PRODATE" property="prodate" jdbcType="TIMESTAMP" />
+    <result column="REASON" property="reason" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    IDS, USERID, FTYPE, CASH, CREATETYPE, PRODATE, REASON, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from TEST.MH_FINANCE
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from TEST.MH_FINANCE
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.mynba.model.MhFinance" useGeneratedKeys="true" keyProperty="ids" >
+    insert into TEST.MH_FINANCE (USERID, FTYPE, CASH, 
+      CREATETYPE, PRODATE, REASON, 
+      STATUS)
+    values (#{userid,jdbcType=DECIMAL}, #{ftype,jdbcType=DECIMAL}, #{cash,jdbcType=DECIMAL}, 
+      #{createtype,jdbcType=DECIMAL}, #{prodate,jdbcType=TIMESTAMP}, #{reason,jdbcType=VARCHAR}, 
+      #{status,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mynba.model.MhFinance" useGeneratedKeys="true" keyProperty="ids" >
+    insert into TEST.MH_FINANCE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="ftype != null" >
+        FTYPE,
+      </if>
+      <if test="cash != null" >
+        CASH,
+      </if>
+      <if test="createtype != null" >
+        CREATETYPE,
+      </if>
+      <if test="prodate != null" >
+        PRODATE,
+      </if>
+      <if test="reason != null" >
+        REASON,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="ftype != null" >
+        #{ftype,jdbcType=DECIMAL},
+      </if>
+      <if test="cash != null" >
+        #{cash,jdbcType=DECIMAL},
+      </if>
+      <if test="createtype != null" >
+        #{createtype,jdbcType=DECIMAL},
+      </if>
+      <if test="prodate != null" >
+        #{prodate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mynba.model.MhFinance" >
+    update TEST.MH_FINANCE
+    <set >
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="ftype != null" >
+        FTYPE = #{ftype,jdbcType=DECIMAL},
+      </if>
+      <if test="cash != null" >
+        CASH = #{cash,jdbcType=DECIMAL},
+      </if>
+      <if test="createtype != null" >
+        CREATETYPE = #{createtype,jdbcType=DECIMAL},
+      </if>
+      <if test="prodate != null" >
+        PRODATE = #{prodate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reason != null" >
+        REASON = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mynba.model.MhFinance" >
+    update TEST.MH_FINANCE
+    set USERID = #{userid,jdbcType=DECIMAL},
+      FTYPE = #{ftype,jdbcType=DECIMAL},
+      CASH = #{cash,jdbcType=DECIMAL},
+      CREATETYPE = #{createtype,jdbcType=DECIMAL},
+      PRODATE = #{prodate,jdbcType=TIMESTAMP},
+      REASON = #{reason,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL}
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </update>
+</mapper>

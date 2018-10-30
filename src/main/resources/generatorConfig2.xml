@@ -2,7 +2,7 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-    <properties resource="classpath:config.properties"/>
+    <properties resource="config.properties"/>
 
     <!-- 数据库驱动包 -->
     <classPathEntry location="${jdbc.path}"/>
@@ -53,7 +53,7 @@
                 targetProject="${target.project}" type="XMLMAPPER"/>
 
         <!-- 声明需要哪个表 -->
-        <table schema="${tab.schema}" tableName="accountinfo"
+        <table schema="${tab.schema}" tableName="MH_%"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
@@ -62,7 +62,7 @@
             <generatedKey column="ids" sqlStatement="JDBC"
                           identity="true"/>
         </table>
-
+<!--
         <table schema="${tab.schema}" tableName="appuser"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
@@ -88,6 +88,6 @@
             <property name="useActualColumnNames" value="false"/>
             <generatedKey column="ids" sqlStatement="JDBC"
                           identity="true"/>
-        </table>
+        </table>-->
     </context>
 </generatorConfiguration>

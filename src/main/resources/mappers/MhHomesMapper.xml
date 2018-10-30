@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mynba.dao.MhHomesMapper" >
+  <resultMap id="BaseResultMap" type="com.mynba.model.MhHomes" >
+    <id column="IDS" property="ids" jdbcType="DECIMAL" />
+    <result column="HCODE" property="hcode" jdbcType="VARCHAR" />
+    <result column="HNAME" property="hname" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    IDS, HCODE, HNAME, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from TEST.MH_HOMES
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from TEST.MH_HOMES
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.mynba.model.MhHomes" useGeneratedKeys="true" keyProperty="ids" >
+    insert into TEST.MH_HOMES (HCODE, HNAME, STATUS
+      )
+    values (#{hcode,jdbcType=VARCHAR}, #{hname,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mynba.model.MhHomes" useGeneratedKeys="true" keyProperty="ids" >
+    insert into TEST.MH_HOMES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hcode != null" >
+        HCODE,
+      </if>
+      <if test="hname != null" >
+        HNAME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hcode != null" >
+        #{hcode,jdbcType=VARCHAR},
+      </if>
+      <if test="hname != null" >
+        #{hname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mynba.model.MhHomes" >
+    update TEST.MH_HOMES
+    <set >
+      <if test="hcode != null" >
+        HCODE = #{hcode,jdbcType=VARCHAR},
+      </if>
+      <if test="hname != null" >
+        HNAME = #{hname,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mynba.model.MhHomes" >
+    update TEST.MH_HOMES
+    set HCODE = #{hcode,jdbcType=VARCHAR},
+      HNAME = #{hname,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL}
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </update>
+</mapper>

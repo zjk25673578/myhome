@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mynba.dao.MhNotebookMapper" >
+  <resultMap id="BaseResultMap" type="com.mynba.model.MhNotebook" >
+    <id column="IDS" property="ids" jdbcType="DECIMAL" />
+    <result column="CONTE" property="conte" jdbcType="VARCHAR" />
+    <result column="TOUSER" property="touser" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    IDS, CONTE, TOUSER, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from TEST.MH_NOTEBOOK
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from TEST.MH_NOTEBOOK
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.mynba.model.MhNotebook" useGeneratedKeys="true" keyProperty="ids" >
+    insert into TEST.MH_NOTEBOOK (CONTE, TOUSER, STATUS
+      )
+    values (#{conte,jdbcType=VARCHAR}, #{touser,jdbcType=DECIMAL}, #{status,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mynba.model.MhNotebook" useGeneratedKeys="true" keyProperty="ids" >
+    insert into TEST.MH_NOTEBOOK
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="conte != null" >
+        CONTE,
+      </if>
+      <if test="touser != null" >
+        TOUSER,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="conte != null" >
+        #{conte,jdbcType=VARCHAR},
+      </if>
+      <if test="touser != null" >
+        #{touser,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mynba.model.MhNotebook" >
+    update TEST.MH_NOTEBOOK
+    <set >
+      <if test="conte != null" >
+        CONTE = #{conte,jdbcType=VARCHAR},
+      </if>
+      <if test="touser != null" >
+        TOUSER = #{touser,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mynba.model.MhNotebook" >
+    update TEST.MH_NOTEBOOK
+    set CONTE = #{conte,jdbcType=VARCHAR},
+      TOUSER = #{touser,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=DECIMAL}
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </update>
+</mapper>
