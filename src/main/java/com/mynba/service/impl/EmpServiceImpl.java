@@ -1,7 +1,5 @@
 package com.mynba.service.impl;
 
-import com.mynba.dao.EmpDao;
-import com.mynba.model.Emp;
 import com.mynba.service.EmpService;
 import com.mynba.util.MyUtil;
 import org.springframework.beans.factory.annotation.Autowired;

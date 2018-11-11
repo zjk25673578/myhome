@@ -1,9 +1,5 @@
 package com.mynba.util;
 
-import com.mynba.model.Message;
-import com.mynba.model.Sysmenu;
-import com.mynba.model.TreeModel;
-
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
