@@ -281,9 +281,9 @@ layui.use(["form", "layer", "laydate", "laytpl", "table", "element", "jquery"], 
                         dataType: "json",
                         success: function (data) {
                             // 关闭对话框, 这里模拟ajax延迟, 多次点击会多次提交的问题
-                            setTimeout(function () {
+                            // setTimeout(function () {
                                 layer.close(idx);
-                            }, 500);
+                            // }, 500);
                             table.reload("#emps_table");
                             // layer.alert(data.action, {icon: data.type, time: 1000});
                         },
