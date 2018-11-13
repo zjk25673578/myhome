@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mynba.travel.dao.MhTravelMapper" >
+  <resultMap id="BaseResultMap" type="com.mynba.travel.model.MhTravel" >
+    <id column="IDS" property="ids" jdbcType="DECIMAL" />
+    <result column="HOMEID" property="homeid" jdbcType="DECIMAL" />
+    <result column="USERID" property="userid" jdbcType="DECIMAL" />
+    <result column="TARGETS" property="targets" jdbcType="VARCHAR" />
+    <result column="DETAIL" property="detail" jdbcType="VARCHAR" />
+    <result column="LASTIME" property="lastime" jdbcType="DECIMAL" />
+    <result column="CONSUME" property="consume" jdbcType="DECIMAL" />
+    <result column="ISIMPL" property="isimpl" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    IDS, HOMEID, USERID, TARGETS, DETAIL, LASTIME, CONSUME, ISIMPL, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from TEST.MH_TRAVEL
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from TEST.MH_TRAVEL
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.mynba.model.MhTravel" useGeneratedKeys="true" keyProperty="ids" >
+    insert into TEST.MH_TRAVEL (HOMEID, USERID, TARGETS, 
+      DETAIL, LASTIME, CONSUME, 
+      ISIMPL, STATUS)
+    values (#{homeid,jdbcType=DECIMAL}, #{userid,jdbcType=DECIMAL}, #{targets,jdbcType=VARCHAR}, 
+      #{detail,jdbcType=VARCHAR}, #{lastime,jdbcType=DECIMAL}, #{consume,jdbcType=DECIMAL}, 
+      #{isimpl,jdbcType=DECIMAL}, #{status,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mynba.model.MhTravel" useGeneratedKeys="true" keyProperty="ids" >
+    insert into TEST.MH_TRAVEL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="homeid != null" >
+        HOMEID,
+      </if>
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="targets != null" >
+        TARGETS,
+      </if>
+      <if test="detail != null" >
+        DETAIL,
+      </if>
+      <if test="lastime != null" >
+        LASTIME,
+      </if>
+      <if test="consume != null" >
+        CONSUME,
+      </if>
+      <if test="isimpl != null" >
+        ISIMPL,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="homeid != null" >
+        #{homeid,jdbcType=DECIMAL},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="targets != null" >
+        #{targets,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="lastime != null" >
+        #{lastime,jdbcType=DECIMAL},
+      </if>
+      <if test="consume != null" >
+        #{consume,jdbcType=DECIMAL},
+      </if>
+      <if test="isimpl != null" >
+        #{isimpl,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mynba.model.MhTravel" >
+    update TEST.MH_TRAVEL
+    <set >
+      <if test="homeid != null" >
+        HOMEID = #{homeid,jdbcType=DECIMAL},
+      </if>
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="targets != null" >
+        TARGETS = #{targets,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null" >
+        DETAIL = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="lastime != null" >
+        LASTIME = #{lastime,jdbcType=DECIMAL},
+      </if>
+      <if test="consume != null" >
+        CONSUME = #{consume,jdbcType=DECIMAL},
+      </if>
+      <if test="isimpl != null" >
+        ISIMPL = #{isimpl,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mynba.model.MhTravel" >
+    update TEST.MH_TRAVEL
+    set HOMEID = #{homeid,jdbcType=DECIMAL},
+      USERID = #{userid,jdbcType=DECIMAL},
+      TARGETS = #{targets,jdbcType=VARCHAR},
+      DETAIL = #{detail,jdbcType=VARCHAR},
+      LASTIME = #{lastime,jdbcType=DECIMAL},
+      CONSUME = #{consume,jdbcType=DECIMAL},
+      ISIMPL = #{isimpl,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=DECIMAL}
+    where IDS = #{ids,jdbcType=DECIMAL}
+  </update>
+</mapper>

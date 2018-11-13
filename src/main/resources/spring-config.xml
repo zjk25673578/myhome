@@ -12,7 +12,9 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
     <!-- 配置spring扫描器 -->
-    <context:component-scan base-package="com.mynba.service.impl"/>
+    <context:component-scan base-package="com.mynba">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
 
     <!-- 引入数据库的信息文件 -->
     <context:property-placeholder location="classpath:db_orcl.properties"/>
@@ -47,13 +49,13 @@
         使用p:configLocation="" -->
     <bean id="sqlSessionFactoryBean"
           class="org.mybatis.spring.SqlSessionFactoryBean"
-          p:dataSource-ref="dataSource" p:typeAliasesPackage="com.mynba.model"
-          p:mapperLocations="classpath:mappers/*Mapper.xml"/>
+          p:dataSource-ref="dataSource" p:mapperLocations="classpath:com/mynba/*/dao/*Mapper.xml"
+          p:typeAliasesPackage="com.mynba.*.model" p:configLocation="classpath:mybatis-config.xml"/>
 
     <!-- 扫面项目中所有的接口, 将会自动映射到上面扫描的映射文件中, 可以直接使用 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
           p:sqlSessionFactoryBeanName="sqlSessionFactoryBean"
-          p:basePackage="com.mynba.dao"/>
+          p:basePackage="com.mynba.*.dao" />
 
     <!-- spring提供的数据库查询模版, 用得着就用, 用不着就放这 -->
     <bean id="jdbcTemplate"
@@ -69,11 +71,11 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!-- 自己声明的一个切面类 -->
-    <bean id="logginAspect" class="com.mynba.util.LogginAspect"/>
+    <bean id="logginAspect" class="com.mynba.commons.util.LogginAspect"/>
 
     <!-- AOP -->
     <aop:config proxy-target-class="true">
-        <aop:pointcut expression="execution(* com.mynba.service.*.*(..))" id="aoppointcut"/>
+        <aop:pointcut expression="execution(* com.mynba..service.*(..))" id="aoppointcut"/>
         <!-- 关联事务的传播属性 -->
         <aop:advisor pointcut-ref="aoppointcut" advice-ref="txadvice"/>
         <!-- 定义切面类的执行方法 -->

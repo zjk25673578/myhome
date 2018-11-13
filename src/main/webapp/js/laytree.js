@@ -1,5 +1,5 @@
 layui.config({
-    base: "../lib/layui/lay/mymodules/"
+    base: "../res/layui/lay/mymodules/"
 }).use(['jquery', 'layer', 'eleTree'], function () {
     let $ = layui.jquery,
         layer = layui.layer,
