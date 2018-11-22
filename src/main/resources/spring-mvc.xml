@@ -6,22 +6,77 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
+    <context:property-placeholder location="classpath:freemarker.properties"/>
+
     <!-- 扫描器 -->
     <context:component-scan base-package="com.mynba.*.controller">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
+    <!--    <bean id="freemarkerConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+            <property name="location" value="classpath:freemarker.properties"/>
+        </bean>-->
+
+    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+        <property name="contentType" value="text/html; charset=utf-8"/>
+<!--        <property name="exposeRequestAttributes" value="true" />
+        <property name="exposeSessionAttributes" value="true" />
+        <property name="exposeSpringMacroHelpers" value="true" />-->
+        <property name="cache" value="${cache}"/>
+        <property name="suffix" value=".html"/>
+        <property name="order" value="1"/>
+    </bean>
+
+    <!-- 配置freeMarker的模板路径 -->
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="${templateLoaderPath}" />
+        <property name="freemarkerVariables">
+            <map>
+                <entry key="xml_escape" value-ref="fmXmlEscape"/>
+                <entry key="ctx" value="${ctx}"/>
+            </map>
+        </property>
+        <property name="defaultEncoding" value="${default_encoding}"/>
+        <property name="freemarkerSettings">
+            <props>
+                <!-- 每次重新检测, 更新模板的间隔时间 -->
+                <!-- 设置为0表示每次请求都是从服务器拉取模板 -->
+                <prop key="template_update_delay">${template_update_delay}</prop>
+                <prop key="url_escaping_charset">${url_escaping_charset}</prop>
+                <prop key="locale">${locale}</prop>
+                <prop key="datetime_format">${datetime_format}</prop>
+                <prop key="date_format">${date_format}</prop>
+                <prop key="time_format">${time_format}</prop>
+                <prop key="number_format">${number_format}</prop>
+                <!--
+                启用传统模式, 即类似于EL表达式的取值
+                那么如果我们设置了全局的classic_compatible属性，
+                而在某个页面上又不想遵守这个属性该怎么办呢？这样就可以在当前这个页面上采用以下的办法，
+                让当前的页面不再支持传统模式：<#setting classic_compatible=false>-->
+                <prop key="classic_compatible">${classic_compatible}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/>
+
     <!-- 视图解析器 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-            p:prefix="/WEB-INF/" p:suffix=".jsp"/>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="order" value="2"/>
+    </bean>
 
     <!-- 文件上传的配置 -->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
-          p:maxUploadSize="50000000" p:maxUploadSizePerFile="5000000"
-          p:defaultEncoding="utf-8"/>
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="50000000"/>
+        <property name="maxUploadSizePerFile" value="5000000"/>
+        <property name="defaultEncoding" value="utf-8"/>
+    </bean>
 
     <!-- 日期类型的转换器 -->
-    <bean id="myDateFormat" class="com.mynba.commons.util.MyDateFormatUtil" />
+    <bean id="myDateFormat" class="com.mynba.commons.util.MyDateFormatUtil"/>
 
     <bean id="factoryBean"
           class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
@@ -34,7 +89,7 @@
     </bean>
 
     <!-- 默认访问跳转到登录页面(即定义无需Controller的url<->view直接映射) -->
-    <mvc:view-controller path="/" view-name="redirect:/login" />
+    <mvc:view-controller path="/" view-name="redirect:login"/>
 
     <!-- springMVC的注解驱动标签 -->
     <mvc:annotation-driven conversion-service="factoryBean">
@@ -59,9 +114,9 @@
     </mvc:annotation-driven>
 
     <!-- 静态资源过滤 -->
-    <mvc:resources location="/css/" mapping="/css/**" />
-    <mvc:resources location="/fonts/" mapping="/fonts/**" />
-    <mvc:resources location="/images/" mapping="/images/**" />
-    <mvc:resources location="/js/" mapping="/js/**" />
-    <mvc:resources location="/res/" mapping="/res/**" />
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/fonts/" mapping="/fonts/**"/>
+    <mvc:resources location="/images/" mapping="/images/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>
+    <mvc:resources location="/res/" mapping="/res/**"/>
 </beans>

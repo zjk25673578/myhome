@@ -8,17 +8,17 @@ public class ApplicationController {
 
     @RequestMapping("/login")
     public String toLogin() {
-        return "page/login";
+        return "record/login";
     }
 
     @RequestMapping("/index")
     public String index() {
-        return "page/index";
+        return "record/index";
     }
 
     @RequestMapping("/welcome")
     public String welcome() {
-        return "page/welcome";
+        return "record/welcome";
     }
 
     @RequestMapping("/error404")
@@ -29,5 +29,10 @@ public class ApplicationController {
     @RequestMapping("/error500")
     public String error500() {
         return "jsp/500";
+    }
+
+    @RequestMapping("/test")
+    public String test() {
+        return "aabbcc/test";
     }
 }
