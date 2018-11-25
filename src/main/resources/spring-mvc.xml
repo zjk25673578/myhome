@@ -89,7 +89,7 @@
     </bean>
 
     <!-- 默认访问跳转到登录页面(即定义无需Controller的url<->view直接映射) -->
-    <mvc:view-controller path="/" view-name="redirect:login"/>
+    <mvc:view-controller path="/" view-name="redirect:/index"/>
 
     <!-- springMVC的注解驱动标签 -->
     <mvc:annotation-driven conversion-service="factoryBean">
