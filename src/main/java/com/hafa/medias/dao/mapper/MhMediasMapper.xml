@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hafa.medias.dao.MhMediasMapper">
+  <resultMap id="BaseResultMap" type="com.hafa.medias.model.MhMedias">
+    <id column="ids" jdbcType="INTEGER" property="ids" />
+    <result column="fname" jdbcType="VARCHAR" property="fname" />
+    <result column="filename" jdbcType="VARCHAR" property="filename" />
+    <result column="filepath" jdbcType="VARCHAR" property="filepath" />
+    <result column="filetype" jdbcType="TINYINT" property="filetype" />
+    <result column="comlevl" jdbcType="TINYINT" property="comlevl" />
+    <result column="photos" jdbcType="INTEGER" property="photos" />
+    <result column="filesize" jdbcType="VARCHAR" property="filesize" />
+    <result column="descp" jdbcType="VARCHAR" property="descp" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ids, fname, filename, filepath, filetype, comlevl, photos, filesize, descp, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mh_medias
+    where ids = #{ids,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mh_medias
+    where ids = #{ids,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.medias.model.MhMedias" useGeneratedKeys="true">
+    insert into mh_medias (fname, filename, filepath, 
+      filetype, comlevl, photos, 
+      filesize, descp, status
+      )
+    values (#{fname,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, #{filepath,jdbcType=VARCHAR}, 
+      #{filetype,jdbcType=TINYINT}, #{comlevl,jdbcType=TINYINT}, #{photos,jdbcType=INTEGER}, 
+      #{filesize,jdbcType=VARCHAR}, #{descp,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.medias.model.MhMedias" useGeneratedKeys="true">
+    insert into mh_medias
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fname != null">
+        fname,
+      </if>
+      <if test="filename != null">
+        filename,
+      </if>
+      <if test="filepath != null">
+        filepath,
+      </if>
+      <if test="filetype != null">
+        filetype,
+      </if>
+      <if test="comlevl != null">
+        comlevl,
+      </if>
+      <if test="photos != null">
+        photos,
+      </if>
+      <if test="filesize != null">
+        filesize,
+      </if>
+      <if test="descp != null">
+        descp,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fname != null">
+        #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null">
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="filetype != null">
+        #{filetype,jdbcType=TINYINT},
+      </if>
+      <if test="comlevl != null">
+        #{comlevl,jdbcType=TINYINT},
+      </if>
+      <if test="photos != null">
+        #{photos,jdbcType=INTEGER},
+      </if>
+      <if test="filesize != null">
+        #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="descp != null">
+        #{descp,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hafa.medias.model.MhMedias">
+    update mh_medias
+    <set>
+      <if test="fname != null">
+        fname = #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        filename = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null">
+        filepath = #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="filetype != null">
+        filetype = #{filetype,jdbcType=TINYINT},
+      </if>
+      <if test="comlevl != null">
+        comlevl = #{comlevl,jdbcType=TINYINT},
+      </if>
+      <if test="photos != null">
+        photos = #{photos,jdbcType=INTEGER},
+      </if>
+      <if test="filesize != null">
+        filesize = #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="descp != null">
+        descp = #{descp,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hafa.medias.model.MhMedias">
+    update mh_medias
+    set fname = #{fname,jdbcType=VARCHAR},
+      filename = #{filename,jdbcType=VARCHAR},
+      filepath = #{filepath,jdbcType=VARCHAR},
+      filetype = #{filetype,jdbcType=TINYINT},
+      comlevl = #{comlevl,jdbcType=TINYINT},
+      photos = #{photos,jdbcType=INTEGER},
+      filesize = #{filesize,jdbcType=VARCHAR},
+      descp = #{descp,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT}
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+</mapper>

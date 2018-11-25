@@ -9,7 +9,7 @@
     <context:property-placeholder location="classpath:freemarker.properties"/>
 
     <!-- 扫描器 -->
-    <context:component-scan base-package="com.mynba.*.controller">
+    <context:component-scan base-package="com.hafa.*.controller">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
@@ -76,7 +76,7 @@
     </bean>
 
     <!-- 日期类型的转换器 -->
-    <bean id="myDateFormat" class="com.mynba.commons.util.MyDateFormatUtil"/>
+    <bean id="myDateFormat" class="com.hafa.commons.util.MyDateFormatUtil"/>
 
     <bean id="factoryBean"
           class="org.springframework.format.support.FormattingConversionServiceFactoryBean">

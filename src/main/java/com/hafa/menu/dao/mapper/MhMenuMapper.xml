@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hafa.menu.dao.MhMenuMapper">
+  <resultMap id="BaseResultMap" type="com.hafa.menu.model.MhMenu">
+    <id column="ids" jdbcType="INTEGER" property="ids" />
+    <result column="parentid" jdbcType="INTEGER" property="parentid" />
+    <result column="menuname" jdbcType="VARCHAR" property="menuname" />
+    <result column="murl" jdbcType="VARCHAR" property="murl" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ids, parentid, menuname, murl, icon, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mh_menu
+    where ids = #{ids,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mh_menu
+    where ids = #{ids,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.menu.model.MhMenu" useGeneratedKeys="true">
+    insert into mh_menu (parentid, menuname, murl, 
+      icon, status)
+    values (#{parentid,jdbcType=INTEGER}, #{menuname,jdbcType=VARCHAR}, #{murl,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.menu.model.MhMenu" useGeneratedKeys="true">
+    insert into mh_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentid != null">
+        parentid,
+      </if>
+      <if test="menuname != null">
+        menuname,
+      </if>
+      <if test="murl != null">
+        murl,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentid != null">
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="menuname != null">
+        #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="murl != null">
+        #{murl,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hafa.menu.model.MhMenu">
+    update mh_menu
+    <set>
+      <if test="parentid != null">
+        parentid = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="menuname != null">
+        menuname = #{menuname,jdbcType=VARCHAR},
+      </if>
+      <if test="murl != null">
+        murl = #{murl,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hafa.menu.model.MhMenu">
+    update mh_menu
+    set parentid = #{parentid,jdbcType=INTEGER},
+      menuname = #{menuname,jdbcType=VARCHAR},
+      murl = #{murl,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT}
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+</mapper>

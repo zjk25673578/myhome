@@ -15,8 +15,12 @@
         <property name="mergeable" value="false"/>
 
         <commentGenerator>
-            <!-- suppressAllComments false时打开注释，true时关闭注释 suppressDate false时打开时间注释,
-                true关闭注释 -->
+            <!--
+                suppressAllComments
+                false时打开注释，true时关闭注释
+                suppressDate
+                false时打开时间注释, true关闭注释
+             -->
             <property name="suppressDate" value="true"/>
             <property name="suppressAllComments" value="true"/>
             <property name="addRemarkComments" value="true"/>
@@ -53,7 +57,7 @@
                 targetProject="${target.project}" type="XMLMAPPER"/>
 
         <!-- 声明需要哪个表 -->
-        <table schema="${tab.schema}" tableName="MH_%"
+        <table schema="${tab.schema}" tableName="${tab.name}"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

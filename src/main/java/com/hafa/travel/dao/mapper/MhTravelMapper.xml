@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hafa.travel.dao.MhTravelMapper">
+  <resultMap id="BaseResultMap" type="com.hafa.travel.model.MhTravel">
+    <id column="ids" jdbcType="INTEGER" property="ids" />
+    <result column="homeid" jdbcType="INTEGER" property="homeid" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="targets" jdbcType="VARCHAR" property="targets" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="lastime" jdbcType="INTEGER" property="lastime" />
+    <result column="consume" jdbcType="INTEGER" property="consume" />
+    <result column="isimpl" jdbcType="TINYINT" property="isimpl" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ids, homeid, userid, targets, detail, lastime, consume, isimpl, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mh_travel
+    where ids = #{ids,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mh_travel
+    where ids = #{ids,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.travel.model.MhTravel" useGeneratedKeys="true">
+    insert into mh_travel (homeid, userid, targets, 
+      detail, lastime, consume, 
+      isimpl, status)
+    values (#{homeid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{targets,jdbcType=VARCHAR}, 
+      #{detail,jdbcType=VARCHAR}, #{lastime,jdbcType=INTEGER}, #{consume,jdbcType=INTEGER}, 
+      #{isimpl,jdbcType=TINYINT}, #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.travel.model.MhTravel" useGeneratedKeys="true">
+    insert into mh_travel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="homeid != null">
+        homeid,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="targets != null">
+        targets,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="lastime != null">
+        lastime,
+      </if>
+      <if test="consume != null">
+        consume,
+      </if>
+      <if test="isimpl != null">
+        isimpl,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="homeid != null">
+        #{homeid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="targets != null">
+        #{targets,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="lastime != null">
+        #{lastime,jdbcType=INTEGER},
+      </if>
+      <if test="consume != null">
+        #{consume,jdbcType=INTEGER},
+      </if>
+      <if test="isimpl != null">
+        #{isimpl,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hafa.travel.model.MhTravel">
+    update mh_travel
+    <set>
+      <if test="homeid != null">
+        homeid = #{homeid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="targets != null">
+        targets = #{targets,jdbcType=VARCHAR},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="lastime != null">
+        lastime = #{lastime,jdbcType=INTEGER},
+      </if>
+      <if test="consume != null">
+        consume = #{consume,jdbcType=INTEGER},
+      </if>
+      <if test="isimpl != null">
+        isimpl = #{isimpl,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hafa.travel.model.MhTravel">
+    update mh_travel
+    set homeid = #{homeid,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=INTEGER},
+      targets = #{targets,jdbcType=VARCHAR},
+      detail = #{detail,jdbcType=VARCHAR},
+      lastime = #{lastime,jdbcType=INTEGER},
+      consume = #{consume,jdbcType=INTEGER},
+      isimpl = #{isimpl,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT}
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+</mapper>

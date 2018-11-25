@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hafa.webinfo.dao.MhWebinfoMapper">
+  <resultMap id="BaseResultMap" type="com.hafa.webinfo.model.MhWebinfo">
+    <id column="ids" jdbcType="INTEGER" property="ids" />
+    <result column="webname" jdbcType="VARCHAR" property="webname" />
+    <result column="webadd" jdbcType="VARCHAR" property="webadd" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ids, webname, webadd, note, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mh_webinfo
+    where ids = #{ids,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mh_webinfo
+    where ids = #{ids,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.webinfo.model.MhWebinfo" useGeneratedKeys="true">
+    insert into mh_webinfo (webname, webadd, note, 
+      status)
+    values (#{webname,jdbcType=VARCHAR}, #{webadd,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.webinfo.model.MhWebinfo" useGeneratedKeys="true">
+    insert into mh_webinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="webname != null">
+        webname,
+      </if>
+      <if test="webadd != null">
+        webadd,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="webname != null">
+        #{webname,jdbcType=VARCHAR},
+      </if>
+      <if test="webadd != null">
+        #{webadd,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hafa.webinfo.model.MhWebinfo">
+    update mh_webinfo
+    <set>
+      <if test="webname != null">
+        webname = #{webname,jdbcType=VARCHAR},
+      </if>
+      <if test="webadd != null">
+        webadd = #{webadd,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hafa.webinfo.model.MhWebinfo">
+    update mh_webinfo
+    set webname = #{webname,jdbcType=VARCHAR},
+      webadd = #{webadd,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT}
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+</mapper>

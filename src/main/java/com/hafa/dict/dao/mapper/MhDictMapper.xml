@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hafa.dict.dao.MhDictMapper">
+  <resultMap id="BaseResultMap" type="com.hafa.dict.model.MhDict">
+    <id column="ids" jdbcType="INTEGER" property="ids" />
+    <result column="diccode" jdbcType="INTEGER" property="diccode" />
+    <result column="dicvalue" jdbcType="VARCHAR" property="dicvalue" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ids, diccode, dicvalue, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mh_dict
+    where ids = #{ids,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mh_dict
+    where ids = #{ids,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.dict.model.MhDict" useGeneratedKeys="true">
+    insert into mh_dict (diccode, dicvalue, status
+      )
+    values (#{diccode,jdbcType=INTEGER}, #{dicvalue,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.dict.model.MhDict" useGeneratedKeys="true">
+    insert into mh_dict
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="diccode != null">
+        diccode,
+      </if>
+      <if test="dicvalue != null">
+        dicvalue,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="diccode != null">
+        #{diccode,jdbcType=INTEGER},
+      </if>
+      <if test="dicvalue != null">
+        #{dicvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hafa.dict.model.MhDict">
+    update mh_dict
+    <set>
+      <if test="diccode != null">
+        diccode = #{diccode,jdbcType=INTEGER},
+      </if>
+      <if test="dicvalue != null">
+        dicvalue = #{dicvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hafa.dict.model.MhDict">
+    update mh_dict
+    set diccode = #{diccode,jdbcType=INTEGER},
+      dicvalue = #{dicvalue,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT}
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+</mapper>

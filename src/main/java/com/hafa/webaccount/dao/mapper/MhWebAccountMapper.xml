@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hafa.webaccount.dao.MhWebAccountMapper">
+  <resultMap id="BaseResultMap" type="com.hafa.webaccount.model.MhWebAccount">
+    <id column="ids" jdbcType="INTEGER" property="ids" />
+    <result column="webid" jdbcType="INTEGER" property="webid" />
+    <result column="accounts" jdbcType="VARCHAR" property="accounts" />
+    <result column="pword" jdbcType="VARCHAR" property="pword" />
+    <result column="emails" jdbcType="VARCHAR" property="emails" />
+    <result column="mphone" jdbcType="VARCHAR" property="mphone" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="pwordhis" jdbcType="INTEGER" property="pwordhis" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ids, webid, accounts, pword, emails, mphone, note, pwordhis, userid, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mh_web_account
+    where ids = #{ids,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mh_web_account
+    where ids = #{ids,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.webaccount.model.MhWebAccount" useGeneratedKeys="true">
+    insert into mh_web_account (webid, accounts, pword, 
+      emails, mphone, note, 
+      pwordhis, userid, status
+      )
+    values (#{webid,jdbcType=INTEGER}, #{accounts,jdbcType=VARCHAR}, #{pword,jdbcType=VARCHAR}, 
+      #{emails,jdbcType=VARCHAR}, #{mphone,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{pwordhis,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.webaccount.model.MhWebAccount" useGeneratedKeys="true">
+    insert into mh_web_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="webid != null">
+        webid,
+      </if>
+      <if test="accounts != null">
+        accounts,
+      </if>
+      <if test="pword != null">
+        pword,
+      </if>
+      <if test="emails != null">
+        emails,
+      </if>
+      <if test="mphone != null">
+        mphone,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+      <if test="pwordhis != null">
+        pwordhis,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="webid != null">
+        #{webid,jdbcType=INTEGER},
+      </if>
+      <if test="accounts != null">
+        #{accounts,jdbcType=VARCHAR},
+      </if>
+      <if test="pword != null">
+        #{pword,jdbcType=VARCHAR},
+      </if>
+      <if test="emails != null">
+        #{emails,jdbcType=VARCHAR},
+      </if>
+      <if test="mphone != null">
+        #{mphone,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="pwordhis != null">
+        #{pwordhis,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hafa.webaccount.model.MhWebAccount">
+    update mh_web_account
+    <set>
+      <if test="webid != null">
+        webid = #{webid,jdbcType=INTEGER},
+      </if>
+      <if test="accounts != null">
+        accounts = #{accounts,jdbcType=VARCHAR},
+      </if>
+      <if test="pword != null">
+        pword = #{pword,jdbcType=VARCHAR},
+      </if>
+      <if test="emails != null">
+        emails = #{emails,jdbcType=VARCHAR},
+      </if>
+      <if test="mphone != null">
+        mphone = #{mphone,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="pwordhis != null">
+        pwordhis = #{pwordhis,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hafa.webaccount.model.MhWebAccount">
+    update mh_web_account
+    set webid = #{webid,jdbcType=INTEGER},
+      accounts = #{accounts,jdbcType=VARCHAR},
+      pword = #{pword,jdbcType=VARCHAR},
+      emails = #{emails,jdbcType=VARCHAR},
+      mphone = #{mphone,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      pwordhis = #{pwordhis,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT}
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+</mapper>

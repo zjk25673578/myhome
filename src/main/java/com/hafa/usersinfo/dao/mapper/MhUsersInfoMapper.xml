@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hafa.usersinfo.dao.MhUsersInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hafa.usersinfo.model.MhUsersInfo">
+    <id column="ids" jdbcType="INTEGER" property="ids" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="feeling" jdbcType="VARCHAR" property="feeling" />
+    <result column="blood" jdbcType="INTEGER" property="blood" />
+    <result column="ansign" jdbcType="INTEGER" property="ansign" />
+    <result column="conste" jdbcType="INTEGER" property="conste" />
+    <result column="favor" jdbcType="VARCHAR" property="favor" />
+    <result column="persign" jdbcType="VARCHAR" property="persign" />
+    <result column="highedu" jdbcType="INTEGER" property="highedu" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ids, userid, feeling, blood, ansign, conste, favor, persign, highedu, birthday, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mh_users_info
+    where ids = #{ids,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mh_users_info
+    where ids = #{ids,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.usersinfo.model.MhUsersInfo" useGeneratedKeys="true">
+    insert into mh_users_info (userid, feeling, blood, 
+      ansign, conste, favor, 
+      persign, highedu, birthday, 
+      status)
+    values (#{userid,jdbcType=INTEGER}, #{feeling,jdbcType=VARCHAR}, #{blood,jdbcType=INTEGER}, 
+      #{ansign,jdbcType=INTEGER}, #{conste,jdbcType=INTEGER}, #{favor,jdbcType=VARCHAR}, 
+      #{persign,jdbcType=VARCHAR}, #{highedu,jdbcType=INTEGER}, #{birthday,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.usersinfo.model.MhUsersInfo" useGeneratedKeys="true">
+    insert into mh_users_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="feeling != null">
+        feeling,
+      </if>
+      <if test="blood != null">
+        blood,
+      </if>
+      <if test="ansign != null">
+        ansign,
+      </if>
+      <if test="conste != null">
+        conste,
+      </if>
+      <if test="favor != null">
+        favor,
+      </if>
+      <if test="persign != null">
+        persign,
+      </if>
+      <if test="highedu != null">
+        highedu,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="feeling != null">
+        #{feeling,jdbcType=VARCHAR},
+      </if>
+      <if test="blood != null">
+        #{blood,jdbcType=INTEGER},
+      </if>
+      <if test="ansign != null">
+        #{ansign,jdbcType=INTEGER},
+      </if>
+      <if test="conste != null">
+        #{conste,jdbcType=INTEGER},
+      </if>
+      <if test="favor != null">
+        #{favor,jdbcType=VARCHAR},
+      </if>
+      <if test="persign != null">
+        #{persign,jdbcType=VARCHAR},
+      </if>
+      <if test="highedu != null">
+        #{highedu,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hafa.usersinfo.model.MhUsersInfo">
+    update mh_users_info
+    <set>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="feeling != null">
+        feeling = #{feeling,jdbcType=VARCHAR},
+      </if>
+      <if test="blood != null">
+        blood = #{blood,jdbcType=INTEGER},
+      </if>
+      <if test="ansign != null">
+        ansign = #{ansign,jdbcType=INTEGER},
+      </if>
+      <if test="conste != null">
+        conste = #{conste,jdbcType=INTEGER},
+      </if>
+      <if test="favor != null">
+        favor = #{favor,jdbcType=VARCHAR},
+      </if>
+      <if test="persign != null">
+        persign = #{persign,jdbcType=VARCHAR},
+      </if>
+      <if test="highedu != null">
+        highedu = #{highedu,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hafa.usersinfo.model.MhUsersInfo">
+    update mh_users_info
+    set userid = #{userid,jdbcType=INTEGER},
+      feeling = #{feeling,jdbcType=VARCHAR},
+      blood = #{blood,jdbcType=INTEGER},
+      ansign = #{ansign,jdbcType=INTEGER},
+      conste = #{conste,jdbcType=INTEGER},
+      favor = #{favor,jdbcType=VARCHAR},
+      persign = #{persign,jdbcType=VARCHAR},
+      highedu = #{highedu,jdbcType=INTEGER},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT}
+    where ids = #{ids,jdbcType=INTEGER}
+  </update>
+</mapper>

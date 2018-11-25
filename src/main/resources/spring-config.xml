@@ -12,14 +12,14 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
     <!-- 配置spring扫描器 -->
-    <context:component-scan base-package="com.mynba.*.service">
+    <context:component-scan base-package="com.hafa.*.service">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
     <!-- 引入数据库的信息文件 -->
-    <context:property-placeholder location="classpath:db_orcl.properties"/>
+    <context:property-placeholder location="classpath:db.properties"/>
     <!--    <context:property-override
-                location="classpath:db_orcl.properties"/>-->
+                location="classpath:db.properties"/>-->
 
     <!-- 配置数据源 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
@@ -50,7 +50,7 @@
     <bean id="sqlSessionFactoryBean"
           class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath:com/mynba/*/dao/*Mapper.xml" />
+        <property name="mapperLocations" value="classpath:com/hafa/*/dao/mapper/*Mapper.xml" />
         <property name="typeAliasesPackage" value="com.mynba.*.model" />
         <property name="configLocation" value="classpath:mybatis-config.xml" />
     </bean>
@@ -58,7 +58,7 @@
     <!-- 扫面项目中所有的接口, 将会自动映射到上面扫描的映射文件中, 可以直接使用 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean" />
-        <property name="basePackage" value="com.mynba.*.dao" />
+        <property name="basePackage" value="com.hafa.*.dao" />
     </bean>
 
     <!-- spring提供的数据库查询模版, 用得着就用, 用不着就放这 -->
@@ -75,11 +75,11 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!-- 自己声明的一个切面类 -->
-    <bean id="logginAspect" class="com.mynba.commons.util.LogginAspect"/>
+    <bean id="logginAspect" class="com.hafa.commons.util.LogginAspect"/>
 
     <!-- AOP -->
     <aop:config proxy-target-class="true">
-        <aop:pointcut expression="execution(* com.mynba..service.*(..))" id="aoppointcut"/>
+        <aop:pointcut expression="execution(* com.hafa..service.*(..))" id="aoppointcut"/>
         <!-- 关联事务的传播属性 -->
         <aop:advisor pointcut-ref="aoppointcut" advice-ref="txadvice"/>
         <!-- 定义切面类的执行方法 -->
