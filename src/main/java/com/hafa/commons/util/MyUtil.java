@@ -3,6 +3,7 @@ package com.hafa.commons.util;
 
 import com.hafa.commons.entity.Message;
 
+import javax.servlet.http.HttpSession;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -10,8 +11,24 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class MyUtil {
+
+    /**
+     * 获取随机的验证码内容(字母加数字)
+     */
+    public static String getCodeContent(HttpSession session) {
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder code = new StringBuilder();
+        for (int x = 1; x <= 4; x++) {
+            Random a = new Random();
+            int m = a.nextInt(str.length());
+            code.append(str.charAt(m));
+        }
+        session.setAttribute("validCode", code.toString());
+        return code.toString();
+    }
 
     /**
      * 构建response消息模型

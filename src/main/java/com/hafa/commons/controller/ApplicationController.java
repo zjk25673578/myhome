@@ -1,10 +1,21 @@
 package com.hafa.commons.controller;
 
+import com.hafa.commons.service.ApplicationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
 
 @Controller
 public class ApplicationController {
+
+    @Autowired
+    protected ApplicationService applicationService;
 
     /* blog start */
     @RequestMapping("/index")
@@ -39,7 +50,7 @@ public class ApplicationController {
     /* blog end */
 
     /* record start */
-    @RequestMapping("/login")
+    @RequestMapping("/toLogin")
     public String toLogin() {
         return "record/login";
     }
@@ -47,6 +58,13 @@ public class ApplicationController {
     @RequestMapping("/welcome")
     public String welcome() {
         return "record/welcome";
+    }
+
+    @ResponseBody
+    @RequestMapping("/validCode")
+    public void validCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        BufferedImage bufImg = applicationService.drawValidCode(request, response);
+        ImageIO.write(bufImg, "jpg", response.getOutputStream());
     }
     /* record end */
 

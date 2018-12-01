@@ -66,32 +66,5 @@
             <generatedKey column="ids" sqlStatement="JDBC"
                           identity="true"/>
         </table>
-<!--
-        <table schema="${tab.schema}" tableName="appuser"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-            <generatedKey column="ids" sqlStatement="JDBC"
-                          identity="true"/>
-        </table>
-
-        <table schema="${tab.schema}" tableName="hispassword"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-            <generatedKey column="ids" sqlStatement="JDBC"
-                          identity="true"/>
-        </table>
-
-        <table schema="${tab.schema}" tableName="webinfo"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <property name="useActualColumnNames" value="false"/>
-            <generatedKey column="ids" sqlStatement="JDBC"
-                          identity="true"/>
-        </table>-->
     </context>
 </generatorConfiguration>
