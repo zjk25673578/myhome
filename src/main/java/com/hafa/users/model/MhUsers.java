@@ -11,6 +11,8 @@ public class MhUsers {
 
     private String pic;
 
+    private Byte userType;
+
     private Integer homeid;
 
     private Byte status;
@@ -69,5 +71,27 @@ public class MhUsers {
 
     public void setStatus(Byte status) {
         this.status = status;
+    }
+
+    public Byte getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Byte userType) {
+        this.userType = userType;
+    }
+
+    @Override
+    public String toString() {
+        return "MhUsers{" +
+                "ids=" + ids +
+                ", uname='" + uname + '\'' +
+                ", pword='" + pword + '\'' +
+                ", rname='" + rname + '\'' +
+                ", pic='" + pic + '\'' +
+                ", userType=" + userType +
+                ", homeid=" + homeid +
+                ", status=" + status +
+                '}';
     }
 }

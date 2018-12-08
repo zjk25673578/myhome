@@ -202,7 +202,7 @@ function x_admin_show(title, url, w, h) {
         area: [w + 'px', h + 'px'],
         fix: false, // 不固定
         maxmin: true,
-        offset: '30%',
+        offset: '15%',
         shadeClose: true,
         shade: 0.3,
         title: title,

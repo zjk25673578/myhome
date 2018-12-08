@@ -17,6 +17,7 @@ public class MyUtil {
 
     /**
      * 获取随机的验证码内容(字母加数字)
+     * 同时将验证码放入session中
      */
     public static String getCodeContent(HttpSession session) {
         String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -47,6 +48,18 @@ public class MyUtil {
     }
 
     /**
+     * 构建response消息模型
+     *
+     * @param result
+     * @return
+     */
+    public static Message msg(int result, String action) {
+        Message msg = msg(result);
+        msg.setMessage(action);
+        return msg;
+    }
+
+    /**
      * 用于将多个javabean转换成Map<String, Object><br>
      * 应当注意重复的key值
      *
@@ -56,18 +69,24 @@ public class MyUtil {
      */
     public static Map<String, Object> bean2Map(Object... objects) throws Exception {
         Map<String, Object> _map = null;
-        if (objects != null || objects.length > 0) {
-            for (int i = 0; i < objects.length; i++) {
+        if (objects != null && objects.length > 0) {
+            for (Object object : objects) {
                 if (_map == null) {
-                    _map = transBean2Map(objects[i]);
+                    _map = transBean2Map(object);
                 } else {
-                    _map.putAll(transBean2Map(objects[i]));
+                    _map.putAll(transBean2Map(object));
                 }
             }
         }
         return _map;
     }
 
+    /**
+     * 通过反射将javaBean转换成Map
+     * @param obj
+     * @return
+     * @throws Exception
+     */
     private static Map<String, Object> transBean2Map(Object obj) throws Exception {
         if (obj == null) {
             return null;
@@ -90,13 +109,13 @@ public class MyUtil {
     /**
      * 组装layui-data-table所需的数据格式
      *
-     * @param code
-     * @param msg
-     * @param count
-     * @param data
+     * @param code 状态码
+     * @param msg 当数据获取失败时返回的消息
+     * @param count 数据条数, 用于分页和统计
+     * @param data 数据列表
      * @return
      */
-    public static Map<String, Object> layData(int code, String msg, int count, List<? extends Object> data) {
+    public static Map<String, Object> layData(int code, String msg, int count, List<?> data) {
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("code", code);
         resultMap.put("msg", msg);

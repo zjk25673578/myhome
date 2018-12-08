@@ -18,7 +18,7 @@
 <!-- 顶部开始 -->
 <div class="container">
     <div class="logo">
-        <a href="${ctx}/index">X-admin v2.0</a>
+        <a href="${ctx}/blog/index">去我家博客</a>
     </div>
     <div class="left_open">
         <i title="展开左侧栏" class="iconfont">&#xe699;</i>
@@ -26,7 +26,7 @@
     <ul class="layui-nav left fast-add" lay-filter="">
         <li class="layui-nav-item"><a href="javascript:;">+新增</a>
             <dl class="layui-nav-child">
-                <!-- 二级菜单 -->
+                &lt;!&ndash; 二级菜单 &ndash;&gt;
                 <dd>
                     <a onclick="x_admin_show('资讯','http://www.baidu.com')"><i
                             class="iconfont">&#xe6a2;</i>资讯</a>
@@ -44,21 +44,19 @@
     </ul>
     <ul class="layui-nav right" lay-filter="">
         <li class="layui-nav-item">
-            <a href="javascript:;">admin</a>
+            <a href="javascript:;">
+                欢迎 - ${currentUser.rname}
+            </a>
             <dl class="layui-nav-child">
                 <!-- 二级菜单 -->
                 <dd>
                     <a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a>
                 </dd>
                 <dd>
-                    <a onclick="x_admin_show('切换帐号')">切换帐号</a>
-                </dd>
-                <dd>
-                    <a href="${ctx}/login">退出</a>
+                    <a href="${ctx}/toLogin?loginOut=true">退出</a>
                 </dd>
             </dl>
         </li>
-        <li class="layui-nav-item to-index"><a href="/">前台首页</a></li>
     </ul>
 
 </div>
@@ -241,7 +239,6 @@
     <div class="copyright">
         Copyright ©2017 x-admin v2.3 All Rights Reserved
     </div>
-</div>
-<!-- 底部结束 -->
+</div><!-- 底部结束 -->
 </body>
 </html>

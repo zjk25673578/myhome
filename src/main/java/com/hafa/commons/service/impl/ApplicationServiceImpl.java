@@ -24,14 +24,6 @@ public class ApplicationServiceImpl implements ApplicationService {
         response.setDateHeader("expries", -1);
         response.setHeader("Cache-Control", "no-cache");
         response.setHeader("Pragma", "no-cache");
-        /**
-         * 验证码的要求:
-         * 1, 验证码随机取
-         * 2, 背景颜色随机变化
-         * 3, 字体倾斜
-         * 4, 多条干扰线
-         * 5, 有边框
-         */
         int width = 120, height = 30;
         BufferedImage bufImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         //也可以使用bufImg.getGraphics(), get是返回一个Graphics对象, create是返回一个Graphics2D对象
@@ -69,7 +61,6 @@ public class ApplicationServiceImpl implements ApplicationService {
             //g.rotate(-deg*Math.PI/180);
             _x += width / data.length();
         }
-
         return bufImg;
     }
 }

@@ -89,7 +89,7 @@
     </bean>
 
     <!-- 默认访问跳转到登录页面(即定义无需Controller的url<->view直接映射) -->
-    <mvc:view-controller path="/" view-name="redirect:/index"/>
+    <mvc:view-controller path="/" view-name="redirect:blog/index"/>
 
     <!-- springMVC的注解驱动标签 -->
     <mvc:annotation-driven conversion-service="factoryBean">
@@ -119,4 +119,5 @@
     <mvc:resources location="/images/" mapping="/images/**"/>
     <mvc:resources location="/js/" mapping="/js/**"/>
     <mvc:resources location="/res/" mapping="/res/**"/>
+    <mvc:resources location="/commons/" mapping="/commons/**"/>
 </beans>

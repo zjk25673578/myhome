@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 
+/**
+ * 公共页面跳转控制类
+ */
 @Controller
 public class ApplicationController {
 
@@ -18,7 +22,7 @@ public class ApplicationController {
     protected ApplicationService applicationService;
 
     /* blog start */
-    @RequestMapping("/index")
+    @RequestMapping("/blog/index")
     public String index() {
         return "blog/index";
     }
@@ -51,7 +55,10 @@ public class ApplicationController {
 
     /* record start */
     @RequestMapping("/toLogin")
-    public String toLogin() {
+    public String toLogin(boolean loginOut, HttpSession session) {
+        if (loginOut) {
+            session.removeAttribute("currentUser");
+        }
         return "record/login";
     }
 
@@ -60,11 +67,21 @@ public class ApplicationController {
         return "record/welcome";
     }
 
+    @RequestMapping("/record/index")
+    public String recordIndex() {
+        return "record/index";
+    }
+
     @ResponseBody
     @RequestMapping("/validCode")
     public void validCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
         BufferedImage bufImg = applicationService.drawValidCode(request, response);
         ImageIO.write(bufImg, "jpg", response.getOutputStream());
+    }
+
+    @RequestMapping("/record/footer")
+    public String footer() {
+        return "/commons/footer.html";
     }
     /* record end */
 

@@ -1,6 +1,7 @@
 package com.hafa.users.dao;
 
 import com.hafa.users.model.MhUsers;
+import org.apache.ibatis.annotations.Param;
 
 public interface MhUsersMapper {
     int deleteByPrimaryKey(Integer ids);
@@ -14,4 +15,6 @@ public interface MhUsersMapper {
     int updateByPrimaryKeySelective(MhUsers record);
 
     int updateByPrimaryKey(MhUsers record);
+
+    MhUsers selectByUnamePword(@Param("uname") String uname, @Param("pword") String pword);
 }
