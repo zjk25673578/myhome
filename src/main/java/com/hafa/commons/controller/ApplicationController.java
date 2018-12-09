@@ -62,7 +62,7 @@ public class ApplicationController {
         return "record/login";
     }
 
-    @RequestMapping("/welcome")
+    @RequestMapping("/record/welcome")
     public String welcome() {
         return "record/welcome";
     }
@@ -81,7 +81,8 @@ public class ApplicationController {
 
     @RequestMapping("/record/footer")
     public String footer() {
-        return "/commons/footer.html";
+        System.err.println("error");
+        return "record/commons/footer";
     }
     /* record end */
 

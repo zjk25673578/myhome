@@ -45,7 +45,6 @@ $(function () {
                                 'layui-form-checked');
                         }
                     }
-
                 });
         },
         getData: function () {
@@ -157,10 +156,8 @@ $(function () {
             tab.tabAdd(title, url, index + 1);
             tab.tabChange(index + 1);
         }
-
         event.stopPropagation();
-
-    })
+    });
 
 });
 var cateIds = [];

@@ -20,21 +20,31 @@
     <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
         <property name="contentType" value="text/html; charset=utf-8"/>
-<!--        <property name="exposeRequestAttributes" value="true" />
-        <property name="exposeSessionAttributes" value="true" />
-        <property name="exposeSpringMacroHelpers" value="true" />-->
+        <property name="exposeRequestAttributes" value="true"/>
+        <property name="exposeSessionAttributes" value="true"/>
+        <property name="exposeSpringMacroHelpers" value="true"/>
         <property name="cache" value="${cache}"/>
         <property name="suffix" value=".html"/>
         <property name="order" value="1"/>
+        <!--
+            意思是把Spring的RequestContext对象暴露为变量request
+            利用${request.contextPath}来获取应用程序的contextPath
+        -->
+        <property name="requestContextAttribute" value="request"/>
     </bean>
 
-    <!-- 配置freeMarker的模板路径 -->
+    <!-- 配置freeMarker -->
     <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-        <property name="templateLoaderPath" value="${templateLoaderPath}" />
+        <!-- 模板路径, 如果只配置一个的话也可以用templateLoaderPath -->
+        <property name="templateLoaderPaths">
+            <list>
+                <value>${templateLoaderPath1}</value>
+                <value>${templateLoaderPath2}</value>
+            </list>
+        </property>
         <property name="freemarkerVariables">
             <map>
                 <entry key="xml_escape" value-ref="fmXmlEscape"/>
-                <entry key="ctx" value="${ctx}"/>
             </map>
         </property>
         <property name="defaultEncoding" value="${default_encoding}"/>
@@ -50,10 +60,11 @@
                 <prop key="time_format">${time_format}</prop>
                 <prop key="number_format">${number_format}</prop>
                 <!--
-                启用传统模式, 即类似于EL表达式的取值
-                那么如果我们设置了全局的classic_compatible属性，
-                而在某个页面上又不想遵守这个属性该怎么办呢？这样就可以在当前这个页面上采用以下的办法，
-                让当前的页面不再支持传统模式：<#setting classic_compatible=false>-->
+                    启用传统模式, 即类似于EL表达式的取值
+                    那么如果我们设置了全局的classic_compatible属性，
+                    而在某个页面上又不想遵守这个属性该怎么办呢？这样就可以在当前这个页面上采用以下的办法，
+                    让当前的页面不再支持传统模式：<#setting classic_compatible=false>
+                -->
                 <prop key="classic_compatible">${classic_compatible}</prop>
             </props>
         </property>
@@ -89,7 +100,7 @@
     </bean>
 
     <!-- 默认访问跳转到登录页面(即定义无需Controller的url<->view直接映射) -->
-    <mvc:view-controller path="/" view-name="redirect:blog/index"/>
+    <mvc:view-controller path="/" view-name="redirect:/blog/index"/>
 
     <!-- springMVC的注解驱动标签 -->
     <mvc:annotation-driven conversion-service="factoryBean">
@@ -119,5 +130,4 @@
     <mvc:resources location="/images/" mapping="/images/**"/>
     <mvc:resources location="/js/" mapping="/js/**"/>
     <mvc:resources location="/res/" mapping="/res/**"/>
-    <mvc:resources location="/commons/" mapping="/commons/**"/>
 </beans>
