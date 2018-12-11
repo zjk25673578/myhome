@@ -18,13 +18,13 @@
         </bean>-->
 
     <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+        <property name="viewClass" value="com.hafa.commons.util.freemarker.MyFreeMarkerView"/>
         <property name="contentType" value="text/html; charset=utf-8"/>
-        <property name="exposeRequestAttributes" value="true"/>
-        <property name="exposeSessionAttributes" value="true"/>
-        <property name="exposeSpringMacroHelpers" value="true"/>
+        <!--        <property name="exposeRequestAttributes" value="true"/>
+                <property name="exposeSessionAttributes" value="true"/>
+                <property name="exposeSpringMacroHelpers" value="true"/>-->
         <property name="cache" value="${cache}"/>
-        <property name="suffix" value=".html"/>
+        <property name="suffix" value=".ftl"/>
         <property name="order" value="1"/>
         <!--
             意思是把Spring的RequestContext对象暴露为变量request
@@ -39,8 +39,8 @@
         <property name="templateLoaderPaths">
             <list>
                 <!-- 这里有先后顺序, 如果调换, footer将会Not Found -->
-                <value>${templateLoaderPath1}</value>
-                <value>${templateLoaderPath2}</value>
+                <value>${view_path}</value>
+                <!--<value>${templet_file}</value>-->
             </list>
         </property>
         <property name="freemarkerVariables">
@@ -101,7 +101,7 @@
     </bean>
 
     <!-- 默认访问跳转到登录页面(即定义无需Controller的url<->view直接映射) -->
-    <mvc:view-controller path="/" view-name="redirect:/blog/index"/>
+    <mvc:view-controller path="/" view-name="redirect:blog/index"/>
 
     <!-- springMVC的注解驱动标签 -->
     <mvc:annotation-driven conversion-service="factoryBean">
