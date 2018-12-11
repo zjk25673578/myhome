@@ -38,6 +38,7 @@
         <!-- 模板路径, 如果只配置一个的话也可以用templateLoaderPath -->
         <property name="templateLoaderPaths">
             <list>
+                <!-- 这里有先后顺序, 如果调换, footer将会Not Found -->
                 <value>${templateLoaderPath1}</value>
                 <value>${templateLoaderPath2}</value>
             </list>
