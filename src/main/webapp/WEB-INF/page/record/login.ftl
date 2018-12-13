@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <#include "baseConfig.html">
     <title>欢迎登陆</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">

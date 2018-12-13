@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>希望多年以后, 归来仍是少年</title>
-    <#include "baseConfig.html">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -11,6 +10,7 @@
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
     <link rel="stylesheet" href="${ctx}/css/xadmin.css">
     <link rel="stylesheet" href="${ctx}/css/font.css">
+    <#include "./commons/baseConfig.ftl">
     <script type="text/javascript" src="${ctx}/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="${ctx}/res/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="${ctx}/js/xadmin.js"></script>
@@ -48,7 +48,7 @@
     <ul class="layui-nav right" lay-filter="">
         <li class="layui-nav-item">
             <a href="javascript:;">
-                <#if currentUser?exists><#-- 或者这样写<#if currentUser??> -->
+                <#if currentUser??><#-- 或者这样写<#if currentUser?exists> -->
                 ${currentUser.rname}
                 <#else>
                 没有登陆
@@ -243,7 +243,7 @@
 <!-- 右侧主体结束 -->
 <!-- 中部结束 -->
 <!-- 底部开始 -->
-<#include "footer.html">
+<#include "./commons/footer.ftl">
 <!-- 底部结束 -->
 </body>
 </html>

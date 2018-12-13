@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <#include "baseConfig.html">
     <title>欢迎页面-X-admin2.0</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">

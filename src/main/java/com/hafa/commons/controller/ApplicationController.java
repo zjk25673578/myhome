@@ -78,12 +78,6 @@ public class ApplicationController {
         BufferedImage bufImg = applicationService.drawValidCode(request, response);
         ImageIO.write(bufImg, "jpg", response.getOutputStream());
     }
-
-    @RequestMapping("/record/footer")
-    public String footer() {
-        System.err.println("error");
-        return "record/commons/footer";
-    }
     /* record end */
 
     @RequestMapping("/error404")

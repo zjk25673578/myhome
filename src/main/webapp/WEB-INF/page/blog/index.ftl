@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <#include "baseConfig.html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="${ctx}/res/layui/css/layui.css">
@@ -19,13 +18,13 @@
         <div class="menu"></div>
     </div>
     <h1 class="logo">
-        <a href="${ctx}/index">
+        <a href="${ctx}/blog/index">
             <span>MYBLOG</span>
             <img src="${ctx}/res/img/logo.png">
         </a>
     </h1>
     <div class="nav">
-        <a href="${ctx}/index" class="active">文章</a>
+        <a href="${ctx}/blog/index" class="active">文章</a>
         <a href="${ctx}/whisper">微语</a>
         <a href="${ctx}/leacots">留言</a>
         <a href="${ctx}/album">相册</a>
