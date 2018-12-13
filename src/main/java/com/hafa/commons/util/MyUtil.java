@@ -60,6 +60,18 @@ public class MyUtil {
     }
 
     /**
+     * 构建response消息模型
+     *
+     * @param result
+     * @return
+     */
+    public static Message msg(int result, String action, List<?> data) {
+        Message msg = msg(result, action);
+        msg.setData(data);
+        return msg;
+    }
+
+    /**
      * 用于将多个javabean转换成Map<String, Object><br>
      * 应当注意重复的key值
      *

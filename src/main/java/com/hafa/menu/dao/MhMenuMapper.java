@@ -1,6 +1,9 @@
 package com.hafa.menu.dao;
 
 import com.hafa.menu.model.MhMenu;
+import com.hafa.users.model.MhUsers;
+
+import java.util.List;
 
 public interface MhMenuMapper {
     int deleteByPrimaryKey(Integer ids);
@@ -14,4 +17,6 @@ public interface MhMenuMapper {
     int updateByPrimaryKeySelective(MhMenu record);
 
     int updateByPrimaryKey(MhMenu record);
+
+    List<MhMenu> selectMenusWithUserid(MhUsers userid);
 }

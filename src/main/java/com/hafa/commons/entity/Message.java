@@ -2,10 +2,13 @@ package com.hafa.commons.entity;
 
 import com.alibaba.fastjson.JSONObject;
 
+import java.util.List;
+
 public class Message {
     private boolean success;
     private String message;
     private Integer iconType;
+    private List<?> data;
 
     public Message() {
     }
@@ -46,6 +49,15 @@ public class Message {
         json.put("success", this.success);
         json.put("message", this.message);
         json.put("iconType", this.iconType);
+        json.put("data", this.data);
         return json.toJSONString();
+    }
+
+    public List<?> getData() {
+        return data;
+    }
+
+    public void setData(List<?> data) {
+        this.data = data;
     }
 }

@@ -50,8 +50,8 @@
     <bean id="sqlSessionFactoryBean"
           class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
+        <property name="typeAliasesPackage" value="com.hafa.*.model" />
         <property name="mapperLocations" value="classpath:com/hafa/*/dao/mapper/*Mapper.xml" />
-        <property name="typeAliasesPackage" value="com.mynba.*.model" />
         <property name="configLocation" value="classpath:mybatis-config.xml" />
     </bean>
 
