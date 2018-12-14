@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2018-12-13 23:51:34
+Date: 2018-12-14 18:34:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -183,7 +183,7 @@ CREATE TABLE `mh_menu` (
   `icon` varchar(50) DEFAULT NULL COMMENT '图标',
   `status` tinyint(4) DEFAULT NULL COMMENT '有效标志',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
 
 -- ----------------------------
 -- Records of mh_menu
@@ -211,6 +211,13 @@ INSERT INTO `mh_menu` VALUES ('20', '19', '菜单管理', null, null, '1');
 INSERT INTO `mh_menu` VALUES ('21', '19', '用户管理', null, null, '1');
 INSERT INTO `mh_menu` VALUES ('22', '19', '角色管理', null, null, '1');
 INSERT INTO `mh_menu` VALUES ('23', '19', '流程定义', null, null, '1');
+INSERT INTO `mh_menu` VALUES ('24', '19', '测试多级', null, null, '1');
+INSERT INTO `mh_menu` VALUES ('25', '24', '菜单1', null, null, '1');
+INSERT INTO `mh_menu` VALUES ('26', '24', '菜单2', null, null, '1');
+INSERT INTO `mh_menu` VALUES ('27', '26', '菜单2-1', null, null, '1');
+INSERT INTO `mh_menu` VALUES ('28', '26', '菜单2-2', null, null, '1');
+INSERT INTO `mh_menu` VALUES ('29', '28', '菜单2-2-1', null, null, '1');
+INSERT INTO `mh_menu` VALUES ('30', '27', '菜单2-1-1', null, null, '1');
 
 -- ----------------------------
 -- Table structure for `mh_notebook`
