@@ -97,7 +97,7 @@
         status = #{status,jdbcType=TINYINT}
         where ids = #{ids,jdbcType=INTEGER}
     </update>
-    <select id="selectMenusWithUserid" parameterType="com.hafa.users.model.MhUsers" resultMap="BaseResultMap">
+    <select id="selectMenusWithUserid" parameterType="MhUsers" resultMap="BaseResultMap">
         select <include refid="Base_Column_List"/> from mh_menu m where m.status='1'
         <if test="userType != '1'.toString()">
             and ids in (select um.menuid from mh_user_menu um where um.userid=#{ids})

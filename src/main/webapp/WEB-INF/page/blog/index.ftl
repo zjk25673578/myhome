@@ -25,17 +25,17 @@
     </h1>
     <div class="nav">
         <a href="${ctx}/blog/index" class="active">文章</a>
-        <a href="${ctx}/whisper">微语</a>
-        <a href="${ctx}/leacots">留言</a>
-        <a href="${ctx}/album">相册</a>
-        <a href="${ctx}/about">关于</a>
+        <a href="${ctx}/blog/whisper">微语</a>
+        <a href="${ctx}/blog/leacots">留言</a>
+        <a href="${ctx}/blog/album">相册</a>
+        <a href="${ctx}/blog/about">关于</a>
     </div>
     <ul class="layui-nav header-down-nav">
-        <li class="layui-nav-item"><a href="${ctx}/index" class="active">文章</a></li>
-        <li class="layui-nav-item"><a href="${ctx}/whisper">微语</a></li>
-        <li class="layui-nav-item"><a href="${ctx}/leacots">留言</a></li>
-        <li class="layui-nav-item"><a href="${ctx}/album">相册</a></li>
-        <li class="layui-nav-item"><a href="${ctx}/about">关于</a></li>
+        <li class="layui-nav-item"><a href="${ctx}/blog/index" class="active">文章</a></li>
+        <li class="layui-nav-item"><a href="${ctx}/blog/whisper">微语</a></li>
+        <li class="layui-nav-item"><a href="${ctx}/blog/leacots">留言</a></li>
+        <li class="layui-nav-item"><a href="${ctx}/blog/album">相册</a></li>
+        <li class="layui-nav-item"><a href="${ctx}/blog/about">关于</a></li>
     </ul>
     <p class="welcome-text">
         <a href="${ctx}/record/index">管理系统入口 <i class="layui-icon layui-icon-location"></i></a>
@@ -79,7 +79,7 @@
                                 <h5>设计文章</h5>
                                 <p>
                                     室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
-                                <a href="${ctx}/details" class="go-icon"></a>
+                                <a href="${ctx}/blog/details" class="go-icon"></a>
                             </div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                                 <h5>设计文章</h5>
                                 <p>
                                     室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
-                                <a href="${ctx}/details" class="go-icon"></a>
+                                <a href="${ctx}/blog/details" class="go-icon"></a>
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                                 <h5>设计文章</h5>
                                 <p>
                                     室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
-                                <a href="${ctx}/details" class="go-icon"></a>
+                                <a href="${ctx}/blog/details" class="go-icon"></a>
                             </div>
                         </div>
                     </div>
@@ -139,7 +139,7 @@
                                 <h5>设计文章</h5>
                                 <p>
                                     室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
-                                <a href="${ctx}/details" class="go-icon"></a>
+                                <a href="${ctx}/blog/details" class="go-icon"></a>
                             </div>
                         </div>
                     </div>
@@ -159,7 +159,7 @@
                                 <h5>设计文章</h5>
                                 <p>
                                     室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>
-                                <a href="${ctx}/details" class="go-icon"></a>
+                                <a href="${ctx}/blog/details" class="go-icon"></a>
                             </div>
                         </div>
                     </div>

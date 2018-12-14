@@ -27,27 +27,27 @@ public class ApplicationController {
         return "blog/index";
     }
 
-    @RequestMapping("/about")
+    @RequestMapping("/blog/about")
     public String about() {
         return "blog/about";
     }
 
-    @RequestMapping("/album")
+    @RequestMapping("/blog/album")
     public String album() {
         return "blog/album";
     }
 
-    @RequestMapping("/details")
+    @RequestMapping("/blog/details")
     public String details() {
         return "blog/details";
     }
 
-    @RequestMapping("/leacots")
+    @RequestMapping("/blog/leacots")
     public String leacots() {
         return "blog/leacots";
     }
 
-    @RequestMapping("/whisper")
+    @RequestMapping("/blog/whisper")
     public String whisper() {
         return "blog/whisper";
     }

@@ -25,7 +25,7 @@
                 <property name="exposeSpringMacroHelpers" value="true"/>-->
         <property name="cache" value="${cache}"/>
         <property name="suffix" value=".ftl"/>
-        <property name="order" value="1"/>
+        <property name="order" value="0"/>
         <!--
             意思是把Spring的RequestContext对象暴露为变量request
             利用${request.contextPath}来获取应用程序的contextPath
@@ -60,6 +60,7 @@
                 <prop key="date_format">${date_format}</prop>
                 <prop key="time_format">${time_format}</prop>
                 <prop key="number_format">${number_format}</prop>
+                <prop key="auto_import">${auto_import}</prop>
                 <!--
                     启用传统模式, 即类似于EL表达式的取值
                     那么如果我们设置了全局的classic_compatible属性，
@@ -77,7 +78,7 @@
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/"/>
         <property name="suffix" value=".jsp"/>
-        <property name="order" value="2"/>
+        <property name="order" value="1"/>
     </bean>
 
     <!-- 文件上传的配置 -->
@@ -101,7 +102,7 @@
     </bean>
 
     <!-- 默认访问跳转到登录页面(即定义无需Controller的url<->view直接映射) -->
-    <mvc:view-controller path="/" view-name="redirect:blog/index"/>
+    <mvc:view-controller path="/" view-name="redirect:/blog/index"/>
 
     <!-- springMVC的注解驱动标签 -->
     <mvc:annotation-driven conversion-service="factoryBean">
@@ -131,4 +132,23 @@
     <mvc:resources location="/images/" mapping="/images/**"/>
     <mvc:resources location="/js/" mapping="/js/**"/>
     <mvc:resources location="/res/" mapping="/res/**"/>
+
+    <!-- 未登录拦截 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/toLogin"/>
+            <mvc:exclude-mapping path="/users/login"/>
+            <mvc:exclude-mapping path="/blog/**"/>
+            <mvc:exclude-mapping path="/css/**"/>
+            <mvc:exclude-mapping path="/fonts/**"/>
+            <mvc:exclude-mapping path="/images/**"/>
+            <mvc:exclude-mapping path="/js/**"/>
+            <mvc:exclude-mapping path="/res/**"/>
+            <mvc:exclude-mapping path="/validCode"/>
+            <mvc:exclude-mapping path="/error404"/>
+            <mvc:exclude-mapping path="/error500"/>
+            <bean class="com.hafa.commons.util.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

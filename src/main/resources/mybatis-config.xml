@@ -9,4 +9,29 @@
 		<setting value="LOG4J" name="logImpl" />
 	</settings>
 
+	<typeAliases>
+		<typeAlias type="com.hafa.commons.entity.Message" alias="Message" />
+		<typeAlias type="com.hafa.commons.entity.TreeModel" alias="TreeModel" />
+		<typeAlias type="com.hafa.datebook.model.MhDatebook" alias="MhDatebook" />
+		<typeAlias type="com.hafa.dict.model.MhDict" alias="MhDict" />
+		<typeAlias type="com.hafa.education.model.MhEducation" alias="MhEducation" />
+		<typeAlias type="com.hafa.finance.model.MhFinance" alias="MhFinance" />
+		<typeAlias type="com.hafa.folder.model.MhFolder" alias="MhFolder" />
+		<typeAlias type="com.hafa.homemember.model.MhHomeMember" alias="MhHomeMember" />
+		<typeAlias type="com.hafa.homes.model.MhHomes" alias="MhHomes" />
+		<typeAlias type="com.hafa.medias.model.MhMedias" alias="MhMedias" />
+		<typeAlias type="com.hafa.menu.model.MhMenu" alias="MhMenu" />
+		<typeAlias type="com.hafa.mhworks.model.MhWorks" alias="MhWorks" />
+		<typeAlias type="com.hafa.notebook.model.MhNotebook" alias="MhNotebook" />
+		<typeAlias type="com.hafa.pwordhis.model.MhPwordHis" alias="MhPwordHis" />
+		<typeAlias type="com.hafa.tableinfo.model.MhTableinfo" alias="MhTableinfo" />
+		<typeAlias type="com.hafa.travel.model.MhTravel" alias="MhTravel" />
+		<typeAlias type="com.hafa.usermember.model.MhUserMember" alias="MhUserMember" />
+		<typeAlias type="com.hafa.usermenu.model.MhUserMenu" alias="MhUserMenu" />
+		<typeAlias type="com.hafa.users.model.MhUsers" alias="MhUsers" />
+		<typeAlias type="com.hafa.usersinfo.model.MhUsersInfo" alias="MhUsersInfo" />
+		<typeAlias type="com.hafa.webaccount.model.MhWebAccount" alias="MhWebAccount" />
+		<typeAlias type="com.hafa.webinfo.model.MhWebinfo" alias="MhWebinfo" />
+	</typeAliases>
+
 </configuration>

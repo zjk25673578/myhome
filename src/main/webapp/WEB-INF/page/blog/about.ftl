@@ -26,17 +26,17 @@
     </h1>
     <div class="nav">
         <a href="${ctx}/blog/index">文章</a>
-        <a href="${ctx}/whisper">微语</a>
-        <a href="${ctx}/leacots">留言</a>
-        <a href="${ctx}/album">相册</a>
-        <a href="${ctx}/about" class="active">关于</a>
+        <a href="${ctx}/blog/whisper">微语</a>
+        <a href="${ctx}/blog/leacots">留言</a>
+        <a href="${ctx}/blog/album">相册</a>
+        <a href="${ctx}/blog/about" class="active">关于</a>
     </div>
     <ul class="layui-nav header-down-nav">
         <li class="layui-nav-item"><a href="${ctx}/blog/index">文章</a></li>
-        <li class="layui-nav-item"><a href="${ctx}/whisper">微语</a></li>
-        <li class="layui-nav-item"><a href="${ctx}/leacots">留言</a></li>
-        <li class="layui-nav-item"><a href="${ctx}/album">相册</a></li>
-        <li class="layui-nav-item"><a href="${ctx}/about" class="active">关于</a></li>
+        <li class="layui-nav-item"><a href="${ctx}/blog/whisper">微语</a></li>
+        <li class="layui-nav-item"><a href="${ctx}/blog/leacots">留言</a></li>
+        <li class="layui-nav-item"><a href="${ctx}/blog/album">相册</a></li>
+        <li class="layui-nav-item"><a href="${ctx}/blog/about" class="active">关于</a></li>
     </ul>
     <p class="welcome-text">
         欢迎来到<span class="name">小明</span>的博客~

@@ -1,3 +1,5 @@
-<script>
-    var _ctx = '${ctx}';
-</script>
+<#macro baseConfig>
+    <script>
+        var _ctx = '${ctx}';
+    </script>
+</#macro>
