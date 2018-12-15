@@ -39,4 +39,9 @@ public class UsersController {
         }
         return MyUtil.msg(-1, "用户名或者密码不对 !");
     }
+
+    @RequestMapping("/mhusers-list")
+    public String mhUsersList() {
+        return "record/mhusers/mhusers-list";
+    }
 }

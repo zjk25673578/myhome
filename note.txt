@@ -2,3 +2,6 @@
 http://archive.apache.org/dist/tomcat/
 各版本spring
 http://maven.springframework.org/release/org/springframework/spring/
+
+删掉了每个页面中的这个<target-densitydpi=low-dpi>, 不知道干嘛用的
+<meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>

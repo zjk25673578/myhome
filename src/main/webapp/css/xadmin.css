@@ -638,3 +638,10 @@ table th, table td {
     }
 }
 
+/*****************************************************/
+.layui-input-sm {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    font-size: 12px
+}

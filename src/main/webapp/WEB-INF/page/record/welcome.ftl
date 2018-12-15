@@ -14,8 +14,8 @@
 </head>
 <body>
 <div class="x-body">
-    <blockquote class="layui-elem-quote">欢迎：
-        <span class="x-red">${currentUser.rname}</span>！
+    <blockquote class="layui-elem-quote">欢迎：<#if currentUser.userType == 1>超级管理员</#if>
+        <span class="x-red">${currentUser.rname}</span>
     </blockquote>
     <fieldset class="layui-elem-field">
         <legend>数据统计</legend>
@@ -79,25 +79,6 @@
         </div>
     </fieldset>
     <fieldset class="layui-elem-field">
-        <legend>系统通知</legend>
-        <div class="layui-field-box">
-            <table class="layui-table" lay-skin="line">
-                <tbody>
-                <tr>
-                    <td>
-                        <a class="x-a" href="/" target="_blank">新版x-admin 2.0上线了</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a class="x-a" href="/" target="_blank">交流qq群:(519492808)</a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </fieldset>
-    <fieldset class="layui-elem-field">
         <legend>系统信息</legend>
         <div class="layui-field-box">
             <table class="layui-table">
@@ -119,20 +100,8 @@
                     <td>Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9</td>
                 </tr>
                 <tr>
-                    <th>PHP版本</th>
-                    <td>5.6.27</td>
-                </tr>
-                <tr>
-                    <th>PHP运行方式</th>
-                    <td>cgi-fcgi</td>
-                </tr>
-                <tr>
                     <th>MYSQL版本</th>
                     <td>5.5.53</td>
-                </tr>
-                <tr>
-                    <th>ThinkPHP</th>
-                    <td>5.0.18</td>
                 </tr>
                 <tr>
                     <th>上传附件限制</th>
@@ -150,25 +119,14 @@
             </table>
         </div>
     </fieldset>
+    <#if currentUser.userType == 0>
     <fieldset class="layui-elem-field">
-        <legend>开发团队</legend>
+        <legend>其他信息</legend>
         <div class="layui-field-box">
-            <table class="layui-table">
-                <tbody>
-                <tr>
-                    <th>版权所有</th>
-                    <td>xxxxx(xxxx)
-                        <a href="http://www.xxx.com/" class='x-a' target="_blank">访问官网</a></td>
-                </tr>
-                <tr>
-                    <th>开发者</th>
-                    <td>马志斌(113664000@qq.com)</td>
-                </tr>
-                </tbody>
-            </table>
+            啦啦啦啦啦
         </div>
     </fieldset>
-    <blockquote class="layui-elem-quote layui-quote-nm">感谢layui,百度Echarts,jquery,本系统由x-admin提供技术支持。</blockquote>
+    </#if>
 </div>
 </body>
 </html>

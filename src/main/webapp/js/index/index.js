@@ -19,7 +19,8 @@ $(function () {
         for (var i = 0; i < list.length; i++) {
             var d = list[i];
             if (d.parentid === parentid) {
-                str += '<li><a href="javascript:;"><i class="iconfont">&#xe6b8;</i><cite>' + d.menuname + '</cite>';
+                var href = d.murl ? '_href="' + _ctx + d.murl + '"' : 'href="javascript:;"';
+                str += '<li><a ' + href + '><i class="iconfont">&#xe6b8;</i><cite>' + d.menuname + '</cite>';
                 if (hasChildren(d.ids, list)) {
                     str += '<i class="iconfont nav_right">&#xe697;</i>';
                 }
