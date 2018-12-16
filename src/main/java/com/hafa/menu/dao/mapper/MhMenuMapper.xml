@@ -175,4 +175,11 @@
             and ids in (select um.menuid from mh_user_menu um where um.userid=#{ids})
         </if>
     </select>
+
+    <select id="menuListByMap" resultType="Map">
+        select
+        <include refid="Base_Column_List"/>
+        from mh_menu
+        where status = '1'
+    </select>
 </mapper>

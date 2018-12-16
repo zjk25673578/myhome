@@ -130,15 +130,15 @@ $(function () {
         if ($(this).children('.sub-menu').length) {
             if ($(this).hasClass('open')) {
                 $(this).removeClass('open');
-                $(this).find('.nav_right').html('&#xe697;');
-                $(this).children('.sub-menu').stop().slideUp();
-                $(this).siblings().children('.sub-menu').slideUp();
+                $(this).find('.nav_right').removeClass("fa-angle-down").addClass("fa-angle-left");
+                $(this).children('.sub-menu').stop().slideUp("fast");
+                $(this).siblings().children('.sub-menu').slideUp("fast");
             } else {
                 $(this).addClass('open');
-                $(this).children('a').find('.nav_right').html('&#xe6a6;');
-                $(this).children('.sub-menu').stop().slideDown();
-                $(this).siblings().children('.sub-menu').stop().slideUp();
-                $(this).siblings().find('.nav_right').html('&#xe697;');
+                $(this).children('a').find('.nav_right').removeClass("fa-angle-left").addClass("fa-angle-down");
+                $(this).children('.sub-menu').stop().slideDown("fast");
+                $(this).siblings().children('.sub-menu').stop().slideUp("fast");
+                $(this).siblings().find('.nav_right').removeClass("fa-angle-down").addClass("fa-angle-left");
                 $(this).siblings().removeClass('open');
             }
         } else {
@@ -243,4 +243,16 @@ function openDialog(tpl, title, area, callback, dates) {
 function x_admin_close() {
     var index = parent.layer.getFrameIndex(window.name);
     parent.layer.close(index);
+}
+
+function timestamp2Date(timestamp) {
+    if (timestamp) {
+        var date = new Date(timestamp);
+        var y = date.getFullYear(),
+            m = date.getMonth() + 1,
+            d = date.getDate();
+        return y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + date.toTimeString().substr(0, 8);
+    } else {
+        return "";
+    }
 }

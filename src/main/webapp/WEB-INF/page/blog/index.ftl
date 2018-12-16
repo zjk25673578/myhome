@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Document</title>
+    <link rel="stylesheet" href="${ctx}/res/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/res/layui/css/layui.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/res/css/main.css">
     <!--加载meta IE兼容文件-->
@@ -38,7 +39,9 @@
         <li class="layui-nav-item"><a href="${ctx}/blog/about">关于</a></li>
     </ul>
     <p class="welcome-text">
-        <a href="${ctx}/record/index">管理系统入口 <i class="layui-icon layui-icon-location"></i></a>
+        <a class="layui-btn layui-btn-primary layui-btn-lg" href="${ctx}/record/index">
+            管理系统入口 <i class="fa fa-hand-o-right fa-fw fa-lg"></i>
+        </a>
     </p>
 </div>
 

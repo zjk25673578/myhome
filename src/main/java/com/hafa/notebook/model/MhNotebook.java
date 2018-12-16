@@ -1,8 +1,8 @@
 package com.hafa.notebook.model;
 
-import java.util.Date;
+import com.hafa.commons.entity.CommonModel;
 
-public class MhNotebook {
+public class MhNotebook extends CommonModel {
     private Integer ids;
 
     private String conte;
@@ -10,66 +10,6 @@ public class MhNotebook {
     private Integer touser;
 
     private Integer status;
-
-    private Date createtime;
-
-    private Integer creator;
-
-    private String createname;
-
-    private Date updatetime;
-
-    private Integer updator;
-
-    private String updatename;
-
-    public Date getCreatetime() {
-        return createtime;
-    }
-
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
-    }
-
-    public Integer getCreator() {
-        return creator;
-    }
-
-    public void setCreator(Integer creator) {
-        this.creator = creator;
-    }
-
-    public String getCreatename() {
-        return createname;
-    }
-
-    public void setCreatename(String createname) {
-        this.createname = createname;
-    }
-
-    public Date getUpdatetime() {
-        return updatetime;
-    }
-
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
-    }
-
-    public Integer getUpdator() {
-        return updator;
-    }
-
-    public void setUpdator(Integer updator) {
-        this.updator = updator;
-    }
-
-    public String getUpdatename() {
-        return updatename;
-    }
-
-    public void setUpdatename(String updatename) {
-        this.updatename = updatename;
-    }
 
     public Integer getIds() {
         return ids;

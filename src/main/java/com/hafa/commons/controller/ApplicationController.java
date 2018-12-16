@@ -58,6 +58,7 @@ public class ApplicationController {
     public String toLogin(boolean loginOut, HttpSession session) {
         if (loginOut) {
             session.removeAttribute("currentUser");
+            session.invalidate();
         }
         return "record/login";
     }

@@ -2,16 +2,15 @@ package com.hafa.commons.util;
 
 
 import com.hafa.commons.entity.Message;
+import com.hafa.commons.entity.TreeModel;
 
 import javax.servlet.http.HttpSession;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * 工具类
@@ -160,5 +159,104 @@ public class MyUtil {
         resultMap.put("count", count);
         resultMap.put("data", data);
         return resultMap;
+    }
+
+
+    public static List<TreeModel> list2TreeModel(List<Map<String, Object>> dataList, Integer id) {
+        Map<String, String> model = new HashMap<>();
+        return list2TreeModel(dataList, id, model);
+    }
+
+    /**
+     * 将List<Map<String, Object>>转换成List<TreeModel>的数据
+     *
+     * @param dataList 数据源
+     * @param id       开始于此, 从parentId为这个值的数据开始取
+     * @param model    作为解析的格式
+     *                 原数据模型中的属性可以通过这个参数来匹配
+     *                 比如:
+     *                 TreeModel中显示的文字是label属性
+     *                 而数据中显示的文字是menuName属性
+     *                 可以实例化一个Map添加参数
+     *                 map.put("label", "menuName")
+     *                 方法在解析时可以通过menuName来获取显示的文字而不再是原来的label
+     *                 其他不设置的默认使用原属性
+     * @return
+     */
+    public static List<TreeModel> list2TreeModel(List<Map<String, Object>> dataList,
+                                                 Integer id,
+                                                 Map<String, String> model) {
+        if (model == null) {
+            return list2TreeModel(dataList, id);
+        }
+
+        String _id = model.get("id") == null ? "id" : model.get("id");
+        String _label = model.get("label") == null ? "label" : model.get("label");
+        String _icon = model.get("icon") == null ? "icon" : model.get("icon");
+        String _url = model.get("url") == null ? "url" : model.get("url");
+        String _parentId = model.get("parentId") == null ? "parentId" : model.get("parentId");
+        String _spread = model.get("spread") == null ? "spread" : model.get("spread");
+        String _disabled = model.get("disabled") == null ? "disabled" : model.get("disabled");
+        String _checked = model.get("checked") == null ? "checked" : model.get("checked");
+
+        List<TreeModel> treeList = new LinkedList<>();
+        if (dataList.size() > 0) {
+            for (int i = 0; i < dataList.size(); i++) {
+                Map<String, Object> data = dataList.get(i);
+                if (id.equals(data.get(_parentId))) {
+                    TreeModel treeModel = new TreeModel();
+
+                    /**
+                     * 这里有异常, 不能使用toString方法转换字符串, 因为会报null pointer异常
+                     */
+                    treeModel.setId(Integer.parseInt(data.get(_id).toString()));
+                    treeModel.setLabel(data.get(_label).toString());
+                    Object o = data.get(_icon);
+                    if (o != null) {
+                        treeModel.setIcon(o.toString());
+                    }
+                    treeModel.setUrl(data.get(_url).toString());
+                    treeModel.setParentId(Integer.parseInt(data.get(_parentId).toString()));
+
+                    treeModel.setSpread(Boolean.parseBoolean(data.get(_spread).toString()));
+                    treeModel.setDisabled(Boolean.parseBoolean(data.get(_disabled).toString()));
+                    treeModel.setChecked(Boolean.parseBoolean(data.get(_checked).toString()));
+
+                    List<TreeModel> temp = list2TreeModel(dataList, treeModel.getId(), model);
+                    treeModel.setChildren(temp);
+                    removeKeyValues(data, model.keySet());
+                    removeKeyValues(data, getFieldString());
+                    treeModel.setAttr(data); // 将除TreeModel类中成员变量额外的属性保存到这里
+                    treeList.add(treeModel);
+                }
+            }
+        }
+        return treeList;
+    }
+
+    /**
+     * 将已经赋值的TreeModel属性移除
+     *
+     * @param map 源数据
+     * @param set 需要移除的key值
+     */
+    private static void removeKeyValues(Map<String, Object> map, Set<String> set) {
+        for (String key : set) {
+            map.remove(key);
+        }
+    }
+
+    /**
+     * 获取TreeModel的属性名
+     *
+     * @return TreeModel成员属性的集合
+     */
+    private static Set<String> getFieldString() {
+        Set<String> set = new HashSet<>();
+        Field[] fields = TreeModel.class.getDeclaredFields();
+        for (Field field : fields) {
+            set.add(field.getName());
+        }
+        return set;
     }
 }

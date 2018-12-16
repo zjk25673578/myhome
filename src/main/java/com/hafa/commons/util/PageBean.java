@@ -8,7 +8,7 @@ public class PageBean {
 
     public PageBean() {
         this.setPage(1);
-        this.setRows(10);
+        this.setRows(8);
         calMaxAndMin();
     }
 

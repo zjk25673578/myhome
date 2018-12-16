@@ -4,6 +4,7 @@ import com.hafa.menu.model.MhMenu;
 import com.hafa.users.model.MhUsers;
 
 import java.util.List;
+import java.util.Map;
 
 public interface MhMenuMapper {
     int deleteByPrimaryKey(Integer ids);
@@ -19,4 +20,6 @@ public interface MhMenuMapper {
     int updateByPrimaryKey(MhMenu record);
 
     List<MhMenu> selectMenusWithUserid(MhUsers userid);
+
+    List<Map<String, Object>> menuListByMap();
 }

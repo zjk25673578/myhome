@@ -18,7 +18,9 @@ public interface MhUsersService {
 
     int updateUser(MhUsers mhUsers, HttpServletRequest request);
 
-    int deleteUser(String ids);
+    int deleteUser(String ids, HttpServletRequest request);
 
-    int deleteUsers(String ids);
+    int deleteUsers(String ids, HttpServletRequest request);
+
+    int updateSetups(String ids, String setups, HttpServletRequest request);
 }

@@ -8,7 +8,6 @@
     <meta name="viewport"
           content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
-    <link rel="stylesheet" href="${ctx}/css/font.css">
     <link rel="stylesheet" href="${ctx}/css/xadmin.css">
 </head>
 <body class="layui-anim layui-anim-fadein">
@@ -107,10 +106,6 @@
                     <td>2M</td>
                 </tr>
                 <tr>
-                    <th>执行时间限制</th>
-                    <td>30s</td>
-                </tr>
-                <tr>
                     <th>剩余空间</th>
                     <td>86015.2M</td>
                 </tr>
@@ -118,7 +113,7 @@
             </table>
         </div>
     </fieldset>
-    <#if currentUser.userType == 0>
+    <#if currentUser.userType == 1>
     <fieldset class="layui-elem-field">
         <legend>其他信息</legend>
         <div class="layui-field-box">

@@ -1,8 +1,8 @@
 package com.hafa.usermember.model;
 
-import java.util.Date;
+import com.hafa.commons.entity.CommonModel;
 
-public class MhUserMember {
+public class MhUserMember extends CommonModel {
     private Integer ids;
 
     private Integer userid;
@@ -10,18 +10,6 @@ public class MhUserMember {
     private Integer memberid;
 
     private Integer relation;
-
-    private Date createtime;
-
-    private Integer creator;
-
-    private String createname;
-
-    private Date updatetime;
-
-    private Integer updator;
-
-    private String updatename;
 
     public Integer getIds() {
         return ids;
@@ -53,53 +41,5 @@ public class MhUserMember {
 
     public void setRelation(Integer relation) {
         this.relation = relation;
-    }
-
-    public Date getCreatetime() {
-        return createtime;
-    }
-
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
-    }
-
-    public Integer getCreator() {
-        return creator;
-    }
-
-    public void setCreator(Integer creator) {
-        this.creator = creator;
-    }
-
-    public String getCreatename() {
-        return createname;
-    }
-
-    public void setCreatename(String createname) {
-        this.createname = createname;
-    }
-
-    public Date getUpdatetime() {
-        return updatetime;
-    }
-
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
-    }
-
-    public Integer getUpdator() {
-        return updator;
-    }
-
-    public void setUpdator(Integer updator) {
-        this.updator = updator;
-    }
-
-    public String getUpdatename() {
-        return updatename;
-    }
-
-    public void setUpdatename(String updatename) {
-        this.updatename = updatename;
     }
 }

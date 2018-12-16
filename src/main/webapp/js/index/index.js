@@ -20,9 +20,9 @@ $(function () {
             var d = list[i];
             if (d.parentid === parentid) {
                 var href = d.murl ? '_href="' + _ctx + d.murl + '"' : 'href="javascript:;"';
-                str += '<li><a ' + href + '><i class="iconfont">&#xe6b8;</i><cite>' + d.menuname + '</cite>';
+                str += '<li><a ' + href + '><cite><i class="' + d.icon + ' fa-fw fa-lg"></i> ' + d.menuname + '</cite>';
                 if (hasChildren(d.ids, list)) {
-                    str += '<i class="iconfont nav_right">&#xe697;</i>';
+                    str += '<i class="fa fa-angle-left nav_right"></i>';
                 }
                 str += '</a>';
                 if (hasChildren(d.ids, list)) {

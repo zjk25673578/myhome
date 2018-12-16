@@ -15,34 +15,32 @@
 <!-- 顶部开始 -->
 <div class="container">
     <div class="logo">
-        <a href="${ctx}/blog/index">去我家博客</a>
+        <a href="${ctx}/blog/index"><i class="fa fa-hand-o-left fa-fw fa-lg"></i>去我家博客</a>
     </div>
     <div class="left_open">
-        <i title="展开左侧栏" class="layui-icon layui-icon-spread-left"></i>
+        <i title="展开左侧栏" class="fa fa-th fa-fw fa-lg"></i>
     </div>
     <ul class="layui-nav left fast-add" lay-filter="">
         <li class="layui-nav-item">
             <a href="javascript:;">
-                <i class="layui-icon layui-icon-add-1"></i>新增
+                <i class="fa fa-sitemap"></i> 新增
             </a>
             <dl class="layui-nav-child">
                 <dd>
                     <a onclick="x_admin_show('资讯','http://www.baidu.com')">
-                        <i class="iconfont">&#xe6a2;</i>资讯</a>
+                        <i class="fa fa-rss-square"></i> 资讯
+                    </a>
                 </dd>
                 <dd>
-                    <a onclick="x_admin_show('图片','http://www.baidu.com')"><i
-                            class="iconfont">&#xe6a8;</i>图片</a>
-                </dd>
-                <dd>
-                    <a onclick="x_admin_show('用户','http://www.baidu.com')"><i
-                            class="iconfont">&#xe6b8;</i>用户</a>
+                    <a onclick="x_admin_show('图片','http://www.baidu.com')">
+                        <i class="fa fa-sticky-note"></i> 图片
+                    </a>
                 </dd>
             </dl>
         </li>
         <li class="layui-nav-item">
             <a href="javascript:;">
-                <i class="layui-icon layui-icon-set-sm"></i>备用
+                <i class="fa fa-bomb"></i> 备用
             </a>
         </li>
     </ul>
@@ -80,7 +78,7 @@
     <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
         <ul class="layui-tab-title">
             <li class="home layui-this">
-                <i class="layui-icon layui-icon-home"></i>我的桌面
+                <i class="fa fa-institution fa-fw fa-lg"></i>我的桌面
             </li>
         </ul>
         <div class="layui-tab-content">

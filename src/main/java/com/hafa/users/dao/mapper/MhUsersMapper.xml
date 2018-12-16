@@ -9,6 +9,7 @@
         <result column="pic" jdbcType="VARCHAR" property="pic"/>
         <result column="userType" jdbcType="VARCHAR" property="userType"/>
         <result column="homeid" jdbcType="INTEGER" property="homeid"/>
+        <result column="setups" jdbcType="INTEGER" property="setups"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
         <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
         <result column="creator" jdbcType="INTEGER" property="creator" />
@@ -18,7 +19,7 @@
         <result column="updatename" jdbcType="VARCHAR" property="updatename" />
     </resultMap>
     <sql id="Base_Column_List">
-        ids, uname, pword, rname, pic, userType, homeid, status, createtime, creator, createname, updatetime,
+        ids, uname, pword, rname, pic, userType, homeid, setups, status, createtime, creator, createname, updatetime,
     updator, updatename
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -34,11 +35,11 @@
     <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.users.model.MhUsers"
             useGeneratedKeys="true">
     insert into mh_users (uname, pword, rname, 
-      pic, userType, homeid, status, createtime, creator, createname, updatetime,
+      pic, userType, homeid, setups, status, createtime, creator, createname, updatetime,
     updator, updatename
       )
     values (#{uname,jdbcType=VARCHAR}, #{pword,jdbcType=VARCHAR}, #{rname,jdbcType=VARCHAR}, 
-      #{pic,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, #{homeid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+      #{pic,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, #{homeid,jdbcType=INTEGER}, #{setups,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
       #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
       #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR}
       )
@@ -64,6 +65,9 @@
             </if>
             <if test="homeid != null">
                 homeid,
+            </if>
+            <if test="setups != null">
+                setups,
             </if>
             <if test="status != null">
                 status,
@@ -105,6 +109,9 @@
             </if>
             <if test="homeid != null">
                 #{homeid,jdbcType=INTEGER},
+            </if>
+            <if test="setups != null">
+                #{setups,jdbcType=INTEGER},
             </if>
             <if test="status != null">
                 #{status,jdbcType=INTEGER},
@@ -150,6 +157,9 @@
             <if test="homeid != null">
                 homeid = #{homeid,jdbcType=INTEGER},
             </if>
+            <if test="setups != null">
+                setups = #{setups,jdbcType=INTEGER},
+            </if>
             <if test="status != null">
                 status = #{status,jdbcType=INTEGER},
             </if>
@@ -182,6 +192,7 @@
       pic = #{pic,jdbcType=VARCHAR},
       userType = #{userType,jdbcType=VARCHAR},
       homeid = #{homeid,jdbcType=INTEGER},
+      setups = #{setups,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       createtime = #{createtime,jdbcType=TIMESTAMP},
       creator = #{creator,jdbcType=INTEGER},
@@ -195,15 +206,12 @@
     <select id="selectByUnamePword" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from mh_users where uname=#{uname} and pword=#{pword}
+        from mh_users where uname=#{uname} and pword=#{pword} and status='1'
     </select>
 
     <select id="list" resultType="Map" parameterType="Map">
         select
-        ids, uname, pword, rname, pic,
-        userType,
-        homeid,
-        status
+        <include refid="Base_Column_List"/>
         from mh_users
         <where>
             <if test="uname != null and uname != ''">
@@ -212,6 +220,7 @@
             <if test="rname != null and rname != ''">
                 and rname like concat('%',#{rname},'%')
             </if>
+            and status='1'
         </where>
         limit #{minpage}, #{rows}
     </select>
@@ -226,13 +235,38 @@
             <if test="rname != null and rname != ''">
                 and rname like concat('%',#{rname},'%')
             </if>
+            and status='1'
         </where>
     </select>
 
-    <update id="updateUsersStatus">
-        update mh_users set status='0' where ids in
-        <foreach collection="array" separator="," open="(" item="id" close=")">
-            #{id}
-        </foreach>
+    <update id="deleteUsers" parameterType="Map">
+        update mh_users
+        <set>
+            status = #{status,jdbcType=INTEGER},
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="createname != null">
+                createname = #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                updatetime = #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updator != null">
+                updator = #{updator,jdbcType=INTEGER},
+            </if>
+            <if test="updatename != null">
+                updatename = #{updatename,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <where>
+            ids in
+            <foreach collection="ids" separator="," open="(" item="id" close=")">
+                #{id}
+            </foreach>
+        </where>
     </update>
 </mapper>

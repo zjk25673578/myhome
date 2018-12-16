@@ -1,9 +1,9 @@
 package com.hafa.users.service.impl;
 
+import com.hafa.commons.entity.CommonModel;
 import com.hafa.commons.service.BaseService;
 import com.hafa.commons.util.MyUtil;
 import com.hafa.commons.util.PageBean;
-import com.hafa.tableinfo.dao.MhTableinfoMapper;
 import com.hafa.users.dao.MhUsersMapper;
 import com.hafa.users.model.MhUsers;
 import com.hafa.users.service.MhUsersService;
@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
@@ -19,8 +20,6 @@ public class MhUsersServiceImpl extends BaseService implements MhUsersService {
 
     @Autowired
     protected MhUsersMapper mhUsersMapper;
-    @Autowired
-    protected MhTableinfoMapper mhTableinfoMapper;
 
     @Override
     public MhUsers getUserByUnamePword(MhUsers user) {
@@ -46,28 +45,49 @@ public class MhUsersServiceImpl extends BaseService implements MhUsersService {
     @Override
     public int insertUser(MhUsers mhUsers, HttpServletRequest request) {
         mhUsers.setPword("123456");
-        mhUsers.setStatus(new Byte("1"));
-        int r = mhUsersMapper.insertSelective(mhUsers);
-        return r;
+        mhUsers.setStatus(1);
+        mhUsers.setValue("c", request);
+        return mhUsersMapper.insertSelective(mhUsers);
     }
 
     @Override
     public int updateUser(MhUsers mhUsers, HttpServletRequest request) {
-        int r = mhUsersMapper.updateByPrimaryKeySelective(mhUsers);
-        return r;
+        mhUsers.setValue("u", request);
+        return mhUsersMapper.updateByPrimaryKeySelective(mhUsers);
     }
 
     @Override
-    public int deleteUser(String ids) {
+    public int deleteUser(String ids, HttpServletRequest request) {
         MhUsers user = new MhUsers();
         user.setIds(Integer.parseInt(ids));
-        user.setStatus(new Byte("0"));
+        user.setStatus(0);
+        user.setValue("u", request);
         return mhUsersMapper.updateByPrimaryKeySelective(user);
     }
 
     @Override
-    public int deleteUsers(String ids) {
-        String[] _ids = ids.split(",");
-        return mhUsersMapper.updateUsersStatus(_ids);
+    public int deleteUsers(String ids, HttpServletRequest request) {
+        Map<String, Object> args = null;
+        try {
+            args = CommonModel.get("u", request);
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        if (args != null) {
+            String[] _ids = ids.split(",");
+            args.put("status", 0);
+            args.put("ids", _ids);
+            return mhUsersMapper.deleteUsers(args);
+        }
+        return -1;
+    }
+
+    @Override
+    public int updateSetups(String ids, String setups, HttpServletRequest request) {
+        MhUsers user = new MhUsers();
+        user.setIds(Integer.parseInt(ids));
+        user.setSetups(Integer.parseInt(setups));
+        user.setValue("u", request);
+        return mhUsersMapper.updateByPrimaryKeySelective(user);
     }
 }

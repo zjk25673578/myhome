@@ -24,7 +24,6 @@
 		<typeAlias type="com.hafa.mhworks.model.MhWorks" alias="MhWorks" />
 		<typeAlias type="com.hafa.notebook.model.MhNotebook" alias="MhNotebook" />
 		<typeAlias type="com.hafa.pwordhis.model.MhPwordHis" alias="MhPwordHis" />
-		<typeAlias type="com.hafa.tableinfo.model.MhTableinfo" alias="MhTableinfo" />
 		<typeAlias type="com.hafa.travel.model.MhTravel" alias="MhTravel" />
 		<typeAlias type="com.hafa.usermember.model.MhUserMember" alias="MhUserMember" />
 		<typeAlias type="com.hafa.usermenu.model.MhUserMenu" alias="MhUserMenu" />

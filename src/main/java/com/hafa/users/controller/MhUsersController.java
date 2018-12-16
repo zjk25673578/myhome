@@ -32,12 +32,12 @@ public class MhUsersController {
         Object sessionValidCode = session.getAttribute("validCode");
         if (currentUser != null) {
             session.setAttribute("currentUser", currentUser);
-            if (currentUser.getStatus() > 0) {
+            if (currentUser.getSetups() > 0) {
                 String validMsg = "<br>";
                 if (validCode.length() <= 0) {
                     validMsg += "但是 ! 系统知道你验证码没有填写...";
                 }
-                if (validCode.length() > 0 && !validCode.equals(sessionValidCode)) {
+                if (validCode.length() > 0 && !validCode.equalsIgnoreCase(sessionValidCode.toString())) {
                     validMsg += "但是 ! 系统知道你验证码写错了...";
                 }
                 return MyUtil.msg(1, "登陆成功 ! 系统正在跳转..." + validMsg);
@@ -55,7 +55,7 @@ public class MhUsersController {
     @ResponseBody
     @RequestMapping("/userList")
     public Map<String, Object> list(@RequestParam(defaultValue = "1") int page,
-                                    @RequestParam(defaultValue = "10") int limit, String key) {
+                                    @RequestParam(defaultValue = "8") int limit, String key) {
         PageBean pageBean = new PageBean(limit, page);
         JSONObject args = JSON.parseObject(key, JSONObject.class);
         int code = -1;
@@ -86,15 +86,22 @@ public class MhUsersController {
 
     @ResponseBody
     @RequestMapping("/deleteUser")
-    public Message deleteUser(String ids){
-        int result = mhUsersService.deleteUser(ids);
+    public Message deleteUser(String ids, HttpServletRequest request) {
+        int result = mhUsersService.deleteUser(ids, request);
         return MyUtil.msg(result);
     }
 
     @ResponseBody
     @RequestMapping("/deleteUsers")
-    public Message deleteUsers(String ids){
-        int result = mhUsersService.deleteUsers(ids);
+    public Message deleteUsers(String ids, HttpServletRequest request) {
+        int result = mhUsersService.deleteUsers(ids, request);
+        return MyUtil.msg(result);
+    }
+
+    @ResponseBody
+    @RequestMapping("/updateSetups")
+    public Message updateSetups(String ids, String setups, HttpServletRequest request) {
+        int result = mhUsersService.updateSetups(ids, setups, request);
         return MyUtil.msg(result);
     }
 }

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2018-12-14 18:34:32
+Date: 2018-12-16 23:45:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -237,41 +237,35 @@ CREATE TABLE `mh_menu` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
 
 -- ----------------------------
 -- Records of mh_menu
 -- ----------------------------
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('1', '0', '我', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('2', '0', '我的空间', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('3', '1', '网站账号管理', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('4', '1', '我的家庭成员', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('5', '1', '我的朋友圈', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('6', '1', '日记本', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('7', '0', '我家', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('8', '7', '相册', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('9', '7', '家庭留言本', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('10', '0', '大事记', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('11', '0', '财政信息', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('12', '11', '收入记录', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('13', '11', '支出记录', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('14', '11', '月统计', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('15', '0', '旅行计划', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('16', '15', '旅行记录', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('17', '15', '旅行日记', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('18', '0', '我的奏折', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('19', '0', '系统设置', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('20', '19', '菜单管理', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('21', '19', '用户管理', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('22', '19', '角色管理', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('23', '19', '流程定义', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('24', '19', '测试多级', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('25', '24', '菜单1', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('26', '24', '菜单2', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('27', '26', '菜单2-1', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('28', '26', '菜单2-2', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('29', '28', '菜单2-2-1', null, null, '1');
-INSERT INTO `mh_menu` (ids, parentid, menuname, murl, icon, status) VALUES ('30', '27', '菜单2-1-1', null, null, '1');
+INSERT INTO `mh_menu` VALUES ('1', '0', '我', null, 'fa fa-drupal', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('2', '0', '我的空间', null, 'fa fa-user-secret', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('3', '1', '网站账号管理', null, 'fa fa-internet-explorer', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('4', '1', '我的家庭成员', null, 'fa fa-users', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('5', '1', '我的朋友圈', null, 'fa fa-user-circle-o', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('6', '1', '日记本', null, 'fa fa-odnoklassniki-square', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('7', '0', '我家', null, 'fa fa-s15', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('8', '7', '相册', null, 'fa fa-photo', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('9', '7', '家庭留言本', null, 'fa fa-rocket', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('10', '0', '大事记', null, 'fa fa-tags', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('11', '0', '财政信息', null, 'fa fa-database', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('12', '11', '收入记录', null, 'fa fa-wheelchair', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('13', '11', '支出记录', null, 'fa fa-wheelchair-alt', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('14', '11', '月统计', null, 'fa fa-line-chart', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('15', '0', '旅行计划', null, 'fa fa-train', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('16', '15', '旅行记录', null, 'fa fa-map', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('17', '15', '旅行日记', null, 'fa fa-file-text', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('18', '0', '我的奏折', null, 'fa fa-black-tie', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('19', '0', '系统设置', null, 'fa fa-gears', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('20', '19', '菜单管理', '/mhmenu/list', 'fa fa-list', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('21', '19', '用户管理', '/mhusers/list', 'fa fa-grav', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('22', '19', '角色管理', null, 'fa fa-vcard', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('23', '19', '流程定义', null, 'fa fa-ravelry', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('31', '19', '字典管理', null, 'fa fa-paper-plane', '1', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `mh_notebook`
@@ -327,7 +321,7 @@ CREATE TABLE `mh_travel` (
   `userid` int(8) DEFAULT NULL COMMENT '计划人',
   `targets` varchar(50) DEFAULT NULL COMMENT '目的地',
   `detail` varchar(500) DEFAULT NULL COMMENT '目标地详情',
-  `lastime` int(8) DEFAULT NULL COMMENT '计划时长',
+  `lastime` int(8) DEFAULT NULL COMMENT '计划时长(单位:天)',
   `consume` int(8) DEFAULT NULL COMMENT '计划消费',
   `isimpl` int(4) DEFAULT NULL COMMENT '是否实现',
   `status` int(4) DEFAULT NULL COMMENT '有效标志',
@@ -356,6 +350,7 @@ CREATE TABLE `mh_users` (
   `pic` varchar(100) DEFAULT NULL COMMENT '头像',
   `userType` int(4) DEFAULT NULL COMMENT '用户类型: 1,超级管理员; 0:普通用户',
   `homeid` int(8) DEFAULT NULL COMMENT '家庭id',
+  `setups` int(4) DEFAULT NULL COMMENT '启用,禁用状态',
   `status` int(4) DEFAULT NULL COMMENT '有效标志',
   `createtime` datetime DEFAULT NULL COMMENT '创建日期',
   `creator` int(8) DEFAULT NULL COMMENT '创建人',
@@ -364,12 +359,22 @@ CREATE TABLE `mh_users` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='系统用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='系统用户表';
 
 -- ----------------------------
 -- Records of mh_users
 -- ----------------------------
-INSERT INTO `mh_users` (ids, uname, pword, rname, pic, userType, homeid, status) VALUES ('1', 'zhaodashuai', '123456', '赵大帅', null, '1', null, '1');
+INSERT INTO `mh_users` VALUES ('1', 'zhaodashuai', '123456', '赵大帅', null, '1', null, '1', '1', null, null, null, '2018-12-16 14:37:26', '1', 'zhaodashuai');
+INSERT INTO `mh_users` VALUES ('2', 'wangxianhan', '123456', '王献涵', null, '0', null, '1', '1', '2018-12-16 14:38:04', '1', 'zhaodashuai', '2018-12-16 16:45:00', '1', 'zhaodashuai');
+INSERT INTO `mh_users` VALUES ('3', 'xiaoming', '123456', '小明', null, '0', null, '1', '1', '2018-12-16 14:38:18', '1', 'zhaodashuai', '2018-12-16 17:00:49', '1', 'zhaodashuai');
+INSERT INTO `mh_users` VALUES ('4', 'xiaolv', '123456', '小绿', null, '0', null, '0', '1', '2018-12-16 14:40:13', '1', 'zhaodashuai', '2018-12-16 16:43:36', '1', 'zhaodashuai');
+INSERT INTO `mh_users` VALUES ('5', 'xiaohong', '123456', '小红', null, '0', null, '0', '1', '2018-12-16 15:05:07', '1', 'zhaodashuai', '2018-12-16 16:43:13', '1', 'zhaodashuai');
+INSERT INTO `mh_users` VALUES ('6', 'xiaozi', '123456', '小紫', null, '0', null, '1', '1', '2018-12-16 15:05:36', '1', 'zhaodashuai', '2018-12-16 16:43:36', '1', 'zhaodashuai');
+INSERT INTO `mh_users` VALUES ('7', 'xiaohei', '123456', '小黑', null, '0', null, '0', '1', '2018-12-16 15:05:54', '1', 'zhaodashuai', '2018-12-16 17:00:49', '1', 'zhaodashuai');
+INSERT INTO `mh_users` VALUES ('8', 'xiaohei', '123456', '小黑', null, '0', null, '1', '1', '2018-12-16 15:05:57', '1', 'zhaodashuai', '2018-12-16 16:43:20', '1', 'zhaodashuai');
+INSERT INTO `mh_users` VALUES ('9', 'xiaohuang', '123456', '小黄', null, '0', null, '1', '1', '2018-12-16 15:16:14', '1', 'zhaodashuai', '2018-12-16 16:47:49', '1', 'zhaodashuai');
+INSERT INTO `mh_users` VALUES ('10', 'xiaoqing', '123456', '小青', null, '0', null, '0', '1', '2018-12-16 15:17:16', '1', 'zhaodashuai', '2018-12-16 16:43:17', '1', 'zhaodashuai');
+INSERT INTO `mh_users` VALUES ('11', 'xiaoshi', '123456', '小屎', null, '0', null, '1', '1', '2018-12-16 15:20:17', '1', 'zhaodashuai', '2018-12-16 17:02:41', '1', 'zhaodashuai');
 
 -- ----------------------------
 -- Table structure for `mh_users_info`

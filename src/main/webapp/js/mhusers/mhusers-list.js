@@ -17,37 +17,47 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         url: _ctx + '/mhusers/userList',
         cols: [[
             {field: '', checkbox: true},
+            {field: 'ids', title: 'ID', width: 50, hide: true},
             {field: 'uname', title: '用户名'},
             {field: 'pword', title: '密码'},
             {field: 'rname', title: '姓名'},
             {
                 field: 'userType', title: '用户类型', templet: function (d) {
                     var formatValue = "--";
-                    if (d.userType === '0') {
+                    if (d.userType == 0) {
                         formatValue = '普通用户';
                     }
-                    if (d.userType === '1') {
+                    if (d.userType == 1) {
                         formatValue = '超级管理员';
                     }
                     return formatValue;
                 }
             },
             {
-                field: 'status', title: '状态', templet: function (d) {
+                field: 'setups', title: '状态', templet: function (d) {
                     var formatValue = "--";
-                    if (d.status) {
-                        formatValue = '已启用';
-                    } else {
-                        formatValue = '已禁用';
+                    if (d.setups == 0) {
+                        formatValue = '<font color="#FFB800">已禁用</font>';
+                    }
+                    if (d.setups == 1) {
+                        formatValue = '<font color="green">已启用</font>';
                     }
                     return formatValue;
+                }, width: 80
+            },
+            {field: 'createname', title: '创建人'},
+            {
+                field: 'createtime', title: '创建时间', templet: function (d) {
+                    return timestamp2Date(d.createtime);
                 }
             },
-            {field: '', title: '管理', toolbar: '#opera-btns', fixed: 'right'}
+            {field: '', title: '管理', toolbar: '#opera-btns', fixed: 'right', width: 170}
         ]],
         toolbar: '#toolbar',
         defaultToolbar: ['filter', 'print', 'exports'], // 'filter', 'print', 'exports'
-        page: true
+        page: true,
+        limit: 8,
+        limits: [8, 16, 40, 80]
     });
 
     // 定义页面中的方法
@@ -79,9 +89,23 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         // 删除数据
         del: function (obj) {
             var row = obj.data;
-            layer.confirm("确定删除 <font color='blue'>" + row.rname + " </font>吗 ?", function (index) {
+            layer.confirm("确定删除 <font color='blue'>" + row.rname + " </font>吗 ?", {icon: 3}, function (index) {
                 var ids = row.ids;
                 $.post(_ctx + "/mhusers/deleteUser", {ids: ids}, function (data) {
+                    layer.close(index);
+                    table.reload("users-table");
+                    layer.msg(data.message);
+                }, "json");
+            });
+        },
+
+        // 删除数据
+        on_off: function (obj) {
+            var row = obj.data;
+            var setups = row.setups;
+            var ids = row.ids;
+            layer.confirm("确定" + ((setups == 1) ? "禁用" : "启用") + " <font color='blue'>" + row.uname + " </font>吗 ?", {icon: 3}, function (index) {
+                $.post(_ctx + "/mhusers/updateSetups", {ids: ids, setups: (setups == 1) ? "0" : "1"}, function (data) {
                     layer.close(index);
                     table.reload("users-table");
                     layer.msg(data.message);
@@ -95,7 +119,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
             var len = checkStatus.data.length;
             if (len > 0) {
                 layer.alert("确定删除所选<font color='blue'> " + len + " </font>项 ?", {
-                    btn: ["确定", "取消"],
+                    btn: ["确定", "取消"], icon: 3,
                     btn1: function (index) {
                         var data = checkStatus.data;
                         var ids = "";
@@ -146,8 +170,9 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         laytpl(tpl).render(data, function (html) {
             openDialog(html, title, ['330px', '420px'], function (idx) {
                 var formdata = $("#form-data-user").serializeArray();
-                let result = validateForm(formdata); // 表单验证
+                var result = validateForm(formdata); // 表单验证
                 if (result) {
+                    console.log(formdata);
                     $.ajax({
                         url: _ctx + '/mhusers/saveOrUpdate',
                         type: 'post',

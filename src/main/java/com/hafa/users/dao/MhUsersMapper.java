@@ -25,5 +25,5 @@ public interface MhUsersMapper {
 
     int listCount(Map<String, Object> args);
 
-    int updateUsersStatus(String[] ids);
+    int deleteUsers(Map<String, Object> args);
 }
