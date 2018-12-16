@@ -1,5 +1,7 @@
 package com.hafa.medias.model;
 
+import java.util.Date;
+
 public class MhMedias {
     private Integer ids;
 
@@ -9,9 +11,9 @@ public class MhMedias {
 
     private String filepath;
 
-    private Byte filetype;
+    private Integer filetype;
 
-    private Byte comlevl;
+    private Integer comlevl;
 
     private Integer photos;
 
@@ -19,7 +21,19 @@ public class MhMedias {
 
     private String descp;
 
-    private Byte status;
+    private Integer status;
+
+    private Date createtime;
+
+    private Integer creator;
+
+    private String createname;
+
+    private Date updatetime;
+
+    private Integer updator;
+
+    private String updatename;
 
     public Integer getIds() {
         return ids;
@@ -53,19 +67,19 @@ public class MhMedias {
         this.filepath = filepath;
     }
 
-    public Byte getFiletype() {
+    public Integer getFiletype() {
         return filetype;
     }
 
-    public void setFiletype(Byte filetype) {
+    public void setFiletype(Integer filetype) {
         this.filetype = filetype;
     }
 
-    public Byte getComlevl() {
+    public Integer getComlevl() {
         return comlevl;
     }
 
-    public void setComlevl(Byte comlevl) {
+    public void setComlevl(Integer comlevl) {
         this.comlevl = comlevl;
     }
 
@@ -93,11 +107,59 @@ public class MhMedias {
         this.descp = descp;
     }
 
-    public Byte getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
+    public Integer getCreator() {
+        return creator;
+    }
+
+    public void setCreator(Integer creator) {
+        this.creator = creator;
+    }
+
+    public String getCreatename() {
+        return createname;
+    }
+
+    public void setCreatename(String createname) {
+        this.createname = createname;
+    }
+
+    public Date getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
+    }
+
+    public Integer getUpdator() {
+        return updator;
+    }
+
+    public void setUpdator(Integer updator) {
+        this.updator = updator;
+    }
+
+    public String getUpdatename() {
+        return updatename;
+    }
+
+    public void setUpdatename(String updatename) {
+        this.updatename = updatename;
     }
 }

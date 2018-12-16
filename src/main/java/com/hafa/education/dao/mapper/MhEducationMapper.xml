@@ -11,7 +11,7 @@
     <result column="startime" jdbcType="TIMESTAMP" property="startime" />
     <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
     <result column="photo" jdbcType="VARCHAR" property="photo" />
-    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
     ids, userid, school, major, clazz, place, startime, endtime, photo, status
@@ -33,7 +33,7 @@
       )
     values (#{userid,jdbcType=INTEGER}, #{school,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, 
       #{clazz,jdbcType=VARCHAR}, #{place,jdbcType=VARCHAR}, #{startime,jdbcType=TIMESTAMP}, 
-      #{endtime,jdbcType=TIMESTAMP}, #{photo,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}
+      #{endtime,jdbcType=TIMESTAMP}, #{photo,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.education.model.MhEducation" useGeneratedKeys="true">
@@ -93,7 +93,7 @@
         #{photo,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        #{status,jdbcType=TINYINT},
+        #{status,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -125,7 +125,7 @@
         photo = #{photo,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=TINYINT},
+        status = #{status,jdbcType=INTEGER},
       </if>
     </set>
     where ids = #{ids,jdbcType=INTEGER}
@@ -140,7 +140,7 @@
       startime = #{startime,jdbcType=TIMESTAMP},
       endtime = #{endtime,jdbcType=TIMESTAMP},
       photo = #{photo,jdbcType=VARCHAR},
-      status = #{status,jdbcType=TINYINT}
+      status = #{status,jdbcType=INTEGER}
     where ids = #{ids,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -2,17 +2,16 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>欢迎页面-X-admin2.0</title>
+    <title>欢迎页面</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
           content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
-
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
     <link rel="stylesheet" href="${ctx}/css/font.css">
     <link rel="stylesheet" href="${ctx}/css/xadmin.css">
 </head>
-<body>
+<body class="layui-anim layui-anim-fadein">
 <div class="x-body">
     <blockquote class="layui-elem-quote">欢迎：<#if currentUser.userType == 1>超级管理员</#if>
         <span class="x-red">${currentUser.rname}</span>

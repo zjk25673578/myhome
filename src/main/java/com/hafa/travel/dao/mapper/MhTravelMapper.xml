@@ -9,11 +9,18 @@
     <result column="detail" jdbcType="VARCHAR" property="detail" />
     <result column="lastime" jdbcType="INTEGER" property="lastime" />
     <result column="consume" jdbcType="INTEGER" property="consume" />
-    <result column="isimpl" jdbcType="TINYINT" property="isimpl" />
-    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="isimpl" jdbcType="INTEGER" property="isimpl" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="creator" jdbcType="INTEGER" property="creator" />
+    <result column="createname" jdbcType="VARCHAR" property="createname" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="updator" jdbcType="INTEGER" property="updator" />
+    <result column="updatename" jdbcType="VARCHAR" property="updatename" />
   </resultMap>
   <sql id="Base_Column_List">
-    ids, homeid, userid, targets, detail, lastime, consume, isimpl, status
+    ids, homeid, userid, targets, detail, lastime, consume, isimpl, status, createtime, creator, createname, updatetime,
+    updator, updatename
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -28,10 +35,13 @@
   <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.travel.model.MhTravel" useGeneratedKeys="true">
     insert into mh_travel (homeid, userid, targets, 
       detail, lastime, consume, 
-      isimpl, status)
+      isimpl, status, createtime, creator, createname, updatetime,
+    updator, updatename)
     values (#{homeid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{targets,jdbcType=VARCHAR}, 
       #{detail,jdbcType=VARCHAR}, #{lastime,jdbcType=INTEGER}, #{consume,jdbcType=INTEGER}, 
-      #{isimpl,jdbcType=TINYINT}, #{status,jdbcType=TINYINT})
+      #{isimpl,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+      #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
+      #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.travel.model.MhTravel" useGeneratedKeys="true">
     insert into mh_travel
@@ -60,6 +70,24 @@
       <if test="status != null">
         status,
       </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createname != null">
+        createname,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="updator != null">
+        updator,
+      </if>
+      <if test="updatename != null">
+        updatename,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="homeid != null">
@@ -81,10 +109,28 @@
         #{consume,jdbcType=INTEGER},
       </if>
       <if test="isimpl != null">
-        #{isimpl,jdbcType=TINYINT},
+        #{isimpl,jdbcType=INTEGER},
       </if>
       <if test="status != null">
-        #{status,jdbcType=TINYINT},
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="createname != null">
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        #{updator,jdbcType=INTEGER},
+      </if>
+      <if test="updatename != null">
+        #{updatename,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -110,10 +156,28 @@
         consume = #{consume,jdbcType=INTEGER},
       </if>
       <if test="isimpl != null">
-        isimpl = #{isimpl,jdbcType=TINYINT},
+        isimpl = #{isimpl,jdbcType=INTEGER},
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=TINYINT},
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="createname != null">
+        createname = #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        updator = #{updator,jdbcType=INTEGER},
+      </if>
+      <if test="updatename != null">
+        updatename = #{updatename,jdbcType=VARCHAR},
       </if>
     </set>
     where ids = #{ids,jdbcType=INTEGER}
@@ -126,8 +190,14 @@
       detail = #{detail,jdbcType=VARCHAR},
       lastime = #{lastime,jdbcType=INTEGER},
       consume = #{consume,jdbcType=INTEGER},
-      isimpl = #{isimpl,jdbcType=TINYINT},
-      status = #{status,jdbcType=TINYINT}
+      isimpl = #{isimpl,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=INTEGER},
+      createname = #{createname,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      updator = #{updator,jdbcType=INTEGER},
+      updatename = #{updatename,jdbcType=VARCHAR}
     where ids = #{ids,jdbcType=INTEGER}
   </update>
 </mapper>

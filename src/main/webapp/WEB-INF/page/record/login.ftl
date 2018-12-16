@@ -49,7 +49,7 @@
         form.on('submit(login)', function (data) {
             $.ajax({
                 async: false,
-                url: "${ctx}/users/login",
+                url: "${ctx}/mhusers/login",
                 data: data.field,
                 dataType: "json",
                 success: function (dataResult) {

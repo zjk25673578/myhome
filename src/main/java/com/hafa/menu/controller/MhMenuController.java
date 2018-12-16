@@ -13,11 +13,16 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-@RequestMapping("/menu")
+@RequestMapping("/mhmenu")
 public class MhMenuController {
 
     @Autowired
     private MhMenuService mhMenuService;
+
+    @RequestMapping("/list")
+    public String menu() {
+        return "record/menu/menu-list";
+    }
 
     @ResponseBody
     @RequestMapping("/menus")

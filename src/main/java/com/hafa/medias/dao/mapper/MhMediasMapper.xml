@@ -6,15 +6,22 @@
     <result column="fname" jdbcType="VARCHAR" property="fname" />
     <result column="filename" jdbcType="VARCHAR" property="filename" />
     <result column="filepath" jdbcType="VARCHAR" property="filepath" />
-    <result column="filetype" jdbcType="TINYINT" property="filetype" />
-    <result column="comlevl" jdbcType="TINYINT" property="comlevl" />
+    <result column="filetype" jdbcType="INTEGER" property="filetype" />
+    <result column="comlevl" jdbcType="INTEGER" property="comlevl" />
     <result column="photos" jdbcType="INTEGER" property="photos" />
     <result column="filesize" jdbcType="VARCHAR" property="filesize" />
     <result column="descp" jdbcType="VARCHAR" property="descp" />
-    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="creator" jdbcType="INTEGER" property="creator" />
+    <result column="createname" jdbcType="VARCHAR" property="createname" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="updator" jdbcType="INTEGER" property="updator" />
+    <result column="updatename" jdbcType="VARCHAR" property="updatename" />
   </resultMap>
   <sql id="Base_Column_List">
-    ids, fname, filename, filepath, filetype, comlevl, photos, filesize, descp, status
+    ids, fname, filename, filepath, filetype, comlevl, photos, filesize, descp, status, createtime, creator, createname, updatetime,
+    updator, updatename
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -29,11 +36,14 @@
   <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.medias.model.MhMedias" useGeneratedKeys="true">
     insert into mh_medias (fname, filename, filepath, 
       filetype, comlevl, photos, 
-      filesize, descp, status
+      filesize, descp, status, createtime, creator, createname, updatetime,
+    updator, updatename
       )
     values (#{fname,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, #{filepath,jdbcType=VARCHAR}, 
-      #{filetype,jdbcType=TINYINT}, #{comlevl,jdbcType=TINYINT}, #{photos,jdbcType=INTEGER}, 
-      #{filesize,jdbcType=VARCHAR}, #{descp,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}
+      #{filetype,jdbcType=INTEGER}, #{comlevl,jdbcType=INTEGER}, #{photos,jdbcType=INTEGER}, 
+      #{filesize,jdbcType=VARCHAR}, #{descp,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+      #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
+      #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.medias.model.MhMedias" useGeneratedKeys="true">
@@ -66,6 +76,24 @@
       <if test="status != null">
         status,
       </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createname != null">
+        createname,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="updator != null">
+        updator,
+      </if>
+      <if test="updatename != null">
+        updatename,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="fname != null">
@@ -78,10 +106,10 @@
         #{filepath,jdbcType=VARCHAR},
       </if>
       <if test="filetype != null">
-        #{filetype,jdbcType=TINYINT},
+        #{filetype,jdbcType=INTEGER},
       </if>
       <if test="comlevl != null">
-        #{comlevl,jdbcType=TINYINT},
+        #{comlevl,jdbcType=INTEGER},
       </if>
       <if test="photos != null">
         #{photos,jdbcType=INTEGER},
@@ -93,7 +121,25 @@
         #{descp,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        #{status,jdbcType=TINYINT},
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="createname != null">
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        #{updator,jdbcType=INTEGER},
+      </if>
+      <if test="updatename != null">
+        #{updatename,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -110,10 +156,10 @@
         filepath = #{filepath,jdbcType=VARCHAR},
       </if>
       <if test="filetype != null">
-        filetype = #{filetype,jdbcType=TINYINT},
+        filetype = #{filetype,jdbcType=INTEGER},
       </if>
       <if test="comlevl != null">
-        comlevl = #{comlevl,jdbcType=TINYINT},
+        comlevl = #{comlevl,jdbcType=INTEGER},
       </if>
       <if test="photos != null">
         photos = #{photos,jdbcType=INTEGER},
@@ -125,7 +171,25 @@
         descp = #{descp,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=TINYINT},
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="createname != null">
+        createname = #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        updator = #{updator,jdbcType=INTEGER},
+      </if>
+      <if test="updatename != null">
+        updatename = #{updatename,jdbcType=VARCHAR},
       </if>
     </set>
     where ids = #{ids,jdbcType=INTEGER}
@@ -135,12 +199,18 @@
     set fname = #{fname,jdbcType=VARCHAR},
       filename = #{filename,jdbcType=VARCHAR},
       filepath = #{filepath,jdbcType=VARCHAR},
-      filetype = #{filetype,jdbcType=TINYINT},
-      comlevl = #{comlevl,jdbcType=TINYINT},
+      filetype = #{filetype,jdbcType=INTEGER},
+      comlevl = #{comlevl,jdbcType=INTEGER},
       photos = #{photos,jdbcType=INTEGER},
       filesize = #{filesize,jdbcType=VARCHAR},
       descp = #{descp,jdbcType=VARCHAR},
-      status = #{status,jdbcType=TINYINT}
+      status = #{status,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=INTEGER},
+      createname = #{createname,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      updator = #{updator,jdbcType=INTEGER},
+      updatename = #{updatename,jdbcType=VARCHAR}
     where ids = #{ids,jdbcType=INTEGER}
   </update>
 </mapper>

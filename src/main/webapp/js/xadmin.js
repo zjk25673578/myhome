@@ -1,8 +1,10 @@
 $(function () {
     // 加载弹出层
-    layui.use(['form', 'element'], function () {
+    layui.use(['form', 'element', 'laydate', 'form'], function () {
         layer = layui.layer;
         element = layui.element;
+        laydate = layui.laydate;
+        form = layui.form;
     });
 
     // 触发事件
@@ -172,7 +174,6 @@ function getCateId(cateId) {
 }
 
 /* 弹出层 */
-
 /**
  * 参数解释：
  * title 标题
@@ -205,6 +206,37 @@ function x_admin_show(title, url, w, h) {
         title: title,
         content: url
     });
+}
+
+/**
+ * @param tpl 需要渲染的模板
+ * @param title 对话框的标题
+ * @param area 对话框的宽高
+ * @param dates 需要渲染的日期框的id
+ * @param callback 点击确定的回调函数
+ * @returns {*} 当前打开的对话框的layui索引
+ */
+function openDialog(tpl, title, area, callback, dates) {
+    layer.open({
+        type: 1,
+        content: tpl,
+        title: title,
+        area: area,
+        // shade: 0.2,
+        offset: "25%",
+        btn: ["保存", "取消"],
+        yes: function (idx) {
+            callback(idx);
+        }
+    });
+    if (dates) {
+        for (var i = 0; i < dates.length; i++) {
+            laydate.render({
+                elem: dates[i]
+            });
+        }
+    }
+    return form.render();
 }
 
 /* 关闭弹出框口 */

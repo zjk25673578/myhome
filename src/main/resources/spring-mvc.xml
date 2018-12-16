@@ -138,7 +138,7 @@
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/toLogin"/>
-            <mvc:exclude-mapping path="/users/login"/>
+            <mvc:exclude-mapping path="/mhusers/login"/>
             <mvc:exclude-mapping path="/blog/**"/>
             <mvc:exclude-mapping path="/css/**"/>
             <mvc:exclude-mapping path="/fonts/**"/>

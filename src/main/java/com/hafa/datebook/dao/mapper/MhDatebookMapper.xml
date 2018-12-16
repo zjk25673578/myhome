@@ -1,133 +1,205 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hafa.datebook.dao.MhDatebookMapper">
-  <resultMap id="BaseResultMap" type="com.hafa.datebook.model.MhDatebook">
-    <id column="ids" jdbcType="INTEGER" property="ids" />
-    <result column="userid" jdbcType="INTEGER" property="userid" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="detail" jdbcType="VARCHAR" property="detail" />
-    <result column="happend" jdbcType="TIMESTAMP" property="happend" />
-    <result column="remarks" jdbcType="TINYINT" property="remarks" />
-    <result column="backup1" jdbcType="VARCHAR" property="backup1" />
-    <result column="backup2" jdbcType="VARCHAR" property="backup2" />
-    <result column="status" jdbcType="TINYINT" property="status" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    ids, userid, title, detail, happend, remarks, backup1, backup2, status
+    <resultMap id="BaseResultMap" type="com.hafa.datebook.model.MhDatebook">
+        <id column="ids" jdbcType="INTEGER" property="ids"/>
+        <result column="userid" jdbcType="INTEGER" property="userid"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="detail" jdbcType="VARCHAR" property="detail"/>
+        <result column="happend" jdbcType="TIMESTAMP" property="happend"/>
+        <result column="remarks" jdbcType="INTEGER" property="remarks"/>
+        <result column="backup1" jdbcType="VARCHAR" property="backup1"/>
+        <result column="backup2" jdbcType="VARCHAR" property="backup2"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="creator" jdbcType="INTEGER" property="creator"/>
+        <result column="createname" jdbcType="VARCHAR" property="createname"/>
+        <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime"/>
+        <result column="updator" jdbcType="INTEGER" property="updator"/>
+        <result column="updatename" jdbcType="VARCHAR" property="updatename"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ids, userid, title, detail, happend, remarks, backup1, backup2, status, createtime, creator, createname, updatetime,
+    updator, updatename
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from mh_datebook
-    where ids = #{ids,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from mh_datebook
+        where ids = #{ids,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from mh_datebook
     where ids = #{ids,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.datebook.model.MhDatebook" useGeneratedKeys="true">
+    <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.datebook.model.MhDatebook"
+            useGeneratedKeys="true">
     insert into mh_datebook (userid, title, detail, 
       happend, remarks, backup1, 
-      backup2, status)
+      backup2, status, createtime, creator, createname, updatetime,
+      updator, updatename)
     values (#{userid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{detail,jdbcType=VARCHAR}, 
-      #{happend,jdbcType=TIMESTAMP}, #{remarks,jdbcType=TINYINT}, #{backup1,jdbcType=VARCHAR}, 
-      #{backup2,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT})
+      #{happend,jdbcType=TIMESTAMP}, #{remarks,jdbcType=INTEGER}, #{backup1,jdbcType=VARCHAR}, 
+      #{backup2,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+      #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
+      #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.datebook.model.MhDatebook" useGeneratedKeys="true">
-    insert into mh_datebook
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        userid,
-      </if>
-      <if test="title != null">
-        title,
-      </if>
-      <if test="detail != null">
-        detail,
-      </if>
-      <if test="happend != null">
-        happend,
-      </if>
-      <if test="remarks != null">
-        remarks,
-      </if>
-      <if test="backup1 != null">
-        backup1,
-      </if>
-      <if test="backup2 != null">
-        backup2,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="detail != null">
-        #{detail,jdbcType=VARCHAR},
-      </if>
-      <if test="happend != null">
-        #{happend,jdbcType=TIMESTAMP},
-      </if>
-      <if test="remarks != null">
-        #{remarks,jdbcType=TINYINT},
-      </if>
-      <if test="backup1 != null">
-        #{backup1,jdbcType=VARCHAR},
-      </if>
-      <if test="backup2 != null">
-        #{backup2,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=TINYINT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hafa.datebook.model.MhDatebook">
-    update mh_datebook
-    <set>
-      <if test="userid != null">
-        userid = #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="detail != null">
-        detail = #{detail,jdbcType=VARCHAR},
-      </if>
-      <if test="happend != null">
-        happend = #{happend,jdbcType=TIMESTAMP},
-      </if>
-      <if test="remarks != null">
-        remarks = #{remarks,jdbcType=TINYINT},
-      </if>
-      <if test="backup1 != null">
-        backup1 = #{backup1,jdbcType=VARCHAR},
-      </if>
-      <if test="backup2 != null">
-        backup2 = #{backup2,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=TINYINT},
-      </if>
-    </set>
-    where ids = #{ids,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.hafa.datebook.model.MhDatebook">
+    <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.datebook.model.MhDatebook"
+            useGeneratedKeys="true">
+        insert into mh_datebook
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                userid,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="detail != null">
+                detail,
+            </if>
+            <if test="happend != null">
+                happend,
+            </if>
+            <if test="remarks != null">
+                remarks,
+            </if>
+            <if test="backup1 != null">
+                backup1,
+            </if>
+            <if test="backup2 != null">
+                backup2,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createname != null">
+                createname,
+            </if>
+            <if test="updatetime != null">
+                updatetime,
+            </if>
+            <if test="updator != null">
+                updator,
+            </if>
+            <if test="updatename != null">
+                updatename,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="detail != null">
+                #{detail,jdbcType=VARCHAR},
+            </if>
+            <if test="happend != null">
+                #{happend,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null">
+                #{remarks,jdbcType=INTEGER},
+            </if>
+            <if test="backup1 != null">
+                #{backup1,jdbcType=VARCHAR},
+            </if>
+            <if test="backup2 != null">
+                #{backup2,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="createname != null">
+                #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updator != null">
+                #{updator,jdbcType=INTEGER},
+            </if>
+            <if test="updatename != null">
+                #{updatename,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hafa.datebook.model.MhDatebook">
+        update mh_datebook
+        <set>
+            <if test="userid != null">
+                userid = #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="detail != null">
+                detail = #{detail,jdbcType=VARCHAR},
+            </if>
+            <if test="happend != null">
+                happend = #{happend,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null">
+                remarks = #{remarks,jdbcType=INTEGER},
+            </if>
+            <if test="backup1 != null">
+                backup1 = #{backup1,jdbcType=VARCHAR},
+            </if>
+            <if test="backup2 != null">
+                backup2 = #{backup2,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="createname != null">
+                createname = #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                updatetime = #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updator != null">
+                updator = #{updator,jdbcType=INTEGER},
+            </if>
+            <if test="updatename != null">
+                updatename = #{updatename,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ids = #{ids,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hafa.datebook.model.MhDatebook">
     update mh_datebook
     set userid = #{userid,jdbcType=INTEGER},
       title = #{title,jdbcType=VARCHAR},
       detail = #{detail,jdbcType=VARCHAR},
       happend = #{happend,jdbcType=TIMESTAMP},
-      remarks = #{remarks,jdbcType=TINYINT},
+      remarks = #{remarks,jdbcType=INTEGER},
       backup1 = #{backup1,jdbcType=VARCHAR},
       backup2 = #{backup2,jdbcType=VARCHAR},
-      status = #{status,jdbcType=TINYINT}
+      status = #{status,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=INTEGER},
+      createname = #{createname,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      updator = #{updator,jdbcType=INTEGER},
+      updatename = #{updatename,jdbcType=VARCHAR}
     where ids = #{ids,jdbcType=INTEGER}
   </update>
 </mapper>

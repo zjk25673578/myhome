@@ -8,7 +8,7 @@ public class MhFinance {
 
     private Integer userid;
 
-    private Byte ftype;
+    private Integer ftype;
 
     private BigDecimal cash;
 
@@ -18,7 +18,19 @@ public class MhFinance {
 
     private String reason;
 
-    private Byte status;
+    private Integer status;
+
+    private Date createtime;
+
+    private Integer creator;
+
+    private String createname;
+
+    private Date updatetime;
+
+    private Integer updator;
+
+    private String updatename;
 
     public Integer getIds() {
         return ids;
@@ -36,11 +48,11 @@ public class MhFinance {
         this.userid = userid;
     }
 
-    public Byte getFtype() {
+    public Integer getFtype() {
         return ftype;
     }
 
-    public void setFtype(Byte ftype) {
+    public void setFtype(Integer ftype) {
         this.ftype = ftype;
     }
 
@@ -76,11 +88,59 @@ public class MhFinance {
         this.reason = reason;
     }
 
-    public Byte getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
+    public Integer getCreator() {
+        return creator;
+    }
+
+    public void setCreator(Integer creator) {
+        this.creator = creator;
+    }
+
+    public String getCreatename() {
+        return createname;
+    }
+
+    public void setCreatename(String createname) {
+        this.createname = createname;
+    }
+
+    public Date getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
+    }
+
+    public Integer getUpdator() {
+        return updator;
+    }
+
+    public void setUpdator(Integer updator) {
+        this.updator = updator;
+    }
+
+    public String getUpdatename() {
+        return updatename;
+    }
+
+    public void setUpdatename(String updatename) {
+        this.updatename = updatename;
     }
 }

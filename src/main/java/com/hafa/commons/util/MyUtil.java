@@ -13,7 +13,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * 工具类
+ */
 public class MyUtil {
+
+    /**
+     * 将多个对象以字符串的形式拼接起来
+     *
+     * @param objs
+     * @return
+     */
+    public static String concat(Object... objs) {
+        if (objs == null || objs.length == 0) {
+            return "";
+        }
+        StringBuilder temp = new StringBuilder();
+        for (Object o : objs) {
+            if (o != null)
+                temp.append(o);
+        }
+        return temp.toString();
+    }
 
     /**
      * 获取随机的验证码内容(字母加数字)
@@ -74,6 +95,7 @@ public class MyUtil {
     /**
      * 用于将多个javabean转换成Map<String, Object><br>
      * 应当注意重复的key值
+     * 主要用于MyBatis参数的合并
      *
      * @param objects
      * @return
@@ -95,6 +117,7 @@ public class MyUtil {
 
     /**
      * 通过反射将javaBean转换成Map
+     *
      * @param obj
      * @return
      * @throws Exception
@@ -102,6 +125,9 @@ public class MyUtil {
     private static Map<String, Object> transBean2Map(Object obj) throws Exception {
         if (obj == null) {
             return null;
+        }
+        if (obj instanceof Map) {
+            return (Map<String, Object>) obj;
         }
         Map<String, Object> map = new HashMap<>();
         BeanInfo beanInfo = Introspector.getBeanInfo(obj.getClass());
@@ -121,10 +147,10 @@ public class MyUtil {
     /**
      * 组装layui-data-table所需的数据格式
      *
-     * @param code 状态码
-     * @param msg 当数据获取失败时返回的消息
+     * @param code  状态码
+     * @param msg   当数据获取失败时返回的消息
      * @param count 数据条数, 用于分页和统计
-     * @param data 数据列表
+     * @param data  数据列表
      * @return
      */
     public static Map<String, Object> layData(int code, String msg, int count, List<?> data) {

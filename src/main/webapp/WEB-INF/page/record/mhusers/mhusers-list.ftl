@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>用户列表</title>
@@ -9,171 +8,84 @@
     <meta name="viewport"
           content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
-    <link rel="stylesheet" href="${ctx}/css/xadmin.css">
-    <link rel="stylesheet" href="${ctx}/css/font.css">
-    <script type="text/javascript" src="${ctx}/js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="${ctx}/res/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="${ctx}/js/xadmin.js"></script>
+    <@header.baseConfig />
+    <script type="text/javascript" src="${ctx}/js/mhusers/mhusers-list.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
-<body class="layui-anim layui-anim-up">
+<body class="layui-anim layui-anim-fadein">
 <div class="x-body">
     <div class="layui-row">
-        <!-- 查询表单 -->
-        <form class="layui-form layui-col-md12 x-so">
-            <input class="layui-input layui-input-sm" placeholder="开始日" name="start" id="start">
-            <input class="layui-input layui-input-sm" placeholder="截止日" name="end" id="end">
-            <input class="layui-input layui-input-sm" name="uname" placeholder="请输入用户名" autocomplete="off">
-            <button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="sreach">
-                <i class="layui-icon layui-icon-search"></i>
-            </button>
-            <a class="layui-btn layui-btn-sm" href="javascript:;" title="刷新">
-                <i class="layui-icon layui-icon-refresh"></i>
-            </a>
-        </form>
+        <fieldset class="layui-elem-field">
+            <legend>用户查询</legend>
+            <div class="layui-field-box">
+                <!-- 查询表单 -->
+                <form id="search-form" class="layui-form layui-col-md12 x-so">
+                    <input class="layui-input layui-input-sm" name="uname" placeholder="用户名">
+                    <input class="layui-input layui-input-sm" name="rname" placeholder="姓名">
+                    <button class="layui-btn layui-btn-sm" lay-submit lay-filter="searchSubmit">
+                        <i class="layui-icon layui-icon-search"></i>
+                    </button>
+                </form>
+            </div>
+        </fieldset>
     </div>
-    <xblock>
-        <button class="layui-btn layui-btn-sm layui-btn-danger" onclick="delAll()">
-            <i class="layui-icon layui-icon-delete"></i>删除
-        </button>
-        <button class="layui-btn layui-btn-sm" onclick="x_admin_show('添加用户','./member-add.html',600,400)">
+    <table id="users-table" class="layui-table" lay-filter="users-table"></table>
+</div>
+
+<!-- layui模板 -->
+<script type="text/html" id="toolbar">
+    <!-- 顶部功能菜单 -->
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">
             <i class="layui-icon layui-icon-add-1"></i>添加
         </button>
-    </xblock>
-    <table class="layui-table">
-        <thead>
-        <tr>
-            <th>
-                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i
-                        class="layui-icon">&#xe605;</i></div>
-            </th>
-            <th>ID</th>
-            <th>用户名</th>
-            <th>性别</th>
-            <th>手机</th>
-            <th>邮箱</th>
-            <th>地址</th>
-            <th>加入时间</th>
-            <th>状态</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>
-                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i>
-                </div>
-            </td>
-            <td>1</td>
-            <td>小明</td>
-            <td>男</td>
-            <td>13000000000</td>
-            <td>admin@mail.com</td>
-            <td>北京市 海淀区</td>
-            <td>2017-01-01 11:11:42</td>
-            <td class="td-status">
-                <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
-            <td class="td-manage">
-                <a class="layui-btn layui-btn-xs" onclick="member_stop(this,'10001')" href="javascript:;" title="启用">
-                    <i class="layui-icon">&#xe601;</i>
-                </a>
-                <a class="layui-btn layui-btn-xs" title="编辑" onclick="x_admin_show('编辑','member-edit.html',600,400)" href="javascript:;">
-                    <i class="layui-icon">&#xe642;</i>
-                </a>
-                <a class="layui-btn layui-btn-xs" onclick="x_admin_show('修改密码','member-password.html',600,400)" title="修改密码" href="javascript:;">
-                    <i class="layui-icon">&#xe631;</i>
-                </a>
-                <a class="layui-btn layui-btn-xs" title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                    <i class="layui-icon">&#xe640;</i>
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <div class="page">
-        <div>
-            <a class="prev" href="">&lt;&lt;</a>
-            <a class="num" href="">1</a>
-            <span class="current">2</span>
-            <a class="num" href="">3</a>
-            <a class="num" href="">489</a>
-            <a class="next" href="">&gt;&gt;</a>
-        </div>
+        <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del_multiple">
+            <i class="layui-icon layui-icon-delete"></i>删除
+        </button>
     </div>
-
-</div>
-<script>
-    layui.use('laydate', function () {
-        var laydate = layui.laydate;
-
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#start' //指定元素
-        });
-
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#end' //指定元素
-        });
-    });
-
-    /*用户-停用*/
-    function member_stop(obj, id) {
-        layer.confirm('确认要停用吗？', function (index) {
-
-            if ($(obj).attr('title') == '启用') {
-
-                //发异步把用户状态进行更改
-                $(obj).attr('title', '停用')
-                $(obj).find('i').html('&#xe62f;');
-
-                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-                layer.msg('已停用!', {icon: 5, time: 1000});
-
-            } else {
-                $(obj).attr('title', '启用')
-                $(obj).find('i').html('&#xe601;');
-
-                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                layer.msg('已启用!', {icon: 5, time: 1000});
-            }
-
-        });
-    }
-
-    /*用户-删除*/
-    function member_del(obj, id) {
-        layer.confirm('确认要删除吗？', function (index) {
-            //发异步删除数据
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!', {icon: 1, time: 1000});
-        });
-    }
-
-
-    function delAll(argument) {
-
-        var data = tableCheck.getData();
-
-        layer.confirm('确认要删除吗？' + data, function (index) {
-            //捉到所有被选中的，发异步进行删除
-            layer.msg('删除成功', {icon: 1});
-            $(".layui-form-checked").not('.header').parents('tr').remove();
-        });
-    }
 </script>
-<script>var _hmt = _hmt || [];
-(function () {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-})();</script>
+<script type="text/html" id="opera-btns">
+    <!-- 右侧的菜单 -->
+    <a href="javascript:;" lay-event="update" lay-data="{{ d.ids }}"
+       class="layui-btn layui-btn-xs layui-btn-warm">编辑</a>
+    <a href="javascript:;" lay-event="del" lay-data="{{ d.ids }}"
+       class="layui-btn layui-btn-xs layui-btn-danger">删除</a>
+</script>
+<script type="text/html" id="user-addOrEdit">
+    <div class="layui-form-item"></div>
+    <form id="form-data-user" lay-filter="form-user" class="layui-form">
+        <input type="hidden" name="ids" value="{{ d.ids }}"/>
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="uname" lay-verify="required" placeholder="请输入用户名"
+                       class="layui-input layui-input-sm" value="{{ d.uname }}"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">姓名：</label>
+            <div class="layui-input-inline">
+                <input type="text" lay-verify="required" name="rname" placeholder="请输入姓名"
+                       class="layui-input layui-input-sm" value="{{ d.rname }}"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户类型：</label>
+            <div class="layui-input-inline">
+                <select name="userType" lay-verify="required">
+                    <option value="">选择用户类型</option>
+                    <option value="0" {{ d.userType== 0 ?
+                    'selected' : '' }}>普通用户</option>
+                    <option value="1" {{ d.userType== 1 ?
+                    'selected' : '' }}>超级管理员</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</script>
 </body>
-
 </html>

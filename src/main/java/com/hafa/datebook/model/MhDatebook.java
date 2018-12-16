@@ -13,13 +13,25 @@ public class MhDatebook {
 
     private Date happend;
 
-    private Byte remarks;
+    private Integer remarks;
 
     private String backup1;
 
     private String backup2;
 
-    private Byte status;
+    private Integer status;
+
+    private Date createtime;
+
+    private Integer creator;
+
+    private String createname;
+
+    private Date updatetime;
+
+    private Integer updator;
+
+    private String updatename;
 
     public Integer getIds() {
         return ids;
@@ -61,11 +73,11 @@ public class MhDatebook {
         this.happend = happend;
     }
 
-    public Byte getRemarks() {
+    public Integer getRemarks() {
         return remarks;
     }
 
-    public void setRemarks(Byte remarks) {
+    public void setRemarks(Integer remarks) {
         this.remarks = remarks;
     }
 
@@ -85,11 +97,59 @@ public class MhDatebook {
         this.backup2 = backup2;
     }
 
-    public Byte getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
+    public Integer getCreator() {
+        return creator;
+    }
+
+    public void setCreator(Integer creator) {
+        this.creator = creator;
+    }
+
+    public String getCreatename() {
+        return createname;
+    }
+
+    public void setCreatename(String createname) {
+        this.createname = createname;
+    }
+
+    public Date getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
+    }
+
+    public Integer getUpdator() {
+        return updator;
+    }
+
+    public void setUpdator(Integer updator) {
+        this.updator = updator;
+    }
+
+    public String getUpdatename() {
+        return updatename;
+    }
+
+    public void setUpdatename(String updatename) {
+        this.updatename = updatename;
     }
 }

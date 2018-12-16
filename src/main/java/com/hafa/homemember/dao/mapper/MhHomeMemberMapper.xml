@@ -11,10 +11,17 @@
     <result column="backup3" jdbcType="VARCHAR" property="backup3" />
     <result column="backup4" jdbcType="VARCHAR" property="backup4" />
     <result column="backup5" jdbcType="VARCHAR" property="backup5" />
-    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="creator" jdbcType="INTEGER" property="creator" />
+    <result column="createname" jdbcType="VARCHAR" property="createname" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="updator" jdbcType="INTEGER" property="updator" />
+    <result column="updatename" jdbcType="VARCHAR" property="updatename" />
   </resultMap>
   <sql id="Base_Column_List">
-    ids, mname, mbirthday, mage, backup1, backup2, backup3, backup4, backup5, status
+    ids, mname, mbirthday, mage, backup1, backup2, backup3, backup4, backup5, status, createtime, creator, createname, updatetime,
+    updator, updatename
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -29,11 +36,14 @@
   <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.homemember.model.MhHomeMember" useGeneratedKeys="true">
     insert into mh_home_member (mname, mbirthday, mage, 
       backup1, backup2, backup3, 
-      backup4, backup5, status
+      backup4, backup5, status, createtime, creator, createname, updatetime,
+    updator, updatename
       )
     values (#{mname,jdbcType=VARCHAR}, #{mbirthday,jdbcType=TIMESTAMP}, #{mage,jdbcType=DECIMAL}, 
       #{backup1,jdbcType=VARCHAR}, #{backup2,jdbcType=VARCHAR}, #{backup3,jdbcType=VARCHAR}, 
-      #{backup4,jdbcType=VARCHAR}, #{backup5,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}
+      #{backup4,jdbcType=VARCHAR}, #{backup5,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+      #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
+      #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.homemember.model.MhHomeMember" useGeneratedKeys="true">
@@ -66,6 +76,24 @@
       <if test="status != null">
         status,
       </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createname != null">
+        createname,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="updator != null">
+        updator,
+      </if>
+      <if test="updatename != null">
+        updatename,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="mname != null">
@@ -93,7 +121,25 @@
         #{backup5,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        #{status,jdbcType=TINYINT},
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="createname != null">
+        #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        #{updator,jdbcType=INTEGER},
+      </if>
+      <if test="updatename != null">
+        #{updatename,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -125,7 +171,25 @@
         backup5 = #{backup5,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=TINYINT},
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=INTEGER},
+      </if>
+      <if test="createname != null">
+        createname = #{createname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updator != null">
+        updator = #{updator,jdbcType=INTEGER},
+      </if>
+      <if test="updatename != null">
+        updatename = #{updatename,jdbcType=VARCHAR},
       </if>
     </set>
     where ids = #{ids,jdbcType=INTEGER}
@@ -140,7 +204,13 @@
       backup3 = #{backup3,jdbcType=VARCHAR},
       backup4 = #{backup4,jdbcType=VARCHAR},
       backup5 = #{backup5,jdbcType=VARCHAR},
-      status = #{status,jdbcType=TINYINT}
+      status = #{status,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=INTEGER},
+      createname = #{createname,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      updator = #{updator,jdbcType=INTEGER},
+      updatename = #{updatename,jdbcType=VARCHAR}
     where ids = #{ids,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -3,7 +3,7 @@ $(function () {
     /**
      * 加载左侧菜单
      */
-    $.post(_ctx + "/menu/menus", function (rdata) {
+    $.post(_ctx + "/mhmenu/menus", function (rdata) {
         var html = createMenuTree(rdata.data, 0);
         $("#side-nav").html(html.replace('<ul class="sub-menu">', '<ul id="nav">'));
     }, "json");
