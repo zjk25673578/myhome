@@ -1,4 +1,4 @@
-package com.mynba.test;
+package com.hafa.test;
 
 import com.alibaba.fastjson.JSON;
 import com.hafa.datebook.model.MhDatebook;

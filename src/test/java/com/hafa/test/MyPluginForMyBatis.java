@@ -1,4 +1,4 @@
-package com.mynba.test;
+package com.hafa.test;
 
 import java.io.*;
 
