@@ -15,8 +15,8 @@
 
 .eleTree-node-content {
     cursor: pointer;
-    height: 26px;
-    line-height: 1.3;
+    height: 30px;
+    line-height: 30px;
 }
 
 .eleTree-node-content:hover,

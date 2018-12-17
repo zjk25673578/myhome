@@ -34,7 +34,7 @@ public class MhMenuController {
         if (list != null && list.size() > 0) {
             msg = MyUtil.msg(1, "成功返回数据", list);
         } else {
-            msg = MyUtil.msg(-1, "啥也没有", null);
+            msg = MyUtil.msg(-2);
         }
         return msg;
     }
@@ -45,7 +45,7 @@ public class MhMenuController {
         Map<String, Object> msg;
         List<TreeModel> list = mhMenuService.menuTreeList();
         if (list != null && list.size() > 0) {
-            msg = MyUtil.layData(1, "成功返回数据", list.size(), list);
+            msg = MyUtil.layData(0, "成功返回数据", list.size(), list);
         } else {
             msg = MyUtil.layData(-1, "list=" + list, 0, null);
         }

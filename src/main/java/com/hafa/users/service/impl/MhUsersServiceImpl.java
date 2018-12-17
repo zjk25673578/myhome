@@ -27,13 +27,8 @@ public class MhUsersServiceImpl extends BaseService implements MhUsersService {
     }
 
     @Override
-    public List<Map<String, Object>> list(Map<String, Object> args, PageBean pageBean) {
-        Map<String, Object> params = null;
-        try {
-            params = MyUtil.bean2Map(args, pageBean);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public List<Map<String, Object>> list(Map<String, Object> args, PageBean pageBean) throws Exception {
+        Map<String, Object> params = MyUtil.bean2Map(args, pageBean);
         return mhUsersMapper.list(params);
     }
 
@@ -66,13 +61,8 @@ public class MhUsersServiceImpl extends BaseService implements MhUsersService {
     }
 
     @Override
-    public int deleteUsers(String ids, HttpServletRequest request) {
-        Map<String, Object> args = null;
-        try {
-            args = CommonModel.get("u", request);
-        } catch (InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
+    public int deleteUsers(String ids, HttpServletRequest request) throws InvocationTargetException, IllegalAccessException {
+        Map<String, Object> args = CommonModel.get("u", request);
         if (args != null) {
             String[] _ids = ids.split(",");
             args.put("status", 0);

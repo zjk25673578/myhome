@@ -28,7 +28,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         if ((redirectUrl + "/").equals(requestUri)) { // 如果是根目录跳转至博客首页
             redirectUrl += "/blog/index";
         } else { // 其他跳转至后台登录页面
-            redirectUrl += "/toLogin";
+            redirectUrl += "/mhusers/toLogin";
         }
 
         MhUsers currentUser = (MhUsers) request.getSession().getAttribute("currentUser");
@@ -39,12 +39,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
                 // PROCESS
                 response.setHeader("sessionStatus", "timeout");
                 response.setHeader("redirectUrl", redirectUrl);
-                return false;
             } else {
                 // 跳转登录页面
                 response.sendRedirect(redirectUrl);
-                return false;
             }
+            return false;
         }
         return true;
     }

@@ -59,7 +59,7 @@
                     <a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a>
                 </dd>
                 <dd>
-                    <a href="${ctx}/toLogin?loginOut=true">退出</a>
+                    <a href="${ctx}/mhusers/toLogin?loginOut=true">退出</a>
                 </dd>
             </dl>
         </li>

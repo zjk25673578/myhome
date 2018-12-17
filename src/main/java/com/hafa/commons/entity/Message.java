@@ -1,6 +1,6 @@
 package com.hafa.commons.entity;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSON;
 
 import java.util.List;
 
@@ -43,21 +43,16 @@ public class Message {
         this.iconType = iconType;
     }
 
-    @Override
-    public String toString() {
-        JSONObject json = new JSONObject();
-        json.put("success", this.success);
-        json.put("message", this.message);
-        json.put("iconType", this.iconType);
-        json.put("data", this.data);
-        return json.toJSONString();
-    }
-
     public List<?> getData() {
         return data;
     }
 
     public void setData(List<?> data) {
         this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return JSON.toJSONString(this);
     }
 }

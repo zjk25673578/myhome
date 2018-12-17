@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
     <@header.baseConfig />
+    <link rel="stylesheet" href="${ctx}/res/css/eleTree.css">
     <script type="text/javascript" src="${ctx}/js/mhmenu/mhmenu-list.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
@@ -16,11 +17,13 @@
     <![endif]-->
 </head>
 <body class="layui-anim layui-anim-fadein">
-<div class="layui-col-sm3">
-    <div id="menu-tree" lay-filter="menuTree"></div>
-</div>
-<div class="layui-col-sm9">
+<div class="layui-fluid layui-col-space30">
+    <div class="layui-col-sm2" style="border: 1px red solid;">
+        <div id="menu-tree" lay-filter="menuTree"></div>
+    </div>
+    <div class="layui-col-sm10" style="border: 1px red solid;">
 
+    </div>
 </div>
 </body>
 

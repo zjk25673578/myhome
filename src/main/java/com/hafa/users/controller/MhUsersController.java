@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
@@ -28,23 +29,30 @@ public class MhUsersController {
     @ResponseBody
     @RequestMapping("/login")
     public Message login(MhUsers user, String validCode, HttpSession session) {
-        MhUsers currentUser = mhUsersService.getUserByUnamePword(user);
         Object sessionValidCode = session.getAttribute("validCode");
-        if (currentUser != null) {
-            session.setAttribute("currentUser", currentUser);
-            if (currentUser.getSetups() > 0) {
-                String validMsg = "<br>";
-                if (validCode.length() <= 0) {
-                    validMsg += "但是 ! 系统知道你验证码没有填写...";
-                }
-                if (validCode.length() > 0 && !validCode.equalsIgnoreCase(sessionValidCode.toString())) {
-                    validMsg += "但是 ! 系统知道你验证码写错了...";
-                }
-                return MyUtil.msg(1, "登陆成功 ! 系统正在跳转..." + validMsg);
-            }
-            return MyUtil.msg(-1, "这个账号被禁用喽 !");
+        if (sessionValidCode == null) {
+            return MyUtil.msg(-4);
         }
-        return MyUtil.msg(-1, "用户名或者密码不对 !");
+        if (!sessionValidCode.toString().equalsIgnoreCase(validCode)) {
+            return MyUtil.msg(-6);
+        }
+        MhUsers currentUser = mhUsersService.getUserByUnamePword(user);
+        if (currentUser == null) {
+            return MyUtil.msg(-400);
+        }
+        if (currentUser.getSetups() == null || currentUser.getSetups() != 1) {
+            return MyUtil.msg(-7);
+        }
+        session.setAttribute("currentUser", currentUser);
+        return MyUtil.msg(1, "登陆成功 ! 系统正在跳转...");
+    }
+
+    @RequestMapping("/toLogin")
+    public String toLogin(boolean loginOut, HttpSession session) {
+        if (loginOut) {
+            session.removeAttribute("currentUser");
+        }
+        return "record/login";
     }
 
     @RequestMapping("/list")
@@ -61,7 +69,12 @@ public class MhUsersController {
         int code = -1;
         String msg = "success";
         int size = 0;
-        List<Map<String, Object>> list = mhUsersService.list(args, pageBean);
+        List<Map<String, Object>> list = null;
+        try {
+            list = mhUsersService.list(args, pageBean);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (list != null) {
             code = 0;
             size = mhUsersService.listCount(args);
@@ -75,11 +88,15 @@ public class MhUsersController {
     @RequestMapping("/saveOrUpdate")
     public Message saveOrUpdate(MhUsers mhUsers, HttpServletRequest request) {
         Integer ids = mhUsers.getIds();
-        int result;
-        if (ids == null) {
-            result = mhUsersService.insertUser(mhUsers, request);
-        } else {
-            result = mhUsersService.updateUser(mhUsers, request);
+        int result = -1;
+        try {
+            if (ids == null) {
+                result = mhUsersService.insertUser(mhUsers, request);
+            } else {
+                result = mhUsersService.updateUser(mhUsers, request);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return MyUtil.msg(result);
     }
@@ -87,14 +104,24 @@ public class MhUsersController {
     @ResponseBody
     @RequestMapping("/deleteUser")
     public Message deleteUser(String ids, HttpServletRequest request) {
-        int result = mhUsersService.deleteUser(ids, request);
+        int result = -1;
+        try {
+            result = mhUsersService.deleteUser(ids, request);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return MyUtil.msg(result);
     }
 
     @ResponseBody
     @RequestMapping("/deleteUsers")
     public Message deleteUsers(String ids, HttpServletRequest request) {
-        int result = mhUsersService.deleteUsers(ids, request);
+        int result = -1;
+        try {
+            result = mhUsersService.deleteUsers(ids, request);
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
         return MyUtil.msg(result);
     }
 

@@ -107,9 +107,10 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                             return '<i class="layui-icon layui-icon-triangle-r" style="color: transparent;"></i>'
                         }
                         */
-                        var s = '<i class="layui-icon layui-flag ';
+                        var s = '<i class="layui-flag ';
                         if (val.icon) {
                             s += val.icon;
+                            s += " fa-fw fa-lg";
                             s += '" style="color: inherit;';
                         } else {
                             s += 'layui-icon-triangle-r';
@@ -117,7 +118,7 @@ layui.define(["jquery", "laytpl", "layer", "form"], function (exports) {
                                 s += '" style="color: transparent;';
                             }
                         }
-                        s += '"></i>';
+                        s += '"></i> ';
                         return s;
                     })()
                     , '</span>'

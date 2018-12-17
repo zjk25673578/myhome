@@ -53,28 +53,32 @@ public class MyUtil {
 
     /**
      * 构建response消息模型
+     * 根据代码从枚举MessageEnum中获取消息
      *
-     * @param result
+     * @param code 消息代码
      * @return
      */
-    public static Message msg(int result) {
-        Message msg;
-        if (result > 0) {
-            msg = new Message(true, "数据操作成功 !", 1);
-        } else {
-            msg = new Message(false, "操作失败 !", 5);
+    public static Message msg(int code) {
+        if (code >= 0) {
+            return msg(true, "操作成功 !");
         }
-        return msg;
+        MessageEnum m = MessageEnum.codeOf(code);
+        if (m == null) {
+            return msg(false, "未知的消息类型");
+        }
+        return msg(false, m.msg());
     }
 
     /**
      * 构建response消息模型
      *
-     * @param result
+     * @param result true, false
+     * @param action
      * @return
      */
-    public static Message msg(int result, String action) {
-        Message msg = msg(result);
+    public static Message msg(boolean result, String action) {
+        Message msg = new Message();
+        msg.setSuccess(result);
         msg.setMessage(action);
         return msg;
     }
@@ -82,11 +86,24 @@ public class MyUtil {
     /**
      * 构建response消息模型
      *
-     * @param result
+     * @param status
+     * @param action
+     * @return
+     */
+    public static Message msg(int status, String action) {
+        return msg(status >= 0, action);
+    }
+
+    /**
+     * 构建response消息模型
+     *
+     * @param result true, false
+     * @param action
+     * @param data   数据列表
      * @return
      */
     public static Message msg(int result, String action, List<?> data) {
-        Message msg = msg(result, action);
+        Message msg = msg(result >= 0, action);
         msg.setData(data);
         return msg;
     }
@@ -126,7 +143,12 @@ public class MyUtil {
             return null;
         }
         if (obj instanceof Map) {
-            return (Map<String, Object>) obj;
+            try {
+                return (Map<String, Object>) obj;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
         }
         Map<String, Object> map = new HashMap<>();
         BeanInfo beanInfo = Introspector.getBeanInfo(obj.getClass());
@@ -163,8 +185,7 @@ public class MyUtil {
 
 
     public static List<TreeModel> list2TreeModel(List<Map<String, Object>> dataList, Integer id) {
-        Map<String, String> model = new HashMap<>();
-        return list2TreeModel(dataList, id, model);
+        return list2TreeModel(dataList, id, new HashMap<String, String>());
     }
 
     /**
@@ -206,27 +227,29 @@ public class MyUtil {
                 if (id.equals(data.get(_parentId))) {
                     TreeModel treeModel = new TreeModel();
 
-                    /**
-                     * 这里有异常, 不能使用toString方法转换字符串, 因为会报null pointer异常
-                     */
-                    treeModel.setId(Integer.parseInt(data.get(_id).toString()));
-                    treeModel.setLabel(data.get(_label).toString());
+                    treeModel.setId(Integer.parseInt(String.valueOf(data.get(_id))));
+                    treeModel.setLabel(String.valueOf(data.get(_label)));
                     Object o = data.get(_icon);
                     if (o != null) {
                         treeModel.setIcon(o.toString());
                     }
-                    treeModel.setUrl(data.get(_url).toString());
-                    treeModel.setParentId(Integer.parseInt(data.get(_parentId).toString()));
+                    treeModel.setUrl(String.valueOf(data.get(_url)));
+                    treeModel.setParentId(Integer.parseInt(String.valueOf(data.get(_parentId))));
 
-                    treeModel.setSpread(Boolean.parseBoolean(data.get(_spread).toString()));
-                    treeModel.setDisabled(Boolean.parseBoolean(data.get(_disabled).toString()));
-                    treeModel.setChecked(Boolean.parseBoolean(data.get(_checked).toString()));
+                    treeModel.setSpread(Boolean.parseBoolean(String.valueOf(data.get(_spread))));
+                    treeModel.setDisabled(Boolean.parseBoolean(String.valueOf(data.get(_disabled))));
+                    treeModel.setChecked(Boolean.parseBoolean(String.valueOf(data.get(_checked))));
 
                     List<TreeModel> temp = list2TreeModel(dataList, treeModel.getId(), model);
                     treeModel.setChildren(temp);
+                    /*
+                        将当前遍历的这个Map中的与TreeModel中的属性匹配上的去掉key值
+                        然后将剩下的键值对存到TreeModel的attr属性中作为额外的属性
+                     */
                     removeKeyValues(data, model.keySet());
                     removeKeyValues(data, getFieldString());
                     treeModel.setAttr(data); // 将除TreeModel类中成员变量额外的属性保存到这里
+                    /**/
                     treeList.add(treeModel);
                 }
             }
@@ -241,8 +264,10 @@ public class MyUtil {
      * @param set 需要移除的key值
      */
     private static void removeKeyValues(Map<String, Object> map, Set<String> set) {
-        for (String key : set) {
-            map.remove(key);
+        if (map.size() > 0) {
+            for (String key : set) {
+                map.remove(key);
+            }
         }
     }
 

@@ -9,11 +9,11 @@ layui.config({
         elem: "#menu-tree",
         type: "post",
         url: _ctx + "/mhmenu/menuTree",
-        // showCheckbox: true,
+        showCheckbox: true,
         // contextmenuList: ["copy", "add", "edit", "remove"],
         // drag: true,
         indent: 18,
-        accordion: true
+        accordion: false
     });
 
     // 右键菜单的添加事件

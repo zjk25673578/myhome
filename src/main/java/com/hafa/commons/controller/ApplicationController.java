@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 
 /**
@@ -54,14 +53,6 @@ public class ApplicationController {
     /* blog end */
 
     /* record start */
-    @RequestMapping("/toLogin")
-    public String toLogin(boolean loginOut, HttpSession session) {
-        if (loginOut) {
-            session.removeAttribute("currentUser");
-            session.invalidate();
-        }
-        return "record/login";
-    }
 
     @RequestMapping("/record/welcome")
     public String welcome() {
