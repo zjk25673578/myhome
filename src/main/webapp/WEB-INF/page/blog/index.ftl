@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="${ctx}/res/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/res/layui/css/layui.css">
-    <link rel="stylesheet" type="text/css" href="${ctx}/res/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${ctx}/css/blog/main.css">
     <!--加载meta IE兼容文件-->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -21,7 +21,7 @@
     <h1 class="logo">
         <a href="${ctx}/blog/index">
             <span>MYBLOG</span>
-            <img src="${ctx}/res/img/logo.png">
+            <img src="${ctx}/images/blog/logo.png">
         </a>
     </h1>
     <div class="nav">
@@ -72,7 +72,7 @@
                 <div class="layui-fluid">
                     <div class="layui-row">
                         <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                            <div class="img"><img src="${ctx}/res/img/sy_img1.jpg" alt=""></div>
+                            <div class="img"><img src="${ctx}/images/blog/sy_img1.jpg" alt=""></div>
                         </div>
                         <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
                             <div class="item-cont">
@@ -92,7 +92,7 @@
                 <div class="layui-fluid">
                     <div class="layui-row">
                         <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                            <div class="img"><img src="${ctx}/res/img/sy_img2.jpg" alt=""></div>
+                            <div class="img"><img src="${ctx}/images/blog/sy_img2.jpg" alt=""></div>
                         </div>
                         <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
                             <div class="item-cont">
@@ -112,7 +112,7 @@
                 <div class="layui-fluid">
                     <div class="layui-row">
                         <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                            <div class="img"><img src="${ctx}/res/img/sy_img3.jpg" alt=""></div>
+                            <div class="img"><img src="${ctx}/images/blog/sy_img3.jpg" alt=""></div>
                         </div>
                         <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
                             <div class="item-cont">
@@ -132,7 +132,7 @@
                 <div class="layui-fluid">
                     <div class="layui-row">
                         <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                            <div class="img"><img src="${ctx}/res/img/sy_img4.jpg" alt=""></div>
+                            <div class="img"><img src="${ctx}/images/blog/sy_img4.jpg" alt=""></div>
                         </div>
                         <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
                             <div class="item-cont">
@@ -152,7 +152,7 @@
                 <div class="layui-fluid">
                     <div class="layui-row">
                         <div class="layui-col-xs12 layui-col-sm4 layui-col-md5">
-                            <div class="img"><img src="${ctx}/res/img/sy_img5.jpg" alt=""></div>
+                            <div class="img"><img src="${ctx}/images/blog/sy_img5.jpg" alt=""></div>
                         </div>
                         <div class="layui-col-xs12 layui-col-sm8 layui-col-md7">
                             <div class="item-cont">
@@ -176,10 +176,10 @@
 <div class="footer-wrap">
     <div class="footer w1000">
         <div class="qrcode">
-            <img src="${ctx}/res/img/erweima.jpg">
+            <img src="${ctx}/images/blog/erweima.jpg">
         </div>
         <div class="practice-mode">
-            <img src="${ctx}/res/img/down_img.jpg">
+            <img src="${ctx}/images/blog/down_img.jpg">
             <div class="text">
                 <h4 class="title">我的联系方式</h4>
                 <p>微信<span class="WeChat">1234567890</span></p>

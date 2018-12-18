@@ -6,7 +6,7 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="${ctx}/res/layui/css/layui.css">
-    <link rel="stylesheet" type="text/css" href="${ctx}/res/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${ctx}/css/blog/main.css">
     <!--加载meta IE兼容文件-->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -21,7 +21,7 @@
     <h1 class="logo">
         <a href="${ctx}/blog/index">
             <span>MYBLOG</span>
-            <img src="${ctx}/res/img/logo.png">
+            <img src="${ctx}/images/blog/logo.png">
         </a>
     </h1>
     <div class="nav">
@@ -45,7 +45,7 @@
 
 <div class="album-content w1000" id="layer-photos-demo" class="layer-photos-demo">
     <div class="img-info">
-        <img src="${ctx}/res/img/xc_img1.jpg" alt="">
+        <img src="${ctx}/images/xc_img1.jpg" alt="">
         <div class="title">
             <p class="data">今日上传<span>2018/10/10</span></p>
             <p class="text">观赏最美的土耳其的日</p>
@@ -56,7 +56,7 @@
             <div class="layui-row layui-col-space30 space">
                 <div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
                     <div class="item">
-                        <img src="${ctx}/res/img/xc_img3.jpg">
+                        <img src="${ctx}/images/blog/xc_img3.jpg">
                         <div class="cont-text">
                             <div class="data">2018/08/08</div>
                             <p class="address"><i class="layui-icon layui-icon-location"></i><span>江西九江</span></p>
@@ -66,7 +66,7 @@
                 </div>
                 <div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
                     <div class="item">
-                        <img src="${ctx}/res/img/xc_img4.jpg">
+                        <img src="${ctx}/images/blog/xc_img4.jpg">
                         <div class="cont-text">
                             <div class="data">2018/08/08</div>
                             <p class="address"><i class="layui-icon layui-icon-location"></i><span>江西九江</span></p>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
                     <div class="item">
-                        <img src="${ctx}/res/img/xc_img5.jpg">
+                        <img src="${ctx}/images/blog/xc_img5.jpg">
                         <div class="cont-text">
                             <div class="data">2018/08/08</div>
                             <p class="address"><i class="layui-icon layui-icon-location"></i><span>江西九江</span></p>
@@ -86,7 +86,7 @@
                 </div>
                 <div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
                     <div class="item">
-                        <img src="${ctx}/res/img/xc_img3.jpg">
+                        <img src="${ctx}/images/blog/xc_img3.jpg">
                         <div class="cont-text">
                             <div class="data">2018/08/08</div>
                             <p class="address"><i class="layui-icon layui-icon-location"></i><span>江西九江</span></p>
@@ -96,7 +96,7 @@
                 </div>
                 <div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
                     <div class="item">
-                        <img src="${ctx}/res/img/xc_img4.jpg">
+                        <img src="${ctx}/images/blog/xc_img4.jpg">
                         <div class="cont-text">
                             <div class="data">2018/08/08</div>
                             <p class="address"><i class="layui-icon layui-icon-location"></i><span>江西九江</span></p>
@@ -106,7 +106,7 @@
                 </div>
                 <div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
                     <div class="item">
-                        <img src="${ctx}/res/img/xc_img5.jpg">
+                        <img src="${ctx}/images/blog/xc_img5.jpg">
                         <div class="cont-text">
                             <div class="data">2018/08/08</div>
                             <p class="address"><i class="layui-icon layui-icon-location"></i><span>江西九江</span></p>
@@ -116,7 +116,7 @@
                 </div>
                 <div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
                     <div class="item">
-                        <img src="${ctx}/res/img/xc_img3.jpg">
+                        <img src="${ctx}/images/blog/xc_img3.jpg">
                         <div class="cont-text">
                             <div class="data">2018/08/08</div>
                             <p class="address"><i class="layui-icon layui-icon-location"></i><span>江西九江</span></p>
@@ -126,7 +126,7 @@
                 </div>
                 <div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
                     <div class="item">
-                        <img src="${ctx}/res/img/xc_img4.jpg">
+                        <img src="${ctx}/images/blog/xc_img4.jpg">
                         <div class="cont-text">
                             <div class="data">2018/08/08</div>
                             <p class="address"><i class="layui-icon layui-icon-location"></i><span>江西九江</span></p>
@@ -136,7 +136,7 @@
                 </div>
                 <div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
                     <div class="item">
-                        <img src="${ctx}/res/img/xc_img5.jpg">
+                        <img src="${ctx}/images/blog/xc_img5.jpg">
                         <div class="cont-text">
                             <div class="data">2018/08/08</div>
                             <p class="address"><i class="layui-icon layui-icon-location"></i><span>江西九江</span></p>
@@ -146,7 +146,7 @@
                 </div>
                 <div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
                     <div class="item">
-                        <img src="${ctx}/res/img/xc_img3.jpg">
+                        <img src="${ctx}/images/blog/xc_img3.jpg">
                         <div class="cont-text">
                             <div class="data">2018/08/08</div>
                             <p class="address"><i class="layui-icon layui-icon-location"></i><span>江西九江</span></p>
@@ -156,7 +156,7 @@
                 </div>
                 <div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
                     <div class="item">
-                        <img src="${ctx}/res/img/xc_img4.jpg">
+                        <img src="${ctx}/images/blog/xc_img4.jpg">
                         <div class="cont-text">
                             <div class="data">2018/08/08</div>
                             <p class="address"><i class="layui-icon layui-icon-location"></i><span>江西九江</span></p>
@@ -166,7 +166,7 @@
                 </div>
                 <div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
                     <div class="item">
-                        <img src="${ctx}/res/img/xc_img5.jpg">
+                        <img src="${ctx}/images/blog/xc_img5.jpg">
                         <div class="cont-text">
                             <div class="data">2018/08/08</div>
                             <p class="address"><i class="layui-icon layui-icon-location"></i><span>江西九江</span></p>
@@ -176,7 +176,7 @@
                 </div>
                 <div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
                     <div class="item">
-                        <img src="${ctx}/res/img/xc_img3.jpg">
+                        <img src="${ctx}/images/blog/xc_img3.jpg">
                         <div class="cont-text">
                             <div class="data">2018/08/08</div>
                             <p class="address"><i class="layui-icon layui-icon-location"></i><span>江西九江</span></p>
@@ -186,7 +186,7 @@
                 </div>
                 <div class="layui-col-xs12 layui-col-sm4 layui-col-md4">
                     <div class="item">
-                        <img src="${ctx}/res/img/xc_img4.jpg">
+                        <img src="${ctx}/images/blog/xc_img4.jpg">
                         <div class="cont-text">
                             <div class="data">2018/08/08</div>
                             <p class="address"><i class="layui-icon layui-icon-location"></i><span>江西九江</span></p>
@@ -204,10 +204,10 @@
 <div class="footer-wrap">
     <div class="footer w1000">
         <div class="qrcode">
-            <img src="${ctx}/res/img/erweima.jpg">
+            <img src="${ctx}/images/blog/erweima.jpg">
         </div>
         <div class="practice-mode">
-            <img src="${ctx}/res/img/down_img.jpg">
+            <img src="${ctx}/images/blog/down_img.jpg">
             <div class="text">
                 <h4 class="title">我的联系方式</h4>
                 <p>微信<span class="WeChat">1234567890</span></p>

@@ -6,7 +6,7 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="${ctx}/res/layui/css/layui.css">
-    <link rel="stylesheet" type="text/css" href="${ctx}/res/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${ctx}/css/blog/main.css">
     <!--加载meta IE兼容文件-->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -21,7 +21,7 @@
     <h1 class="logo">
         <a href="${ctx}/blog/index">
             <span>MYBLOG</span>
-            <img src="${ctx}/res/img/logo.png">
+            <img src="${ctx}/images/blog/logo.png">
         </a>
     </h1>
     <div class="nav">
@@ -50,7 +50,7 @@
             <div class="item-box">
                 <div class="review-version">
                     <div class="form-box">
-                        <img class="banner-img" src="${ctx}/res/img/liuyan.jpg">
+                        <img class="banner-img" src="${ctx}/images/blog/liuyan.jpg">
                         <div class="form">
                             <form class="layui-form" action="">
                                 <div class="layui-form-item layui-form-text">
@@ -72,7 +72,7 @@
                     <div class="list-cont">
                         <div class="cont">
                             <div class="img">
-                                <img src="${ctx}/res/img/header.png" alt="">
+                                <img src="${ctx}/images/blog/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -82,7 +82,7 @@
                         </div>
                         <div class="cont">
                             <div class="img">
-                                <img src="${ctx}/res/img/header.png" alt="">
+                                <img src="${ctx}/images/blog/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -92,7 +92,7 @@
                         </div>
                         <div class="cont">
                             <div class="img">
-                                <img src="${ctx}/res/img/header.png" alt="">
+                                <img src="${ctx}/images/blog/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -102,7 +102,7 @@
                         </div>
                         <div class="cont">
                             <div class="img">
-                                <img src="${ctx}/res/img/header.png" alt="">
+                                <img src="${ctx}/images/blog/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -112,7 +112,7 @@
                         </div>
                         <div class="cont">
                             <div class="img">
-                                <img src="${ctx}/res/img/header.png" alt="">
+                                <img src="${ctx}/images/blog/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -122,7 +122,7 @@
                         </div>
                         <div class="cont">
                             <div class="img">
-                                <img src="${ctx}/res/img/header.png" alt="">
+                                <img src="${ctx}/images/blog/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -132,7 +132,7 @@
                         </div>
                         <div class="cont">
                             <div class="img">
-                                <img src="${ctx}/res/img/header.png" alt="">
+                                <img src="${ctx}/images/blog/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -142,7 +142,7 @@
                         </div>
                         <div class="cont">
                             <div class="img">
-                                <img src="${ctx}/res/img/header.png" alt="">
+                                <img src="${ctx}/images/blog/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -163,7 +163,7 @@
             {{# if(d.avatar){ }}
             <img src="{{d.avatar}}" alt="">
             {{# } else { }}
-            <img src="${ctx}/res/img/header.png" alt="">
+            <img src="${ctx}/images/blog/header.png" alt="">
             {{# } }}
         </div>
         <div class="text">
@@ -175,10 +175,10 @@
 <div class="footer-wrap">
     <div class="footer w1000">
         <div class="qrcode">
-            <img src="${ctx}/res/img/erweima.jpg">
+            <img src="${ctx}/images/blog/erweima.jpg">
         </div>
         <div class="practice-mode">
-            <img src="${ctx}/res/img/down_img.jpg">
+            <img src="${ctx}/images/blog/down_img.jpg">
             <div class="text">
                 <h4 class="title">我的联系方式</h4>
                 <p>微信<span class="WeChat">1234567890</span></p>

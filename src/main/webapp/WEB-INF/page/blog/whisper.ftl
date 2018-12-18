@@ -6,7 +6,7 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="${ctx}/res/layui/css/layui.css">
-    <link rel="stylesheet" type="text/css" href="${ctx}/res/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${ctx}/css/blog/main.css">
     <!--加载meta IE兼容文件-->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -21,7 +21,7 @@
     <h1 class="logo">
         <a href="${ctx}/blog/index">
             <span>MYBLOG</span>
-            <img src="${ctx}/res/img/logo.png">
+            <img src="${ctx}/images/blog/logo.png">
         </a>
     </h1>
     <div class="nav">
@@ -56,7 +56,7 @@
                         一直听说牛油果吃起来像肥皂、肥肉，虽然很难吃，但是价格却很贵，我还是想尝试一下。今天公司新到了新西兰牛油果，这是新西兰牛油果是第一次在中国上市，个头比普通牛油果大了一倍，被誉为“超牛果”。好奇心驱使我尝了一颗，第一次吃牛油果没有见识，切开牛油果费了好大劲，切成了这样。
                     </p>
                     <div class="img-box">
-                        <img src="${ctx}/res/img/wy_img1.jpg">
+                        <img src="${ctx}/images/blog/wy_img1.jpg">
                     </div>
                     <div class="op-list">
                         <p class="like"><i class="layui-icon layui-icon-praise"></i><span>1200</span></p>
@@ -66,7 +66,7 @@
                 </div>
                 <div class="review-version layui-hide">
                     <div class="form">
-                        <img src="${ctx}/res/img/header2.png">
+                        <img src="${ctx}/images/blog/header2.png">
                         <form class="layui-form" action="">
                             <div class="layui-form-item layui-form-text">
                                 <div class="layui-input-block">
@@ -83,7 +83,7 @@
                     <div class="list-cont">
                         <div class="cont">
                             <div class="img">
-                                <img src="${ctx}/res/img/header.png" alt="">
+                                <img src="${ctx}/images/blog/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -93,7 +93,7 @@
                         </div>
                         <div class="cont">
                             <div class="img">
-                                <img src="${ctx}/res/img/header.png" alt="">
+                                <img src="${ctx}/images/blog/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -103,7 +103,7 @@
                         </div>
                         <div class="cont">
                             <div class="img">
-                                <img src="${ctx}/res/img/header.png" alt="">
+                                <img src="${ctx}/images/blog/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -123,9 +123,9 @@
                         一直听说牛油果吃起来像肥皂、肥肉，虽然很难吃，但是价格却很贵，我还是想尝试一下。今天公司新到了新西兰牛油果，这是新西兰牛油果是第一次在中国上市，个头比普通牛油果大了一倍，被誉为“超牛果”。好奇心驱使我尝了一颗，第一次吃牛油果没有见识，切开牛油果费了好大劲，切成了这样。
                     </p>
                     <div class="img-box">
-                        <img src="${ctx}/res/img/wy_img2.jpg">
-                        <img src="${ctx}/res/img/wy_img3.jpg">
-                        <img src="${ctx}/res/img/wy_img4.jpg">
+                        <img src="${ctx}/images/blog/wy_img2.jpg">
+                        <img src="${ctx}/images/blog/wy_img3.jpg">
+                        <img src="${ctx}/images/blog/wy_img4.jpg">
                     </div>
                     <div class="op-list">
                         <p class="like"><i class="layui-icon layui-icon-praise"></i><span>1200</span></p>
@@ -135,7 +135,7 @@
                 </div>
                 <div class="review-version layui-hide">
                     <div class="form">
-                        <img src="${ctx}/res/img/header2.png">
+                        <img src="${ctx}/images/blog/header2.png">
                         <form class="layui-form" action="">
                             <div class="layui-form-item layui-form-text">
                                 <div class="layui-input-block">
@@ -152,7 +152,7 @@
                     <div class="list-cont">
                         <div class="cont">
                             <div class="img">
-                                <img src="${ctx}/res/img/header.png" alt="">
+                                <img src="${ctx}/images/blog/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -162,7 +162,7 @@
                         </div>
                         <div class="cont">
                             <div class="img">
-                                <img src="${ctx}/res/img/header.png" alt="">
+                                <img src="${ctx}/images/blog/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -172,7 +172,7 @@
                         </div>
                         <div class="cont">
                             <div class="img">
-                                <img src="${ctx}/res/img/header.png" alt="">
+                                <img src="${ctx}/images/blog/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -192,7 +192,7 @@
                         一直听说牛油果吃起来像肥皂、肥肉，虽然很难吃，但是价格却很贵，我还是想尝试一下。今天公司新到了新西兰牛油果，这是新西兰牛油果是第一次在中国上市，个头比普通牛油果大了一倍，被誉为“超牛果”。好奇心驱使我尝了一颗，第一次吃牛油果没有见识，切开牛油果费了好大劲，切成了这样。
                     </p>
                     <div class="img-box">
-                        <img src="${ctx}/res/img/wy_img5.jpg">
+                        <img src="${ctx}/images/blog/wy_img5.jpg">
                     </div>
                     <div class="op-list">
                         <p class="like"><i class="layui-icon layui-icon-praise"></i><span>1200</span></p>
@@ -202,7 +202,7 @@
                 </div>
                 <div class="review-version">
                     <div class="form">
-                        <img src="${ctx}/res/img/header2.png">
+                        <img src="${ctx}/images/blog/header2.png">
                         <form class="layui-form" action="">
                             <div class="layui-form-item layui-form-text">
                                 <div class="layui-input-block">
@@ -219,7 +219,7 @@
                     <div class="list-cont">
                         <div class="cont">
                             <div class="img">
-                                <img src="${ctx}/res/img/header.png" alt="">
+                                <img src="${ctx}/images/blog/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -229,7 +229,7 @@
                         </div>
                         <div class="cont">
                             <div class="img">
-                                <img src="${ctx}/res/img/header.png" alt="">
+                                <img src="${ctx}/images/blog/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -239,7 +239,7 @@
                         </div>
                         <div class="cont">
                             <div class="img">
-                                <img src="${ctx}/res/img/header.png" alt="">
+                                <img src="${ctx}/images/blog/header.png" alt="">
                             </div>
                             <div class="text">
                                 <p class="tit"><span class="name">吳亦凡</span><span class="data">2018/06/06</span></p>
@@ -268,10 +268,10 @@
 <div class="footer-wrap">
     <div class="footer w1000">
         <div class="qrcode">
-            <img src="${ctx}/res/img/erweima.jpg">
+            <img src="${ctx}/images/blog/erweima.jpg">
         </div>
         <div class="practice-mode">
-            <img src="${ctx}/res/img/down_img.jpg">
+            <img src="${ctx}/images/blog/down_img.jpg">
             <div class="text">
                 <h4 class="title">我的联系方式</h4>
                 <p>微信<span class="WeChat">1234567890</span></p>

@@ -11,8 +11,8 @@ layui.config({
         url: _ctx + "/mhmenu/menuTree",
         showCheckbox: true,
         // contextmenuList: ["copy", "add", "edit", "remove"],
-        // drag: true,
-        indent: 18,
+        drag: true,
+        indent: 20,
         accordion: false
     });
 

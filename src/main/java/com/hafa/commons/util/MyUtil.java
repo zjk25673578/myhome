@@ -64,7 +64,7 @@ public class MyUtil {
         }
         MessageEnum m = MessageEnum.codeOf(code);
         if (m == null) {
-            return msg(false, "未知的消息类型");
+            return msg(false, "未知的错误消息类型");
         }
         return msg(false, m.msg());
     }

@@ -67,7 +67,7 @@ body {
 .banner {
     height: 600px;
     width: 100%;
-    background: url(../img/banner.jpg) no-repeat;
+    background: url(../../images/blog/banner.jpg) no-repeat;
     background-size: cover;
 }
 
@@ -155,7 +155,7 @@ body {
 .content .cont .list-item .item .item-cont .go-icon {
     width: 33px;
     height: 11px;
-    background: url(../img/jiantou.png) center center no-repeat;
+    background: url(../../images/blog/jiantou.png) center center no-repeat;
     display: block;
     padding: 10px 0;
     margin-top: 16px;

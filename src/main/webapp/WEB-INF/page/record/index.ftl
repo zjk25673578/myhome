@@ -9,7 +9,7 @@
           content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
     <@header.baseConfig />
-    <script type="text/javascript" src="${ctx}/js/index/index.js"></script>
+    <script type="text/javascript" src="${ctx}/js/record/index"></script>
 </head>
 <body>
 <!-- 顶部开始 -->

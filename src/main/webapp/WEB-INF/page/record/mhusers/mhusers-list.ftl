@@ -9,7 +9,7 @@
           content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
     <@header.baseConfig />
-    <script type="text/javascript" src="${ctx}/js/mhusers/mhusers-list.js"></script>
+    <script type="text/javascript" src="${ctx}/js/record/mhusers/mhusers-list.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>

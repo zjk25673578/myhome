@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
-    <link rel="stylesheet" href="${ctx}/css/xadmin.css">
+    <link rel="stylesheet" href="${ctx}/css/record/xadmin.css">
 </head>
 <body class="layui-anim layui-anim-fadein">
 <div class="x-body">
