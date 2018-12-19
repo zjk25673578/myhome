@@ -3,21 +3,11 @@ package com.hafa.usermember.model;
 import com.hafa.commons.entity.CommonModel;
 
 public class MhUserMember extends CommonModel {
-    private Integer ids;
-
     private Integer userid;
 
     private Integer memberid;
 
     private Integer relation;
-
-    public Integer getIds() {
-        return ids;
-    }
-
-    public void setIds(Integer ids) {
-        this.ids = ids;
-    }
 
     public Integer getUserid() {
         return userid;

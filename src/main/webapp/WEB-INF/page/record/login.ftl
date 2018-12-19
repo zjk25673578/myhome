@@ -8,7 +8,6 @@
     <meta name="viewport"
           content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
-    <link rel="stylesheet" href="${ctx}/css/font.css">
     <link rel="stylesheet" href="${ctx}/css/record/xadmin.css">
     <script type="text/javascript" src="${ctx}/res/layui/layui.js" charset="utf-8"></script>
 
@@ -26,7 +25,7 @@
         <hr class="hr15">
         <div class="layui-form-item layui-col-space15">
             <div class="layui-col-sm6">
-                <input name="validCode" maxlength="4" placeholder="验证码" type="text"
+                <input name="validCode" lay-verify="required" maxlength="4" placeholder="验证码" type="text"
                        class="layui-input">
             </div>
             <div class="layui-col-sm6">
@@ -40,8 +39,8 @@
 <script>
     layui.use(['form', 'layer'], function () {
         var form = layui.form,
-            layer = layui.layer,
-            $ = layui.jquery;
+                layer = layui.layer,
+                $ = layui.jquery;
 
         /**
          * 登陆表单提交
@@ -54,11 +53,11 @@
                 dataType: "json",
                 success: function (dataResult) {
                     if (dataResult.success) {
-                        layer.msg(dataResult.message, {icon: dataResult.iconType}, function() {
+                        layer.msg(dataResult.message, {icon: dataResult.iconType, time: 1000}, function () {
                             window.location.href = "${ctx}/record/index";
                         });
                     } else {
-                        layer.msg(dataResult.message, {icon: dataResult.iconType});
+                        layer.msg(dataResult.message, {icon: dataResult.iconType, time: 2000});
                     }
                 },
                 error: function (rm) {

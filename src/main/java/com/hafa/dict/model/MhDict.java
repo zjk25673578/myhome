@@ -3,21 +3,11 @@ package com.hafa.dict.model;
 import com.hafa.commons.entity.CommonModel;
 
 public class MhDict extends CommonModel {
-    private Integer ids;
-
     private Integer diccode;
 
     private String dicvalue;
 
     private Integer status;
-
-    public Integer getIds() {
-        return ids;
-    }
-
-    public void setIds(Integer ids) {
-        this.ids = ids;
-    }
 
     public Integer getDiccode() {
         return diccode;

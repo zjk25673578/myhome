@@ -5,8 +5,6 @@ import com.hafa.commons.entity.CommonModel;
 import java.util.Date;
 
 public class MhFinance extends CommonModel {
-    private Integer ids;
-
     private Integer userid;
 
     private Integer ftype;
@@ -20,14 +18,6 @@ public class MhFinance extends CommonModel {
     private String reason;
 
     private Integer status;
-
-    public Integer getIds() {
-        return ids;
-    }
-
-    public void setIds(Integer ids) {
-        this.ids = ids;
-    }
 
     public Integer getUserid() {
         return userid;

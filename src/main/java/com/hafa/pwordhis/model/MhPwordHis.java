@@ -5,21 +5,11 @@ import com.hafa.commons.entity.CommonModel;
 import java.util.Date;
 
 public class MhPwordHis extends CommonModel {
-    private Integer ids;
-
     private Integer accid;
 
     private String pword;
 
     private Date changetime;
-
-    public Integer getIds() {
-        return ids;
-    }
-
-    public void setIds(Integer ids) {
-        this.ids = ids;
-    }
 
     public Integer getAccid() {
         return accid;

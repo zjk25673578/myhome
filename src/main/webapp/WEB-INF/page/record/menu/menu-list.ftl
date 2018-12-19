@@ -18,10 +18,10 @@
 </head>
 <body class="layui-anim layui-anim-fadein">
 <div class="layui-fluid layui-col-space30">
-    <div class="layui-col-sm2" style="border: 1px red solid;">
-        <div id="menu-tree" lay-filter="menuTree"></div>
+    <div class="layui-col-sm6" style="border: 1px red solid;">
+        <div id="menu-tree" class="eleTree" lay-filter="menuTree"></div>
     </div>
-    <div class="layui-col-sm10" style="border: 1px red solid;">
+    <div class="layui-col-sm6" style="border: 1px red solid;">
 
     </div>
 </div>

@@ -3,8 +3,6 @@ package com.hafa.menu.model;
 import com.hafa.commons.entity.CommonModel;
 
 public class MhMenu extends CommonModel {
-    private Integer ids;
-
     private Integer parentid;
 
     private String menuname;
@@ -14,14 +12,6 @@ public class MhMenu extends CommonModel {
     private String icon;
 
     private Integer status;
-
-    public Integer getIds() {
-        return ids;
-    }
-
-    public void setIds(Integer ids) {
-        this.ids = ids;
-    }
 
     public Integer getParentid() {
         return parentid;

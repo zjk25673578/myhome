@@ -5,8 +5,6 @@ import com.hafa.commons.entity.CommonModel;
 import java.util.Date;
 
 public class MhDatebook extends CommonModel {
-    private Integer ids;
-
     private Integer userid;
 
     private String title;
@@ -22,14 +20,6 @@ public class MhDatebook extends CommonModel {
     private String backup2;
 
     private Integer status;
-
-    public Integer getIds() {
-        return ids;
-    }
-
-    public void setIds(Integer ids) {
-        this.ids = ids;
-    }
 
     public Integer getUserid() {
         return userid;

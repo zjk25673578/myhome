@@ -3,8 +3,6 @@ package com.hafa.medias.model;
 import com.hafa.commons.entity.CommonModel;
 
 public class MhMedias extends CommonModel {
-    private Integer ids;
-
     private String fname;
 
     private String filename;
@@ -22,14 +20,6 @@ public class MhMedias extends CommonModel {
     private String descp;
 
     private Integer status;
-
-    public Integer getIds() {
-        return ids;
-    }
-
-    public void setIds(Integer ids) {
-        this.ids = ids;
-    }
 
     public String getFname() {
         return fname;

@@ -3,8 +3,6 @@ package com.hafa.webinfo.model;
 import com.hafa.commons.entity.CommonModel;
 
 public class MhWebinfo extends CommonModel {
-    private Integer ids;
-
     private String webname;
 
     private String webadd;
@@ -12,14 +10,6 @@ public class MhWebinfo extends CommonModel {
     private String note;
 
     private Integer status;
-
-    public Integer getIds() {
-        return ids;
-    }
-
-    public void setIds(Integer ids) {
-        this.ids = ids;
-    }
 
     public String getWebname() {
         return webname;

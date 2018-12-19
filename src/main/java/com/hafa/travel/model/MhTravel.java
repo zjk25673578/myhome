@@ -3,8 +3,6 @@ package com.hafa.travel.model;
 import com.hafa.commons.entity.CommonModel;
 
 public class MhTravel extends CommonModel {
-    private Integer ids;
-
     private Integer homeid;
 
     private Integer userid;
@@ -20,14 +18,6 @@ public class MhTravel extends CommonModel {
     private Integer isimpl;
 
     private Integer status;
-
-    public Integer getIds() {
-        return ids;
-    }
-
-    public void setIds(Integer ids) {
-        this.ids = ids;
-    }
 
     public Integer getHomeid() {
         return homeid;

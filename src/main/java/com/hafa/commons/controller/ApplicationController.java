@@ -71,14 +71,4 @@ public class ApplicationController {
         ImageIO.write(bufImg, "jpg", response.getOutputStream());
     }
     /* record end */
-
-    @RequestMapping("/error404")
-    public String error404() {
-        return "jsp/404";
-    }
-
-    @RequestMapping("/error500")
-    public String error500() {
-        return "jsp/500";
-    }
 }

@@ -16,6 +16,9 @@ import java.util.Map;
  * 数据模型公共类
  */
 public class CommonModel implements Serializable {
+
+    private Integer ids;
+
     /**
      * 创建时间
      */
@@ -45,6 +48,14 @@ public class CommonModel implements Serializable {
      * 修改人名称
      */
     private String updatename;
+
+    public Integer getIds() {
+        return ids;
+    }
+
+    public void setIds(Integer ids) {
+        this.ids = ids;
+    }
 
     public Date getCreatetime() {
         return createtime;
@@ -142,7 +153,7 @@ public class CommonModel implements Serializable {
      * @throws InvocationTargetException
      * @throws IllegalAccessException
      */
-    private Map<String, Object> toMap() throws InvocationTargetException, IllegalAccessException {
+    public Map<String, Object> toMap() throws InvocationTargetException, IllegalAccessException {
         Map<String, Object> map = new HashMap<>();
         Class<?> clazz = this.getClass();
         Field[] fields = clazz.getDeclaredFields();

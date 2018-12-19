@@ -3,8 +3,6 @@ package com.hafa.users.model;
 import com.hafa.commons.entity.CommonModel;
 
 public class MhUsers extends CommonModel {
-    private Integer ids;
-
     private String uname;
 
     private String pword;
@@ -20,14 +18,6 @@ public class MhUsers extends CommonModel {
     private Integer status;
 
     private Integer setups;
-
-    public Integer getIds() {
-        return ids;
-    }
-
-    public void setIds(Integer ids) {
-        this.ids = ids;
-    }
 
     public String getUname() {
         return uname;

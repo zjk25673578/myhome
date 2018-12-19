@@ -3,8 +3,6 @@ package com.hafa.folder.model;
 import com.hafa.commons.entity.CommonModel;
 
 public class MhFolder extends CommonModel {
-    private Integer ids;
-
     private Integer parentid;
 
     private Integer userid;
@@ -12,14 +10,6 @@ public class MhFolder extends CommonModel {
     private String foldername;
 
     private Integer status;
-
-    public Integer getIds() {
-        return ids;
-    }
-
-    public void setIds(Integer ids) {
-        this.ids = ids;
-    }
 
     public Integer getParentid() {
         return parentid;

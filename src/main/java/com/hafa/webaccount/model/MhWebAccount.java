@@ -3,8 +3,6 @@ package com.hafa.webaccount.model;
 import com.hafa.commons.entity.CommonModel;
 
 public class MhWebAccount extends CommonModel {
-    private Integer ids;
-
     private Integer webid;
 
     private String accounts;
@@ -22,14 +20,6 @@ public class MhWebAccount extends CommonModel {
     private Integer userid;
 
     private Integer status;
-
-    public Integer getIds() {
-        return ids;
-    }
-
-    public void setIds(Integer ids) {
-        this.ids = ids;
-    }
 
     public Integer getWebid() {
         return webid;

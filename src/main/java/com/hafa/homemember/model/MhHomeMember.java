@@ -5,8 +5,6 @@ import com.hafa.commons.entity.CommonModel;
 import java.util.Date;
 
 public class MhHomeMember extends CommonModel {
-    private Integer ids;
-
     private String mname;
 
     private Date mbirthday;
@@ -24,14 +22,6 @@ public class MhHomeMember extends CommonModel {
     private String backup5;
 
     private Integer status;
-
-    public Integer getIds() {
-        return ids;
-    }
-
-    public void setIds(Integer ids) {
-        this.ids = ids;
-    }
 
     public String getMname() {
         return mname;

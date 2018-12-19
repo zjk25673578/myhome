@@ -3,21 +3,11 @@ package com.hafa.notebook.model;
 import com.hafa.commons.entity.CommonModel;
 
 public class MhNotebook extends CommonModel {
-    private Integer ids;
-
     private String conte;
 
     private Integer touser;
 
     private Integer status;
-
-    public Integer getIds() {
-        return ids;
-    }
-
-    public void setIds(Integer ids) {
-        this.ids = ids;
-    }
 
     public String getConte() {
         return conte;

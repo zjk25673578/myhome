@@ -80,6 +80,7 @@ public class MyUtil {
         Message msg = new Message();
         msg.setSuccess(result);
         msg.setMessage(action);
+        msg.setIconType(result ? 1 : 7);
         return msg;
     }
 
