@@ -225,9 +225,8 @@ public class MyUtil {
         if (dataList.size() > 0) {
             for (int i = 0; i < dataList.size(); i++) {
                 Map<String, Object> data = dataList.get(i);
-                if (id.equals(data.get(_parentId))) {
+                if (id.toString().equals(data.get(_parentId).toString())) {
                     TreeModel treeModel = new TreeModel();
-
                     treeModel.setId(Integer.parseInt(String.valueOf(data.get(_id))));
                     treeModel.setLabel(String.valueOf(data.get(_label)));
                     Object o = data.get(_icon);

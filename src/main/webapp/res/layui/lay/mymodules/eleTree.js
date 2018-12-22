@@ -133,7 +133,7 @@ layui.define(["jquery", "laytpl"], function (exports) {
                 }
                 return ''
             }(),
-            '<span class="eleTree-node-content-label">{{d[i]["' + options.request.name + '"]}}</span>',
+            '<span class="eleTree-node-content-label"><i class="{{ d[i].icon }} fa-fw"></i> {{d[i]["' + options.request.name + '"]}}</span>',
             '</div>',
             '<div class="eleTree-node-group">',
             '</div>',
@@ -276,7 +276,8 @@ layui.define(["jquery", "laytpl"], function (exports) {
             var _self = this;
             var options = this.config;
             // 下拉
-            var expandOnClickNode = options.expandOnClickNode ? ".eleTree-node-content" : ".eleTree-node-content>.eleTree-node-content-icon";
+            var expandOnClickNode =
+                options.expandOnClickNode ? ".eleTree-node-content" : ".eleTree-node-content>.eleTree-node-content-icon";
             options.elem.on("click", expandOnClickNode, function (e) {
                 e.stopPropagation();
                 var eleTreeNodeContent = $(this).parent(".eleTree-node").length === 0 ? $(this).parent(".eleTree-node-content") : $(this);
@@ -363,7 +364,7 @@ layui.define(["jquery", "laytpl"], function (exports) {
                 if (!inp) {
                     return;
                 }
-/* 修改的地方 ======================================================================== */
+                /* 修改的地方 ======================================================================== */
                 var checked = $(inp).attr("eleTree-status") == 1;
                 if (checked) {
                     // 反选自身
@@ -626,7 +627,6 @@ layui.define(["jquery", "laytpl"], function (exports) {
                 data[options.request.key] = d[obj.i][options.request.key];
                 data[options.request.children] = d[obj.i][options.request.children];
                 d[obj.i] = $.extend({}, d[obj.i], data);
-                console.log(options.data);
             });
         },
         remove: function (key) {

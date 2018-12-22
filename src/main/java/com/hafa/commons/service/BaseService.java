@@ -5,7 +5,7 @@ import com.hafa.users.model.MhUsers;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class BaseService {
+public abstract class BaseService<T> {
 
     /**
      * 获取当前登陆用户对象

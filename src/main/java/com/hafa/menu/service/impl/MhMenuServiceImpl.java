@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class MhMenuServiceImpl extends BaseService implements MhMenuService {
+public class MhMenuServiceImpl extends BaseService<MhMenu> implements MhMenuService {
 
     @Autowired
     private MhMenuMapper mhMenuMapper;
@@ -33,14 +33,25 @@ public class MhMenuServiceImpl extends BaseService implements MhMenuService {
     @Override
     public List<TreeModel> menuTreeList() {
         List<Map<String, Object>> menuList = mhMenuMapper.menuListByMap();
-/*        for (Map m : menuList) {
-            System.out.println(m);
-        }*/
         Map<String, String> model = new HashMap<>();
         model.put("id", "ids");
         model.put("label", "menuname");
         model.put("url", "murl");
         model.put("parentId", "parentid");
-        return MyUtil.list2TreeModel(menuList, 0, model);
+        for (Map<String, Object> m : menuList) {
+            System.out.println(m);
+        }
+        return MyUtil.list2TreeModel(menuList, 100000, model);
+    }
+
+    @Override
+    public int updateMenuStructure(String currentId, String targetId) {
+        if (currentId == null || targetId == null) {
+            return -3;
+        }
+        MhMenu menu = new MhMenu();
+        menu.setIds(Integer.parseInt(currentId));
+        menu.setParentid(Integer.parseInt(targetId));
+        return mhMenuMapper.updateByPrimaryKeySelective(menu);
     }
 }

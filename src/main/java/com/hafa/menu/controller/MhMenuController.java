@@ -51,4 +51,11 @@ public class MhMenuController {
         }
         return msg;
     }
+
+    @ResponseBody
+    @RequestMapping("/updateMenuStructure")
+    public Message updateMenuStructure(String currentId, String targetId) {
+        int result = mhMenuService.updateMenuStructure(currentId, targetId);
+        return MyUtil.msg(result);
+    }
 }

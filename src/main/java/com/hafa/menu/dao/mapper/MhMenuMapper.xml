@@ -174,12 +174,16 @@
         <if test="userType != '1'.toString()">
             and ids in (select um.menuid from mh_user_menu um where um.userid=#{ids})
         </if>
+        order by ids
     </select>
 
     <select id="menuListByMap" resultType="Map">
+        select 0, 100000, '菜单', null, 'fa fa-home', '1', null, null, null, null,
+        null, null
+        union
         select
         <include refid="Base_Column_List"/>
         from mh_menu
-        where status = '1'
+        where status = '1' order by ids
     </select>
 </mapper>

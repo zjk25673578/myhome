@@ -269,4 +269,14 @@
             </foreach>
         </where>
     </update>
+    <select id="selectAdmins" resultType="Integer">
+        select count(*) from mh_users where status='1' and userType='1'
+    </select>
+
+    <select id="checkAdmin" resultType="Integer">
+        select count(*) from mh_users where userType='1' and ids in
+        <foreach collection="array" close=")" item="id" open="(" separator=",">
+            #{id}
+        </foreach>
+    </select>
 </mapper>

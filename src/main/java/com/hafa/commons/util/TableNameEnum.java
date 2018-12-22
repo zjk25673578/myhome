@@ -1,6 +1,6 @@
 package com.hafa.commons.util;
 
-public enum Table {
+public enum TableNameEnum {
     MHDATEBOOK("mh_datebook"),
     MHDICT("mh_dict"),
     MHEDUCATION("mh_education"),
@@ -23,7 +23,7 @@ public enum Table {
 
     private String tname;
 
-    Table(String table_name) {
+    TableNameEnum(String table_name) {
         this.tname = table_name;
     }
 

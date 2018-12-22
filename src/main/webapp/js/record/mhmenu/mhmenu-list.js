@@ -5,14 +5,31 @@ layui.config({
         layer = layui.layer,
         eleTree = layui.eleTree;
 
-    eleTree.render({
+    var el = eleTree.render({
         elem: "#menu-tree",
-        type: "post",
+        method: "post",
         url: _ctx + "/mhmenu/menuTree",
-        showCheckbox: true,
-        // contextmenuList: ["copy", "add", "edit", "remove"],
-        drag: true,
+        // showCheckbox: true,
+        contextmenuList: ["add", "edit", "remove"],
+        draggable: true,
         indent: 20,
+        defaultExpandAll: true, // 默认展开全部
+        defaultExpandedKeys: [0],
+        // expandOnClickNode: false,
+        // defaultCheckedKeys: [19], // 默认选中的
         accordion: false
+    });
+
+    // 拖拽改变menuTree的结构
+    eleTree.on("nodeDrag(menuTree)", function (d) {
+        $.post(_ctx + "/mhmenu/updateMenuStructure", {
+            currentId: d.current.data.currentData.id,
+            targetId: d.target.data.currentData.id
+        }, function(data) {
+            if (!data.success) {
+                layer.msg(data.action, {icon: data.iconType});
+            }
+            el.reload();
+        }, "json");
     });
 });

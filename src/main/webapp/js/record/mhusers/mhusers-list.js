@@ -92,9 +92,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
             layer.confirm("确定删除 <font color='blue'>" + row.rname + " </font>吗 ?", {icon: 3}, function (index) {
                 var ids = row.ids;
                 $.post(_ctx + "/mhusers/deleteUser", {ids: ids}, function (data) {
+                    if (data.success) {
+                        table.reload("users-table");
+                    }
                     layer.close(index);
-                    table.reload("users-table");
-                    layer.msg(data.message);
+                    layer.msg(data.message, {icon: data.iconType});
                 }, "json");
             });
         },
@@ -106,9 +108,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
             var ids = row.ids;
             layer.confirm("确定" + ((setups == 1) ? "禁用" : "启用") + " <font color='blue'>" + row.uname + " </font>吗 ?", {icon: 3}, function (index) {
                 $.post(_ctx + "/mhusers/updateSetups", {ids: ids, setups: (setups == 1) ? "0" : "1"}, function (data) {
+                    if (data.success) {
+                        table.reload("users-table");
+                    }
                     layer.close(index);
-                    table.reload("users-table");
-                    layer.msg(data.message);
+                    layer.msg(data.message, {icon: data.iconType});
                 }, "json");
             });
         },
@@ -130,9 +134,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                             }
                         }
                         $.post(_ctx + "/mhusers/deleteUsers", {ids: ids}, function (data) {
+                            if (data.success) {
+                                table.reload("users-table");
+                            }
                             layer.close(index);
-                            table.reload("users-table");
-                            layer.msg(data.message);
+                            layer.msg(data.message, {icon: data.iconType});
                         }, "json");
                     }
                 });
@@ -172,16 +178,17 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                 var formdata = $("#form-data-user").serializeArray();
                 var result = validateForm(formdata); // 表单验证
                 if (result) {
-                    console.log(formdata);
                     $.ajax({
                         url: _ctx + '/mhusers/saveOrUpdate',
                         type: 'post',
                         data: formdata,
                         dataType: 'json',
                         success: function (data) {
+                            if (data.success) {
+                                table.reload("users-table");
+                            }
                             layer.close(idx);
-                            table.reload('users-table');
-                            layer.alert(data.message, {icon: 1, time: 1000});
+                            layer.alert(data.message, {icon: data.iconType, time: 2000});
                         },
                         error: function () {
                             layer.msg('出现异常 !');

@@ -13,6 +13,7 @@ import java.util.Random;
 
 @Repository
 public class ApplicationServiceImpl implements ApplicationService {
+
     @Override
     public BufferedImage drawValidCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
         request.setCharacterEncoding("utf-8");

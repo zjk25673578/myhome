@@ -10,4 +10,6 @@ public interface MhMenuService {
     List<MhMenu> menuList(HttpServletRequest request);
 
     List<TreeModel> menuTreeList();
+
+    int updateMenuStructure(String currentId, String targetId);
 }

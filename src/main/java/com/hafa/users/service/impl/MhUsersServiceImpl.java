@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class MhUsersServiceImpl extends BaseService implements MhUsersService {
+public class MhUsersServiceImpl extends BaseService<MhUsers> implements MhUsersService {
 
     @Autowired
     protected MhUsersMapper mhUsersMapper;
@@ -39,6 +39,9 @@ public class MhUsersServiceImpl extends BaseService implements MhUsersService {
 
     @Override
     public int insertUser(MhUsers mhUsers, HttpServletRequest request) {
+        if (this.adminCount() >= 1) {
+            return -9;
+        }
         mhUsers.setPword("123456");
         mhUsers.setStatus(1);
         mhUsers.setValue("c", request);
@@ -47,14 +50,20 @@ public class MhUsersServiceImpl extends BaseService implements MhUsersService {
 
     @Override
     public int updateUser(MhUsers mhUsers, HttpServletRequest request) {
+        MhUsers user = mhUsersMapper.selectByPrimaryKey(mhUsers.getIds());
+        if (user.getUserType() == 1) {
+            return -8;
+        }
         mhUsers.setValue("u", request);
         return mhUsersMapper.updateByPrimaryKeySelective(mhUsers);
     }
 
     @Override
     public int deleteUser(String ids, HttpServletRequest request) {
-        MhUsers user = new MhUsers();
-        user.setIds(Integer.parseInt(ids));
+        MhUsers user = mhUsersMapper.selectByPrimaryKey(Integer.parseInt(ids));
+        if (user.getUserType() == 1) {
+            return -10;
+        }
         user.setStatus(0);
         user.setValue("u", request);
         return mhUsersMapper.updateByPrimaryKeySelective(user);
@@ -65,6 +74,9 @@ public class MhUsersServiceImpl extends BaseService implements MhUsersService {
         Map<String, Object> args = CommonModel.get("u", request);
         if (args != null) {
             String[] _ids = ids.split(",");
+            if (mhUsersMapper.checkAdmin(_ids) > 0) {
+                return -10;
+            }
             args.put("status", 0);
             args.put("ids", _ids);
             return mhUsersMapper.deleteUsers(args);
@@ -74,10 +86,17 @@ public class MhUsersServiceImpl extends BaseService implements MhUsersService {
 
     @Override
     public int updateSetups(String ids, String setups, HttpServletRequest request) {
-        MhUsers user = new MhUsers();
-        user.setIds(Integer.parseInt(ids));
+        MhUsers user = mhUsersMapper.selectByPrimaryKey(Integer.parseInt(ids));
+        if (user.getUserType() == 1) {
+            return -8;
+        }
         user.setSetups(Integer.parseInt(setups));
         user.setValue("u", request);
         return mhUsersMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Override
+    public Integer adminCount() {
+        return mhUsersMapper.selectAdmins();
     }
 }

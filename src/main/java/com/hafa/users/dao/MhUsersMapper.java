@@ -1,23 +1,13 @@
 package com.hafa.users.dao;
 
+import com.hafa.commons.dao.BaseMapper;
 import com.hafa.users.model.MhUsers;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
 
-public interface MhUsersMapper {
-    int deleteByPrimaryKey(Integer ids);
-
-    int insert(MhUsers record);
-
-    int insertSelective(MhUsers record);
-
-    MhUsers selectByPrimaryKey(Integer ids);
-
-    int updateByPrimaryKeySelective(MhUsers record);
-
-    int updateByPrimaryKey(MhUsers record);
+public interface MhUsersMapper extends BaseMapper<MhUsers> {
 
     MhUsers selectByUnamePword(@Param("uname") String uname, @Param("pword") String pword);
 
@@ -26,4 +16,8 @@ public interface MhUsersMapper {
     int listCount(Map<String, Object> args);
 
     int deleteUsers(Map<String, Object> args);
+
+    Integer selectAdmins();
+
+    Integer checkAdmin(String[] ids);
 }
