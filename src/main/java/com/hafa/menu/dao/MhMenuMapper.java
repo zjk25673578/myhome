@@ -12,4 +12,6 @@ public interface MhMenuMapper extends BaseMapper<MhMenu> {
     List<MhMenu> selectMenusWithUserid(MhUsers userid);
 
     List<Map<String, Object>> menuListByMap();
+
+    List<Map<String, Object>> listByParentId(String id);
 }

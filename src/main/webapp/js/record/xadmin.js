@@ -245,14 +245,49 @@ function x_admin_close() {
     parent.layer.close(index);
 }
 
+/**
+ * 时间戳转换成yyyy-MM-dd HH:mm:ss
+ * @param timestamp
+ * @returns {string}
+ */
+function timestamp2Datetime(timestamp) {
+    var dateStr = timestamp2Date(timestamp);
+    if (dateStr && dateStr.length > 0) {
+        var time = new Date(timestamp).toTimeString().substr(0, 8);
+        return dateStr + ' ' + time;
+    }
+    return "";
+}
+
+/**
+ * 时间戳转换成yyyy-MM-dd
+ * @param timestamp
+ * @returns {string}
+ */
 function timestamp2Date(timestamp) {
     if (timestamp) {
         var date = new Date(timestamp);
         var y = date.getFullYear(),
             m = date.getMonth() + 1,
             d = date.getDate();
-        return y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + date.toTimeString().substr(0, 8);
+        return y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d);
     } else {
         return "";
     }
+}
+
+/**
+ * 处理一下对象的字段
+ * 将undefined和null转换成''的空字符串
+ * @param obj
+ * @returns {*}
+ */
+function handleUndefinedAndNull(obj) {
+    for (var p in obj) {
+        if (obj[p] != null || obj[p] !== 'null' || obj[p] !== undefined || obj[p] !== 'undefined') {
+            continue;
+        }
+        obj[p] = '';
+    }
+    return obj;
 }

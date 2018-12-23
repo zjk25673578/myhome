@@ -37,6 +37,9 @@
     </form>
 </div>
 <script>
+    if (window != top) {
+        top.location.href = location.href;
+    }
     layui.use(['form', 'layer'], function () {
         var form = layui.form,
                 layer = layui.layer,

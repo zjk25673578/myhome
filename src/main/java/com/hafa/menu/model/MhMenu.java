@@ -11,6 +11,8 @@ public class MhMenu extends CommonModel {
 
     private String icon;
 
+    private Integer sort;
+
     private Integer status;
 
     public Integer getParentid() {
@@ -43,6 +45,14 @@ public class MhMenu extends CommonModel {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
     }
 
     public Integer getStatus() {

@@ -21,11 +21,20 @@ public class MhMenuController {
     @Autowired
     private MhMenuService mhMenuService;
 
+    /**
+     * 跳转至菜单管理页面
+     * @return
+     */
     @RequestMapping("/list")
     public String menu() {
         return "record/menu/menu-list";
     }
 
+    /**
+     * 获取当前登陆用户能看到的菜单(权限)
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/menus")
     public Message menuList(HttpServletRequest request) {
@@ -39,6 +48,10 @@ public class MhMenuController {
         return msg;
     }
 
+    /**
+     * 菜单管理页面的菜单树的数据
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/menuTree")
     public Map<String, Object> menuTreeList() {
@@ -52,10 +65,47 @@ public class MhMenuController {
         return msg;
     }
 
+    /**
+     * 修改菜单树的结构
+     * @param currentId
+     * @param targetId
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/updateMenuStructure")
     public Message updateMenuStructure(String currentId, String targetId) {
         int result = mhMenuService.updateMenuStructure(currentId, targetId);
         return MyUtil.msg(result);
+    }
+
+    /**
+     * 修改指定的菜单信息
+     * @param menu
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/updateMenu")
+    public Message updateMenu(MhMenu menu, HttpServletRequest request) {
+        int result = mhMenuService.updateByPrimaryKeySelective(menu, request);
+        return MyUtil.msg(result);
+    }
+
+    /**
+     * 获取指定菜单下的子菜单, 数据返回给页面的table
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/listByParentId")
+    public Map<String, Object> listByParentId(String id) {
+        List<Map<String, Object>> menuList = mhMenuService.listByParentId(id);
+        Map<String, Object> msg;
+        if (menuList != null) {
+            msg = MyUtil.layData(0, "成功返回数据", menuList.size(), menuList);
+        } else {
+            msg = MyUtil.layData(-1, "没有子菜单", 0, null);
+        }
+        return msg;
     }
 }

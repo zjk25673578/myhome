@@ -17,12 +17,57 @@
     <![endif]-->
 </head>
 <body class="layui-anim layui-anim-fadein">
-<div class="layui-fluid layui-col-space30">
-    <div class="layui-col-sm3">
-        <div id="menu-tree" class="eleTree" lay-filter="menuTree"></div>
-    </div>
-    <div class="layui-col-sm9">
+<div class="layui-fluid">
+    <div class="" style="padding:15px;">
+        <div class="layui-col-lg3 layui-col-md3 layui-col-sm5 layui-col-xs10">
+            <div class="layui-form-item">
+                <div id="menu-tree" class="eleTree" lay-filter="menuTree"></div>
+            </div>
+        </div>
+        <div class="layui-col-lg1 layui-col-md1 layui-col-sm1 layui-col-xs1">
 
+        </div>
+        <div class="layui-col-lg7 layui-col-md7 layui-col-sm5 layui-col-xs10">
+            <div class="layui-form-item">
+                <form class="layui-form" lay-filter="formMenu">
+                    <input name="ids" required lay-verify="required" class="layui-input layui-hide">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">菜单名称</label>
+                        <div class="layui-input-inline">
+                            <input name="menuname" required lay-verify="required" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">菜单路径</label>
+                        <div class="layui-input-inline">
+                            <input name="murl" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">图标</label>
+                        <div class="layui-input-inline">
+                            <input name="icon" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">排序号</label>
+                        <div class="layui-input-inline">
+                            <input name="sort" class="layui-input" style="width: 80px;">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <#--<div class="layui-btn-container">-->
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="menuForm">保存</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="layui-form-item">
+                <table id="tableMenu"></table>
+            </div>
+        </div>
     </div>
 </div>
 </body>

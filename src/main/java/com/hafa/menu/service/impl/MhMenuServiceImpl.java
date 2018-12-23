@@ -38,20 +38,34 @@ public class MhMenuServiceImpl extends BaseService<MhMenu> implements MhMenuServ
         model.put("label", "menuname");
         model.put("url", "murl");
         model.put("parentId", "parentid");
-        for (Map<String, Object> m : menuList) {
-            System.out.println(m);
-        }
         return MyUtil.list2TreeModel(menuList, 100000, model);
     }
 
     @Override
     public int updateMenuStructure(String currentId, String targetId) {
-        if (currentId == null || targetId == null) {
-            return -3;
+        if (currentId != null && targetId != null) {
+            MhMenu menu = new MhMenu();
+            menu.setIds(Integer.parseInt(currentId));
+            menu.setParentid(Integer.parseInt(targetId));
+            return mhMenuMapper.updateByPrimaryKeySelective(menu);
         }
-        MhMenu menu = new MhMenu();
-        menu.setIds(Integer.parseInt(currentId));
-        menu.setParentid(Integer.parseInt(targetId));
-        return mhMenuMapper.updateByPrimaryKeySelective(menu);
+        return -3; // 参数不正确
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(MhMenu menu, HttpServletRequest request) {
+        if (menu.getIds() != null && menu.getIds() != 0) {
+            menu.setValue("u", request);
+            return mhMenuMapper.updateByPrimaryKeySelective(menu);
+        }
+        return -3; // 参数不正确
+    }
+
+    @Override
+    public List<Map<String, Object>> listByParentId(String id) {
+        if (id != null) {
+            return mhMenuMapper.listByParentId(id);
+        }
+        return null;
     }
 }

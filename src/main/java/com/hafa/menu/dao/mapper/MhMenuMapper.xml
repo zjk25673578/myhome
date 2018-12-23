@@ -7,6 +7,7 @@
         <result column="menuname" jdbcType="VARCHAR" property="menuname"/>
         <result column="murl" jdbcType="VARCHAR" property="murl"/>
         <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="sort" jdbcType="INTEGER" property="sort"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
         <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
         <result column="creator" jdbcType="INTEGER" property="creator"/>
@@ -16,7 +17,7 @@
         <result column="updatename" jdbcType="VARCHAR" property="updatename"/>
     </resultMap>
     <sql id="Base_Column_List">
-        ids, parentid, menuname, murl, icon, status, createtime, creator, createname, updatetime,
+        ids, parentid, menuname, murl, icon, sort, status, createtime, creator, createname, updatetime,
     updator, updatename
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -32,10 +33,10 @@
     <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.menu.model.MhMenu"
             useGeneratedKeys="true">
         insert into mh_menu (parentid, menuname, murl,
-        icon, status, createtime, creator, createname, updatetime,
+        icon, sort, status, createtime, creator, createname, updatetime,
     updator, updatename)
         values (#{parentid,jdbcType=INTEGER}, #{menuname,jdbcType=VARCHAR}, #{murl,jdbcType=VARCHAR},
-        #{icon,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+        #{icon,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
       #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
       #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR})
     </insert>
@@ -54,6 +55,9 @@
             </if>
             <if test="icon != null">
                 icon,
+            </if>
+            <if test="sort != null">
+                sort,
             </if>
             <if test="status != null">
                 status,
@@ -89,6 +93,9 @@
             </if>
             <if test="icon != null">
                 #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+                #{sort,jdbcType=INTEGER},
             </if>
             <if test="status != null">
                 #{status,jdbcType=INTEGER},
@@ -128,6 +135,9 @@
             <if test="icon != null">
                 icon = #{icon,jdbcType=VARCHAR},
             </if>
+            <if test="sort != null">
+                sort = #{sort,jdbcType=INTEGER},
+            </if>
             <if test="status != null">
                 status = #{status,jdbcType=INTEGER},
             </if>
@@ -158,6 +168,7 @@
         menuname = #{menuname,jdbcType=VARCHAR},
         murl = #{murl,jdbcType=VARCHAR},
         icon = #{icon,jdbcType=VARCHAR},
+        sort = #{sort,jdbcType=INTEGER},
         status = #{status,jdbcType=INTEGER},
           createtime = #{createtime,jdbcType=TIMESTAMP},
           creator = #{creator,jdbcType=INTEGER},
@@ -174,16 +185,18 @@
         <if test="userType != '1'.toString()">
             and ids in (select um.menuid from mh_user_menu um where um.userid=#{ids})
         </if>
-        order by ids
+        order by sort
     </select>
-
     <select id="menuListByMap" resultType="Map">
-        select 0, 100000, '菜单', null, 'fa fa-home', '1', null, null, null, null,
-        null, null
-        union
-        select
-        <include refid="Base_Column_List"/>
-        from mh_menu
-        where status = '1' order by ids
+        SELECT <include refid="Base_Column_List"/> FROM (SELECT
+          <include refid="Base_Column_List"/> FROM mh_menu
+        WHERE STATUS = '1' UNION SELECT 0, 100000, '菜单', NULL, 'fa fa-home', 0, '1',
+        NULL, NULL, NULL, NULL, NULL, NULL ) r ORDER BY sort
+    </select>
+    <select id="listByParentId" parameterType="String" resultType="Map">
+        SELECT m1.ids, IFNULL(m2.menuname, '菜单') parentname, m1.menuname,
+        m1.sort, m1.createtime, m1.createname, m1.updatetime, m1.updatename
+        FROM mh_menu m1 LEFT JOIN mh_menu m2
+        ON m1.parentid = m2.`ids` WHERE m1.parentid=#{id} order by m1.sort
     </select>
 </mapper>

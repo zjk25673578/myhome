@@ -49,44 +49,50 @@
         使用p:configLocation="" -->
     <bean id="sqlSessionFactoryBean"
           class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath:com/hafa/*/dao/mapper/*Mapper.xml" />
-        <property name="configLocation" value="classpath:mybatis-config.xml" />
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath:com/hafa/*/dao/mapper/*Mapper.xml"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
     </bean>
 
     <!-- 扫面项目中所有的接口, 将会自动映射到上面扫描的映射文件中, 可以直接使用 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean" />
-        <property name="basePackage" value="com.hafa.*.dao" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean"/>
+        <property name="basePackage" value="com.hafa.*.dao"/>
     </bean>
 
     <!-- spring提供的数据库查询模版, 用得着就用, 用不着就放这 -->
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <!-- 配置spring的事务管理器 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <!-- 开启声明式事务的注解 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <!-- 自己声明的一个切面类 -->
+    <!-- 切面类 -->
     <bean id="logginAspect" class="com.hafa.commons.util.LogginAspect"/>
 
+    <!--
+     proxy-target-class="false" => 代理接口
+     proxy-target-class="true" => 代理类
+    -->
+    <aop:aspectj-autoproxy proxy-target-class="false"/>
+
     <!-- AOP -->
-    <aop:config proxy-target-class="true">
-        <aop:pointcut expression="execution(* com.hafa..service.*(..))" id="aoppointcut"/>
+    <aop:config>
+        <aop:pointcut expression="execution(* com.hafa.*.service.*(..))" id="service-cut"/>
         <!-- 关联事务的传播属性 -->
-        <aop:advisor pointcut-ref="aoppointcut" advice-ref="txadvice"/>
+        <aop:advisor pointcut-ref="service-cut" advice-ref="txadvice"/>
         <!-- 定义切面类的执行方法 -->
         <aop:aspect ref="logginAspect">
-            <aop:after method="after" pointcut-ref="aoppointcut"/>
-            <aop:before method="before" pointcut-ref="aoppointcut"/>
-            <aop:after-returning method="returnObject" returning="object" pointcut-ref="aoppointcut"/>
-            <aop:after-throwing method="throwObject" throwing="exception" pointcut-ref="aoppointcut"/>
+            <aop:after method="after" pointcut-ref="service-cut"/>
+            <aop:before method="before" pointcut-ref="service-cut"/>
+            <aop:after-returning method="returnObject" returning="object" pointcut-ref="service-cut"/>
+            <aop:after-throwing method="throwObject" throwing="exception" pointcut-ref="service-cut"/>
         </aop:aspect>
     </aop:config>
 
@@ -100,4 +106,7 @@
             <tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
         </tx:attributes>
     </tx:advice>
+
+    <!-- 开启事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
 </beans>
