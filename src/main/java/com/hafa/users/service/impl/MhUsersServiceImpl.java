@@ -23,7 +23,11 @@ public class MhUsersServiceImpl extends BaseService<MhUsers> implements MhUsersS
 
     @Override
     public MhUsers getUserByUnamePword(MhUsers user) {
-        return mhUsersMapper.selectByUnamePword(user.getUname(), user.getPword());
+        List<MhUsers> listUser = mhUsersMapper.selectByUnamePword(user.getUname(), user.getPword());
+        if(listUser.size() == 1) {
+            return listUser.get(0);
+        }
+        return null;
     }
 
     @Override

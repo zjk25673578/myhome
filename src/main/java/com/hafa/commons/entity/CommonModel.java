@@ -13,9 +13,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 数据模型公共类
+ * 实体类数据模型公共类
  */
 public class CommonModel implements Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
     private Integer ids;
 
@@ -132,7 +137,9 @@ public class CommonModel implements Serializable {
     }
 
     /**
-     * 将当前对象转换成Map
+     * 实例化一个当前对象<br>
+     * 获取添加, 修改的信息<br>
+     * 并转换成Map返回
      *
      * @param type
      * @param request

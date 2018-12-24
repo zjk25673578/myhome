@@ -1,9 +1,10 @@
 package com.hafa.test;
 
-import com.hafa.commons.util.MessageEnum;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.hafa.commons.util.enums.MessageEnum;
 
 public class TestDemo {
 

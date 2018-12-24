@@ -4,11 +4,15 @@ import com.alibaba.fastjson.JSON;
 
 import java.util.List;
 
+/**
+ * ajax消息返回数据模型
+ * @author Administrator
+ */
 public class Message {
-    private boolean success;
-    private String message;
-    private Integer iconType;
-    private List<?> data;
+    private boolean success; // 是否成功获取数据
+    private String message; // 返回的消息提示
+    private Integer iconType; // layer弹出层对应的icon
+    private List<?> data; // 数据集
 
     public Message() {
     }

@@ -3,6 +3,7 @@ package com.hafa.commons.util;
 
 import com.hafa.commons.entity.Message;
 import com.hafa.commons.entity.TreeModel;
+import com.hafa.commons.util.enums.MessageEnum;
 
 import javax.servlet.http.HttpSession;
 import java.beans.BeanInfo;
@@ -139,6 +140,7 @@ public class MyUtil {
      * @return
      * @throws Exception
      */
+    @SuppressWarnings("unchecked")
     private static Map<String, Object> transBean2Map(Object obj) throws Exception {
         if (obj == null) {
             return null;

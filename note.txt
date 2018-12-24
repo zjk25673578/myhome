@@ -8,4 +8,7 @@ http://maven.springframework.org/release/org/springframework/spring/
 
 用户的验证, 验证用户名是否被禁用应放在验证密码前面
 elemTree发现bug
-    复选框选中一次之后取消选择, 再次点击失效
+    复选框选中一次之后取消选择, 再次点击失效(没问题了)
+    
+用户的登录验证太少
+com.hafa.users.service.impl.MhUsersServiceImpl.getUserByUnamePword(MhUsers)这个方法需要设计逻辑

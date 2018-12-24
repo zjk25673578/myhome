@@ -191,13 +191,13 @@
                     <include>**/*.java</include>
                 </includes>
             </resource>
-            <resource>
+<!--             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>**/*.xml</include>
                     <include>**/*.properties</include>
                 </includes>
-            </resource>
+            </resource> -->
         </resources>
         <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
 <!--        <pluginManagement>
@@ -245,14 +245,14 @@
                     <verbose>true</verbose>
                     <overwrite>true</overwrite>
                 </configuration>
-                <executions>
+<!--                 <executions>
                     <execution>
                         <id>Generate MyBatis Artifacts</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                     </execution>
-                </executions>
+                </executions> -->
             </plugin>
         </plugins>
     </build>
