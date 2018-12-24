@@ -18,16 +18,12 @@
 </head>
 <body class="layui-anim layui-anim-fadein">
 <div class="layui-fluid">
-    <div class="" style="padding:15px;">
-        <div class="layui-col-lg3 layui-col-md3 layui-col-sm5 layui-col-xs10">
-            <div class="layui-form-item">
+        <div class="layui-col-lg3 layui-col-md4 layui-col-sm5 layui-col-xs10">
+            <div class="layui-form-item p-15">
                 <div id="menu-tree" class="eleTree" lay-filter="menuTree"></div>
             </div>
         </div>
-        <div class="layui-col-lg1 layui-col-md1 layui-col-sm1 layui-col-xs1">
-
-        </div>
-        <div class="layui-col-lg7 layui-col-md7 layui-col-sm5 layui-col-xs10">
+        <div class="layui-col-lg7 layui-col-md6 layui-col-sm5 layui-col-xs10 p-15">
             <div class="layui-form-item">
                 <form class="layui-form" lay-filter="formMenu">
                     <input name="ids" required lay-verify="required" class="layui-input layui-hide">
@@ -56,7 +52,6 @@
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <#--<div class="layui-btn-container">-->
                         <div class="layui-input-block">
                             <button class="layui-btn" lay-submit lay-filter="menuForm">保存</button>
                             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
@@ -68,7 +63,9 @@
                 <table id="tableMenu"></table>
             </div>
         </div>
-    </div>
+        <div class="layui-col-lg2 layui-col-md2 layui-col-sm2 layui-col-xs2 tac test" style="height: 300px;font-size: 18px;line-height: 300px;">
+            广告位招租
+        </div>
 </div>
 </body>
 

@@ -1,73 +1,88 @@
-/* 自定义样式 */
-
-.layui-form-label {
-    padding: 5px 5px 5px 15px;
+/* 全局样式 */
+.test {
+    box-shadow: 0 0 1px red;
 }
+
+.p-5 {
+    padding: 5px;
+}
+
+.p-10 {
+    padding: 10px;
+}
+
+.p-15 {
+    padding: 15px;
+}
+
+.p-20 {
+    padding: 20px;
+}
+
+.p-25 {
+    padding: 25px;
+}
+
+.p-30 {
+    padding: 30px;
+}
+
+.m-5 {
+    margin: 5px;
+}
+
+.m-10 {
+    margin: 10px;
+}
+
+.m-15 {
+    margin: 15px;
+}
+
+.m-20 {
+    margin: 20px;
+}
+
+.m-25 {
+    margin: 25px;
+}
+
+.m-30 {
+    margin: 30px;
+}
+
+.tac {
+    text-align: center;
+}
+
+.tal {
+    text-align: left;
+}
+
+.tar {
+    text-align: right;
+}
+
+/************************* layui相关 start ***********************/
 
 .layui-input {
     height: 30px;
     line-height: 30px;
+    padding: 0 10px;
+    font-size: 12px
 }
 
-.layui-col-xs3 .layui-input-inline {
-    width: 50%;
+.layui-form-select dl {
+    top: 30px;
 }
 
-.layui-col-xs4 .layui-input-inline {
-    width: 70%;
+.layui-form-label {
+    padding: 5px 15px;
 }
 
-.between-and-text {
-    display: inline-block;
-    width: 70px;
+.layui-form-select dl dd, .layui-form-select dl dt {
+    line-height: 30px;
 }
 
-.between-and-date {
-    display: inline-block;
-    width: 95px;
-}
+/************************* layui相关 end ***********************/
 
-.layui-form-radio {
-    margin: 1px 10px 0 0;
-}
-
-/* 修正数据表格复选框不垂直居中 */
-.layui-table-cell .layui-form-checkbox[lay-skin="primary"] {
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-
-/* 树形菜单样式 */
-.container {
-    width: 100%;
-}
-
-.eleTree-node-content {
-    height: 40px;
-    line-height: 29px;
-}
-
-.eleTree-node-content-icon {
-    vertical-align: middle;
-}
-
-.eleTree-node-content-icon .layui-icon {
-    font-size: 16px;
-    color: #000;
-}
-
-/* 鼠标滑过的字体颜色(包括图标) */
-.eleTree-node-content:hover {
-    color: #fff;
-}
-
-/* 鼠标滑过的背景颜色 */
-.eleTree-node-content:hover {
-    background-color: #2D93CA;
-}
-
-/* 选中状态的背景颜色 */
-.eleTree-node-content.eleTree-node-content-active {
-    background-color: red;
-}

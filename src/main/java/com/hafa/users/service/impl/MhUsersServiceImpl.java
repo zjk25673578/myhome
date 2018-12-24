@@ -24,7 +24,7 @@ public class MhUsersServiceImpl extends BaseService<MhUsers> implements MhUsersS
     @Override
     public MhUsers getUserByUnamePword(MhUsers user) {
         List<MhUsers> listUser = mhUsersMapper.selectByUnamePword(user.getUname(), user.getPword());
-        if(listUser.size() == 1) {
+        if (listUser.size() == 1) {
             return listUser.get(0);
         }
         return null;
@@ -56,7 +56,10 @@ public class MhUsersServiceImpl extends BaseService<MhUsers> implements MhUsersS
     public int updateUser(MhUsers mhUsers, HttpServletRequest request) {
         MhUsers user = mhUsersMapper.selectByPrimaryKey(mhUsers.getIds());
         if (user.getUserType() == 1) {
-            return -8;
+            return -8; // 超级管理员的信息只能由本人从个人信息页面修改
+        }
+        if (mhUsers.getUserType() == 1 && this.adminCount() > 0) {
+            return -9; // 超级管理员有且必须只能有一个
         }
         mhUsers.setValue("u", request);
         return mhUsersMapper.updateByPrimaryKeySelective(mhUsers);
@@ -66,7 +69,7 @@ public class MhUsersServiceImpl extends BaseService<MhUsers> implements MhUsersS
     public int deleteUser(String ids, HttpServletRequest request) {
         MhUsers user = mhUsersMapper.selectByPrimaryKey(Integer.parseInt(ids));
         if (user.getUserType() == 1) {
-            return -10;
+            return -10; // 不能删除超级管理员
         }
         user.setStatus(0);
         user.setValue("u", request);

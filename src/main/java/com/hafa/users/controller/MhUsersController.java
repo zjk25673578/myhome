@@ -26,6 +26,14 @@ public class MhUsersController {
     @Autowired
     protected MhUsersService mhUsersService;
 
+    @RequestMapping("/toLogin")
+    public String toLogin(boolean loginOut, HttpSession session) {
+        if (loginOut) {
+            session.removeAttribute("currentUser");
+        }
+        return "record/login";
+    }
+
     @ResponseBody
     @RequestMapping("/login")
     public Message login(MhUsers user, String validCode, HttpSession session) {
@@ -45,14 +53,6 @@ public class MhUsersController {
         }
         session.setAttribute("currentUser", currentUser);
         return MyUtil.msg(1, "登陆成功 ! 系统正在跳转...");
-    }
-
-    @RequestMapping("/toLogin")
-    public String toLogin(boolean loginOut, HttpSession session) {
-        if (loginOut) {
-            session.removeAttribute("currentUser");
-        }
-        return "record/login";
     }
 
     @RequestMapping("/list")
