@@ -84,7 +84,7 @@
 
     <!-- AOP -->
     <aop:config>
-        <aop:pointcut expression="execution(* com.hafa..service.*(..))" id="service-cut"/>
+        <aop:pointcut expression="execution(* com.hafa..service.*.*(..))" id="service-cut"/>
         <!-- 关联事务的传播属性 -->
         <aop:advisor pointcut-ref="service-cut" advice-ref="txadvice"/>
         <!-- 定义切面类的执行方法 -->

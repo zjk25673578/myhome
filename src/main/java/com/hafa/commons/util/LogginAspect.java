@@ -10,10 +10,13 @@ public class LogginAspect {
     private Logger logger = Logger.getRootLogger();
 
     public void before(JoinPoint joinPoint) {
+        // 方法名
         String methodName = joinPoint.getSignature().getName();
+        // 参数列表
         Object[] objs = joinPoint.getArgs();
+
         logger.info(methodName + "方法开始调用......");
-        logger.info("方法的参数列表: " + Arrays.asList(objs));
+        logger.info("方法的参数列表: " + (objs == null ? "[]" : Arrays.asList(objs)));
     }
 
     public void after(JoinPoint joinPoint) {
@@ -28,7 +31,7 @@ public class LogginAspect {
 
     public void returnObject(JoinPoint joinPoint, Object object) {
         String methodName = joinPoint.getSignature().getName();
-        logger.info(methodName + "方法已将结果(" + object.toString() + ")返回");
+        logger.info(methodName + "方法已将结果(" + (object == null ? "null" : object.toString()) + ")返回");
     }
 
 }
