@@ -1,124 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hafa.usermenu.dao.MhUserMenuMapper">
-  <resultMap id="BaseResultMap" type="com.hafa.usermenu.model.MhUserMenu">
-    <id column="ids" jdbcType="INTEGER" property="ids" />
-    <result column="userid" jdbcType="INTEGER" property="userid" />
-    <result column="menuid" jdbcType="INTEGER" property="menuid" />
-    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="creator" jdbcType="INTEGER" property="creator" />
-    <result column="createname" jdbcType="VARCHAR" property="createname" />
-    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
-    <result column="updator" jdbcType="INTEGER" property="updator" />
-    <result column="updatename" jdbcType="VARCHAR" property="updatename" />
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.hafa.usermenu.model.MhUserMenu">
+        <id column="ids" jdbcType="INTEGER" property="ids"/>
+        <result column="userid" jdbcType="INTEGER" property="userid"/>
+        <result column="menuid" jdbcType="INTEGER" property="menuid"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="creator" jdbcType="INTEGER" property="creator"/>
+        <result column="createname" jdbcType="VARCHAR" property="createname"/>
+        <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime"/>
+        <result column="updator" jdbcType="INTEGER" property="updator"/>
+        <result column="updatename" jdbcType="VARCHAR" property="updatename"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     ids, userid, menuid, createtime, creator, createname, updatetime,
     updator, updatename
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from mh_user_menu
-    where ids = #{ids,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from mh_user_menu
+        where ids = #{ids,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from mh_user_menu
     where ids = #{ids,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.usermenu.model.MhUserMenu" useGeneratedKeys="true">
+    <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.usermenu.model.MhUserMenu"
+            useGeneratedKeys="true">
     insert into mh_user_menu (userid, menuid, createtime, creator, createname, updatetime,
     updator, updatename)
     values (#{userid,jdbcType=INTEGER}, #{menuid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
       #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
       #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.usermenu.model.MhUserMenu" useGeneratedKeys="true">
-    insert into mh_user_menu
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        userid,
-      </if>
-      <if test="menuid != null">
-        menuid,
-      </if>
-      <if test="createtime != null">
-        createtime,
-      </if>
-      <if test="creator != null">
-        creator,
-      </if>
-      <if test="createname != null">
-        createname,
-      </if>
-      <if test="updatetime != null">
-        updatetime,
-      </if>
-      <if test="updator != null">
-        updator,
-      </if>
-      <if test="updatename != null">
-        updatename,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="userid != null">
-        #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="menuid != null">
-        #{menuid,jdbcType=INTEGER},
-      </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creator != null">
-        #{creator,jdbcType=INTEGER},
-      </if>
-      <if test="createname != null">
-        #{createname,jdbcType=VARCHAR},
-      </if>
-      <if test="updatetime != null">
-        #{updatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updator != null">
-        #{updator,jdbcType=INTEGER},
-      </if>
-      <if test="updatename != null">
-        #{updatename,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hafa.usermenu.model.MhUserMenu">
-    update mh_user_menu
-    <set>
-      <if test="userid != null">
-        userid = #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="menuid != null">
-        menuid = #{menuid,jdbcType=INTEGER},
-      </if>
-      <if test="createtime != null">
-        createtime = #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creator != null">
-        creator = #{creator,jdbcType=INTEGER},
-      </if>
-      <if test="createname != null">
-        createname = #{createname,jdbcType=VARCHAR},
-      </if>
-      <if test="updatetime != null">
-        updatetime = #{updatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updator != null">
-        updator = #{updator,jdbcType=INTEGER},
-      </if>
-      <if test="updatename != null">
-        updatename = #{updatename,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where ids = #{ids,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.hafa.usermenu.model.MhUserMenu">
+    <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.usermenu.model.MhUserMenu"
+            useGeneratedKeys="true">
+        insert into mh_user_menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                userid,
+            </if>
+            <if test="menuid != null">
+                menuid,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createname != null">
+                createname,
+            </if>
+            <if test="updatetime != null">
+                updatetime,
+            </if>
+            <if test="updator != null">
+                updator,
+            </if>
+            <if test="updatename != null">
+                updatename,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="menuid != null">
+                #{menuid,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="createname != null">
+                #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updator != null">
+                #{updator,jdbcType=INTEGER},
+            </if>
+            <if test="updatename != null">
+                #{updatename,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hafa.usermenu.model.MhUserMenu">
+        update mh_user_menu
+        <set>
+            <if test="userid != null">
+                userid = #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="menuid != null">
+                menuid = #{menuid,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="createname != null">
+                createname = #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                updatetime = #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updator != null">
+                updator = #{updator,jdbcType=INTEGER},
+            </if>
+            <if test="updatename != null">
+                updatename = #{updatename,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ids = #{ids,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hafa.usermenu.model.MhUserMenu">
     update mh_user_menu
     set userid = #{userid,jdbcType=INTEGER},
       menuid = #{menuid,jdbcType=INTEGER},

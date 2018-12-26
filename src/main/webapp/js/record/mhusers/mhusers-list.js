@@ -16,10 +16,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         elem: '#users-table',
         url: _ctx + '/mhusers/userList',
         cols: [[
-            {field: '', checkbox: true},
+            {field: '', type: 'checkbox'},
+            {field: '', title: '序号', type: 'numbers'},
             {field: 'ids', title: 'ID', width: 50, hide: true},
             {field: 'uname', title: '用户名'},
-            {field: 'pword', title: '密码'},
+            {field: 'pword', title: '密码', hide: true},
             {field: 'rname', title: '姓名'},
             {
                 field: 'userType', title: '用户类型', templet: function (d) {
@@ -152,6 +153,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
     form.on("submit(searchSubmit)", function (data) {
         active["search"](data.field);
         return false;
+    });
+
+    // 表格的行双击事件
+    table.on('rowDouble(users-table)', function(obj){
+        console.log(obj.data);
     });
 
     // 监听表格上方按钮的事件

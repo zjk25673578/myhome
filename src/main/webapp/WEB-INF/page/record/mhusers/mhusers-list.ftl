@@ -9,6 +9,7 @@
           content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
     <@header.baseConfig />
+    <link rel="stylesheet" href="${ctx}/res/layui/css/eleTree.css">
     <script type="text/javascript" src="${ctx}/js/record/mhusers/mhusers-list.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
@@ -20,15 +21,23 @@
 <div class="x-body">
     <div class="layui-row">
         <fieldset class="layui-elem-field">
-            <legend><i class="fa fa-search-plus fa-fw" aria-hidden="true"></i>用户查询</legend>
+            <legend><i class="fa fa-search-plus fa-fw" aria-hidden="true"></i>用户搜索</legend>
             <div class="layui-field-box">
                 <!-- 查询表单 -->
-                <form id="search-form" class="layui-form layui-col-md12 x-so">
-                    <input class="layui-input" name="uname" placeholder="用户名">
-                    <input class="layui-input" name="rname" placeholder="姓名">
-                    <button class="layui-btn layui-btn-sm" lay-submit lay-filter="searchSubmit">
-                        <i class="fa fa-search fa-lg"></i>
-                    </button>
+                <form id="search-form" class="layui-form layui-col-md12">
+                    <div class="layui-form-item layui-col-space20">
+                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm5 layui-col-xs12">
+                            <input class="layui-input" name="uname" placeholder="用户名">
+                        </div>
+                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm5 layui-col-xs12">
+                            <input class="layui-input" name="rname" placeholder="姓名">
+                        </div>
+                        <div class="layui-col-lg1 layui-col-md2 layui-col-sm2 layui-col-xs12">
+                            <button class="layui-btn layui-btn-primary layui-btn-fluid layui-btn-sm" lay-submit lay-filter="searchSubmit">
+                                <i class="fa fa-search fa-lg"></i> 搜索
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </fieldset>
