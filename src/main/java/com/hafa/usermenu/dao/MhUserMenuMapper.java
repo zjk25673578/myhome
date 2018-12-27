@@ -1,17 +1,8 @@
 package com.hafa.usermenu.dao;
 
+import com.hafa.commons.dao.BaseMapper;
 import com.hafa.usermenu.model.MhUserMenu;
 
-public interface MhUserMenuMapper {
-    int deleteByPrimaryKey(Integer ids);
+public interface MhUserMenuMapper extends BaseMapper<MhUserMenu> {
 
-    int insert(MhUserMenu record);
-
-    int insertSelective(MhUserMenu record);
-
-    MhUserMenu selectByPrimaryKey(Integer ids);
-
-    int updateByPrimaryKeySelective(MhUserMenu record);
-
-    int updateByPrimaryKey(MhUserMenu record);
 }
