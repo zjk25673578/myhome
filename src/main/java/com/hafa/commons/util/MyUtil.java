@@ -1,6 +1,7 @@
 package com.hafa.commons.util;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.hafa.commons.entity.Message;
 import com.hafa.commons.entity.TreeModel;
 import com.hafa.commons.util.enums.MessageEnum;
@@ -285,5 +286,43 @@ public class MyUtil {
             set.add(field.getName());
         }
         return set;
+    }
+
+    /**
+     * 组装ajax返回的数据结构
+     *
+     * @param objs
+     * @return
+     */
+    public static JSONObject ajaxData(Object... objs) {
+        if (!valid(objs)) {
+            System.err.println("参数必须为偶数个 !");
+            return null;
+        }
+        if (!validString(objs)) {
+            System.err.println("奇数位上的参数必须为字符串 !");
+            return null;
+        }
+        JSONObject jsonObject = new JSONObject();
+        for (int i = 0; i < objs.length; i += 2) {
+            jsonObject.put(objs[i].toString(), objs[i + 1]);
+        }
+        return jsonObject;
+    }
+
+    private static boolean valid(Object... objs) {
+        if (objs == null) {
+            return false;
+        }
+        return objs.length % 2 == 0;
+    }
+
+    private static boolean validString(Object... objs) {
+        for (int i = 0; i < objs.length; i += 2) {
+            if (!(objs[i] instanceof String)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

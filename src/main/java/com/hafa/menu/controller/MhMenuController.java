@@ -5,8 +5,10 @@ import com.hafa.commons.entity.TreeModel;
 import com.hafa.commons.util.MyUtil;
 import com.hafa.menu.model.MhMenu;
 import com.hafa.menu.service.MhMenuService;
+import com.hafa.usermenu.service.MhUserMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,6 +23,9 @@ public class MhMenuController {
     @Autowired
     private MhMenuService mhMenuService;
 
+    @Autowired
+    private MhUserMenuService mhUserMenuService;
+
     /**
      * 跳转至菜单管理页面
      * @return
@@ -28,6 +33,16 @@ public class MhMenuController {
     @RequestMapping("/list")
     public String menu() {
         return "record/menu/menu-list";
+    }
+
+    /**
+     * 跳转至菜单树页面
+     * @return
+     */
+    @RequestMapping("/tree")
+    public String tree(String ids, Model model) {
+        model.addAttribute("ids", ids);
+        return "record/menu/menu-tree";
     }
 
     /**

@@ -132,4 +132,8 @@
       updatename = #{updatename,jdbcType=VARCHAR}
     where ids = #{ids,jdbcType=INTEGER}
   </update>
+    <select id="getCheckedMenuIdsByUserId" resultType="Integer">
+        select ids from mh_menu where ids in
+        (select menuid from mh_user_menu where userid=#{userid}) and isparent='0'
+    </select>
 </mapper>

@@ -156,8 +156,18 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
     });
 
     // 表格的行双击事件
-    table.on('rowDouble(users-table)', function(obj){
-        console.log(obj.data);
+    table.on('rowDouble(users-table)', function (obj) {
+        if (obj.data.userType !== 1) {
+            layer.open({
+                type: 2,
+                content: _ctx + "/mhmenu/tree?ids=" + obj.data.ids,
+                title: "<font color='blue'>" + obj.data.rname + "</font> 的权限",
+                area: ["300px", "600px"],
+                offset: "10%"
+            });
+        } else {
+            layer.alert("超级管理员默认拥有所有菜单权限 !");
+        }
     });
 
     // 监听表格上方按钮的事件
