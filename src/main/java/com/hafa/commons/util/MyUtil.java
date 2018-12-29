@@ -325,4 +325,28 @@ public class MyUtil {
         }
         return true;
     }
+
+    public static Set<Integer> concatMenuIds(String childrenIds, String parentMenuIds) {
+        Set<Integer> set = string2Set(childrenIds);
+        set.addAll(string2Set(parentMenuIds));
+        return set;
+    }
+
+    private static Set<Integer> string2Set(String content) {
+        Set<Integer> set = new HashSet<>();
+        if (content != null && content.length() > 0) {
+            String[] ids = content.split(",");
+            int _id;
+            for (String id : ids) {
+                if ("0".equals(id)) continue;
+                try {
+                    _id = Integer.parseInt(id);
+                } catch (NumberFormatException ignored) {
+                    continue;
+                }
+                set.add(_id);
+            }
+        }
+        return set;
+    }
 }

@@ -14,4 +14,10 @@ public interface MhMenuMapper extends BaseMapper<MhMenu> {
     List<Map<String, Object>> menuListByMap();
 
     List<Map<String, Object>> listByParentId(String id);
+
+    List<Map<String, Object>> menuTreeAuthority();
+
+    String getParentMenuId(String menuid);
+
+    String getChildrenMenuIds(String menuid);
 }

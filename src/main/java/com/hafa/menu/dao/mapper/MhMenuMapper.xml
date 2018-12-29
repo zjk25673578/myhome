@@ -199,4 +199,15 @@
         FROM mh_menu m1 LEFT JOIN mh_menu m2
         ON m1.parentid = m2.`ids` WHERE m1.parentid=#{id} order by m1.sort
     </select>
+    <select id="menuTreeAuthority" resultType="Map">
+        SELECT
+        <include refid="Base_Column_List"/> FROM mh_menu
+        WHERE STATUS = '1' ORDER BY sort
+    </select>
+    <select id="getParentMenuId" resultType="String" statementType="CALLABLE">
+        SELECT getParentList(#{menuid})
+    </select>
+    <select id="getChildrenMenuIds" resultType="String" statementType="CALLABLE">
+        select getChildList(#{menuid})
+    </select>
 </mapper>

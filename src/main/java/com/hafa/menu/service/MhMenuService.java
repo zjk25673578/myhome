@@ -12,6 +12,8 @@ public interface MhMenuService {
 
     List<TreeModel> menuTreeList();
 
+    List<TreeModel> menuTreeAuthority();
+
     int updateMenuStructure(String currentId, String targetId);
 
     int updateByPrimaryKeySelective(MhMenu menu, HttpServletRequest request);

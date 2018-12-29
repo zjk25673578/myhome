@@ -42,6 +42,17 @@ public class MhMenuServiceImpl extends BaseService<MhMenu> implements MhMenuServ
     }
 
     @Override
+    public List<TreeModel> menuTreeAuthority() {
+        List<Map<String, Object>> menuList = mhMenuMapper.menuTreeAuthority();
+        Map<String, String> model = new HashMap<>();
+        model.put("id", "ids");
+        model.put("label", "menuname");
+        model.put("url", "murl");
+        model.put("parentId", "parentid");
+        return MyUtil.list2TreeModel(menuList, 0, model);
+    }
+
+    @Override
     public int updateMenuStructure(String currentId, String targetId) {
         if (currentId != null && targetId != null) {
             MhMenu menu = new MhMenu();

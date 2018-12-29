@@ -81,6 +81,23 @@ public class MhMenuController {
     }
 
     /**
+     * 用户界面双击时显示的数据
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/menuTree/authority")
+    public Map<String, Object> menuTreeAuthority() {
+        Map<String, Object> msg;
+        List<TreeModel> list = mhMenuService.menuTreeAuthority();
+        if (list != null && list.size() > 0) {
+            msg = MyUtil.layData(0, "成功返回数据", list.size(), list);
+        } else {
+            msg = MyUtil.layData(-1, "list=" + list, 0, null);
+        }
+        return msg;
+    }
+
+    /**
      * 修改菜单树的结构
      * @param currentId
      * @param targetId

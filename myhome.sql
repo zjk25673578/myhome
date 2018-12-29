@@ -12,8 +12,6 @@ MySQL - 5.6.17 : Database - myhome
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`myhome` /*!40100 DEFAULT CHARACTER SET utf8 */;
-
 USE `myhome`;
 
 /*Table structure for table `mh_datebook` */
@@ -249,7 +247,7 @@ insert  into `mh_menu`(`ids`,`parentid`,`menuname`,`murl`,`icon`,`sort`,`isparen
 insert  into `mh_menu`(`ids`,`parentid`,`menuname`,`murl`,`icon`,`sort`,`isparent`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (19,0,'系统设置','aaabbb','fa fa-gears',8,1,1,NULL,NULL,NULL,'2018-12-23 22:53:27',1,'zhaodashuai');
 insert  into `mh_menu`(`ids`,`parentid`,`menuname`,`murl`,`icon`,`sort`,`isparent`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (20,19,'菜单管理','/mhmenu/list','fa fa-list',2,0,1,NULL,NULL,NULL,'2018-12-23 13:12:06',1,'zhaodashuai');
 insert  into `mh_menu`(`ids`,`parentid`,`menuname`,`murl`,`icon`,`sort`,`isparent`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (21,19,'用户管理','/mhusers/list','fa fa-grav',1,0,1,NULL,NULL,NULL,'2018-12-24 22:23:38',1,'zhaodashuai');
-insert  into `mh_menu`(`ids`,`parentid`,`menuname`,`murl`,`icon`,`sort`,`isparent`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (22,19,'用户权限管理','/usermenu/list','fa fa-vcard',3,0,1,NULL,NULL,NULL,'2018-12-24 22:24:50',1,'zhaodashuai');
+insert  into `mh_menu`(`ids`,`parentid`,`menuname`,`murl`,`icon`,`sort`,`isparent`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (22,20,'用户权限管理','/usermenu/list','fa fa-vcard',3,0,1,NULL,NULL,NULL,'2018-12-24 22:24:50',1,'zhaodashuai');
 insert  into `mh_menu`(`ids`,`parentid`,`menuname`,`murl`,`icon`,`sort`,`isparent`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (23,19,'流程定义','','fa fa-ravelry',5,0,1,NULL,NULL,NULL,'2018-12-24 22:25:08',1,'zhaodashuai');
 insert  into `mh_menu`(`ids`,`parentid`,`menuname`,`murl`,`icon`,`sort`,`isparent`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (31,19,'字典管理','','fa fa-paper-plane',4,0,1,NULL,NULL,NULL,'2018-12-24 22:24:57',1,'zhaodashuai');
 
@@ -494,6 +492,48 @@ CREATE TABLE `mh_works` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='工作经历记录';
 
 /*Data for the table `mh_works` */
+
+/* Function  structure for function  `getChildList` */
+
+/*!50003 DROP FUNCTION IF EXISTS `getChildList` */;
+DELIMITER $$
+
+/*!50003 CREATE FUNCTION `getChildList`(rootId INT) RETURNS varchar(1000) CHARSET utf8
+BEGIN
+    DECLARE sTemp VARCHAR(1000);
+    DECLARE sTempChd VARCHAR(1000);
+    SET sTemp = '$';
+    SET sTempChd =cast(rootId as CHAR);
+    WHILE sTempChd is not null DO
+        SET sTemp = concat(sTemp,',',sTempChd);
+        SELECT group_concat(ids) INTO sTempChd FROM mh_menu where FIND_IN_SET(parentid,sTempChd)>0;
+    END WHILE;
+    RETURN sTemp; 
+END */$$
+DELIMITER ;
+
+/* Function  structure for function  `getParentList` */
+
+/*!50003 DROP FUNCTION IF EXISTS `getParentList` */;
+DELIMITER $$
+
+/*!50003 CREATE FUNCTION `getParentList`(rootId INT) RETURNS varchar(1000) CHARSET utf8
+BEGIN
+    DECLARE sTemp VARCHAR (1000) ;DECLARE sTempPar VARCHAR (1000) ;SET sTemp = '' ;SET sTempPar = rootId ;#循环递归
+    WHILE
+        sTempPar is not null DO #判断是否是第一个，不加的话第一个会为空
+        IF sTemp != '' 
+        THEN SET sTemp = concat(sTemp, ',', sTempPar) ;
+        ELSE SET sTemp = sTempPar ;END IF ;SET sTemp = concat(sTemp, ',', sTempPar) ;
+        SELECT 
+            group_concat(parentid) INTO sTempPar 
+        FROM
+            mh_menu 
+        where parentid <> ids 
+            and FIND_IN_SET(ids, sTempPar) > 0 ;
+    END WHILE ;RETURN sTemp ;
+END */$$
+DELIMITER ;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -17,6 +17,11 @@ public class MhUserMenuController {
     @Autowired
     protected MhUserMenuService mhUserMenuService;
 
+    /**
+     * 获取指定用户拥有的菜单
+     * @param ids
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/getChecked")
     public JSONObject getChecked(String ids) {
@@ -26,4 +31,16 @@ public class MhUserMenuController {
         }
         return MyUtil.ajaxData("success", false);
     }
+
+    @ResponseBody
+    @RequestMapping("/updateAuthority")
+    public JSONObject updateAuthority(String ids, String menuid, boolean checked) {
+        boolean r = mhUserMenuService.updateAuthority(ids, menuid, checked);
+        if (r) {
+            return MyUtil.ajaxData("success", true);
+        }
+        return MyUtil.ajaxData("success", false, "msg", "呵呵呵呵 !");
+    }
+
+
 }
