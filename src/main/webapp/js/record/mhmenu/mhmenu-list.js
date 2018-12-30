@@ -12,7 +12,7 @@ layui.config({
         method: 'post',
         url: _ctx + '/mhmenu/menuTree',
         // showCheckbox: true,
-        contextmenuList: ['add', 'edit', 'remove'],
+        contextmenuList: ['add', 'remove'],
         draggable: true,
         indent: 20,
         defaultExpandAll: true, // 默认展开全部
@@ -61,17 +61,24 @@ layui.config({
      * 监听表单提交
      */
     form.on('submit(menuForm)', function (data) {
-        if (data.field.ids == 0) {
+        console.log(data.field);
+        if (data.field.ids === "0") {
             layer.msg('这个改不了...没有为啥就是改不了', {icon: 1});
             return false;
         }
-
-        $.post(_ctx + '/mhmenu/updateMenu', data.field, function (resultData) {
-            if (resultData.success) {
-                el.reload();
-                layer.msg(resultData.message);
+        layer.confirm("即将做修改操作, 确定要这样吗 ?", {
+            yes: function (index) {
+                $.post(_ctx + '/mhmenu/updateMenu', data.field, function (resultData) {
+                    if (resultData.success) {
+                        el.reload();
+                        layer.msg(resultData.message);
+                    } else {
+                        layer.msg(resultData.message);
+                    }
+                }, 'json');
+                layer.close(index);
             }
-        }, 'json');
+        });
         return false;
     });
 

@@ -71,6 +71,11 @@ public class FormController {
         return "record/index";
     }
 
+    @RequestMapping("/mh/test")
+    public String test() {
+        return "record/test";
+    }
+
     /**
      * 获取验证码
      * @param request

@@ -82,7 +82,7 @@
             </li>
         </ul>
         <div class="layui-tab-content">
-            <div class="layui-tab-item layui-show">
+            <div class="layui-tab-item layui-show layui-anim layui-anim-fadein">
             <#--<iframe src='${ctx}/record/welcome' frameborder="0" scrolling="yes"
                     class="x-iframe"></iframe>-->
                 <div class="x-body">

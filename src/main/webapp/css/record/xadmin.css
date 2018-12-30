@@ -403,7 +403,11 @@ body {
 }
 
 .left-nav #nav li .sub-menu li .sub-menu li a {
-    padding-left: 45px;
+    padding-left: 60px;
+}
+
+.left-nav #nav li .sub-menu li .sub-menu li .sub-menu li a {
+    padding-left: 80px;
 }
 
 .left-nav #nav li /*.sub-menu li*/ a:hover {

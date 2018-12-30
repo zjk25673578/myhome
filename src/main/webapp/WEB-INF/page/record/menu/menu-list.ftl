@@ -27,7 +27,7 @@
         <div class="layui-col-lg7 layui-col-md6 layui-col-sm5 layui-col-xs10 p-15">
             <div class="layui-form-item">
                 <form class="layui-form" lay-filter="formMenu">
-                    <input name="ids" required lay-verify="required" class="layui-input layui-hide">
+                    <input name="ids" class="layui-input layui-hide">
                     <div class="layui-form-item">
                         <label class="layui-form-label">菜单名称</label>
                         <div class="layui-input-inline">
