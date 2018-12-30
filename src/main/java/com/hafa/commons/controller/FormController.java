@@ -53,17 +53,30 @@ public class FormController {
     /* blog end */
 
     /* record start */
-
+    /**
+     * 后台管理(我的桌面)
+     * @return
+     */
     @RequestMapping("/record/welcome")
     public String welcome() {
         return "record/welcome";
     }
 
+    /**
+     * 后台管理(首页)
+     * @return
+     */
     @RequestMapping("/record/index")
     public String recordIndex() {
         return "record/index";
     }
 
+    /**
+     * 获取验证码
+     * @param request
+     * @param response
+     * @throws Exception
+     */
     @ResponseBody
     @RequestMapping("/validCode")
     public void validCode(HttpServletRequest request, HttpServletResponse response) throws Exception {

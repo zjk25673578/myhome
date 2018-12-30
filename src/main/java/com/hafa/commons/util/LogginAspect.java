@@ -5,6 +5,9 @@ import org.aspectj.lang.JoinPoint;
 
 import java.util.Arrays;
 
+/**
+ * 日志操作类
+ */
 public class LogginAspect {
 
     private Logger logger = Logger.getRootLogger();

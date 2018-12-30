@@ -136,4 +136,19 @@
         select ids from mh_menu where ids in
         (select menuid from mh_user_menu where userid=#{userid}) and isparent='0'
     </select>
+    <delete id="removeByUserIdMenuId">
+        delete from mh_user_menu where userid=#{userid} and menuid in
+        <foreach collection="menuids" separator="," open="(" item="ids" close=")">
+            #{ids}
+        </foreach>
+    </delete>
+    <select id="listMenuIdByUserId" resultType="Integer" parameterType="String">
+        select menuid from mh_user_menu where userid=#{userId}
+    </select>
+    <insert id="insertUserIdMenuIds">
+        insert into mh_user_menu(userid, menuid) values
+        <foreach collection="menuids" item="menuid" separator=",">
+            (#{userid}, #{menuid})
+        </foreach>
+    </insert>
 </mapper>

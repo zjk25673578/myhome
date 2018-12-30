@@ -1,5 +1,9 @@
 package com.hafa.commons.util.enums;
 
+/**
+ * 枚举类
+ * 消息提醒信息
+ */
 public enum MessageEnum {
 
     INVALIDATE_USERNAME_PASSWORD(-400,"用户名或密码错误"),
@@ -30,6 +34,11 @@ public enum MessageEnum {
         return message;
     }
 
+    /**
+     * 根据代码获取消息提醒枚举类
+     * @param index
+     * @return
+     */
     public static MessageEnum codeOf(int index) {
         for (MessageEnum messageEnum : values()) {
             if (messageEnum.code() == index) {

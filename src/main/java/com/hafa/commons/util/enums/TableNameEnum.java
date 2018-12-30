@@ -1,5 +1,8 @@
 package com.hafa.commons.util.enums;
 
+/**
+ * 表名枚举类
+ */
 public enum TableNameEnum {
     MHDATEBOOK("mh_datebook"),
     MHDICT("mh_dict"),

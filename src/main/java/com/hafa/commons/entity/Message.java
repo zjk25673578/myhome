@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSON;
 import java.util.List;
 
 /**
- * ajax消息返回数据模型
+ * ajax相应数据模型
  * @author Administrator
  */
 public class Message {

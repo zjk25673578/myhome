@@ -59,17 +59,19 @@
 </script>
 <script type="text/html" id="opera-btns">
     <!-- 右侧的菜单 -->
-    <a lay-event="update" lay-data="{{ d.ids }}"
-       class="layui-btn layui-btn-xs layui-btn-normal">编辑</a>
-    <a lay-event="del" lay-data="{{ d.ids }}"
-       class="layui-btn layui-btn-xs layui-btn-danger">删除</a>
-    {{# if (d.setups == 1) { }}
-    <a lay-event="on_off" lay-data="{{ d.ids }}"
-       class="layui-btn layui-btn-xs layui-btn-warm">禁用</a>
-    {{# } }}
-    {{# if (d.setups == 0) { }}
-    <a lay-event="on_off" lay-data="{{ d.ids }}"
-       class="layui-btn layui-btn-xs">启用</a>
+    {{# if (d.userType != 1) { }}
+        <a lay-event="update" lay-data="{{ d.ids }}"
+           class="layui-btn layui-btn-xs layui-btn-normal">编辑</a>
+        <a lay-event="del" lay-data="{{ d.ids }}"
+           class="layui-btn layui-btn-xs layui-btn-danger">删除</a>
+        {{# if (d.setups == 1) { }}
+        <a lay-event="on_off" lay-data="{{ d.ids }}"
+           class="layui-btn layui-btn-xs layui-btn-warm">禁用</a>
+        {{# } }}
+        {{# if (d.setups == 0) { }}
+        <a lay-event="on_off" lay-data="{{ d.ids }}"
+           class="layui-btn layui-btn-xs">启用</a>
+        {{# } }}
     {{# } }}
 </script>
 <script type="text/html" id="user-addOrEdit">

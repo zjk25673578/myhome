@@ -1,9 +1,24 @@
 package com.hafa.commons.util;
 
+/**
+ * 分页类
+ */
 public class PageBean {
+    /**
+     * 每页显示行数
+     */
     private int rows;
+    /**
+     * 当前页数
+     */
     private int page;
+    /**
+     * 需要显示的最大页数(可能用在Oracle数据库中)
+     */
     private int maxpage;
+    /**
+     * 需要跳过的数据条数(Mysql中limit关键字后第一个参数)
+     */
     private int minpage;
 
     public PageBean() {

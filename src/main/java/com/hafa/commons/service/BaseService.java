@@ -55,4 +55,17 @@ public abstract class BaseService<T> {
         }
         return null;
     }
+
+    /**
+     * 获取当前登陆用户姓名
+     * @param request
+     * @return
+     */
+    public String getCurrentRname(HttpServletRequest request) {
+        MhUsers user = getCurrentUser(request);
+        if (user != null) {
+            return user.getRname();
+        }
+        return null;
+    }
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * springmvc登陆拦截器
  * @ClassName: LoginInterceptor
  * @Description: TODO
  * @author: dp

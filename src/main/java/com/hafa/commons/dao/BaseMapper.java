@@ -1,5 +1,9 @@
 package com.hafa.commons.dao;
 
+/**
+ * MyBatis Generator公共代码
+ * @param <T>
+ */
 public interface BaseMapper<T> {
     int deleteByPrimaryKey(Integer ids);
 

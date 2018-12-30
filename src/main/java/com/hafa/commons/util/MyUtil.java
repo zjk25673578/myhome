@@ -310,6 +310,11 @@ public class MyUtil {
         return jsonObject;
     }
 
+    /**
+     * 判断参数个数是否为偶数个
+     * @param objs
+     * @return
+     */
     private static boolean valid(Object... objs) {
         if (objs == null) {
             return false;
@@ -317,6 +322,11 @@ public class MyUtil {
         return objs.length % 2 == 0;
     }
 
+    /**
+     * 判断奇数位参数是否为String类型
+     * @param objs
+     * @return
+     */
     private static boolean validString(Object... objs) {
         for (int i = 0; i < objs.length; i += 2) {
             if (!(objs[i] instanceof String)) {
@@ -326,13 +336,24 @@ public class MyUtil {
         return true;
     }
 
+    /**
+     * 将两个以','分割的数字字符串转换成Set集合(用Set是为了去除重复)
+     * @param childrenIds
+     * @param parentMenuIds
+     * @return
+     */
     public static Set<Integer> concatMenuIds(String childrenIds, String parentMenuIds) {
         Set<Integer> set = string2Set(childrenIds);
         set.addAll(string2Set(parentMenuIds));
         return set;
     }
 
-    private static Set<Integer> string2Set(String content) {
+    /**
+     * 将一个以','分割的数字字符串转换成Set集合(用Set是为了去除重复)
+     * @param content
+     * @return
+     */
+    public static Set<Integer> string2Set(String content) {
         Set<Integer> set = new HashSet<>();
         if (content != null && content.length() > 0) {
             String[] ids = content.split(",");

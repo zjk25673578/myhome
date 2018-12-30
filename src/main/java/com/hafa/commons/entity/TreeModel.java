@@ -3,6 +3,9 @@ package com.hafa.commons.entity;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 基于Layui第三方控件elemTree数据模型
+ */
 public class TreeModel {
     private Integer id;
     private String label;
