@@ -247,7 +247,6 @@ insert  into `mh_menu`(`ids`,`parentid`,`menuname`,`murl`,`icon`,`sort`,`isparen
 insert  into `mh_menu`(`ids`,`parentid`,`menuname`,`murl`,`icon`,`sort`,`isparent`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (19,0,'系统设置','aaabbb','fa fa-gears',8,1,1,NULL,NULL,NULL,'2018-12-23 22:53:27',1,'zhaodashuai');
 insert  into `mh_menu`(`ids`,`parentid`,`menuname`,`murl`,`icon`,`sort`,`isparent`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (20,19,'菜单管理','/mhmenu/list','fa fa-list',2,0,1,NULL,NULL,NULL,'2018-12-23 13:12:06',1,'zhaodashuai');
 insert  into `mh_menu`(`ids`,`parentid`,`menuname`,`murl`,`icon`,`sort`,`isparent`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (21,19,'用户管理','/mhusers/list','fa fa-grav',1,0,1,NULL,NULL,NULL,'2018-12-24 22:23:38',1,'zhaodashuai');
-insert  into `mh_menu`(`ids`,`parentid`,`menuname`,`murl`,`icon`,`sort`,`isparent`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (22,20,'用户权限管理','/usermenu/list','fa fa-vcard',3,0,1,NULL,NULL,NULL,'2018-12-24 22:24:50',1,'zhaodashuai');
 insert  into `mh_menu`(`ids`,`parentid`,`menuname`,`murl`,`icon`,`sort`,`isparent`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (23,19,'流程定义','','fa fa-ravelry',5,0,1,NULL,NULL,NULL,'2018-12-24 22:25:08',1,'zhaodashuai');
 insert  into `mh_menu`(`ids`,`parentid`,`menuname`,`murl`,`icon`,`sort`,`isparent`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (31,19,'字典管理','','fa fa-paper-plane',4,0,1,NULL,NULL,NULL,'2018-12-24 22:24:57',1,'zhaodashuai');
 
@@ -351,7 +350,7 @@ CREATE TABLE `mh_user_menu` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='用户菜单表';
 
 /*Data for the table `mh_user_menu` */
 
@@ -384,13 +383,13 @@ insert  into `mh_users`(`ids`,`uname`,`pword`,`rname`,`pic`,`userType`,`homeid`,
 insert  into `mh_users`(`ids`,`uname`,`pword`,`rname`,`pic`,`userType`,`homeid`,`setups`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (2,'wangxianhan','123456','王献涵',NULL,0,NULL,1,0,'2018-12-16 14:38:04',1,'zhaodashuai','2018-12-22 20:56:17',1,'zhaodashuai');
 insert  into `mh_users`(`ids`,`uname`,`pword`,`rname`,`pic`,`userType`,`homeid`,`setups`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (3,'xiaoming','123456','小明',NULL,0,NULL,1,0,'2018-12-16 14:38:18',1,'zhaodashuai','2018-12-22 20:56:24',1,'zhaodashuai');
 insert  into `mh_users`(`ids`,`uname`,`pword`,`rname`,`pic`,`userType`,`homeid`,`setups`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (4,'xiaolv','123456','小绿',NULL,0,NULL,0,0,'2018-12-16 14:40:13',1,'zhaodashuai','2018-12-22 20:56:22',1,'zhaodashuai');
-insert  into `mh_users`(`ids`,`uname`,`pword`,`rname`,`pic`,`userType`,`homeid`,`setups`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (5,'xiaohong','123456','小红',NULL,0,NULL,0,1,'2018-12-16 15:05:07',1,'zhaodashuai','2018-12-24 22:39:38',1,'zhaodashuai');
-insert  into `mh_users`(`ids`,`uname`,`pword`,`rname`,`pic`,`userType`,`homeid`,`setups`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (6,'xiaozi','123456','小紫',NULL,0,NULL,0,1,'2018-12-16 15:05:36',1,'zhaodashuai','2018-12-22 21:43:51',1,'zhaodashuai');
+insert  into `mh_users`(`ids`,`uname`,`pword`,`rname`,`pic`,`userType`,`homeid`,`setups`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (5,'xiaohong','123456','小红',NULL,0,NULL,0,0,'2018-12-16 15:05:07',1,'zhaodashuai','2018-12-30 10:00:48',1,'zhaodashuai');
+insert  into `mh_users`(`ids`,`uname`,`pword`,`rname`,`pic`,`userType`,`homeid`,`setups`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (6,'xiaozi','123456','小紫',NULL,0,NULL,0,1,'2018-12-16 15:05:36',1,'zhaodashuai','2018-12-30 10:26:31',1,'zhaodashuai');
 insert  into `mh_users`(`ids`,`uname`,`pword`,`rname`,`pic`,`userType`,`homeid`,`setups`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (7,'xiaohei','123456','小黑',NULL,0,NULL,0,1,'2018-12-16 15:05:54',1,'zhaodashuai','2018-12-22 21:43:54',1,'zhaodashuai');
 insert  into `mh_users`(`ids`,`uname`,`pword`,`rname`,`pic`,`userType`,`homeid`,`setups`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (8,'xiaohei','123456','小黑',NULL,0,NULL,1,0,'2018-12-16 15:05:57',1,'zhaodashuai','2018-12-22 20:56:30',1,'zhaodashuai');
 insert  into `mh_users`(`ids`,`uname`,`pword`,`rname`,`pic`,`userType`,`homeid`,`setups`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (9,'xiaohuang','123456','小黄',NULL,0,NULL,1,0,'2018-12-16 15:16:14',1,'zhaodashuai','2018-12-22 20:56:34',1,'zhaodashuai');
 insert  into `mh_users`(`ids`,`uname`,`pword`,`rname`,`pic`,`userType`,`homeid`,`setups`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (10,'xiaoqing','123456','小青',NULL,0,NULL,0,1,'2018-12-16 15:17:16',1,'zhaodashuai','2018-12-22 21:43:58',1,'zhaodashuai');
-insert  into `mh_users`(`ids`,`uname`,`pword`,`rname`,`pic`,`userType`,`homeid`,`setups`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (11,'xiaoshi','123456','小屎',NULL,0,NULL,0,1,'2018-12-16 15:20:17',1,'zhaodashuai','2018-12-22 21:44:00',1,'zhaodashuai');
+insert  into `mh_users`(`ids`,`uname`,`pword`,`rname`,`pic`,`userType`,`homeid`,`setups`,`status`,`createtime`,`creator`,`createname`,`updatetime`,`updator`,`updatename`) values (11,'xiaoshi','123456','小屎',NULL,0,NULL,0,1,'2018-12-16 15:20:17',1,'zhaodashuai','2018-12-30 10:26:33',1,'zhaodashuai');
 
 /*Table structure for table `mh_users_info` */
 
