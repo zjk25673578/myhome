@@ -86,8 +86,8 @@
             <#--<iframe src='${ctx}/record/welcome' frameborder="0" scrolling="yes"
                     class="x-iframe"></iframe>-->
                 <div class="x-body">
-                    <blockquote class="layui-elem-quote">欢迎：<#if currentUser.userType == 1>超级管理员</#if>
-                        <span class="x-red">${currentUser.rname}</span>
+                    <blockquote class="layui-elem-quote">
+                        欢迎：<#if currentUser.userType == 1><span class="x-red">超级管理员</span></#if> <span>${currentUser.rname}</span>
                     </blockquote>
                     <fieldset class="layui-elem-field">
                         <legend>数据统计</legend>
