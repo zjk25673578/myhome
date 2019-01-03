@@ -10,13 +10,13 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2018-12-30 22:44:09
+Date: 2019-01-03 23:31:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `mh_datebook`
+-- Table structure for mh_datebook
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_datebook`;
 CREATE TABLE `mh_datebook` (
@@ -43,13 +43,15 @@ CREATE TABLE `mh_datebook` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_dict`
+-- Table structure for mh_dict
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_dict`;
 CREATE TABLE `mh_dict` (
   `ids` int(8) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `diccode` int(8) DEFAULT NULL COMMENT '标识',
+  `parentid` int(8) DEFAULT NULL,
+  `diccode` varchar(50) DEFAULT NULL COMMENT '标识',
   `dicvalue` varchar(100) DEFAULT NULL COMMENT '值',
+  `desp` varchar(100) DEFAULT NULL COMMENT '描述',
   `status` int(4) DEFAULT NULL COMMENT '有效标志',
   `createtime` datetime DEFAULT NULL COMMENT '创建日期',
   `creator` int(8) DEFAULT NULL COMMENT '创建人',
@@ -65,7 +67,7 @@ CREATE TABLE `mh_dict` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_education`
+-- Table structure for mh_education
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_education`;
 CREATE TABLE `mh_education` (
@@ -93,7 +95,7 @@ CREATE TABLE `mh_education` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_finance`
+-- Table structure for mh_finance
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_finance`;
 CREATE TABLE `mh_finance` (
@@ -119,7 +121,7 @@ CREATE TABLE `mh_finance` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_folder`
+-- Table structure for mh_folder
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_folder`;
 CREATE TABLE `mh_folder` (
@@ -142,7 +144,7 @@ CREATE TABLE `mh_folder` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_homes`
+-- Table structure for mh_homes
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_homes`;
 CREATE TABLE `mh_homes` (
@@ -164,7 +166,7 @@ CREATE TABLE `mh_homes` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_home_member`
+-- Table structure for mh_home_member
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_home_member`;
 CREATE TABLE `mh_home_member` (
@@ -192,7 +194,7 @@ CREATE TABLE `mh_home_member` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_medias`
+-- Table structure for mh_medias
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_medias`;
 CREATE TABLE `mh_medias` (
@@ -220,7 +222,7 @@ CREATE TABLE `mh_medias` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_menu`
+-- Table structure for mh_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_menu`;
 CREATE TABLE `mh_menu` (
@@ -266,11 +268,11 @@ INSERT INTO `mh_menu` VALUES ('19', '0', '系统设置', 'aaabbb', 'fa fa-gears'
 INSERT INTO `mh_menu` VALUES ('20', '19', '菜单管理', '/mhmenu/list', 'fa fa-list', '2', '0', '1', null, null, null, '2018-12-23 13:12:06', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('21', '19', '用户管理', '/mhusers/list', 'fa fa-grav', '1', '0', '1', null, null, null, '2018-12-24 22:23:38', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('23', '19', '流程定义', '', 'fa fa-ravelry', '5', '0', '1', null, null, null, '2018-12-24 22:25:08', '1', 'zhaodashuai');
-INSERT INTO `mh_menu` VALUES ('31', '19', '字典管理', '', 'fa fa-paper-plane', '4', '0', '1', null, null, null, '2018-12-24 22:24:57', '1', 'zhaodashuai');
+INSERT INTO `mh_menu` VALUES ('31', '19', '字典管理', '/dict/list', 'fa fa-paper-plane', '4', '0', '1', null, null, null, '2019-01-03 23:22:35', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('32', '19', '测试页面', '/mh/test', 'fa fa-ambulance', '6', '0', '1', null, null, null, null, null, null);
 
 -- ----------------------------
--- Table structure for `mh_notebook`
+-- Table structure for mh_notebook
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_notebook`;
 CREATE TABLE `mh_notebook` (
@@ -292,7 +294,7 @@ CREATE TABLE `mh_notebook` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_pword_his`
+-- Table structure for mh_pword_his
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_pword_his`;
 CREATE TABLE `mh_pword_his` (
@@ -314,7 +316,7 @@ CREATE TABLE `mh_pword_his` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_travel`
+-- Table structure for mh_travel
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_travel`;
 CREATE TABLE `mh_travel` (
@@ -341,7 +343,7 @@ CREATE TABLE `mh_travel` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_users`
+-- Table structure for mh_users
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_users`;
 CREATE TABLE `mh_users` (
@@ -379,7 +381,7 @@ INSERT INTO `mh_users` VALUES ('10', 'xiaoqing', '123456', '小青', null, '0', 
 INSERT INTO `mh_users` VALUES ('11', 'xiaoshi', '123456', '小屎', null, '0', null, '0', '1', '2018-12-16 15:20:17', '1', 'zhaodashuai', '2018-12-30 10:26:33', '1', 'zhaodashuai');
 
 -- ----------------------------
--- Table structure for `mh_users_info`
+-- Table structure for mh_users_info
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_users_info`;
 CREATE TABLE `mh_users_info` (
@@ -408,7 +410,7 @@ CREATE TABLE `mh_users_info` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_user_member`
+-- Table structure for mh_user_member
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_user_member`;
 CREATE TABLE `mh_user_member` (
@@ -430,7 +432,7 @@ CREATE TABLE `mh_user_member` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_user_menu`
+-- Table structure for mh_user_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_user_menu`;
 CREATE TABLE `mh_user_menu` (
@@ -444,14 +446,14 @@ CREATE TABLE `mh_user_menu` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COMMENT='用户菜单表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户菜单表';
 
 -- ----------------------------
 -- Records of mh_user_menu
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_webinfo`
+-- Table structure for mh_webinfo
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_webinfo`;
 CREATE TABLE `mh_webinfo` (
@@ -474,7 +476,7 @@ CREATE TABLE `mh_webinfo` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_web_account`
+-- Table structure for mh_web_account
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_web_account`;
 CREATE TABLE `mh_web_account` (
@@ -502,7 +504,7 @@ CREATE TABLE `mh_web_account` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_works`
+-- Table structure for mh_works
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_works`;
 CREATE TABLE `mh_works` (
@@ -531,7 +533,7 @@ CREATE TABLE `mh_works` (
 -- ----------------------------
 
 -- ----------------------------
--- Function structure for `getChildList`
+-- Function structure for getChildList
 -- ----------------------------
 DROP FUNCTION IF EXISTS `getChildList`;
 DELIMITER ;;
@@ -551,7 +553,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Function structure for `getParentList`
+-- Function structure for getParentList
 -- ----------------------------
 DROP FUNCTION IF EXISTS `getParentList`;
 DELIMITER ;;
