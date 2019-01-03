@@ -3,8 +3,10 @@
 <mapper namespace="com.hafa.dict.dao.MhDictMapper">
   <resultMap id="BaseResultMap" type="com.hafa.dict.model.MhDict">
     <id column="ids" jdbcType="INTEGER" property="ids" />
-    <result column="diccode" jdbcType="INTEGER" property="diccode" />
+    <result column="parentid" jdbcType="INTEGER" property="parentid" />
+    <result column="diccode" jdbcType="VARCHAR" property="diccode" />
     <result column="dicvalue" jdbcType="VARCHAR" property="dicvalue" />
+    <result column="desp" jdbcType="VARCHAR" property="desp" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="creator" jdbcType="INTEGER" property="creator" />
@@ -14,7 +16,7 @@
     <result column="updatename" jdbcType="VARCHAR" property="updatename" />
   </resultMap>
   <sql id="Base_Column_List">
-    ids, diccode, dicvalue, status, createtime, creator, createname, updatetime,
+    ids, parentid, diccode, dicvalue, desp, status, createtime, creator, createname, updatetime,
     updator, updatename
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -28,10 +30,11 @@
     where ids = #{ids,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.dict.model.MhDict" useGeneratedKeys="true">
-    insert into mh_dict (diccode, dicvalue, status, createtime, creator, createname, updatetime,
+    insert into mh_dict (parentid, diccode, dicvalue, desp, status, createtime, creator, createname, updatetime,
     updator, updatename
       )
-    values (#{diccode,jdbcType=INTEGER}, #{dicvalue,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+    values (#{parentid,jdbcType=INTEGER}, #{diccode,jdbcType=VARCHAR}, #{dicvalue,jdbcType=VARCHAR},
+      #{desp,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
       #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
       #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR}
       )
@@ -39,11 +42,17 @@
   <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.dict.model.MhDict" useGeneratedKeys="true">
     insert into mh_dict
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parentid != null">
+        parentid,
+      </if>
       <if test="diccode != null">
         diccode,
       </if>
       <if test="dicvalue != null">
         dicvalue,
+      </if>
+      <if test="dicvalue != null">
+        desp,
       </if>
       <if test="status != null">
         status,
@@ -68,11 +77,17 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parentid != null">
+        #{parentid,jdbcType=INTEGER},
+      </if>
       <if test="diccode != null">
-        #{diccode,jdbcType=INTEGER},
+        #{diccode,jdbcType=VARCHAR},
       </if>
       <if test="dicvalue != null">
         #{dicvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="desp != null">
+        #{desp,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -100,11 +115,17 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.hafa.dict.model.MhDict">
     update mh_dict
     <set>
+      <if test="parentid != null">
+        parentid = #{parentid,jdbcType=INTEGER},
+      </if>
       <if test="diccode != null">
-        diccode = #{diccode,jdbcType=INTEGER},
+        diccode = #{diccode,jdbcType=VARCHAR},
       </if>
       <if test="dicvalue != null">
         dicvalue = #{dicvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="desp != null">
+        desp = #{desp,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -132,8 +153,10 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hafa.dict.model.MhDict">
     update mh_dict
-    set diccode = #{diccode,jdbcType=INTEGER},
+    set parentid = #{parentid,jdbcType=INTEGER},
+      diccode = #{diccode,jdbcType=VARCHAR},
       dicvalue = #{dicvalue,jdbcType=VARCHAR},
+      desp = #{desp,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       createtime = #{createtime,jdbcType=TIMESTAMP},
       creator = #{creator,jdbcType=INTEGER},
