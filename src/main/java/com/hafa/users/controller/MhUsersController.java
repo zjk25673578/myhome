@@ -10,12 +10,10 @@ import com.hafa.users.service.MhUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
@@ -34,37 +32,36 @@ public class MhUsersController {
         return "record/login";
     }
 
-    @ResponseBody
-    @RequestMapping("/login")
-    public Message login(MhUsers user, String validCode, HttpSession session) {
-        Object sessionValidCode = session.getAttribute("validCode");
-        if (sessionValidCode == null) {
-            return MyUtil.msg(-4);
-        }
-        if (!sessionValidCode.toString().equalsIgnoreCase(validCode)) {
-            return MyUtil.msg(-6);
-        }
-        MhUsers currentUser = mhUsersService.getUserByUnamePword(user);
-        if (currentUser == null) {
-            return MyUtil.msg(-400);
-        }
-        if (currentUser.getSetups() == null || currentUser.getSetups() != 1) {
-            return MyUtil.msg(-7);
-        }
-        session.setAttribute("currentUser", currentUser);
-        return MyUtil.msg(1, "登陆成功 ! 系统正在跳转...");
-    }
-
     @RequestMapping("/list")
     public String mhUsersList() {
         return "record/mhusers/mhusers-list";
     }
 
     @ResponseBody
+    @RequestMapping("/login")
+    public Message login(MhUsers user, String validCode, HttpSession session) {
+        Object sessionValidCode = session.getAttribute("validCode");
+        if (sessionValidCode == null) { // 验证码失效
+            return MyUtil.msg(-4);
+        }
+/*        if (!sessionValidCode.toString().equalsIgnoreCase(validCode)) { // 验证码错误
+            return MyUtil.msg(-6);
+        }*/
+        MhUsers currentUser = mhUsersService.getUserByUnamePword(user);
+        if (currentUser == null) { // 用户名或密码错误
+            return MyUtil.msg(-400);
+        }
+        if (currentUser.getSetups() == null || currentUser.getSetups() != 1) { // 账号被禁用
+            return MyUtil.msg(-7);
+        }
+        session.setAttribute("currentUser", currentUser);
+        return MyUtil.msg(1, "登陆成功 ! 系统正在跳转...<br>但是不知道验证码对不对");
+    }
+
+    @ResponseBody
     @RequestMapping("/userList")
-    public Map<String, Object> list(@RequestParam(defaultValue = "1") int page,
-                                    @RequestParam(defaultValue = "8") int limit, String key) {
-        PageBean pageBean = new PageBean(limit, page);
+    public Map<String, Object> list(PageBean pageBean, String key) {
+        System.out.println(pageBean);
         JSONObject args = JSON.parseObject(key, JSONObject.class);
         int code = -1;
         String msg = "success";
@@ -77,7 +74,7 @@ public class MhUsersController {
         }
         if (list != null) {
             code = 0;
-            size = mhUsersService.listCount(args);
+            size = mhUsersService.countFor(args);
         } else {
             msg = "mhUsersService.list()返回结果为null";
         }
@@ -85,42 +82,47 @@ public class MhUsersController {
     }
 
     @ResponseBody
-    @RequestMapping("/saveOrUpdate")
-    public Message saveOrUpdate(MhUsers mhUsers, HttpServletRequest request) {
-        Integer ids = mhUsers.getIds();
-        int result = -1;
-        try {
-            if (ids == null) {
-                result = mhUsersService.insertUser(mhUsers, request);
-            } else {
-                result = mhUsersService.updateUser(mhUsers, request);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return MyUtil.msg(result);
+    @RequestMapping("/saveUser")
+    public Message saveUser(MhUsers mhUsers, HttpServletRequest request) {
+        int r = mhUsersService.saveOrUpdate(mhUsers, request);
+        return MyUtil.msg(r);
     }
 
+    @ResponseBody
+    @RequestMapping("/updateUser")
+    public Message updateUser(MhUsers mhUsers, HttpServletRequest request) {
+        int r = mhUsersService.saveOrUpdate(mhUsers, request);
+        return MyUtil.msg(r);
+    }
+
+    /**
+     * 单个的删除
+     * @param ids
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/deleteUser")
     public Message deleteUser(String ids, HttpServletRequest request) {
-        int result = -1;
-        try {
-            result = mhUsersService.deleteUser(ids, request);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return MyUtil.msg(result);
+        int r = mhUsersService.deleteUser(ids, request);
+        return MyUtil.msg(r);
     }
 
+    /**
+     * 批量删除
+     * @param ids
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/deleteUsers")
     public Message deleteUsers(String ids, HttpServletRequest request) {
-        int result = -1;
+        int result;
         try {
             result = mhUsersService.deleteUsers(ids, request);
-        } catch (InvocationTargetException | IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            return MyUtil.msg(false, "com.hafa.users.service.MhUsersService.deleteUsers方法异常");
         }
         return MyUtil.msg(result);
     }

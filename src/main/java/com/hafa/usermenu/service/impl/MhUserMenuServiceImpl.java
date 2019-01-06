@@ -1,6 +1,5 @@
 package com.hafa.usermenu.service.impl;
 
-import com.hafa.commons.service.BaseService;
 import com.hafa.commons.util.MyUtil;
 import com.hafa.menu.dao.MhMenuMapper;
 import com.hafa.usermenu.dao.MhUserMenuMapper;
@@ -9,11 +8,14 @@ import com.hafa.usermenu.service.MhUserMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Repository
-public class MhUserMenuServiceImpl extends BaseService<MhUserMenu> implements MhUserMenuService {
+public class MhUserMenuServiceImpl implements MhUserMenuService {
 
     @Autowired
     protected MhUserMenuMapper mhUserMenuMapper;
@@ -49,5 +51,25 @@ public class MhUserMenuServiceImpl extends BaseService<MhUserMenu> implements Mh
             int r = mhUserMenuMapper.removeByUserIdMenuId(userId, MyUtil.string2Set(childrenIds));
             return r > 0;
         }
+    }
+
+    @Override
+    public int saveOrUpdate(MhUserMenu o, HttpServletRequest request) {
+        return -1;
+    }
+
+    @Override
+    public int remove(MhUserMenu o) {
+        return -1;
+    }
+
+    @Override
+    public int remove(Serializable ids) {
+        return -1;
+    }
+
+    @Override
+    public List<MhUserMenu> searchFor(Map<String, Object> args) {
+        return null;
     }
 }

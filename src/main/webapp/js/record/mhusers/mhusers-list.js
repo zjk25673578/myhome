@@ -79,12 +79,12 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
 
         // 添加数据
         add: function () {
-            saveOrUpdate(tempData, "新增用户");
+            saveOrUpdate(tempData, "新增用户", _ctx + "/mhusers/saveUser");
         },
 
         // 修改数据
         update: function (obj) {
-            saveOrUpdate(parseData(obj.data), "编辑用户");
+            saveOrUpdate(parseData(obj.data), "编辑用户", _ctx + "/mhusers/updateUser");
         },
 
         // 删除数据
@@ -102,7 +102,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
             });
         },
 
-        // 删除数据
+        // 启用, 禁用
         on_off: function (obj) {
             var row = obj.data;
             var setups = row.setups;
@@ -184,10 +184,12 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
 
     /**
      * 添加或者修改的方法
-     * @param data
-     * @param title
+     * @param data  模板中添加的数据
+     * @param title 弹窗的标题
+     * @param url   ajax请求路径
      */
-    function saveOrUpdate(data, title) {
+    function saveOrUpdate(data, title, url) {
+        // 获取指定模板
         var tpl = document.getElementById("user-addOrEdit").innerHTML;
         laytpl(tpl).render(data, function (html) {
             openDialog(html, title, ['330px', '420px'], function (idx) {
@@ -195,16 +197,17 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                 var result = validateForm(formdata); // 表单验证
                 if (result) {
                     $.ajax({
-                        url: _ctx + '/mhusers/saveOrUpdate',
+                        url: url,
                         type: 'post',
                         data: formdata,
                         dataType: 'json',
                         success: function (data) {
                             if (data.success) {
                                 table.reload("users-table");
+                                layer.close(idx);
+                            } else {
+                                layer.alert(data.message, {icon: data.iconType, time: 3000});
                             }
-                            layer.close(idx);
-                            layer.alert(data.message, {icon: data.iconType, time: 2000});
                         },
                         error: function () {
                             layer.msg('出现异常 !');

@@ -210,4 +210,9 @@
     <select id="getChildrenMenuIds" resultType="String" statementType="CALLABLE">
         select getChildList(#{menuid})
     </select>
+    <select id="searchFor" resultType="Map">
+        select
+        <include refid="Base_Column_List"/>
+        from mh_menu
+    </select>
 </mapper>

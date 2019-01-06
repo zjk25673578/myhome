@@ -1,17 +1,8 @@
 package com.hafa.dict.dao;
 
+import com.hafa.commons.dao.BaseMapper;
 import com.hafa.dict.model.MhDict;
 
-public interface MhDictMapper {
-    int deleteByPrimaryKey(Integer ids);
+public interface MhDictMapper extends BaseMapper<MhDict> {
 
-    int insert(MhDict record);
-
-    int insertSelective(MhDict record);
-
-    MhDict selectByPrimaryKey(Integer ids);
-
-    int updateByPrimaryKeySelective(MhDict record);
-
-    int updateByPrimaryKey(MhDict record);
 }

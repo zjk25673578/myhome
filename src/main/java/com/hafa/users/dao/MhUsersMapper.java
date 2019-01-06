@@ -22,6 +22,10 @@ public interface MhUsersMapper extends BaseMapper<MhUsers> {
      */
     int deleteUsers(Map<String, Object> args);
 
+    /**
+     * 获取系统中超级管理员的数量
+     * @return
+     */
     Integer selectAdmins();
 
     Integer checkAdmin(String[] ids);

@@ -1,7 +1,6 @@
 package com.hafa.users.service.impl;
 
 import com.hafa.commons.entity.CommonModel;
-import com.hafa.commons.service.BaseService;
 import com.hafa.commons.util.MyUtil;
 import com.hafa.commons.util.PageBean;
 import com.hafa.users.dao.MhUsersMapper;
@@ -11,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.InvocationTargetException;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 @Repository
-public class MhUsersServiceImpl extends BaseService<MhUsers> implements MhUsersService {
+public class MhUsersServiceImpl implements MhUsersService {
 
     @Autowired
     protected MhUsersMapper mhUsersMapper;
@@ -37,32 +36,8 @@ public class MhUsersServiceImpl extends BaseService<MhUsers> implements MhUsersS
     }
 
     @Override
-    public int listCount(Map<String, Object> args) {
-        return mhUsersMapper.listCount(args);
-    }
-
-    @Override
-    public int insertUser(MhUsers mhUsers, HttpServletRequest request) {
-        if (this.adminCount() >= 1) {
-            return -9;
-        }
-        mhUsers.setPword("123456");
-        mhUsers.setStatus(1);
-        mhUsers.setValue("c", request);
-        return mhUsersMapper.insertSelective(mhUsers);
-    }
-
-    @Override
-    public int updateUser(MhUsers mhUsers, HttpServletRequest request) {
-        MhUsers user = mhUsersMapper.selectByPrimaryKey(mhUsers.getIds());
-        if (user.getUserType() == 1) {
-            return -8; // 超级管理员的信息只能由本人从个人信息页面修改
-        }
-        if (mhUsers.getUserType() == 1 && this.adminCount() > 0) {
-            return -9; // 超级管理员有且必须只能有一个
-        }
-        mhUsers.setValue("u", request);
-        return mhUsersMapper.updateByPrimaryKeySelective(mhUsers);
+    public int countFor(Map<String, Object> args) {
+        return mhUsersMapper.countFor(args);
     }
 
     @Override
@@ -77,12 +52,12 @@ public class MhUsersServiceImpl extends BaseService<MhUsers> implements MhUsersS
     }
 
     @Override
-    public int deleteUsers(String ids, HttpServletRequest request) throws InvocationTargetException, IllegalAccessException {
+    public int deleteUsers(String ids, HttpServletRequest request) throws Exception {
         Map<String, Object> args = CommonModel.get("u", request);
         if (args != null) {
             String[] _ids = ids.split(",");
             if (mhUsersMapper.checkAdmin(_ids) > 0) {
-                return -10;
+                return -10; // 不能删除超级管理员
             }
             args.put("status", 0);
             args.put("ids", _ids);
@@ -103,7 +78,39 @@ public class MhUsersServiceImpl extends BaseService<MhUsers> implements MhUsersS
     }
 
     @Override
-    public Integer adminCount() {
-        return mhUsersMapper.selectAdmins();
+    public int saveOrUpdate(MhUsers entity, HttpServletRequest request) {
+        int adminCount = mhUsersMapper.selectAdmins();
+        if (entity.getUserType() == 1 && adminCount > 0) {
+            return -9; // 超级管理员有且必须只能有一个
+        }
+        if (entity.getIds() == null) { // 添加操作
+            entity.setPword("123456"); // 默认密码
+            entity.setStatus(1);
+            entity.setSetups(1);
+            entity.setValue("c", request);
+            return mhUsersMapper.insertSelective(entity);
+        } else { // 修改操作
+            MhUsers user = mhUsersMapper.selectByPrimaryKey(entity.getIds());
+            if (user.getUserType() == 1) {
+                return -8; // 超级管理员的信息只能由本人从个人信息页面修改
+            }
+            entity.setValue("u", request);
+            return mhUsersMapper.updateByPrimaryKeySelective(entity);
+        }
+    }
+
+    @Override
+    public int remove(MhUsers o) {
+        return -1;
+    }
+
+    @Override
+    public int remove(Serializable ids) {
+        return -1;
+    }
+
+    @Override
+    public List<MhUsers> searchFor(Map<String, Object> args) {
+        return null;
     }
 }

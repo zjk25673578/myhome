@@ -25,7 +25,7 @@
         <hr class="hr15">
         <div class="layui-form-item layui-col-space15">
             <div class="layui-col-sm6">
-                <input name="validCode" lay-verify="required" maxlength="4" placeholder="验证码" type="text"
+                <input name="validCode" <#--lay-verify="required"--> maxlength="4" placeholder="验证码" type="text"
                        class="layui-input">
             </div>
             <div class="layui-col-sm6">

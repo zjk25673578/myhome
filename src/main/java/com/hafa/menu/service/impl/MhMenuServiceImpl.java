@@ -1,7 +1,6 @@
 package com.hafa.menu.service.impl;
 
 import com.hafa.commons.entity.TreeModel;
-import com.hafa.commons.service.BaseService;
 import com.hafa.commons.util.MyUtil;
 import com.hafa.menu.dao.MhMenuMapper;
 import com.hafa.menu.model.MhMenu;
@@ -11,12 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Repository
-public class MhMenuServiceImpl extends BaseService<MhMenu> implements MhMenuService {
+public class MhMenuServiceImpl implements MhMenuService {
 
     @Autowired
     private MhMenuMapper mhMenuMapper;
@@ -77,6 +77,26 @@ public class MhMenuServiceImpl extends BaseService<MhMenu> implements MhMenuServ
         if (id != null) {
             return mhMenuMapper.listByParentId(id);
         }
+        return null;
+    }
+
+    @Override
+    public int saveOrUpdate(MhMenu o, HttpServletRequest request) {
+        return -1;
+    }
+
+    @Override
+    public int remove(MhMenu o) {
+        return -1;
+    }
+
+    @Override
+    public int remove(Serializable ids) {
+        return -1;
+    }
+
+    @Override
+    public List<MhMenu> searchFor(Map<String, Object> args) {
         return null;
     }
 }

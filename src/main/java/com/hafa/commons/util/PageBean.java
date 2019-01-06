@@ -7,11 +7,11 @@ public class PageBean {
     /**
      * 每页显示行数
      */
-    private int rows;
+    private int limit = 8;
     /**
      * 当前页数
      */
-    private int page;
+    private int page = 1;
     /**
      * 需要显示的最大页数(可能用在Oracle数据库中)
      */
@@ -22,20 +22,18 @@ public class PageBean {
     private int minpage;
 
     public PageBean() {
-        this.setPage(1);
-        this.setRows(8);
         calMaxAndMin();
     }
 
     public PageBean(int rows, int page) {
         this.setPage(page);
-        this.setRows(rows);
+        this.setLimit(rows);
         calMaxAndMin();
     }
 
     private void calMaxAndMin() {
-        this.maxpage = page * rows;
-        this.minpage = (page - 1) * rows;
+        this.maxpage = page * limit;
+        this.minpage = (page - 1) * limit;
     }
 
     public int getMaxpage() {
@@ -58,15 +56,25 @@ public class PageBean {
         this.page = page;
     }
 
-    public void setRows(int rows) {
+    public void setLimit(int rows) {
         if (rows < 1) {
-            this.rows = 1;
+            this.limit = 1;
             return;
         }
-        this.rows = rows;
+        this.limit = rows;
     }
 
-    public int getRows() {
-        return rows;
+    public int getLimit() {
+        return limit;
+    }
+
+    @Override
+    public String toString() {
+        return "PageBean{" +
+                "limit=" + limit +
+                ", page=" + page +
+                ", maxpage=" + maxpage +
+                ", minpage=" + minpage +
+                '}';
     }
 }

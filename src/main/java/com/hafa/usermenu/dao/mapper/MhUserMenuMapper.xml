@@ -151,4 +151,7 @@
             (#{userid}, #{menuid})
         </foreach>
     </insert>
+    <select id="searchFor" resultType="Map">
+        select menuid from mh_user_menu
+    </select>
 </mapper>

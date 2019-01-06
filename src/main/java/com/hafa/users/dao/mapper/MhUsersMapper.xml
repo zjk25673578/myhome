@@ -222,10 +222,10 @@
             </if>
             and status='1'
         </where>
-        limit #{minpage}, #{rows}
+        limit #{minpage}, #{limit}
     </select>
 
-    <select id="listCount" resultType="Integer" parameterType="Map">
+    <select id="countFor" resultType="Integer" parameterType="Map">
         select count(*)
         from mh_users
         <where>
@@ -278,5 +278,11 @@
         <foreach collection="array" close=")" item="id" open="(" separator=",">
             #{id}
         </foreach>
+    </select>
+
+    <select id="searchFor" resultType="Map">
+        select
+        <include refid="Base_Column_List"/>
+        from mh_users
     </select>
 </mapper>

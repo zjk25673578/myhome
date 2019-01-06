@@ -1,4 +1,7 @@
 package com.hafa.dict.service;
 
-public interface MhDictService {
+import com.hafa.commons.service.BaseService;
+import com.hafa.dict.model.MhDict;
+
+public interface MhDictService extends BaseService<MhDict> {
 }
