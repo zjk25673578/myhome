@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2019-01-03 23:31:49
+Date: 2019-01-06 23:30:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -60,11 +60,13 @@ CREATE TABLE `mh_dict` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='数据字典表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='数据字典表';
 
 -- ----------------------------
 -- Records of mh_dict
 -- ----------------------------
+INSERT INTO `mh_dict` VALUES ('1', null, 'xingbie', '男', '性别', '1', null, null, null, null, null, null);
+INSERT INTO `mh_dict` VALUES ('2', null, 'xingbie', '女', '性别', '1', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for mh_education
@@ -363,22 +365,15 @@ CREATE TABLE `mh_users` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='系统用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='系统用户表';
 
 -- ----------------------------
 -- Records of mh_users
 -- ----------------------------
-INSERT INTO `mh_users` VALUES ('1', 'zhaodashuai', '123456', '赵大帅', null, '1', null, '1', '1', null, null, null, '2018-12-16 14:37:26', '1', 'zhaodashuai');
-INSERT INTO `mh_users` VALUES ('2', 'wangxianhan', '123456', '王献涵', null, '0', null, '1', '0', '2018-12-16 14:38:04', '1', 'zhaodashuai', '2018-12-22 20:56:17', '1', 'zhaodashuai');
-INSERT INTO `mh_users` VALUES ('3', 'xiaoming', '123456', '小明', null, '0', null, '1', '0', '2018-12-16 14:38:18', '1', 'zhaodashuai', '2018-12-22 20:56:24', '1', 'zhaodashuai');
-INSERT INTO `mh_users` VALUES ('4', 'xiaolv', '123456', '小绿', null, '0', null, '0', '0', '2018-12-16 14:40:13', '1', 'zhaodashuai', '2018-12-22 20:56:22', '1', 'zhaodashuai');
-INSERT INTO `mh_users` VALUES ('5', 'xiaohong', '123456', '小红', null, '0', null, '0', '0', '2018-12-16 15:05:07', '1', 'zhaodashuai', '2018-12-30 10:00:48', '1', 'zhaodashuai');
-INSERT INTO `mh_users` VALUES ('6', 'xiaozi', '123456', '小紫', null, '0', null, '0', '1', '2018-12-16 15:05:36', '1', 'zhaodashuai', '2018-12-30 10:26:31', '1', 'zhaodashuai');
-INSERT INTO `mh_users` VALUES ('7', 'xiaohei', '123456', '小黑', null, '0', null, '1', '1', '2018-12-16 15:05:54', '1', 'zhaodashuai', '2018-12-30 21:04:14', '1', 'zhaodashuai');
-INSERT INTO `mh_users` VALUES ('8', 'xiaohei', '123456', '小黑', null, '0', null, '1', '0', '2018-12-16 15:05:57', '1', 'zhaodashuai', '2018-12-22 20:56:30', '1', 'zhaodashuai');
-INSERT INTO `mh_users` VALUES ('9', 'xiaohuang', '123456', '小黄', null, '0', null, '1', '0', '2018-12-16 15:16:14', '1', 'zhaodashuai', '2018-12-22 20:56:34', '1', 'zhaodashuai');
-INSERT INTO `mh_users` VALUES ('10', 'xiaoqing', '123456', '小青', null, '0', null, '0', '1', '2018-12-16 15:17:16', '1', 'zhaodashuai', '2018-12-22 21:43:58', '1', 'zhaodashuai');
-INSERT INTO `mh_users` VALUES ('11', 'xiaoshi', '123456', '小屎', null, '0', null, '0', '1', '2018-12-16 15:20:17', '1', 'zhaodashuai', '2018-12-30 10:26:33', '1', 'zhaodashuai');
+INSERT INTO `mh_users` VALUES ('1', 'admin', '123456', '赵大帅', null, '1', null, '1', '1', null, null, null, '2018-12-16 14:37:26', '1', 'zhaodashuai');
+INSERT INTO `mh_users` VALUES ('13', 'xiaohuang', '123456', '小黄', null, '0', null, '0', '1', '2019-01-06 23:00:42', '1', 'zhaodashuai', '2019-01-06 23:04:23', '1', 'admin');
+INSERT INTO `mh_users` VALUES ('14', 'xiaolv', '123456', '小绿123', null, '0', null, '1', '1', '2019-01-06 23:01:11', '1', 'zhaodashuai', '2019-01-06 23:04:23', '1', 'admin');
+INSERT INTO `mh_users` VALUES ('15', 'xiaozi', '123456', '小紫', null, '0', null, '1', '1', '2019-01-06 23:02:22', '1', 'admin', '2019-01-06 23:04:23', '1', 'admin');
 
 -- ----------------------------
 -- Table structure for mh_users_info
