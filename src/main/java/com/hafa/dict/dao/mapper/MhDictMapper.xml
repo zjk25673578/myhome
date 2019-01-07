@@ -1,169 +1,218 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hafa.dict.dao.MhDictMapper">
-  <resultMap id="BaseResultMap" type="com.hafa.dict.model.MhDict">
-    <id column="ids" jdbcType="INTEGER" property="ids" />
-    <result column="parentid" jdbcType="INTEGER" property="parentid" />
-    <result column="diccode" jdbcType="VARCHAR" property="diccode" />
-    <result column="dicvalue" jdbcType="VARCHAR" property="dicvalue" />
-    <result column="desp" jdbcType="VARCHAR" property="desp" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="creator" jdbcType="INTEGER" property="creator" />
-    <result column="createname" jdbcType="VARCHAR" property="createname" />
-    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
-    <result column="updator" jdbcType="INTEGER" property="updator" />
-    <result column="updatename" jdbcType="VARCHAR" property="updatename" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    ids, parentid, diccode, dicvalue, desp, status, createtime, creator, createname, updatetime,
+    <resultMap id="BaseResultMap" type="com.hafa.dict.model.MhDict">
+        <id column="ids" jdbcType="INTEGER" property="ids"/>
+        <result column="parentid" jdbcType="INTEGER" property="parentid"/>
+        <result column="diccode" jdbcType="VARCHAR" property="diccode"/>
+        <result column="dicvalue" jdbcType="VARCHAR" property="dicvalue"/>
+        <result column="desp" jdbcType="VARCHAR" property="desp"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="creator" jdbcType="INTEGER" property="creator"/>
+        <result column="createname" jdbcType="VARCHAR" property="createname"/>
+        <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime"/>
+        <result column="updator" jdbcType="INTEGER" property="updator"/>
+        <result column="updatename" jdbcType="VARCHAR" property="updatename"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    ids, parentid, isparent, diccode, dicvalue, desp, status, createtime, creator, createname, updatetime,
     updator, updatename
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from mh_dict
-    where ids = #{ids,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from mh_dict
-    where ids = #{ids,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.dict.model.MhDict" useGeneratedKeys="true">
-    insert into mh_dict (parentid, diccode, dicvalue, desp, status, createtime, creator, createname, updatetime,
-    updator, updatename
-      )
-    values (#{parentid,jdbcType=INTEGER}, #{diccode,jdbcType=VARCHAR}, #{dicvalue,jdbcType=VARCHAR},
-      #{desp,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
-      #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
-      #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.dict.model.MhDict" useGeneratedKeys="true">
-    insert into mh_dict
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="parentid != null">
-        parentid,
-      </if>
-      <if test="diccode != null">
-        diccode,
-      </if>
-      <if test="dicvalue != null">
-        dicvalue,
-      </if>
-      <if test="dicvalue != null">
-        desp,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="createtime != null">
-        createtime,
-      </if>
-      <if test="creator != null">
-        creator,
-      </if>
-      <if test="createname != null">
-        createname,
-      </if>
-      <if test="updatetime != null">
-        updatetime,
-      </if>
-      <if test="updator != null">
-        updator,
-      </if>
-      <if test="updatename != null">
-        updatename,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="parentid != null">
-        #{parentid,jdbcType=INTEGER},
-      </if>
-      <if test="diccode != null">
-        #{diccode,jdbcType=VARCHAR},
-      </if>
-      <if test="dicvalue != null">
-        #{dicvalue,jdbcType=VARCHAR},
-      </if>
-      <if test="desp != null">
-        #{desp,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creator != null">
-        #{creator,jdbcType=INTEGER},
-      </if>
-      <if test="createname != null">
-        #{createname,jdbcType=VARCHAR},
-      </if>
-      <if test="updatetime != null">
-        #{updatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updator != null">
-        #{updator,jdbcType=INTEGER},
-      </if>
-      <if test="updatename != null">
-        #{updatename,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hafa.dict.model.MhDict">
-    update mh_dict
-    <set>
-      <if test="parentid != null">
-        parentid = #{parentid,jdbcType=INTEGER},
-      </if>
-      <if test="diccode != null">
-        diccode = #{diccode,jdbcType=VARCHAR},
-      </if>
-      <if test="dicvalue != null">
-        dicvalue = #{dicvalue,jdbcType=VARCHAR},
-      </if>
-      <if test="desp != null">
-        desp = #{desp,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createtime != null">
-        createtime = #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creator != null">
-        creator = #{creator,jdbcType=INTEGER},
-      </if>
-      <if test="createname != null">
-        createname = #{createname,jdbcType=VARCHAR},
-      </if>
-      <if test="updatetime != null">
-        updatetime = #{updatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updator != null">
-        updator = #{updator,jdbcType=INTEGER},
-      </if>
-      <if test="updatename != null">
-        updatename = #{updatename,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where ids = #{ids,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.hafa.dict.model.MhDict">
-    update mh_dict
-    set parentid = #{parentid,jdbcType=INTEGER},
-      diccode = #{diccode,jdbcType=VARCHAR},
-      dicvalue = #{dicvalue,jdbcType=VARCHAR},
-      desp = #{desp,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      createtime = #{createtime,jdbcType=TIMESTAMP},
-      creator = #{creator,jdbcType=INTEGER},
-      createname = #{createname,jdbcType=VARCHAR},
-      updatetime = #{updatetime,jdbcType=TIMESTAMP},
-      updator = #{updator,jdbcType=INTEGER},
-      updatename = #{updatename,jdbcType=VARCHAR}
-    where ids = #{ids,jdbcType=INTEGER}
-  </update>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from mh_dict
+        where ids = #{ids,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from mh_dict
+        where ids = #{ids,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.dict.model.MhDict"
+            useGeneratedKeys="true">
+        insert into mh_dict (parentid, diccode, dicvalue, desp, status, createtime, creator, createname, updatetime,
+        updator, updatename
+          )
+        values (#{parentid,jdbcType=INTEGER}, #{diccode,jdbcType=VARCHAR}, #{dicvalue,jdbcType=VARCHAR},
+          #{desp,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+          #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
+          #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR}
+          )
+    </insert>
+    <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.dict.model.MhDict"
+            useGeneratedKeys="true">
+        insert into mh_dict
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="parentid != null">
+                parentid,
+            </if>
+            <if test="diccode != null">
+                diccode,
+            </if>
+            <if test="dicvalue != null">
+                dicvalue,
+            </if>
+            <if test="dicvalue != null">
+                desp,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createname != null">
+                createname,
+            </if>
+            <if test="updatetime != null">
+                updatetime,
+            </if>
+            <if test="updator != null">
+                updator,
+            </if>
+            <if test="updatename != null">
+                updatename,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="parentid != null">
+                #{parentid,jdbcType=INTEGER},
+            </if>
+            <if test="diccode != null">
+                #{diccode,jdbcType=VARCHAR},
+            </if>
+            <if test="dicvalue != null">
+                #{dicvalue,jdbcType=VARCHAR},
+            </if>
+            <if test="desp != null">
+                #{desp,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="createname != null">
+                #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updator != null">
+                #{updator,jdbcType=INTEGER},
+            </if>
+            <if test="updatename != null">
+                #{updatename,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hafa.dict.model.MhDict">
+        update mh_dict
+        <set>
+            <if test="parentid != null">
+                parentid = #{parentid,jdbcType=INTEGER},
+            </if>
+            <if test="diccode != null">
+                diccode = #{diccode,jdbcType=VARCHAR},
+            </if>
+            <if test="dicvalue != null">
+                dicvalue = #{dicvalue,jdbcType=VARCHAR},
+            </if>
+            <if test="desp != null">
+                desp = #{desp,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="createname != null">
+                createname = #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                updatetime = #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updator != null">
+                updator = #{updator,jdbcType=INTEGER},
+            </if>
+            <if test="updatename != null">
+                updatename = #{updatename,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ids = #{ids,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hafa.dict.model.MhDict">
+        update mh_dict
+        set parentid = #{parentid,jdbcType=INTEGER},
+          diccode = #{diccode,jdbcType=VARCHAR},
+          dicvalue = #{dicvalue,jdbcType=VARCHAR},
+          desp = #{desp,jdbcType=VARCHAR},
+          status = #{status,jdbcType=INTEGER},
+          createtime = #{createtime,jdbcType=TIMESTAMP},
+          creator = #{creator,jdbcType=INTEGER},
+          createname = #{createname,jdbcType=VARCHAR},
+          updatetime = #{updatetime,jdbcType=TIMESTAMP},
+          updator = #{updator,jdbcType=INTEGER},
+          updatename = #{updatename,jdbcType=VARCHAR}
+        where ids = #{ids,jdbcType=INTEGER}
+    </update>
+
+    <select id="searchFor" resultType="Map" parameterType="Map">
+        select
+        ids, (select dicvalue from mh_dict where ids=parentid) parentName, diccode, dicvalue, desp, status, createtime,
+        creator, createname, updatetime,
+        updator, updatename
+        from mh_dict
+        <where>
+            <if test="ids != null and ids != ''">
+                ids=#{ids}
+            </if>
+            <if test="dicvalue != null and dicvalue != ''">
+                and dicvalue like concat('%',#{dicvalue},'%')
+            </if>
+            <if test="desp != null and desp != ''">
+                and desp like concat('%',#{desp},'%')
+            </if>
+            and status='1'
+        </where>
+        order by diccode
+        limit #{minpage}, #{limit}
+    </select>
+
+    <select id="countFor" resultType="Integer" parameterType="Map">
+        select
+        count(1)
+        from mh_dict
+        <where>
+            <if test="ids != null and ids != ''">
+                ids=#{ids}
+            </if>
+            <if test="dicvalue != null and dicvalue != ''">
+                and dicvalue like concat('%',#{dicvalue},'%')
+            </if>
+            <if test="desp != null and desp != ''">
+                and desp like concat('%',#{desp},'%')
+            </if>
+            and status='1'
+        </where>
+    </select>
+
+    <insert id="saveMultiple" parameterType="Map">
+        insert into mh_dict (diccode, dicvalue, desp, status, createtime, creator, createname) values
+        <foreach collection="dicvalue" separator="," item="dv">
+            (#{diccode}, #{dv}, #{desp}, #{status}, #{createtime}, #{creator}, #{createname})
+        </foreach>
+    </insert>
 </mapper>

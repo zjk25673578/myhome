@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
@@ -30,29 +32,14 @@ public class MhUsersServiceImpl implements MhUsersService {
     }
 
     @Override
-    public List<Map<String, Object>> list(Map<String, Object> args, PageBean pageBean) throws Exception {
-        Map<String, Object> params = MyUtil.bean2Map(args, pageBean);
-        return mhUsersMapper.list(params);
-    }
-
-    @Override
-    public int countFor(Map<String, Object> args) {
-        return mhUsersMapper.countFor(args);
-    }
-
-    @Override
-    public int deleteUser(String ids, HttpServletRequest request) {
-        MhUsers user = mhUsersMapper.selectByPrimaryKey(Integer.parseInt(ids));
-        if (user.getUserType() == 1) {
-            return -10; // 不能删除超级管理员
-        }
-        user.setStatus(0);
-        user.setValue("u", request);
-        return mhUsersMapper.updateByPrimaryKeySelective(user);
+    public Map<String, Object> searchFor(Map<String, Object> args) {
+        List<Map<String, Object>> list = mhUsersMapper.searchFor(args);
+        return MyUtil.searchForData(mhUsersMapper.countFor(args), list);
     }
 
     @Override
     public int deleteUsers(String ids, HttpServletRequest request) throws Exception {
+        // 获取批量删除的修改时间, 修改人
         Map<String, Object> args = CommonModel.get("u", request);
         if (args != null) {
             String[] _ids = ids.split(",");
@@ -100,17 +87,25 @@ public class MhUsersServiceImpl implements MhUsersService {
     }
 
     @Override
-    public int remove(MhUsers o) {
-        return -1;
+    public int remove(MhUsers entity, HttpServletRequest request) {
+        if (entity == null) {
+            return -1;
+        }
+        return remove(entity.getIds(), request);
     }
 
     @Override
-    public int remove(Serializable ids) {
-        return -1;
+    public int remove(Serializable ids, HttpServletRequest request) {
+        MhUsers user = mhUsersMapper.selectByPrimaryKey(ids);
+        if (user == null) {
+            return -1;
+        }
+        if (user.getUserType() == 1) {
+            return -10; // 不能删除超级管理员
+        }
+        user.setStatus(0);
+        user.setValue("u", request);
+        return mhUsersMapper.updateByPrimaryKeySelective(user);
     }
 
-    @Override
-    public List<MhUsers> searchFor(Map<String, Object> args) {
-        return null;
-    }
 }

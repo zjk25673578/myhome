@@ -50,10 +50,10 @@
     <!-- 顶部功能菜单 -->
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm" lay-event="add">
-            <i class="fa fa-user-plus fa-fw"></i>添加
+            <i class="fa fa-user-plus fa-fw"></i> 添加
         </button>
         <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del_multiple">
-            <i class="fa fa-trash fa-fw"></i>删除
+            <i class="fa fa-trash fa-fw"></i> 删除
         </button>
     </div>
 </script>

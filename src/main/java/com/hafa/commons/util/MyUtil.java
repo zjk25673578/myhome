@@ -2,6 +2,7 @@ package com.hafa.commons.util;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.hafa.commons.entity.CommonModel;
 import com.hafa.commons.entity.Message;
 import com.hafa.commons.entity.TreeModel;
 import com.hafa.commons.util.enums.MessageEnum;
@@ -170,6 +171,19 @@ public class MyUtil {
     }
 
     /**
+     * 初始化layui返回数据
+     * @param count
+     * @param list
+     * @return
+     */
+    public static Map<String, Object> searchForData(int count, List list) {
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("count", count);
+        resultMap.put("data", list);
+        return resultMap;
+    }
+
+    /**
      * 组装layui-data-table所需的数据格式
      *
      * @param code  状态码
@@ -187,9 +201,38 @@ public class MyUtil {
         return resultMap;
     }
 
+    /**
+     * 组装layui-data-table所需的数据格式
+     *
+     * @param code 状态码
+     * @param msg  当数据获取失败时返回的消息
+     * @return
+     */
+    public static void layData(Map<String, Object> resultMap, int code, String msg) {
+        if (resultMap == null) {
+            System.err.println("resultMap为空");
+            return;
+        }
+        if (resultMap.get("count") == null) {
+            System.err.println("resultMap中count属性为空");
+        }
+        if (resultMap.get("data") == null) {
+            System.err.println("resultMap中data属性为空");
+        }
+        resultMap.put("code", code);
+        resultMap.put("msg", msg);
+    }
 
+    /**
+     * 将List<Map<String, Object>>转换成List<TreeModel>的数据
+     *
+     * @param dataList 数据源
+     * @param id       开始于此, 从parentId为这个值的数据开始取
+     * @return
+     */
     public static List<TreeModel> list2TreeModel(List<Map<String, Object>> dataList, Integer id) {
-        return list2TreeModel(dataList, id, new HashMap<String, String>());
+        Map<String, String> model = new HashMap<>();
+        return list2TreeModel(dataList, id, model);
     }
 
     /**
@@ -312,6 +355,7 @@ public class MyUtil {
 
     /**
      * 判断参数个数是否为偶数个
+     *
      * @param objs
      * @return
      */
@@ -324,6 +368,7 @@ public class MyUtil {
 
     /**
      * 判断奇数位参数是否为String类型
+     *
      * @param objs
      * @return
      */
@@ -338,6 +383,7 @@ public class MyUtil {
 
     /**
      * 将两个以','分割的数字字符串转换成Set集合(用Set是为了去除重复)
+     *
      * @param childrenIds
      * @param parentMenuIds
      * @return
@@ -350,6 +396,7 @@ public class MyUtil {
 
     /**
      * 将一个以','分割的数字字符串转换成Set集合(用Set是为了去除重复)
+     *
      * @param content
      * @return
      */

@@ -192,7 +192,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         // 获取指定模板
         var tpl = document.getElementById("user-addOrEdit").innerHTML;
         laytpl(tpl).render(data, function (html) {
-            openDialog(html, title, ['330px', '420px'], function (idx) {
+            openDialog(html, title, ['330px', '370px'], function (idx) {
                 var formdata = $("#form-data-user").serializeArray();
                 var result = validateForm(formdata); // 表单验证
                 if (result) {
@@ -205,8 +205,9 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                             if (data.success) {
                                 table.reload("users-table");
                                 layer.close(idx);
+                                layer.msg(data.message, {time: 1000});
                             } else {
-                                layer.alert(data.message, {icon: data.iconType, time: 3000});
+                                layer.alert(data.message, {icon: data.iconType});
                             }
                         },
                         error: function () {

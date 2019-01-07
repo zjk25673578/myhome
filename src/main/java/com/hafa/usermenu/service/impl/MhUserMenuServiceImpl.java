@@ -54,22 +54,22 @@ public class MhUserMenuServiceImpl implements MhUserMenuService {
     }
 
     @Override
-    public int saveOrUpdate(MhUserMenu o, HttpServletRequest request) {
-        return -1;
+    public int saveOrUpdate(MhUserMenu entity, HttpServletRequest request) {
+        return 0;
     }
 
     @Override
-    public int remove(MhUserMenu o) {
-        return -1;
+    public int remove(MhUserMenu entity, HttpServletRequest request) {
+        return 0;
     }
 
     @Override
-    public int remove(Serializable ids) {
-        return -1;
+    public int remove(Serializable ids, HttpServletRequest request) {
+        return 0;
     }
 
     @Override
-    public List<MhUserMenu> searchFor(Map<String, Object> args) {
+    public Map<String, Object> searchFor(Map<String, Object> args) {
         return null;
     }
 }

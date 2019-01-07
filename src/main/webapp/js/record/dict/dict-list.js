@@ -6,11 +6,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
 
     // 添加, 修改表单的数据模型
     var tempData = {
-        parentid: "",
         ids: "",
-        uname: "",
-        rname: "",
-        userType: ""
+        parentid: "",
+        diccode: "",
+        dicvalue: "",
+        desp: ""
     };
 
     table.render({
@@ -18,10 +18,9 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         url: _ctx + '/dict/dictList',
         cols: [[
             {field: '', type: 'checkbox'},
-            {field: '', title: '序号', type: 'numbers'},
-            {field: 'ids', title: 'ID', width: 50, hide: true},
-            {field: 'parentid', title: '用户名'},
-            {field: 'diccode', title: 'CDKEY', hide: true},
+            {field: 'ids', title: '代码代号', width: 100},
+            {field: 'parentName', title: '父级数据', width: 100},
+            {field: 'diccode', title: 'CDKEY'},
             {field: 'dicvalue', title: '值'},
             {
                 field: 'desp', title: '描述'
@@ -31,6 +30,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                     return timestamp2Date(d.createtime);
                 }
             },
+            {field: 'createname', title: '创建人'},
             {field: '', title: '管理', toolbar: '#opera-btns', fixed: 'right', width: 170}
         ]],
         toolbar: '#toolbar',
@@ -57,12 +57,12 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
 
         // 添加数据
         add: function () {
-            saveOrUpdate(tempData, "新增字典数据");
+            saveOrUpdate(tempData, "新增字典数据", _ctx + "/dict/saveMultiple");
         },
 
         // 修改数据
         update: function (obj) {
-            saveOrUpdate(parseData(obj.data), "修改字典数据");
+            saveOrUpdate(parseData(obj.data), "修改字典数据", _ctx + "/dict/update");
         },
 
         // 删除数据
@@ -134,24 +134,26 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
      * @param data
      * @param title
      */
-    function saveOrUpdate(data, title) {
+    function saveOrUpdate(data, title, url) {
         var tpl = document.getElementById("dict-addOrEdit").innerHTML;
         laytpl(tpl).render(data, function (html) {
-            openDialog(html, title, ['330px', '420px'], function (idx) {
+            openDialog(html, title, ['330px', '440px'], function (idx) {
                 var formdata = $("#form-data-dict").serializeArray();
                 var result = validateForm(formdata); // 表单验证
                 if (result) {
                     $.ajax({
-                        url: _ctx + '/dict/saveOrUpdate',
+                        url: url,
                         type: 'post',
                         data: formdata,
                         dataType: 'json',
                         success: function (data) {
                             if (data.success) {
                                 table.reload("dict-table");
+                                layer.close(idx);
+                                layer.msg(data.message, {time: 1000});
+                            } else {
+                                layer.alert(data.message, {icon: data.iconType});
                             }
-                            layer.close(idx);
-                            layer.alert(data.message, {icon: data.iconType, time: 2000});
                         },
                         error: function () {
                             layer.msg('出现异常 !');

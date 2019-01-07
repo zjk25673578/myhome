@@ -209,7 +209,7 @@
         from mh_users where uname=#{uname} and pword=#{pword} and status='1'
     </select>
 
-    <select id="list" resultType="Map" parameterType="Map">
+    <select id="searchFor" resultType="Map" parameterType="Map">
         select
         <include refid="Base_Column_List"/>
         from mh_users
@@ -278,11 +278,5 @@
         <foreach collection="array" close=")" item="id" open="(" separator=",">
             #{id}
         </foreach>
-    </select>
-
-    <select id="searchFor" resultType="Map">
-        select
-        <include refid="Base_Column_List"/>
-        from mh_users
     </select>
 </mapper>

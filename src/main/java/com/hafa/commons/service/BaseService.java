@@ -24,28 +24,21 @@ public interface BaseService<T> {
      * @param entity
      * @return
      */
-    int remove(T entity);
+    int remove(T entity, HttpServletRequest request);
 
     /**
      * 删除一条指定主键的记录(逻辑删除)
      * @param ids
      * @return
      */
-    int remove(Serializable ids);
+    int remove(Serializable ids, HttpServletRequest request);
 
     /**
-     * 根据条件获取数据列表
+     * 根据指定的分页信息查询当前页码的列表信息
      * @param args
      * @return
      */
-    List<T> searchFor(Map<String, Object> args);
-
-    /**
-     * 根据条件获取数据列表总行数
-     * @param args
-     * @return
-     */
-    int countFor(Map<String, Object> args);
+    Map<String, Object> searchFor(Map<String, Object> args);
 
     /**
      * 获取当前登陆用户对象

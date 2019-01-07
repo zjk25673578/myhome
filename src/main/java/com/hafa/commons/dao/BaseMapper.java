@@ -22,7 +22,7 @@ public interface BaseMapper<T> {
 
     int updateByPrimaryKey(T record);
 
-    List<T> searchFor(Map<String, Object> args);
+    List<Map<String, Object>> searchFor(Map<String, Object> args);
 
     int countFor(Map<String, Object> args);
 }

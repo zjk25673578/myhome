@@ -61,24 +61,22 @@ public class MhUsersController {
     @ResponseBody
     @RequestMapping("/userList")
     public Map<String, Object> list(PageBean pageBean, String key) {
-        System.out.println(pageBean);
         JSONObject args = JSON.parseObject(key, JSONObject.class);
-        int code = -1;
-        String msg = "success";
-        int size = 0;
-        List<Map<String, Object>> list = null;
+        Map<String, Object> result = null;
         try {
-            list = mhUsersService.list(args, pageBean);
+            result = mhUsersService.searchFor(MyUtil.bean2Map(args, pageBean));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (list != null) {
+        int code = -1;
+        String msg = "";
+        if (result != null) {
             code = 0;
-            size = mhUsersService.countFor(args);
         } else {
-            msg = "mhUsersService.list()返回结果为null";
+            msg = "mhUsersService.searchFor返回结果为null";
         }
-        return MyUtil.layData(code, msg, size, list);
+        MyUtil.layData(result, code, msg);
+        return result;
     }
 
     @ResponseBody
@@ -97,20 +95,22 @@ public class MhUsersController {
 
     /**
      * 单个的删除
-     * @param ids
+     *
+     * @param ids 单条记录的主键
      * @param request
      * @return
      */
     @ResponseBody
     @RequestMapping("/deleteUser")
     public Message deleteUser(String ids, HttpServletRequest request) {
-        int r = mhUsersService.deleteUser(ids, request);
+        int r = mhUsersService.remove(ids, request);
         return MyUtil.msg(r);
     }
 
     /**
      * 批量删除
-     * @param ids
+     *
+     * @param ids 多条记录的主键字符串, 以逗号分隔
      * @param request
      * @return
      */
@@ -127,6 +127,13 @@ public class MhUsersController {
         return MyUtil.msg(result);
     }
 
+    /**
+     * 更改用户的启用禁用
+     * @param ids
+     * @param setups
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/updateSetups")
     public Message updateSetups(String ids, String setups, HttpServletRequest request) {

@@ -9,11 +9,13 @@ import java.util.Map;
 
 public interface MhUsersMapper extends BaseMapper<MhUsers> {
 
+    /**
+     * 获取指定用户名密码的用户
+     * @param uname
+     * @param pword
+     * @return
+     */
     List<MhUsers> selectByUnamePword(@Param("uname") String uname, @Param("pword") String pword);
-
-    List<Map<String, Object>> list(Map<String, Object> params);
-
-    int listCount(Map<String, Object> args);
 
     /**
      * 批量删除用户对象(逻辑删除)
@@ -28,5 +30,10 @@ public interface MhUsersMapper extends BaseMapper<MhUsers> {
      */
     Integer selectAdmins();
 
+    /**
+     * 在指定列表中验证是否含有超级管理员
+     * @param ids 用户信息的主键, 以","分隔
+     * @return
+     */
     Integer checkAdmin(String[] ids);
 }

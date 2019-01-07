@@ -215,4 +215,9 @@
         <include refid="Base_Column_List"/>
         from mh_menu
     </select>
+    <select id="countFor" resultType="Map">
+        select
+        count(1)
+        from mh_menu
+    </select>
 </mapper>

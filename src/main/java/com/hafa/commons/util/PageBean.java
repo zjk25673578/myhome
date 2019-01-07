@@ -25,9 +25,9 @@ public class PageBean {
         calMaxAndMin();
     }
 
-    public PageBean(int rows, int page) {
+    public PageBean(int limit, int page) {
         this.setPage(page);
-        this.setLimit(rows);
+        this.setLimit(limit);
         calMaxAndMin();
     }
 
@@ -54,14 +54,16 @@ public class PageBean {
             return;
         }
         this.page = page;
+        calMaxAndMin();
     }
 
-    public void setLimit(int rows) {
-        if (rows < 1) {
+    public void setLimit(int limit) {
+        if (limit < 1) {
             this.limit = 1;
             return;
         }
-        this.limit = rows;
+        this.limit = limit;
+        calMaxAndMin();
     }
 
     public int getLimit() {

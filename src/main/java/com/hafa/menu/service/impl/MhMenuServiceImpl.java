@@ -18,8 +18,17 @@ import java.util.Map;
 @Repository
 public class MhMenuServiceImpl implements MhMenuService {
 
+    public static Map<String, String> model = new HashMap<>();
+
     @Autowired
     private MhMenuMapper mhMenuMapper;
+
+    static {
+        model.put("id", "ids");
+        model.put("label", "menuname");
+        model.put("url", "murl");
+        model.put("parentId", "parentid");
+    }
 
     @Override
     public List<MhMenu> menuList(HttpServletRequest request) {
@@ -33,22 +42,12 @@ public class MhMenuServiceImpl implements MhMenuService {
     @Override
     public List<TreeModel> menuTreeList() {
         List<Map<String, Object>> menuList = mhMenuMapper.menuListByMap();
-        Map<String, String> model = new HashMap<>();
-        model.put("id", "ids");
-        model.put("label", "menuname");
-        model.put("url", "murl");
-        model.put("parentId", "parentid");
         return MyUtil.list2TreeModel(menuList, 100000, model);
     }
 
     @Override
     public List<TreeModel> menuTreeAuthority() {
         List<Map<String, Object>> menuList = mhMenuMapper.menuTreeAuthority();
-        Map<String, String> model = new HashMap<>();
-        model.put("id", "ids");
-        model.put("label", "menuname");
-        model.put("url", "murl");
-        model.put("parentId", "parentid");
         return MyUtil.list2TreeModel(menuList, 0, model);
     }
 
@@ -81,22 +80,22 @@ public class MhMenuServiceImpl implements MhMenuService {
     }
 
     @Override
-    public int saveOrUpdate(MhMenu o, HttpServletRequest request) {
-        return -1;
+    public int saveOrUpdate(MhMenu entity, HttpServletRequest request) {
+        return 0;
     }
 
     @Override
-    public int remove(MhMenu o) {
-        return -1;
+    public int remove(MhMenu entity, HttpServletRequest request) {
+        return 0;
     }
 
     @Override
-    public int remove(Serializable ids) {
-        return -1;
+    public int remove(Serializable ids, HttpServletRequest request) {
+        return 0;
     }
 
     @Override
-    public List<MhMenu> searchFor(Map<String, Object> args) {
+    public Map<String, Object> searchFor(Map<String, Object> args) {
         return null;
     }
 }
