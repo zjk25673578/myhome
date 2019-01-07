@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2019-01-07 19:01:54
+Date: 2019-01-07 23:16:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -260,7 +260,7 @@ CREATE TABLE `mh_menu` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
 
 -- ----------------------------
 -- Records of mh_menu
@@ -289,6 +289,7 @@ INSERT INTO `mh_menu` VALUES ('21', '19', '用户管理', '/mhusers/list', 'fa f
 INSERT INTO `mh_menu` VALUES ('23', '19', '流程定义', '', 'fa fa-ravelry', '5', '0', '1', null, null, null, '2018-12-24 22:25:08', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('31', '19', '字典管理', '/dict/list', 'fa fa-paper-plane', '4', '0', '1', null, null, null, '2019-01-03 23:22:35', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('32', '19', '测试页面', '/mh/test', 'fa fa-ambulance', '6', '0', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('38', '2', '新的菜单', '', 'fa fa-circle', '1', null, '1', '2019-01-07 23:09:49', '1', 'admin', '2019-01-07 23:09:59', '1', 'admin');
 
 -- ----------------------------
 -- Table structure for mh_notebook
@@ -463,7 +464,7 @@ CREATE TABLE `mh_user_menu` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='用户菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='用户菜单表';
 
 -- ----------------------------
 -- Records of mh_user_menu
@@ -477,6 +478,11 @@ INSERT INTO `mh_user_menu` VALUES ('6', '15', '11', null, null, null, null, null
 INSERT INTO `mh_user_menu` VALUES ('7', '15', '12', null, null, null, null, null, null);
 INSERT INTO `mh_user_menu` VALUES ('8', '15', '13', null, null, null, null, null, null);
 INSERT INTO `mh_user_menu` VALUES ('9', '15', '14', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('16', '16', '1', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('17', '16', '3', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('18', '16', '4', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('19', '16', '5', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('20', '16', '6', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for mh_webinfo
@@ -571,7 +577,7 @@ BEGIN
     SET sTempChd =cast(rootId as CHAR);
     WHILE sTempChd is not null DO
         SET sTemp = concat(sTemp,',',sTempChd);
-        SELECT group_concat(ids) INTO sTempChd FROM mh_menu where FIND_IN_SET(parentid,sTempChd)>0;
+        SELECT group_concat(ids) INTO sTempChd FROM mh_menu where STATUS='1' and FIND_IN_SET(parentid,sTempChd)>0;
     END WHILE;
     RETURN sTemp; 
 END
@@ -595,7 +601,7 @@ BEGIN
             group_concat(parentid) INTO sTempPar 
         FROM
             mh_menu 
-        where parentid <> ids 
+        where parentid <> ids and STATUS='1'
             and FIND_IN_SET(ids, sTempPar) > 0 ;
     END WHILE ;RETURN sTemp ;
 END

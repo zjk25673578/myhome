@@ -13,6 +13,8 @@ public class MhMenu extends CommonModel {
 
     private Integer sort;
 
+    private Integer isparent;
+
     private Integer status;
 
     public Integer getParentid() {
@@ -63,22 +65,11 @@ public class MhMenu extends CommonModel {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "MhMenu{" +
-                "parentid=" + parentid +
-                ", menuname='" + menuname + '\'' +
-                ", murl='" + murl + '\'' +
-                ", icon='" + icon + '\'' +
-                ", sort=" + sort +
-                ", status=" + status +
-                ", ids=" + getIds() +
-                ", createtime=" + getCreatetime() +
-                ", creator=" + getCreator() +
-                ", createname='" + getCreatename() + '\'' +
-                ", updatetime=" + getUpdatetime() +
-                ", updator=" + getUpdator() +
-                ", updatename='" + getUpdatename() + '\'' +
-                '}';
+    public Integer getIsparent() {
+        return isparent;
+    }
+
+    public void setIsparent(Integer isparent) {
+        this.isparent = isparent;
     }
 }

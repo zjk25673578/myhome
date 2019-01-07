@@ -81,7 +81,18 @@ public class MhMenuServiceImpl implements MhMenuService {
 
     @Override
     public int saveOrUpdate(MhMenu entity, HttpServletRequest request) {
-        return 0;
+        if (entity == null) {
+            return -1;
+        }
+        if (entity.getIds() != null) {
+            entity.setValue("u", request);
+            return mhMenuMapper.updateByPrimaryKeySelective(entity);
+        }
+        entity.setValue("c", request);
+        entity.setStatus(1);
+        if (entity.getParentid() != 0) {
+        }
+        return mhMenuMapper.insertSelective(entity);
     }
 
     @Override

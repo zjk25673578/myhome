@@ -8,6 +8,7 @@
         <result column="murl" jdbcType="VARCHAR" property="murl"/>
         <result column="icon" jdbcType="VARCHAR" property="icon"/>
         <result column="sort" jdbcType="INTEGER" property="sort"/>
+        <result column="isparent" jdbcType="INTEGER" property="isparent"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
         <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
         <result column="creator" jdbcType="INTEGER" property="creator"/>
@@ -17,7 +18,7 @@
         <result column="updatename" jdbcType="VARCHAR" property="updatename"/>
     </resultMap>
     <sql id="Base_Column_List">
-        ids, parentid, menuname, murl, icon, sort, status, createtime, creator, createname, updatetime,
+        ids, parentid, menuname, murl, icon, sort, isparent, status, createtime, creator, createname, updatetime,
     updator, updatename
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -33,10 +34,10 @@
     <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.menu.model.MhMenu"
             useGeneratedKeys="true">
         insert into mh_menu (parentid, menuname, murl,
-        icon, sort, status, createtime, creator, createname, updatetime,
+        icon, sort, isparent, status, createtime, creator, createname, updatetime,
     updator, updatename)
         values (#{parentid,jdbcType=INTEGER}, #{menuname,jdbcType=VARCHAR}, #{murl,jdbcType=VARCHAR},
-        #{icon,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+        #{icon,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{isparent,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
       #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
       #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR})
     </insert>
@@ -58,6 +59,9 @@
             </if>
             <if test="sort != null">
                 sort,
+            </if>
+            <if test="isparent != null">
+                isparent,
             </if>
             <if test="status != null">
                 status,
@@ -96,6 +100,9 @@
             </if>
             <if test="sort != null">
                 #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="isparent != null">
+                #{isparent,jdbcType=INTEGER},
             </if>
             <if test="status != null">
                 #{status,jdbcType=INTEGER},
@@ -138,6 +145,9 @@
             <if test="sort != null">
                 sort = #{sort,jdbcType=INTEGER},
             </if>
+            <if test="isparent != null">
+                isparent = #{isparent,jdbcType=INTEGER},
+            </if>
             <if test="status != null">
                 status = #{status,jdbcType=INTEGER},
             </if>
@@ -169,6 +179,7 @@
         murl = #{murl,jdbcType=VARCHAR},
         icon = #{icon,jdbcType=VARCHAR},
         sort = #{sort,jdbcType=INTEGER},
+        isparent = #{isparent,jdbcType=INTEGER},
         status = #{status,jdbcType=INTEGER},
           createtime = #{createtime,jdbcType=TIMESTAMP},
           creator = #{creator,jdbcType=INTEGER},
@@ -197,7 +208,7 @@
         SELECT m1.ids, IFNULL(m2.menuname, '菜单') parentname, m1.menuname,
         m1.sort, m1.createtime, m1.createname, m1.updatetime, m1.updatename
         FROM mh_menu m1 LEFT JOIN mh_menu m2
-        ON m1.parentid = m2.`ids` WHERE m1.parentid=#{id} order by m1.sort
+        ON m1.parentid = m2.`ids` WHERE m1.parentid=#{id} and m1.STATUS = '1' order by m1.sort
     </select>
     <select id="menuTreeAuthority" resultType="Map">
         SELECT

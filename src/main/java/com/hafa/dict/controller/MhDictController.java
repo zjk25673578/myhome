@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -30,7 +29,6 @@ public class MhDictController {
     @ResponseBody
     @RequestMapping("/dictList")
     public Map<String, Object> dictList(String key, PageBean pageBean) {
-        System.out.println(pageBean);
         JSONObject args = JSONObject.parseObject(key);
         Map<String, Object> resultMap = null;
         try {

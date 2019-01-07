@@ -37,13 +37,19 @@ layui.config({
 
     // 添加子节点事件
     eleTree.on("nodeAppend(menuTree)", function (d) {
-        var index = layer.load(2, {time: 3 * 1000});
+        var index = layer.load(2);
         var menu = {             // 自定义数据
             parentid: d.data.id,
             menuname: "新的菜单",
             label: "新的菜单",
+            icon: "fa fa-circle"
         };
-        d.setData(menu);
+        d.setData(menu); // 在js层面刷新的显示
+        $.post(_ctx + "/mhmenu/appendMenu", menu, function (resultData) {
+            layer.msg(resultData.message, {icon: resultData.iconType});
+            layer.close(index);
+            el.reload();
+        }, "json");
     });
 
     // 添加节点之前事件
@@ -170,5 +176,16 @@ function validParentId(data) {
 }
 
 function appendMenu() {
+    $.ajax({
+        url: "",
+        type: "",
+        data: {},
+        dataType: "json",
+        success: function () {
 
+        },
+        error: function () {
+
+        }
+    });
 }
