@@ -284,7 +284,7 @@ function timestamp2Date(timestamp) {
  */
 function handleUndefinedAndNull(obj) {
     for (var p in obj) {
-        if (obj[p] != null || obj[p] !== 'null' || obj[p] !== undefined || obj[p] !== 'undefined') {
+        if (obj[p] != null && obj[p] != 'null' && obj[p] != undefined && obj[p] != 'undefined') {
             continue;
         }
         obj[p] = '';

@@ -35,6 +35,57 @@ layui.config({
         }, 'json');
     });
 
+    // 添加子节点事件
+    eleTree.on("nodeAppend(menuTree)", function (d) {
+        var index = layer.load(2, {time: 3 * 1000});
+        var menu = {             // 自定义数据
+            parentid: d.data.id,
+            menuname: "新的菜单",
+            label: "新的菜单",
+        };
+        d.setData(menu);
+    });
+
+    // 添加节点之前事件
+    eleTree.on("nodeInsertBefore(menuTree)", function (d) {
+        if (validParentId(d.data)) {
+            console.log(d.data);    // 点击节点对于的数据
+            console.log(d.node);    // 点击的dom节点
+            console.log(this);      // 与d.node相同
+            d.setData({             // 自定义数据
+                key: 666,
+                label: "aaa"
+            });
+        } else {
+            d.stop(); // 取消添加
+            layer.msg("呵呵呵");
+        }
+    });
+
+    // 添加节点之后事件
+    eleTree.on("nodeInsertAfter(menuTree)", function (d) {
+        if (validParentId(d.data)) {
+            console.log(d.data);    // 点击节点对于的数据
+            console.log(d.node);    // 点击的dom节点
+            console.log(this);      // 与d.node相同
+            d.stop();               // 取消添加
+            d.setData({             // 自定义数据
+                key: 666,
+                label: "aaa"
+            });
+        } else {
+            d.stop(); // 取消添加
+            layer.msg("呵呵呵");
+        }
+    });
+
+    // 节点被删除事件
+    eleTree.on("nodeRemove(menuTree)", function (d) {
+        console.log(d.data);        // 点击节点对于的数据
+        console.log(d.node);        // 点击的dom节点
+        d.stop();                   // 取消删除
+    });
+
     /**
      * eleTree的点击事件
      * 点击tree控件将值赋值给form
@@ -61,7 +112,6 @@ layui.config({
      * 监听表单提交
      */
     form.on('submit(menuForm)', function (data) {
-        console.log(data.field);
         if (data.field.ids === "0") {
             layer.msg('这个改不了...没有为啥就是改不了', {icon: 1});
             return false;
@@ -109,3 +159,16 @@ layui.config({
     });
 
 });
+
+/**
+ * 验证, 不允许在最外层前后添加菜单
+ * @param data
+ * @returns {boolean} true: 可以添加, false: 不允许添加
+ */
+function validParentId(data) {
+    return data.id !== 0;
+}
+
+function appendMenu() {
+
+}

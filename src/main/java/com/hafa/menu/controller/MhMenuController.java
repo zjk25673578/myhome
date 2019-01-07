@@ -140,4 +140,11 @@ public class MhMenuController {
         }
         return msg;
     }
+
+    @ResponseBody
+    @RequestMapping("/appendMenu")
+    public Message appendMenu(MhMenu menu, HttpServletRequest request) {
+        System.out.println(menu);
+        return MyUtil.msg(-1);
+    }
 }

@@ -62,4 +62,23 @@ public class MhMenu extends CommonModel {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "MhMenu{" +
+                "parentid=" + parentid +
+                ", menuname='" + menuname + '\'' +
+                ", murl='" + murl + '\'' +
+                ", icon='" + icon + '\'' +
+                ", sort=" + sort +
+                ", status=" + status +
+                ", ids=" + getIds() +
+                ", createtime=" + getCreatetime() +
+                ", creator=" + getCreator() +
+                ", createname='" + getCreatename() + '\'' +
+                ", updatetime=" + getUpdatetime() +
+                ", updator=" + getUpdator() +
+                ", updatename='" + getUpdatename() + '\'' +
+                '}';
+    }
 }
