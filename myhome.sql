@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2019-01-07 15:46:26
+Date: 2019-01-07 19:01:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -266,7 +266,7 @@ CREATE TABLE `mh_menu` (
 -- Records of mh_menu
 -- ----------------------------
 INSERT INTO `mh_menu` VALUES ('1', '0', '我', '', 'fa fa-drupal', '1', '1', '1', null, null, null, '2018-12-26 22:03:34', '1', 'zhaodashuai');
-INSERT INTO `mh_menu` VALUES ('2', '0', '我的空间', 'aaabbb', 'fa fa-user-secret', '2', '0', '1', null, null, null, '2018-12-23 22:53:08', '1', 'zhaodashuai');
+INSERT INTO `mh_menu` VALUES ('2', '0', '我的空间', '', 'fa fa-user-secret', '2', '0', '1', null, null, null, '2019-01-07 16:40:51', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('3', '1', '网站账号管理', '', 'fa fa-internet-explorer', '1', '0', '1', null, null, null, '2019-01-07 13:39:10', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('4', '1', '我的家庭成员', '', 'fa fa-users', '4', '0', '1', null, null, null, '2018-12-23 13:10:55', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('5', '1', '我的朋友圈', '', 'fa fa-user-circle-o', '3', '0', '1', null, null, null, '2018-12-23 13:10:51', '1', 'zhaodashuai');
