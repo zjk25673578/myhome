@@ -90,8 +90,6 @@ public class MhMenuServiceImpl implements MhMenuService {
         }
         entity.setValue("c", request);
         entity.setStatus(1);
-        if (entity.getParentid() != 0) {
-        }
         return mhMenuMapper.insertSelective(entity);
     }
 

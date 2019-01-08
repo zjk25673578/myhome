@@ -201,7 +201,7 @@
     <select id="menuListByMap" resultType="Map">
         SELECT <include refid="Base_Column_List"/> FROM (SELECT
           <include refid="Base_Column_List"/> FROM mh_menu
-        WHERE STATUS = '1' UNION SELECT 0, 100000, '菜单', NULL, 'fa fa-home', 0, '1',
+        WHERE STATUS = '1' UNION SELECT 0, 100000, '菜单', NULL, 'fa fa-home', 0, 1, '1',
         NULL, NULL, NULL, NULL, NULL, NULL ) r ORDER BY sort
     </select>
     <select id="listByParentId" parameterType="String" resultType="Map">
