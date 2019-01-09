@@ -20,4 +20,6 @@ public interface MhMenuService extends BaseService<MhMenu> {
     int updateByPrimaryKeySelective(MhMenu menu, HttpServletRequest request);
 
     List<Map<String, Object>> listByParentId(String id);
+
+    int removeMenu(String ids, HttpServletRequest request);
 }

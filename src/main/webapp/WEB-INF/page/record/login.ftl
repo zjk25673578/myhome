@@ -15,7 +15,7 @@
 <body class="login-bg">
 <div class="login layui-anim layui-anim-up">
     <div class="message">
-        <a href="${ctx}/blog/index"><i class="layui-icon cus-icon layui-icon-return"></i>返回博客</a>
+        <a href="${ctx}/blog/index"><i class="layui-icon cus-icon layui-icon-return"></i>我家博客</a>
     </div>
     <div id="darkbannerwrap"></div>
     <form method="post" class="layui-form">
@@ -56,7 +56,7 @@
                 dataType: "json",
                 success: function (dataResult) {
                     if (dataResult.success) {
-                        layer.msg(dataResult.message, {icon: dataResult.iconType, time: 1000}, function () {
+                        layer.msg(dataResult.message, {icon: dataResult.iconType, time: 2000}, function () {
                             window.location.href = "${ctx}/record/index";
                         });
                     } else {

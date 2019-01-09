@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2019-01-07 23:16:39
+Date: 2019-01-09 23:31:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -60,7 +60,7 @@ CREATE TABLE `mh_dict` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COMMENT='数据字典表';
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='数据字典表';
 
 -- ----------------------------
 -- Records of mh_dict
@@ -79,11 +79,17 @@ INSERT INTO `mh_dict` VALUES ('24', null, 'xingzuo', '处女座', '星座', '1',
 INSERT INTO `mh_dict` VALUES ('25', null, 'xingzuo', '双鱼座', '星座', '1', '2019-01-07 15:32:32', '1', 'admin', null, null, null);
 INSERT INTO `mh_dict` VALUES ('26', null, 'xingzuo', '射手座', '星座', '1', '2019-01-07 15:32:32', '1', 'admin', null, null, null);
 INSERT INTO `mh_dict` VALUES ('27', null, 'xingzuo', '双子座', '星座', '1', '2019-01-07 15:32:32', '1', 'admin', null, null, null);
-INSERT INTO `mh_dict` VALUES ('28', null, 'caiwuleibie', '水费', '财务类别', '1', '2019-01-07 15:39:02', '1', 'admin', null, null, null);
-INSERT INTO `mh_dict` VALUES ('29', null, 'caiwuleibie', '电费', '财务类别', '1', '2019-01-07 15:39:02', '1', 'admin', null, null, null);
-INSERT INTO `mh_dict` VALUES ('30', null, 'caiwuleibie', '煤气费', '财务类别', '1', '2019-01-07 15:39:02', '1', 'admin', null, null, null);
-INSERT INTO `mh_dict` VALUES ('31', null, 'caiwuleibie', '生活费', '财务类别', '1', '2019-01-07 15:39:02', '1', 'admin', null, null, null);
-INSERT INTO `mh_dict` VALUES ('32', null, 'caiwuleibie', '其他', '财务类别', '1', '2019-01-07 15:39:02', '1', 'admin', null, null, null);
+INSERT INTO `mh_dict` VALUES ('28', null, 'caiwuleibieout', '水费', '财务类别(支出)', '1', '2019-01-07 15:39:02', '1', 'admin', '2019-01-08 19:23:36', '1', 'admin');
+INSERT INTO `mh_dict` VALUES ('29', null, 'caiwuleibieout', '电费', '财务类别(支出)', '1', '2019-01-07 15:39:02', '1', 'admin', '2019-01-08 19:25:15', '1', 'admin');
+INSERT INTO `mh_dict` VALUES ('30', null, 'caiwuleibieout', '煤气费', '财务类别(支出)', '1', '2019-01-07 15:39:02', '1', 'admin', '2019-01-08 19:24:35', '1', 'admin');
+INSERT INTO `mh_dict` VALUES ('31', null, 'caiwuleibieout', '生活费', '财务类别(支出)', '1', '2019-01-07 15:39:02', '1', 'admin', '2019-01-08 19:24:23', '1', 'admin');
+INSERT INTO `mh_dict` VALUES ('32', null, 'caiwuleibieout', '其他', '财务类别(支出)', '1', '2019-01-07 15:39:02', '1', 'admin', '2019-01-08 19:24:06', '1', 'admin');
+INSERT INTO `mh_dict` VALUES ('33', null, 'caiwuleibiein', '工资', '财务类别(收入)', '1', '2019-01-08 19:26:37', '1', 'admin', null, null, null);
+INSERT INTO `mh_dict` VALUES ('34', null, 'caiwuleibiein', '彩票', '财务类别(收入)', '1', '2019-01-08 19:26:37', '1', 'admin', null, null, null);
+INSERT INTO `mh_dict` VALUES ('35', null, 'caiwuleibiein', '啃老', '财务类别(收入)', '1', '2019-01-08 19:26:37', '1', 'admin', null, null, null);
+INSERT INTO `mh_dict` VALUES ('36', null, 'caiwuleibiein', '赌博', '财务类别(收入)', '1', '2019-01-08 19:26:37', '1', 'admin', null, null, null);
+INSERT INTO `mh_dict` VALUES ('37', null, 'caiwuleibiein', '贩毒', '财务类别(收入)', '1', '2019-01-08 19:26:37', '1', 'admin', null, null, null);
+INSERT INTO `mh_dict` VALUES ('38', null, 'caiwuleibiein', '地上捡的', '财务类别(收入)', '1', '2019-01-08 19:26:37', '1', 'admin', null, null, null);
 
 -- ----------------------------
 -- Table structure for mh_education
@@ -260,13 +266,13 @@ CREATE TABLE `mh_menu` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
 
 -- ----------------------------
 -- Records of mh_menu
 -- ----------------------------
 INSERT INTO `mh_menu` VALUES ('1', '0', '我', '', 'fa fa-drupal', '1', '1', '1', null, null, null, '2018-12-26 22:03:34', '1', 'zhaodashuai');
-INSERT INTO `mh_menu` VALUES ('2', '0', '我的空间', '', 'fa fa-user-secret', '2', '0', '1', null, null, null, '2019-01-07 16:40:51', '1', 'admin');
+INSERT INTO `mh_menu` VALUES ('2', '0', '我的空间', '', 'fa fa-user-secret', '2', '1', '1', null, null, null, '2019-01-09 22:47:46', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('3', '1', '网站账号管理', '', 'fa fa-internet-explorer', '1', '0', '1', null, null, null, '2019-01-07 13:39:10', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('4', '1', '我的家庭成员', '', 'fa fa-users', '4', '0', '1', null, null, null, '2018-12-23 13:10:55', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('5', '1', '我的朋友圈', '', 'fa fa-user-circle-o', '3', '0', '1', null, null, null, '2018-12-23 13:10:51', '1', 'zhaodashuai');
@@ -275,7 +281,7 @@ INSERT INTO `mh_menu` VALUES ('7', '0', '我家', '', 'fa fa-s15', '3', '1', '1'
 INSERT INTO `mh_menu` VALUES ('8', '7', '相册', '', 'fa fa-photo', '1', '0', '1', null, null, null, '2018-12-23 13:11:13', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('9', '7', '家庭留言本', '', 'fa fa-rocket', '2', '0', '1', null, null, null, '2018-12-23 13:11:16', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('10', '0', '大事记', '', 'fa fa-tags', '4', '0', '1', null, null, null, '2018-12-23 12:54:53', '1', 'zhaodashuai');
-INSERT INTO `mh_menu` VALUES ('11', '0', '财政信息', '', 'fa fa-database', '5', '1', '1', null, null, null, '2018-12-23 12:54:58', '1', 'zhaodashuai');
+INSERT INTO `mh_menu` VALUES ('11', '0', '财政信息', '', 'fa fa-database', '5', '1', '1', null, null, null, '2019-01-09 22:47:52', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('12', '11', '收入记录', '', 'fa fa-wheelchair', '2', '0', '1', null, null, null, '2018-12-23 13:11:29', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('13', '11', '支出记录', '', 'fa fa-wheelchair-alt', '3', '0', '1', null, null, null, '2018-12-23 13:11:32', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('14', '11', '月统计', '', 'fa fa-line-chart', '1', '0', '1', null, null, null, '2018-12-30 22:22:12', '1', 'zhaodashuai');
@@ -289,7 +295,10 @@ INSERT INTO `mh_menu` VALUES ('21', '19', '用户管理', '/mhusers/list', 'fa f
 INSERT INTO `mh_menu` VALUES ('23', '19', '流程定义', '', 'fa fa-ravelry', '5', '0', '1', null, null, null, '2018-12-24 22:25:08', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('31', '19', '字典管理', '/dict/list', 'fa fa-paper-plane', '4', '0', '1', null, null, null, '2019-01-03 23:22:35', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('32', '19', '测试页面', '/mh/test', 'fa fa-ambulance', '6', '0', '1', null, null, null, null, null, null);
-INSERT INTO `mh_menu` VALUES ('38', '2', '新的菜单', '', 'fa fa-circle', '1', null, '1', '2019-01-07 23:09:49', '1', 'admin', '2019-01-07 23:09:59', '1', 'admin');
+INSERT INTO `mh_menu` VALUES ('38', '2', '新的菜单', '', 'fa fa-circle', '1', null, '0', '2019-01-07 23:09:49', '1', 'admin', '2019-01-09 22:47:40', '1', 'admin');
+INSERT INTO `mh_menu` VALUES ('39', '38', '新的菜单', null, 'fa fa-circle', null, null, '0', '2019-01-09 22:26:36', '1', 'admin', '2019-01-09 22:47:37', '1', 'admin');
+INSERT INTO `mh_menu` VALUES ('40', '39', '新的菜单', null, 'fa fa-circle', null, null, '0', '2019-01-09 22:27:30', '1', 'admin', '2019-01-09 22:47:33', '1', 'admin');
+INSERT INTO `mh_menu` VALUES ('41', '2', '新的菜单', null, 'fa fa-circle', null, null, '1', '2019-01-09 23:17:14', '1', 'admin', null, null, null);
 
 -- ----------------------------
 -- Table structure for mh_notebook
@@ -464,7 +473,7 @@ CREATE TABLE `mh_user_menu` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='用户菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='用户菜单表';
 
 -- ----------------------------
 -- Records of mh_user_menu
@@ -483,6 +492,7 @@ INSERT INTO `mh_user_menu` VALUES ('17', '16', '3', null, null, null, null, null
 INSERT INTO `mh_user_menu` VALUES ('18', '16', '4', null, null, null, null, null, null);
 INSERT INTO `mh_user_menu` VALUES ('19', '16', '5', null, null, null, null, null, null);
 INSERT INTO `mh_user_menu` VALUES ('20', '16', '6', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('22', '13', '2', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for mh_webinfo
@@ -573,7 +583,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getChildList`(rootId INT) RETURNS va
 BEGIN
     DECLARE sTemp VARCHAR(1000);
     DECLARE sTempChd VARCHAR(1000);
-    SET sTemp = '$';
+    SET sTemp = '0';
     SET sTempChd =cast(rootId as CHAR);
     WHILE sTempChd is not null DO
         SET sTemp = concat(sTemp,',',sTempChd);
@@ -591,7 +601,10 @@ DROP FUNCTION IF EXISTS `getParentList`;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` FUNCTION `getParentList`(rootId INT) RETURNS varchar(1000) CHARSET utf8
 BEGIN
-    DECLARE sTemp VARCHAR (1000) ;DECLARE sTempPar VARCHAR (1000) ;SET sTemp = '' ;SET sTempPar = rootId ;#循环递归
+    DECLARE sTemp VARCHAR (1000) ;
+    DECLARE sTempPar VARCHAR (1000) ;
+    SET sTemp = '' ;
+    SET sTempPar = rootId;#循环递归
     WHILE
         sTempPar is not null DO -- 判断是否是第一个，不加的话第一个会为空
         IF sTemp != '' 
@@ -603,7 +616,8 @@ BEGIN
             mh_menu 
         where parentid <> ids and STATUS='1'
             and FIND_IN_SET(ids, sTempPar) > 0 ;
-    END WHILE ;RETURN sTemp ;
+    END WHILE ;
+    RETURN sTemp ;
 END
 ;;
 DELIMITER ;

@@ -52,4 +52,12 @@ public interface MhMenuMapper extends BaseMapper<MhMenu> {
      * @return
      */
     String getChildrenMenuIds(String menuid);
+
+    /**
+     * 删除菜单(逻辑删除)
+     * 通过函数查询出当前菜单以及子菜单全部删除
+     * @param ids
+     * @return
+     */
+    int removeMenus(String[] ids);
 }

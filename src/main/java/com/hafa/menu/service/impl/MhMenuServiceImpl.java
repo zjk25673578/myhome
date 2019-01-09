@@ -94,6 +94,15 @@ public class MhMenuServiceImpl implements MhMenuService {
     }
 
     @Override
+    public int removeMenu(String ids, HttpServletRequest request) {
+        if (ids != null && ids.trim().length() > 0) {
+            String idSign = mhMenuMapper.getChildrenMenuIds(ids); // 通过函数查询当前菜单以及子菜单
+            return mhMenuMapper.removeMenus(idSign.split(","));
+        }
+        return 0;
+    }
+
+    @Override
     public int remove(MhMenu entity, HttpServletRequest request) {
         return 0;
     }

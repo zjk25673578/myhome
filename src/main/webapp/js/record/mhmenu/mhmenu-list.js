@@ -54,42 +54,27 @@ layui.config({
 
     // 添加节点之前事件
     eleTree.on("nodeInsertBefore(menuTree)", function (d) {
-        if (validParentId(d.data)) {
-            console.log(d.data);    // 点击节点对于的数据
-            console.log(d.node);    // 点击的dom节点
-            console.log(this);      // 与d.node相同
-            d.setData({             // 自定义数据
-                key: 666,
-                label: "aaa"
-            });
-        } else {
-            d.stop(); // 取消添加
-            layer.msg("呵呵呵");
-        }
+        layer.msg("没有这个功能, 只能添加子节点");
     });
 
     // 添加节点之后事件
     eleTree.on("nodeInsertAfter(menuTree)", function (d) {
-        if (validParentId(d.data)) {
-            console.log(d.data);    // 点击节点对于的数据
-            console.log(d.node);    // 点击的dom节点
-            console.log(this);      // 与d.node相同
-            d.stop();               // 取消添加
-            d.setData({             // 自定义数据
-                key: 666,
-                label: "aaa"
-            });
-        } else {
-            d.stop(); // 取消添加
-            layer.msg("呵呵呵");
-        }
+        layer.msg("没有这个功能, 只能添加子节点");
     });
 
     // 节点被删除事件
     eleTree.on("nodeRemove(menuTree)", function (d) {
-        console.log(d.data);        // 点击节点对于的数据
-        console.log(d.node);        // 点击的dom节点
-        d.stop();                   // 取消删除
+        d.stop();
+        layer.confirm('确定删除<font color="blue">' + d.data.label + '</font>？', {
+            btn: ['确定', '取消'] //可以无限个按钮
+            , yes: function (index, layero) {
+                $.post(_ctx + "/mhmenu/removeMenu", {ids: d.data.id}, function (resultData) {
+                    layer.msg(resultData.message, {icon: resultData.iconType});
+                    layer.close(index);
+                    el.reload();
+                }, "json");
+            }
+        });
     });
 
     /**

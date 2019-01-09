@@ -141,10 +141,29 @@ public class MhMenuController {
         return msg;
     }
 
+    /**
+     * 添加子级菜单
+     * @param menu
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/appendMenu")
     public Message appendMenu(MhMenu menu, HttpServletRequest request) {
         int r = mhMenuService.saveOrUpdate(menu, request);
+        return MyUtil.msg(r);
+    }
+
+    /**
+     * 删除菜单
+     * @param ids
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/removeMenu")
+    public Message removeMenu(String ids, HttpServletRequest request) {
+        int r = mhMenuService.removeMenu(ids, request);
         return MyUtil.msg(r);
     }
 }

@@ -231,4 +231,10 @@
         count(1)
         from mh_menu
     </select>
+    <update id="removeMenus">
+        update mh_menu set status='0' where ids in
+        <foreach collection="array" item="id" close=")" open="(" separator=",">
+            #{id}
+        </foreach>
+    </update>
 </mapper>
