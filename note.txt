@@ -13,4 +13,4 @@ elemTree发现bug
 用户的登录验证太少
 com.hafa.users.service.impl.MhUsersServiceImpl.getUserByUnamePword(MhUsers)这个方法需要设计逻辑
 
-当用户拥有A菜单权限, 后来在A菜单下添加了子菜单, 相对于这个用户讲是不是就拥有了A菜单下的所有的权限
+当用户拥有A菜单权限, 后来在A菜单下添加了子菜单, 相对于这个用户是不是就拥有了A菜单下的所有的权限

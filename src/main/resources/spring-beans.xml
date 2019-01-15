@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 自定义的spring bean -->
+    <!-- 登陆拦截器 -->
+    <bean id="loginInterceptor" class="com.hafa.commons.util.LoginInterceptor"/>
+
+    <!-- 切面类 -->
+    <bean id="logginAspect" class="com.hafa.commons.util.LogginAspect"/>
+
+    <!-- 日期类型的转换器 -->
+    <bean id="myDateFormat" class="com.hafa.commons.util.MyDateFormatUtil"/>
+</beans>

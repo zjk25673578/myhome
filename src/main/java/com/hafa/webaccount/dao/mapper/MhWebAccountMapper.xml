@@ -9,7 +9,6 @@
     <result column="emails" jdbcType="VARCHAR" property="emails" />
     <result column="mphone" jdbcType="VARCHAR" property="mphone" />
     <result column="note" jdbcType="VARCHAR" property="note" />
-    <result column="pwordhis" jdbcType="INTEGER" property="pwordhis" />
     <result column="userid" jdbcType="INTEGER" property="userid" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
@@ -20,7 +19,7 @@
     <result column="updatename" jdbcType="VARCHAR" property="updatename" />
   </resultMap>
   <sql id="Base_Column_List">
-    ids, webid, accounts, pword, emails, mphone, note, pwordhis, userid, status, createtime, creator, createname, updatetime,
+    ids, webid, accounts, pword, emails, mphone, note, userid, status, createtime, creator, createname, updatetime,
     updator, updatename
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -36,12 +35,12 @@
   <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.webaccount.model.MhWebAccount" useGeneratedKeys="true">
     insert into mh_web_account (webid, accounts, pword, 
       emails, mphone, note, 
-      pwordhis, userid, status, createtime, creator, createname, updatetime,
+      userid, status, createtime, creator, createname, updatetime,
     updator, updatename
       )
     values (#{webid,jdbcType=INTEGER}, #{accounts,jdbcType=VARCHAR}, #{pword,jdbcType=VARCHAR}, 
       #{emails,jdbcType=VARCHAR}, #{mphone,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
-      #{pwordhis,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+      #{userid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
       #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
       #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR}
       )
@@ -66,9 +65,6 @@
       </if>
       <if test="note != null">
         note,
-      </if>
-      <if test="pwordhis != null">
-        pwordhis,
       </if>
       <if test="userid != null">
         userid,
@@ -113,9 +109,6 @@
       </if>
       <if test="note != null">
         #{note,jdbcType=VARCHAR},
-      </if>
-      <if test="pwordhis != null">
-        #{pwordhis,jdbcType=INTEGER},
       </if>
       <if test="userid != null">
         #{userid,jdbcType=INTEGER},
@@ -164,9 +157,6 @@
       <if test="note != null">
         note = #{note,jdbcType=VARCHAR},
       </if>
-      <if test="pwordhis != null">
-        pwordhis = #{pwordhis,jdbcType=INTEGER},
-      </if>
       <if test="userid != null">
         userid = #{userid,jdbcType=INTEGER},
       </if>
@@ -202,7 +192,6 @@
       emails = #{emails,jdbcType=VARCHAR},
       mphone = #{mphone,jdbcType=VARCHAR},
       note = #{note,jdbcType=VARCHAR},
-      pwordhis = #{pwordhis,jdbcType=INTEGER},
       userid = #{userid,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       createtime = #{createtime,jdbcType=TIMESTAMP},

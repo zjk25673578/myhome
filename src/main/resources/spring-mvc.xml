@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
@@ -88,8 +89,6 @@
         <property name="defaultEncoding" value="utf-8"/>
     </bean>
 
-    <!-- 日期类型的转换器 -->
-    <bean id="myDateFormat" class="com.hafa.commons.util.MyDateFormatUtil"/>
 
     <bean id="factoryBean"
           class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
@@ -146,7 +145,7 @@
             <mvc:exclude-mapping path="/validCode"/>
             <mvc:exclude-mapping path="/error404"/>
             <mvc:exclude-mapping path="/error500"/>
-            <bean class="com.hafa.commons.util.LoginInterceptor"/>
+            <ref bean="loginInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>

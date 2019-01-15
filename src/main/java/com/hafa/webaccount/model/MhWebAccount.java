@@ -15,8 +15,6 @@ public class MhWebAccount extends CommonModel {
 
     private String note;
 
-    private Integer pwordhis;
-
     private Integer userid;
 
     private Integer status;
@@ -67,14 +65,6 @@ public class MhWebAccount extends CommonModel {
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    public Integer getPwordhis() {
-        return pwordhis;
-    }
-
-    public void setPwordhis(Integer pwordhis) {
-        this.pwordhis = pwordhis;
     }
 
     public Integer getUserid() {

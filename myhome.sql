@@ -529,7 +529,6 @@ CREATE TABLE `mh_web_account` (
   `emails` varchar(200) DEFAULT NULL COMMENT '邮箱',
   `mphone` varchar(20) DEFAULT NULL COMMENT '手机',
   `note` varchar(300) DEFAULT NULL COMMENT '备注',
-  `pwordhis` int(8) DEFAULT NULL COMMENT '密码历史id',
   `userid` int(8) DEFAULT NULL COMMENT '用户id',
   `status` int(4) DEFAULT NULL COMMENT '有效标志',
   `createtime` datetime DEFAULT NULL COMMENT '创建日期',
