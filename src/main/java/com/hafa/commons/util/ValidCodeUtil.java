@@ -5,10 +5,22 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
+/**
+ * 生成验证码图片的工具类
+ */
 public class ValidCodeUtil {
 
     private static final Random random = new Random();
 
+    /**
+     * 生成图片, 并将验证码放入session中
+     *
+     * @param request request对象, 从这里获取session
+     * @param width   图片宽
+     * @param height  图片高
+     * @return
+     * @throws Exception
+     */
     public static BufferedImage drawValidCode(HttpServletRequest request, int width, int height) throws Exception {
 
         BufferedImage bufImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
