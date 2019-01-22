@@ -10,8 +10,16 @@ public interface MhDictMapper extends BaseMapper<MhDict> {
 
     /**
      * 批量添加字典数据
+     *
      * @param args
      * @return
      */
     int saveMultiple(Map<String, Object> args);
+
+    /**
+     * 获取当前字典表中所有的diccode
+     *
+     * @return
+     */
+    List<Map<String, Object>> getDicCodeList();
 }

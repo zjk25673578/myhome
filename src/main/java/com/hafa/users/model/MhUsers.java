@@ -82,4 +82,28 @@ public class MhUsers extends CommonModel {
     public void setSetups(Integer setups) {
         this.setups = setups;
     }
+
+    private static ThreadLocal<MhUsers> threadLocal = ThreadLocal.withInitial(() -> new MhUsers());
+
+    public static void set(MhUsers user) {
+        threadLocal.set(user);
+    }
+
+    public static MhUsers get() {
+        return threadLocal.get();
+    }
+
+    @Override
+    public String toString() {
+        return "MhUsers{" +
+                "uname='" + uname + '\'' +
+                ", pword='" + pword + '\'' +
+                ", rname='" + rname + '\'' +
+                ", pic='" + pic + '\'' +
+                ", userType=" + userType +
+                ", homeid=" + homeid +
+                ", status=" + status +
+                ", setups=" + setups +
+                '}';
+    }
 }

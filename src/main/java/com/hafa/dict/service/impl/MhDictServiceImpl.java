@@ -10,9 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -73,5 +70,10 @@ public class MhDictServiceImpl implements MhDictService {
             }
         }
         return -1;
+    }
+
+    @Override
+    public List<Map<String, Object>> getDicCodeList() {
+        return mhDictMapper.getDicCodeList();
     }
 }

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>字典管理</title>
+    <title>支出记录</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
     <@header.baseConfig />
-    <script type="text/javascript" src="${ctx}/js/record/dict/dict-list.js"></script>
+    <script type="text/javascript" src="${ctx}/js/record/finance/finance-out.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -19,7 +19,7 @@
 <div class="x-body">
     <div class="layui-row">
         <fieldset class="layui-elem-field">
-            <legend><i class="fa fa-search-plus fa-fw" aria-hidden="true"></i>字典搜索</legend>
+            <legend><i class="fa fa-search-plus fa-fw" aria-hidden="true"></i>数据搜索</legend>
             <div class="layui-field-box">
                 <!-- 查询表单 -->
                 <form id="search-form" class="layui-form layui-col-md12">
@@ -46,9 +46,8 @@
             </div>
         </fieldset>
     </div>
-    <table id="dict-table" class="layui-table" lay-filter="dict-table"></table>
+    <table id="finance-out-table" class="layui-table" lay-filter="finance-out-table"></table>
 </div>
-</body>
 
 <!-- layui模板 -->
 <script type="text/html" id="toolbar">
@@ -113,4 +112,5 @@
         </div>
     </form>
 </script>
+</body>
 </html>

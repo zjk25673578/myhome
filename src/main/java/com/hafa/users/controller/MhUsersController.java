@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -96,7 +95,7 @@ public class MhUsersController {
     /**
      * 单个的删除
      *
-     * @param ids 单条记录的主键
+     * @param ids     单条记录的主键
      * @param request
      * @return
      */
@@ -110,7 +109,7 @@ public class MhUsersController {
     /**
      * 批量删除
      *
-     * @param ids 多条记录的主键字符串, 以逗号分隔
+     * @param ids     多条记录的主键字符串, 以逗号分隔
      * @param request
      * @return
      */
@@ -129,6 +128,7 @@ public class MhUsersController {
 
     /**
      * 更改用户的启用禁用
+     *
      * @param ids
      * @param setups
      * @param request

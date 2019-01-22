@@ -4,6 +4,8 @@ import com.hafa.commons.service.BaseService;
 import com.hafa.dict.model.MhDict;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 public interface MhDictService extends BaseService<MhDict> {
     /**
@@ -15,4 +17,11 @@ public interface MhDictService extends BaseService<MhDict> {
      * @return
      */
     int saveMultiple(MhDict dict, HttpServletRequest request);
+
+    /**
+     * 获取当前字典中所有的diccode
+     *
+     * @return
+     */
+    List<Map<String, Object>> getDicCodeList();
 }

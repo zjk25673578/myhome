@@ -176,8 +176,8 @@
         updator, updatename
         from mh_dict
         <where>
-            <if test="ids != null and ids != ''">
-                ids=#{ids}
+            <if test="diccode != null and diccode != ''">
+                diccode=#{diccode}
             </if>
             <if test="dicvalue != null and dicvalue != ''">
                 and dicvalue like concat('%',#{dicvalue},'%')
@@ -196,8 +196,8 @@
         count(1)
         from mh_dict
         <where>
-            <if test="ids != null and ids != ''">
-                ids=#{ids}
+            <if test="diccode != null and diccode != ''">
+                diccode=#{diccode}
             </if>
             <if test="dicvalue != null and dicvalue != ''">
                 and dicvalue like concat('%',#{dicvalue},'%')
@@ -215,4 +215,9 @@
             (#{diccode}, #{dv}, #{desp}, #{status}, #{createtime}, #{creator}, #{createname})
         </foreach>
     </insert>
+
+    <select id="getDicCodeList" resultType="Map">
+        SELECT diccode, desp FROM mh_dict WHERE STATUS='1' GROUP BY
+        diccode, desp
+    </select>
 </mapper>

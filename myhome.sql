@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2019-01-09 23:31:09
+Date: 2019-01-22 23:38:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -60,7 +60,7 @@ CREATE TABLE `mh_dict` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='数据字典表';
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COMMENT='数据字典表';
 
 -- ----------------------------
 -- Records of mh_dict
@@ -90,6 +90,9 @@ INSERT INTO `mh_dict` VALUES ('35', null, 'caiwuleibiein', '啃老', '财务类�
 INSERT INTO `mh_dict` VALUES ('36', null, 'caiwuleibiein', '赌博', '财务类别(收入)', '1', '2019-01-08 19:26:37', '1', 'admin', null, null, null);
 INSERT INTO `mh_dict` VALUES ('37', null, 'caiwuleibiein', '贩毒', '财务类别(收入)', '1', '2019-01-08 19:26:37', '1', 'admin', null, null, null);
 INSERT INTO `mh_dict` VALUES ('38', null, 'caiwuleibiein', '地上捡的', '财务类别(收入)', '1', '2019-01-08 19:26:37', '1', 'admin', null, null, null);
+INSERT INTO `mh_dict` VALUES ('39', null, 'xingbie', '不男不女', '性别', '1', '2019-01-22 21:46:12', '1', 'admin', null, null, null);
+INSERT INTO `mh_dict` VALUES ('40', null, 'xingbie', '未知', '性别', '1', '2019-01-22 21:46:12', '1', 'admin', null, null, null);
+INSERT INTO `mh_dict` VALUES ('41', null, 'xingbie', '待定', '性别', '1', '2019-01-22 21:46:12', '1', 'admin', null, null, null);
 
 -- ----------------------------
 -- Table structure for mh_education
@@ -126,7 +129,7 @@ DROP TABLE IF EXISTS `mh_finance`;
 CREATE TABLE `mh_finance` (
   `ids` int(8) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `userid` int(8) DEFAULT NULL COMMENT '用户id',
-  `ftype` int(4) DEFAULT NULL COMMENT '进出账',
+  `ftype` int(4) DEFAULT NULL COMMENT '进出账(0:出账, 1:进账)',
   `cash` decimal(8,2) DEFAULT NULL COMMENT '金额',
   `createtype` int(8) DEFAULT NULL COMMENT '产生类型',
   `prodate` datetime DEFAULT NULL COMMENT '产生日期',
@@ -282,9 +285,9 @@ INSERT INTO `mh_menu` VALUES ('8', '7', '相册', '', 'fa fa-photo', '1', '0', '
 INSERT INTO `mh_menu` VALUES ('9', '7', '家庭留言本', '', 'fa fa-rocket', '2', '0', '1', null, null, null, '2018-12-23 13:11:16', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('10', '0', '大事记', '', 'fa fa-tags', '4', '0', '1', null, null, null, '2018-12-23 12:54:53', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('11', '0', '财政信息', '', 'fa fa-database', '5', '1', '1', null, null, null, '2019-01-09 22:47:52', '1', 'admin');
-INSERT INTO `mh_menu` VALUES ('12', '11', '收入记录', '', 'fa fa-wheelchair', '2', '0', '1', null, null, null, '2018-12-23 13:11:29', '1', 'zhaodashuai');
-INSERT INTO `mh_menu` VALUES ('13', '11', '支出记录', '', 'fa fa-wheelchair-alt', '3', '0', '1', null, null, null, '2018-12-23 13:11:32', '1', 'zhaodashuai');
-INSERT INTO `mh_menu` VALUES ('14', '11', '月统计', '', 'fa fa-line-chart', '1', '0', '1', null, null, null, '2018-12-30 22:22:12', '1', 'zhaodashuai');
+INSERT INTO `mh_menu` VALUES ('12', '11', '收入记录', '/finance/finance-in', 'fa fa-wheelchair', '2', '0', '1', null, null, null, '2019-01-22 22:02:55', '1', 'admin');
+INSERT INTO `mh_menu` VALUES ('13', '11', '支出记录', '/finance/finance-out', 'fa fa-wheelchair-alt', '3', '0', '1', null, null, null, '2019-01-22 22:03:03', '1', 'admin');
+INSERT INTO `mh_menu` VALUES ('14', '11', '月统计', '/finance/finance-month-view', 'fa fa-line-chart', '1', '0', '1', null, null, null, '2019-01-22 22:03:16', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('15', '0', '旅行计划', '', 'fa fa-train', '6', '1', '1', null, null, null, '2018-12-23 12:54:56', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('16', '15', '旅行记录', '', 'fa fa-map', '2', '0', '1', null, null, null, '2018-12-23 13:11:42', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('17', '15', '旅行日记', '', 'fa fa-file-text', '1', '0', '1', null, null, null, '2018-12-23 13:11:38', '1', 'zhaodashuai');
@@ -400,7 +403,7 @@ CREATE TABLE `mh_users` (
 INSERT INTO `mh_users` VALUES ('1', 'admin', '123456', '赵大帅', null, '1', null, '1', '1', null, null, null, '2018-12-16 14:37:26', '1', 'zhaodashuai');
 INSERT INTO `mh_users` VALUES ('13', 'xiaohuang', '123456', '小黄', null, '0', null, '0', '1', '2019-01-06 23:00:42', '1', 'zhaodashuai', '2019-01-06 23:04:23', '1', 'admin');
 INSERT INTO `mh_users` VALUES ('14', 'xiaolv', '123456', '小绿', null, '0', null, '1', '1', '2019-01-06 23:01:11', '1', 'zhaodashuai', '2019-01-07 13:49:31', '1', 'admin');
-INSERT INTO `mh_users` VALUES ('15', 'xiaozi', '123456', '小紫', null, '0', null, '1', '1', '2019-01-06 23:02:22', '1', 'admin', '2019-01-06 23:04:23', '1', 'admin');
+INSERT INTO `mh_users` VALUES ('15', 'xiaozi', '123456', '小紫', null, '0', null, '1', '1', '2019-01-06 23:02:22', '1', 'admin', '2019-01-16 22:13:35', '1', 'admin');
 INSERT INTO `mh_users` VALUES ('16', 'xiaohong', '123456', '小红', null, '0', null, '1', '1', '2019-01-07 15:24:30', '1', 'admin', null, null, null);
 INSERT INTO `mh_users` VALUES ('17', 'xiaocheng', '123456', '小橙', null, '0', null, '1', '1', '2019-01-07 15:24:45', '1', 'admin', null, null, null);
 INSERT INTO `mh_users` VALUES ('18', 'xiaoqing', '123456', '小青', null, '0', null, '1', '1', '2019-01-07 15:24:58', '1', 'admin', null, null, null);
@@ -473,7 +476,7 @@ CREATE TABLE `mh_user_menu` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='用户菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='用户菜单表';
 
 -- ----------------------------
 -- Records of mh_user_menu
@@ -493,6 +496,7 @@ INSERT INTO `mh_user_menu` VALUES ('18', '16', '4', null, null, null, null, null
 INSERT INTO `mh_user_menu` VALUES ('19', '16', '5', null, null, null, null, null, null);
 INSERT INTO `mh_user_menu` VALUES ('20', '16', '6', null, null, null, null, null, null);
 INSERT INTO `mh_user_menu` VALUES ('22', '13', '2', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('23', '17', '11', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for mh_webinfo
@@ -529,6 +533,7 @@ CREATE TABLE `mh_web_account` (
   `emails` varchar(200) DEFAULT NULL COMMENT '邮箱',
   `mphone` varchar(20) DEFAULT NULL COMMENT '手机',
   `note` varchar(300) DEFAULT NULL COMMENT '备注',
+  `pwordhis` int(8) DEFAULT NULL COMMENT '密码历史id',
   `userid` int(8) DEFAULT NULL COMMENT '用户id',
   `status` int(4) DEFAULT NULL COMMENT '有效标志',
   `createtime` datetime DEFAULT NULL COMMENT '创建日期',

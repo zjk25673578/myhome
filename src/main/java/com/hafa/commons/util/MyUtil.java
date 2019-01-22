@@ -2,7 +2,6 @@ package com.hafa.commons.util;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.hafa.commons.entity.CommonModel;
 import com.hafa.commons.entity.Message;
 import com.hafa.commons.entity.TreeModel;
 import com.hafa.commons.util.enums.MessageEnum;
@@ -172,6 +171,7 @@ public class MyUtil {
 
     /**
      * 初始化layui返回数据
+     *
      * @param count
      * @param list
      * @return

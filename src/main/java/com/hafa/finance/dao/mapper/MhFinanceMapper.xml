@@ -191,4 +191,6 @@
         updatename = #{updatename,jdbcType=VARCHAR}
         where ids = #{ids,jdbcType=INTEGER}
     </update>
+    <select id="searchFor" resultType="Map"></select>
+    <select id="countFor" resultType="Integer"></select>
 </mapper>

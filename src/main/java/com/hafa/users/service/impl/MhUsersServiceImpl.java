@@ -2,7 +2,6 @@ package com.hafa.users.service.impl;
 
 import com.hafa.commons.entity.CommonModel;
 import com.hafa.commons.util.MyUtil;
-import com.hafa.commons.util.PageBean;
 import com.hafa.users.dao.MhUsersMapper;
 import com.hafa.users.model.MhUsers;
 import com.hafa.users.service.MhUsersService;
@@ -11,8 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
