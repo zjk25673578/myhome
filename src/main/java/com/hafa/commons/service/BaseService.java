@@ -5,7 +5,6 @@ import com.hafa.users.model.MhUsers;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Map;
 
 public interface BaseService<T> {
@@ -13,6 +12,7 @@ public interface BaseService<T> {
     /**
      * 添加或者保存一条数据<br>
      * 根据主键是否为空作为依据
+     *
      * @param entity
      * @param request
      * @return
@@ -21,6 +21,7 @@ public interface BaseService<T> {
 
     /**
      * 删除一条记录(逻辑删除)
+     *
      * @param entity
      * @return
      */
@@ -28,6 +29,7 @@ public interface BaseService<T> {
 
     /**
      * 删除一条指定主键的记录(逻辑删除)
+     *
      * @param ids
      * @return
      */
@@ -35,6 +37,7 @@ public interface BaseService<T> {
 
     /**
      * 根据指定的分页信息查询当前页码的列表信息
+     *
      * @param args
      * @return
      */

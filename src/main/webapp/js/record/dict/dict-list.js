@@ -22,9 +22,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
             {field: 'parentName', title: '父级数据', width: 100},
             {field: 'diccode', title: 'CDKEY'},
             {field: 'dicvalue', title: '值'},
-            {
-                field: 'desp', title: '描述'
-            },
+            {field: 'desp', title: '描述'},
             {
                 field: 'createtime', title: '创建时间', templet: function (d) {
                     return timestamp2Date(d.createtime);

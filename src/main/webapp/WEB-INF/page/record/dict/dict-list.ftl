@@ -91,7 +91,7 @@
             <label class="layui-form-label">值：</label>
             <div class="layui-input-inline">
                 <input type="text" lay-verify="required" name="dicvalue"
-                       class="layui-input" value="{{ d.dicvalue }}" placeholder="值可以写多个, 逗号隔开"/>
+                       class="layui-input" value="{{ d.dicvalue }}" placeholder="支持多个, 逗号(不分中英)隔开"/>
             </div>
         </div>
         <div class="layui-form-item">

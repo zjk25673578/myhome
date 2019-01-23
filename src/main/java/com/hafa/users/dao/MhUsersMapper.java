@@ -11,6 +11,7 @@ public interface MhUsersMapper extends BaseMapper<MhUsers> {
 
     /**
      * 获取指定用户名密码的用户
+     *
      * @param uname
      * @param pword
      * @return
@@ -19,6 +20,7 @@ public interface MhUsersMapper extends BaseMapper<MhUsers> {
 
     /**
      * 批量删除用户对象(逻辑删除)
+     *
      * @param args
      * @return
      */
@@ -26,12 +28,14 @@ public interface MhUsersMapper extends BaseMapper<MhUsers> {
 
     /**
      * 获取系统中超级管理员的数量
+     *
      * @return
      */
     Integer selectAdmins();
 
     /**
      * 在指定列表中验证是否含有超级管理员
+     *
      * @param ids 用户信息的主键, 以","分隔
      * @return
      */

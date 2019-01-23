@@ -18,10 +18,13 @@ import java.util.Map;
 @Repository
 public class MhMenuServiceImpl implements MhMenuService {
 
-    public static Map<String, String> model = new HashMap<>();
-
     @Autowired
     private MhMenuMapper mhMenuMapper;
+
+    /**
+     * eleTree的数据转换模型对象
+     */
+    public static Map<String, String> model = new HashMap<>();
 
     static {
         model.put("id", "ids");
@@ -104,7 +107,10 @@ public class MhMenuServiceImpl implements MhMenuService {
 
     @Override
     public int remove(MhMenu entity, HttpServletRequest request) {
-        return 0;
+        if (entity == null) {
+            return -1;
+        }
+        return remove(entity.getIds(), request);
     }
 
     @Override

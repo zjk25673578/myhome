@@ -2,6 +2,9 @@ package com.hafa.users.model;
 
 import com.hafa.commons.entity.CommonModel;
 
+/**
+ * 系统用户实体类
+ */
 public class MhUsers extends CommonModel {
     private String uname;
 
@@ -9,15 +12,15 @@ public class MhUsers extends CommonModel {
 
     private String rname;
 
-    private String pic;
+    private String pic; // 头像保存路径
 
-    private Integer userType;
+    private Integer userType; // 用户类型: 1,超级管理员; 0:普通用户
 
     private Integer homeid;
 
     private Integer status;
 
-    private Integer setups;
+    private Integer setups; // 1: 启用, 其他: 禁用
 
     public String getUname() {
         return uname;
@@ -81,29 +84,5 @@ public class MhUsers extends CommonModel {
 
     public void setSetups(Integer setups) {
         this.setups = setups;
-    }
-
-    private static ThreadLocal<MhUsers> threadLocal = ThreadLocal.withInitial(() -> new MhUsers());
-
-    public static void set(MhUsers user) {
-        threadLocal.set(user);
-    }
-
-    public static MhUsers get() {
-        return threadLocal.get();
-    }
-
-    @Override
-    public String toString() {
-        return "MhUsers{" +
-                "uname='" + uname + '\'' +
-                ", pword='" + pword + '\'' +
-                ", rname='" + rname + '\'' +
-                ", pic='" + pic + '\'' +
-                ", userType=" + userType +
-                ", homeid=" + homeid +
-                ", status=" + status +
-                ", setups=" + setups +
-                '}';
     }
 }

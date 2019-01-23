@@ -54,7 +54,7 @@ public class MhDictServiceImpl implements MhDictService {
     @Override
     public int saveMultiple(MhDict dict, HttpServletRequest request) {
         if (dict != null && dict.getDicvalue() != null) {
-            String[] dicvalues = dict.getDicvalue().split(",");
+            String[] dicvalues = dict.getDicvalue().split("[,，]+");
             Map<String, Object> args = null;
             try {
                 args = CommonModel.get("c", request);

@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 数据字典控制器类
+ */
 @Controller
 @RequestMapping("/dict")
 public class MhDictController {
@@ -23,17 +26,30 @@ public class MhDictController {
     @Autowired
     private MhDictService mhDictService;
 
+    /**
+     * 跳转至字典列表页面
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping("/list")
     public String index(Model model) {
-        List<Map<String, Object>> dicCodeList = mhDictService.getDicCodeList();
+        List<Map<String, Object>> dicCodeList = mhDictService.getDicCodeList(); // 获取数据字典中所有分类
         model.addAttribute("dicList", dicCodeList);
         return "record/dict/dict-list";
     }
 
+    /**
+     * 获取所有字典数据
+     *
+     * @param key
+     * @param pageBean
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/dictList")
     public Map<String, Object> dictList(String key, PageBean pageBean) {
-        JSONObject args = JSONObject.parseObject(key);
+        JSONObject args = JSONObject.parseObject(key); // 查询条件的转换
         Map<String, Object> resultMap = null;
         try {
             resultMap = mhDictService.searchFor(MyUtil.bean2Map(args, pageBean));
@@ -47,18 +63,35 @@ public class MhDictController {
         return MyUtil.layData(-1, "mhDictService.searchFor(MyUtil.bean2Map(args, pageBean))返回null", 0, null);
     }
 
+    /**
+     * 删除指定的字典信息
+     *
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/deleteDict")
-    public JSONObject deleteDict() {
-        return null;
+    public Message deleteDict() {
+        return MyUtil.msg(false, "功能未开发...");
     }
 
+    /**
+     * 删除指定的列表中的字典数据
+     *
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/deleteMultiple")
-    public JSONObject deleteMultiple() {
-        return null;
+    public Message deleteMultiple() {
+        return MyUtil.msg(false, "功能未开发...");
     }
 
+    /**
+     * 保存字典信息
+     *
+     * @param dict
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/save")
     public Message save(MhDict dict, HttpServletRequest request) {
@@ -66,6 +99,13 @@ public class MhDictController {
         return MyUtil.msg(r);
     }
 
+    /**
+     * 批量保存字典信息
+     *
+     * @param dict
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/saveMultiple")
     public Message saveMultiple(MhDict dict, HttpServletRequest request) {
@@ -73,6 +113,13 @@ public class MhDictController {
         return MyUtil.msg(r);
     }
 
+    /**
+     * 修改指定的字典信息
+     *
+     * @param dict
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/update")
     public Message update(MhDict dict, HttpServletRequest request) {

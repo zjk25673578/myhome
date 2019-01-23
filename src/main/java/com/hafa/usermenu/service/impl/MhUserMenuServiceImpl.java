@@ -34,6 +34,7 @@ public class MhUserMenuServiceImpl implements MhUserMenuService {
         // 获取子菜单集合
         String childrenIds = mhMenuMapper.getChildrenMenuIds(menuid);
         // 需要更改的菜单按钮
+        // 因为Set特点时不重复
         Set<Integer> insertMenuIds = MyUtil.concatMenuIds(childrenIds, parentMenuIds);
 
         if (flag) { // 选中, 做添加操作
@@ -60,7 +61,10 @@ public class MhUserMenuServiceImpl implements MhUserMenuService {
 
     @Override
     public int remove(MhUserMenu entity, HttpServletRequest request) {
-        return 0;
+        if (entity == null) {
+            return -1;
+        }
+        return remove(entity.getIds(), request);
     }
 
     @Override

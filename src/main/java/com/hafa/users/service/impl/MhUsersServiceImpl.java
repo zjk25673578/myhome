@@ -21,17 +21,19 @@ public class MhUsersServiceImpl implements MhUsersService {
 
     @Override
     public MhUsers getUserByUnamePword(MhUsers user) {
+        // 根据用户名密码获取用户列表(可能会有重复)
         List<MhUsers> listUser = mhUsersMapper.selectByUnamePword(user.getUname(), user.getPword());
-        if (listUser.size() == 1) {
-            return listUser.get(0);
+        if (listUser.size() == 1) { // 如果只有一个用户被查询到
+            return listUser.get(0); // 返回此用户对象
         }
-        return null;
+        return null; // 否则返回null, 抛出异常
     }
 
     @Override
     public Map<String, Object> searchFor(Map<String, Object> args) {
+        // 根据指定条件查询用户列表
         List<Map<String, Object>> list = mhUsersMapper.searchFor(args);
-        return MyUtil.searchForData(mhUsersMapper.countFor(args), list);
+        return MyUtil.searchForData(mhUsersMapper.countFor(args), list); // 返回layui需要的数据结构
     }
 
     @Override
@@ -54,9 +56,9 @@ public class MhUsersServiceImpl implements MhUsersService {
     public int updateSetups(String ids, String setups, HttpServletRequest request) {
         MhUsers user = mhUsersMapper.selectByPrimaryKey(Integer.parseInt(ids));
         if (user.getUserType() == 1) {
-            return -8;
+            return -8; // 超级管理员的信息只能由本人从个人信息页面修改
         }
-        user.setSetups(Integer.parseInt(setups));
+        user.setSetups(Integer.parseInt(setups)); // 修改为禁用状态
         user.setValue("u", request);
         return mhUsersMapper.updateByPrimaryKeySelective(user);
     }
@@ -69,8 +71,8 @@ public class MhUsersServiceImpl implements MhUsersService {
         }
         if (entity.getIds() == null) { // 添加操作
             entity.setPword("123456"); // 默认密码
-            entity.setStatus(1);
-            entity.setSetups(1);
+            entity.setStatus(1); // 有效标志
+            entity.setSetups(1); // 启用状态
             entity.setValue("c", request);
             return mhUsersMapper.insertSelective(entity);
         } else { // 修改操作
@@ -95,7 +97,7 @@ public class MhUsersServiceImpl implements MhUsersService {
     public int remove(Serializable ids, HttpServletRequest request) {
         MhUsers user = mhUsersMapper.selectByPrimaryKey(ids);
         if (user == null) {
-            return -1;
+            return -1; // 不存在的用户
         }
         if (user.getUserType() == 1) {
             return -10; // 不能删除超级管理员

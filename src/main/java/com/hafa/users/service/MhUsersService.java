@@ -6,10 +6,14 @@ import com.hafa.users.model.MhUsers;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.InvocationTargetException;
 
+/**
+ * 系统用户业务处理类
+ */
 public interface MhUsersService extends BaseService<MhUsers> {
 
     /**
      * 根据用户名和密码查询用户
+     *
      * @param user
      * @return
      */
@@ -17,6 +21,7 @@ public interface MhUsersService extends BaseService<MhUsers> {
 
     /**
      * 删除指定的用户信息列表(批量删除, 逻辑删除)
+     *
      * @param ids
      * @param request
      * @return
@@ -27,6 +32,7 @@ public interface MhUsersService extends BaseService<MhUsers> {
 
     /**
      * 更改用户状态(启用, 禁用)
+     *
      * @param ids
      * @param setups
      * @param request

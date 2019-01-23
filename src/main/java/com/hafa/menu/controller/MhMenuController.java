@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 系统菜单控制器类
+ */
 @Controller
 @RequestMapping("/mhmenu")
 public class MhMenuController {
@@ -27,7 +30,8 @@ public class MhMenuController {
     private MhUserMenuService mhUserMenuService;
 
     /**
-     * 跳转至菜单管理页面
+     * 跳转至菜单列表页面
+     *
      * @return
      */
     @RequestMapping("/list")
@@ -37,6 +41,10 @@ public class MhMenuController {
 
     /**
      * 跳转至菜单树页面
+     * 使用场景:
+     * 1, 用户菜单授权
+     *
+     * @param ids 用户主键id, 传至页面上用于ajax获取指定用户拥有的菜单
      * @return
      */
     @RequestMapping("/tree")
@@ -47,6 +55,7 @@ public class MhMenuController {
 
     /**
      * 获取当前登陆用户能看到的菜单(权限)
+     *
      * @param request
      * @return
      */
@@ -58,49 +67,40 @@ public class MhMenuController {
         if (list != null && list.size() > 0) {
             msg = MyUtil.msg(1, "成功返回数据", list);
         } else {
-            msg = MyUtil.msg(-2);
+            msg = MyUtil.msg(-2); // 没有数据
         }
         return msg;
     }
 
     /**
      * 菜单管理页面的菜单树的数据
+     *
      * @return
      */
     @ResponseBody
     @RequestMapping("/menuTree")
     public Map<String, Object> menuTreeList() {
-        Map<String, Object> msg;
         List<TreeModel> list = mhMenuService.menuTreeList();
-        if (list != null && list.size() > 0) {
-            msg = MyUtil.layData(0, "成功返回数据", list.size(), list);
-        } else {
-            msg = MyUtil.layData(-1, "list=" + list, 0, null);
-        }
-        return msg;
+        return this.layData(list);
     }
 
     /**
-     * 用户界面双击时显示的数据
+     * 用户界面数据表格行双击时显示的页面数据
+     *
      * @return
      */
     @ResponseBody
     @RequestMapping("/menuTree/authority")
     public Map<String, Object> menuTreeAuthority() {
-        Map<String, Object> msg;
         List<TreeModel> list = mhMenuService.menuTreeAuthority();
-        if (list != null && list.size() > 0) {
-            msg = MyUtil.layData(0, "成功返回数据", list.size(), list);
-        } else {
-            msg = MyUtil.layData(-1, "list=" + list, 0, null);
-        }
-        return msg;
+        return this.layData(list);
     }
 
     /**
      * 修改菜单树的结构
-     * @param currentId
-     * @param targetId
+     *
+     * @param currentId 菜单主键id
+     * @param targetId  修改后的父级菜单主键id
      * @return
      */
     @ResponseBody
@@ -112,6 +112,7 @@ public class MhMenuController {
 
     /**
      * 修改指定的菜单信息
+     *
      * @param menu
      * @param request
      * @return
@@ -125,6 +126,7 @@ public class MhMenuController {
 
     /**
      * 获取指定菜单下的子菜单, 数据返回给页面的table
+     *
      * @param id
      * @return
      */
@@ -143,6 +145,7 @@ public class MhMenuController {
 
     /**
      * 添加子级菜单
+     *
      * @param menu
      * @param request
      * @return
@@ -156,6 +159,7 @@ public class MhMenuController {
 
     /**
      * 删除菜单
+     *
      * @param ids
      * @param request
      * @return
@@ -165,5 +169,19 @@ public class MhMenuController {
     public Message removeMenu(String ids, HttpServletRequest request) {
         int r = mhMenuService.removeMenu(ids, request);
         return MyUtil.msg(r);
+    }
+
+    /**
+     * @param list
+     * @return
+     */
+    public Map<String, Object> layData(List<TreeModel> list) {
+        Map<String, Object> msg;
+        if (list != null && list.size() > 0) {
+            msg = MyUtil.layData(0, "成功返回数据", list.size(), list);
+        } else {
+            msg = MyUtil.layData(-1, "list=" + list, 0, null);
+        }
+        return msg;
     }
 }

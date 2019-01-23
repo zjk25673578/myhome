@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
+/**
+ * 用户相关控制器类
+ */
 @Controller
 @RequestMapping("/mhusers")
 public class MhUsersController {
@@ -23,6 +26,13 @@ public class MhUsersController {
     @Autowired
     protected MhUsersService mhUsersService;
 
+    /**
+     * 跳转至登陆页面
+     *
+     * @param loginOut
+     * @param session
+     * @return
+     */
     @RequestMapping("/toLogin")
     public String toLogin(boolean loginOut, HttpSession session) {
         if (loginOut) {
@@ -31,11 +41,24 @@ public class MhUsersController {
         return "record/login";
     }
 
+    /**
+     * 跳转至用户列表页面
+     *
+     * @return
+     */
     @RequestMapping("/list")
     public String mhUsersList() {
         return "record/mhusers/mhusers-list";
     }
 
+    /**
+     * 登录请求
+     *
+     * @param user
+     * @param validCode
+     * @param session
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/login")
     public Message login(MhUsers user, String validCode, HttpSession session) {
@@ -57,12 +80,20 @@ public class MhUsersController {
         return MyUtil.msg(1, "登陆成功 ! 系统正在跳转...<br>但是不知道验证码对不对");
     }
 
+    /**
+     * 请求获取用户列表数据
+     *
+     * @param pageBean
+     * @param key
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/userList")
     public Map<String, Object> list(PageBean pageBean, String key) {
-        JSONObject args = JSON.parseObject(key, JSONObject.class);
+        JSONObject args = JSON.parseObject(key, JSONObject.class); // 将页面传递过来的查询参数字符串转换成json对象
         Map<String, Object> result = null;
         try {
+            // 根据指定条件查询
             result = mhUsersService.searchFor(MyUtil.bean2Map(args, pageBean));
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,10 +105,17 @@ public class MhUsersController {
         } else {
             msg = "mhUsersService.searchFor返回结果为null";
         }
-        MyUtil.layData(result, code, msg);
+        MyUtil.layData(result, code, msg); // 组装layui的数据表格的结构
         return result;
     }
 
+    /**
+     * 请求保存用户信息
+     *
+     * @param mhUsers
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/saveUser")
     public Message saveUser(MhUsers mhUsers, HttpServletRequest request) {
@@ -85,6 +123,13 @@ public class MhUsersController {
         return MyUtil.msg(r);
     }
 
+    /**
+     * 请求修改用户信息
+     *
+     * @param mhUsers
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/updateUser")
     public Message updateUser(MhUsers mhUsers, HttpServletRequest request) {
@@ -102,7 +147,7 @@ public class MhUsersController {
     @ResponseBody
     @RequestMapping("/deleteUser")
     public Message deleteUser(String ids, HttpServletRequest request) {
-        int r = mhUsersService.remove(ids, request);
+        int r = mhUsersService.remove(Integer.parseInt(ids), request);
         return MyUtil.msg(r);
     }
 
