@@ -19,14 +19,14 @@
     </div>
     <div id="darkbannerwrap"></div>
     <form method="post" class="layui-form">
-        <input name="uname" placeholder="用户名" type="text" lay-verify="required" class="layui-input"/>
+        <input name="uname" placeholder="用户名" type="text" lay-verify="required" class="layui-input" value="admin"/>
         <hr class="hr15">
-        <input name="pword" lay-verify="required" placeholder="密码" type="password" class="layui-input"/>
+        <input name="pword" lay-verify="required" placeholder="密码" type="password" class="layui-input" value="123456"/>
         <hr class="hr15">
         <div class="layui-form-item layui-col-space15">
             <div class="layui-col-sm6">
-                <input name="validCode" <#--lay-verify="required"--> maxlength="4" placeholder="验证码" type="text"
-                       class="layui-input">
+                <input name="validCode" lay-verify="required" maxlength="4" placeholder="验证码" type="text"
+                       class="layui-input" value="1111">
             </div>
             <div class="layui-col-sm6">
                 <img id="validCode" src="${ctx}/validCode" width="100%" height="50"/>

@@ -1,6 +1,7 @@
 package com.hafa.usermenu.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.hafa.commons.controller.BaseController;
 import com.hafa.commons.util.MyUtil;
 import com.hafa.usermenu.service.MhUserMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/usermenu")
-public class MhUserMenuController {
+public class MhUserMenuController extends BaseController<MhUserMenuService> {
 
     @Autowired
     protected MhUserMenuService mhUserMenuService;

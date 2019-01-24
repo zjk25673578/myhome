@@ -38,7 +38,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         // 查询数据
         search: function (field) {
             var key = JSON.stringify(field);
-            table.reload("dict-table", {
+            table.reload("finance-out-table", {
                 where: {
                     key: key
                 },
@@ -112,14 +112,14 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
     });
 
     // 监听表格上方按钮的事件
-    table.on("toolbar(dict-table)", function (obj) {
+    table.on("toolbar(finance-out-table)", function (obj) {
         if (!(obj.event.indexOf('LAYTABLE') >= 0)) {
             active[obj.event](obj);
         }
     });
 
     // 监听表格右侧的工具栏
-    table.on("tool(dict-table)", function (obj) {
+    table.on("tool(finance-out-table)", function (obj) {
         active[obj.event](obj);
     });
 

@@ -191,6 +191,19 @@
         updatename = #{updatename,jdbcType=VARCHAR}
         where ids = #{ids,jdbcType=INTEGER}
     </update>
-    <select id="searchFor" resultType="Map"></select>
-    <select id="countFor" resultType="Integer"></select>
+    <select id="searchFor" resultType="Map">
+        select
+        <include refid="Base_Column_List"/>
+        from mh_finance
+        <where>
+            status='1' and ftype=#{ftype}
+        </where>
+        limit #{minpage}, #{limit}
+    </select>
+    <select id="countFor" resultType="Integer">
+        select count(1) from mh_finance
+        <where>
+            status='1' and ftype=#{ftype}
+        </where>
+    </select>
 </mapper>

@@ -1,11 +1,13 @@
 package com.hafa.usermenu.dao;
 
+import com.hafa.commons.dao.BaseMapper;
+import com.hafa.usermenu.model.MhUserMenu;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Set;
 
-public interface MhUserMenuMapper {
+public interface MhUserMenuMapper extends BaseMapper<MhUserMenu> {
 
     /**
      * 获取指定用户所拥有的菜单权限(不包含父级菜单, 数据取自mh_menu)

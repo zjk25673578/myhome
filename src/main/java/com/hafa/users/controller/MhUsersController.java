@@ -2,6 +2,7 @@ package com.hafa.users.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.hafa.commons.controller.BaseController;
 import com.hafa.commons.entity.Message;
 import com.hafa.commons.util.MyUtil;
 import com.hafa.commons.util.PageBean;
@@ -21,7 +22,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/mhusers")
-public class MhUsersController {
+public class MhUsersController extends BaseController<MhUsersService> {
 
     @Autowired
     protected MhUsersService mhUsersService;

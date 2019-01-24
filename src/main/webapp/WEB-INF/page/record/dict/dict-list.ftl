@@ -71,7 +71,7 @@
 </script>
 <script type="text/html" id="dict-addOrEdit">
     <div class="layui-form-item"></div>
-    <form id="form-data-dict" lay-filter="form-user" class="layui-form">
+    <form id="form-data-dict" class="layui-form">
         <input type="hidden" name="ids" value="{{ d.ids }}"/>
         <div class="layui-form-item">
             <label class="layui-form-label">父级数据：</label>

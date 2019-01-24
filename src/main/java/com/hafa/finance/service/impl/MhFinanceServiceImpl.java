@@ -6,7 +6,9 @@ import com.hafa.finance.service.MhFinanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import java.io.Serializable;
+import java.util.Map;
 
 @Repository
 public class MhFinanceServiceImpl implements MhFinanceService {
@@ -15,12 +17,41 @@ public class MhFinanceServiceImpl implements MhFinanceService {
     private MhFinanceMapper mhFinanceMapper;
 
     @Override
-    public List<MhFinance> outList() {
-        return null;
+    public int saveOrUpdate(MhFinance entity, HttpServletRequest request) {
+        if (entity == null) {
+            return -1;
+        }
+        if (entity.getIds() != null) {
+            entity.setValue("u", request);
+            return mhFinanceMapper.updateByPrimaryKeySelective(entity);
+        }
+        entity.setValue("c", request);
+        entity.setStatus(1);
+        return mhFinanceMapper.insertSelective(entity);
     }
 
     @Override
-    public int outListCount() {
-        return 0;
+    public int remove(MhFinance entity, HttpServletRequest request) {
+        if (entity == null) {
+            return -1;
+        }
+        entity.setStatus(0);
+        entity.setValue("u", request);
+        return mhFinanceMapper.updateByPrimaryKeySelective(entity);
+    }
+
+    @Override
+    public int remove(Serializable ids, HttpServletRequest request) {
+        if (ids == null) {
+            return -1;
+        }
+        MhFinance mhFinance = new MhFinance();
+        mhFinance.setIds((Integer) ids);
+        return remove(mhFinance, request);
+    }
+
+    @Override
+    public Map<String, Object> searchFor(Map<String, Object> args) {
+        return null;
     }
 }

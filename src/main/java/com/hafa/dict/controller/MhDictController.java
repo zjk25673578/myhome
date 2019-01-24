@@ -1,6 +1,7 @@
 package com.hafa.dict.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.hafa.commons.controller.BaseController;
 import com.hafa.commons.entity.Message;
 import com.hafa.commons.util.MyUtil;
 import com.hafa.commons.util.PageBean;
@@ -21,7 +22,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/dict")
-public class MhDictController {
+public class MhDictController extends BaseController<MhDictService> {
 
     @Autowired
     private MhDictService mhDictService;
@@ -50,17 +51,7 @@ public class MhDictController {
     @RequestMapping("/dictList")
     public Map<String, Object> dictList(String key, PageBean pageBean) {
         JSONObject args = JSONObject.parseObject(key); // 查询条件的转换
-        Map<String, Object> resultMap = null;
-        try {
-            resultMap = mhDictService.searchFor(MyUtil.bean2Map(args, pageBean));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (resultMap != null) {
-            MyUtil.layData(resultMap, 0, "");
-            return resultMap;
-        }
-        return MyUtil.layData(-1, "mhDictService.searchFor(MyUtil.bean2Map(args, pageBean))返回null", 0, null);
+        return buildResultMap(mhDictService, args, pageBean);
     }
 
     /**
