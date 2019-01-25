@@ -7,8 +7,6 @@ public class MhNotebook extends CommonModel {
 
     private Integer touser;
 
-    private Integer status;
-
     public String getConte() {
         return conte;
     }
@@ -23,13 +21,5 @@ public class MhNotebook extends CommonModel {
 
     public void setTouser(Integer touser) {
         this.touser = touser;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }

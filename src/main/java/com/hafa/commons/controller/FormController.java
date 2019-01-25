@@ -1,7 +1,6 @@
 package com.hafa.commons.controller;
 
-import com.hafa.commons.service.ApplicationService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.hafa.commons.util.ValidCodeUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,9 +15,6 @@ import java.awt.image.BufferedImage;
  */
 @Controller
 public class FormController {
-
-    @Autowired
-    protected ApplicationService applicationService;
 
     /* blog start */
     @RequestMapping("/blog/index")
@@ -85,7 +81,7 @@ public class FormController {
     @ResponseBody
     @RequestMapping("/validCode")
     public void validCode(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        BufferedImage bufImg = applicationService.drawValidCode(request, response);
+        BufferedImage bufImg = ValidCodeUtil.drawValidCode(request, response, 120, 30);
         ImageIO.write(bufImg, "jpg", response.getOutputStream());
     }
     /* record end */

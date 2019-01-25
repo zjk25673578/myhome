@@ -54,6 +54,11 @@ public class CommonModel implements Serializable {
      */
     private String updatename;
 
+    /**
+     * 有效标志
+     */
+    private Integer status;
+
     public Integer getIds() {
         return ids;
     }
@@ -108,6 +113,14 @@ public class CommonModel implements Serializable {
 
     public void setUpdatename(String updatename) {
         this.updatename = updatename;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     /**

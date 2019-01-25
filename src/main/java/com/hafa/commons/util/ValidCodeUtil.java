@@ -1,6 +1,7 @@
 package com.hafa.commons.util;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
@@ -21,7 +22,16 @@ public class ValidCodeUtil {
      * @return
      * @throws Exception
      */
-    public static BufferedImage drawValidCode(HttpServletRequest request, int width, int height) throws Exception {
+    public static BufferedImage drawValidCode(HttpServletRequest request, HttpServletResponse response, int width, int height) throws Exception {
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html; charset=utf-8");
+        //响应类型为图片类型的加上这一句
+        response.setContentType("image/jpeg");
+        //设置响应头控制浏览器不缓存图片数据
+        response.setDateHeader("expries", -1);
+        response.setHeader("Cache-Control", "no-cache");
+        response.setHeader("Pragma", "no-cache");
 
         BufferedImage bufImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         //也可以使用bufImg.getGraphics(), get是返回一个Graphics对象, create是返回一个Graphics2D对象

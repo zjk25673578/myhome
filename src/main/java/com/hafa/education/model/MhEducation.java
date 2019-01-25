@@ -21,8 +21,6 @@ public class MhEducation extends CommonModel {
 
     private String photo;
 
-    private Integer status;
-
     public Integer getUserid() {
         return userid;
     }
@@ -85,13 +83,5 @@ public class MhEducation extends CommonModel {
 
     public void setPhoto(String photo) {
         this.photo = photo;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }

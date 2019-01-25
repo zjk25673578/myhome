@@ -18,8 +18,6 @@ public class MhUsers extends CommonModel {
 
     private Integer homeid;
 
-    private Integer status;
-
     private Integer setups; // 1: 启用, 其他: 禁用
 
     public String getUname() {
@@ -60,14 +58,6 @@ public class MhUsers extends CommonModel {
 
     public void setHomeid(Integer homeid) {
         this.homeid = homeid;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 
     public Integer getUserType() {

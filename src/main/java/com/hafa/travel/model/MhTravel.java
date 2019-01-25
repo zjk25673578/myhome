@@ -17,8 +17,6 @@ public class MhTravel extends CommonModel {
 
     private Integer isimpl;
 
-    private Integer status;
-
     public Integer getHomeid() {
         return homeid;
     }
@@ -73,13 +71,5 @@ public class MhTravel extends CommonModel {
 
     public void setIsimpl(Integer isimpl) {
         this.isimpl = isimpl;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }

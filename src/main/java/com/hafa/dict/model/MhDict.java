@@ -11,8 +11,6 @@ public class MhDict extends CommonModel {
 
     private String desp;
 
-    private Integer status;
-
     public Integer getParentid() {
         return parentid;
     }
@@ -43,13 +41,5 @@ public class MhDict extends CommonModel {
 
     public void setDesp(String desp) {
         this.desp = desp;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }

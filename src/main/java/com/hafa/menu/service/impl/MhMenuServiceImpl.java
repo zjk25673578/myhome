@@ -1,6 +1,7 @@
 package com.hafa.menu.service.impl;
 
 import com.hafa.commons.entity.TreeModel;
+import com.hafa.commons.service.impl.CommonServiceImpl;
 import com.hafa.commons.util.MyUtil;
 import com.hafa.menu.dao.MhMenuMapper;
 import com.hafa.menu.model.MhMenu;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class MhMenuServiceImpl implements MhMenuService {
+public class MhMenuServiceImpl extends CommonServiceImpl implements MhMenuService {
 
     @Autowired
     private MhMenuMapper mhMenuMapper;
@@ -34,8 +35,7 @@ public class MhMenuServiceImpl implements MhMenuService {
     }
 
     @Override
-    public List<MhMenu> menuList(HttpServletRequest request) {
-        MhUsers user = getCurrentUser(request);
+    public List<MhMenu> menuList(MhUsers user) {
         if (user != null) {
             return mhMenuMapper.selectMenusWithUserid(user);
         }
@@ -84,16 +84,7 @@ public class MhMenuServiceImpl implements MhMenuService {
 
     @Override
     public int saveOrUpdate(MhMenu entity, HttpServletRequest request) {
-        if (entity == null) {
-            return -1;
-        }
-        if (entity.getIds() != null) {
-            entity.setValue("u", request);
-            return mhMenuMapper.updateByPrimaryKeySelective(entity);
-        }
-        entity.setValue("c", request);
-        entity.setStatus(1);
-        return mhMenuMapper.insertSelective(entity);
+        return saveOrUpdate(mhMenuMapper, entity, request);
     }
 
     @Override
@@ -107,15 +98,12 @@ public class MhMenuServiceImpl implements MhMenuService {
 
     @Override
     public int remove(MhMenu entity, HttpServletRequest request) {
-        if (entity == null) {
-            return -1;
-        }
-        return remove(entity.getIds(), request);
+        return remove(mhMenuMapper, entity, request);
     }
 
     @Override
     public int remove(Serializable ids, HttpServletRequest request) {
-        return 0;
+        return remove(mhMenuMapper, ids, request);
     }
 
     @Override

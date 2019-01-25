@@ -21,8 +21,6 @@ public class MhHomeMember extends CommonModel {
 
     private String backup5;
 
-    private Integer status;
-
     public String getMname() {
         return mname;
     }
@@ -85,13 +83,5 @@ public class MhHomeMember extends CommonModel {
 
     public void setBackup5(String backup5) {
         this.backup5 = backup5;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }

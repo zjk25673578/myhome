@@ -1,5 +1,6 @@
 package com.hafa.menu.controller;
 
+import com.hafa.commons.controller.BaseController;
 import com.hafa.commons.entity.Message;
 import com.hafa.commons.entity.TreeModel;
 import com.hafa.commons.util.MyUtil;
@@ -21,7 +22,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/mhmenu")
-public class MhMenuController {
+public class MhMenuController extends BaseController<MhMenuService> {
 
     @Autowired
     private MhMenuService mhMenuService;
@@ -63,7 +64,7 @@ public class MhMenuController {
     @RequestMapping("/menus")
     public Message menuList(HttpServletRequest request) {
         Message msg;
-        List<MhMenu> list = mhMenuService.menuList(request);
+        List<MhMenu> list = mhMenuService.menuList(getCurrentUser(request));
         if (list != null && list.size() > 0) {
             msg = MyUtil.msg(1, "成功返回数据", list);
         } else {

@@ -17,8 +17,6 @@ public class MhFinance extends CommonModel {
 
     private String reason;
 
-    private Integer status;
-
     public Integer getUserid() {
         return userid;
     }
@@ -65,13 +63,5 @@ public class MhFinance extends CommonModel {
 
     public void setReason(String reason) {
         this.reason = reason;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }

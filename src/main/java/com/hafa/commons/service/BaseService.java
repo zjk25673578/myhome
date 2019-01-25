@@ -1,9 +1,6 @@
 package com.hafa.commons.service;
 
-import com.hafa.users.model.MhUsers;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.util.Map;
 
@@ -36,77 +33,11 @@ public interface BaseService<T> {
     int remove(Serializable ids, HttpServletRequest request);
 
     /**
-     * 根据指定的分页信息查询当前页码的列表信息
+     * 根据指定的分页信息与查询条件获取当前页码的列表信息
+     * 返回的数据结构: {"count": 0, "data": list}
      *
      * @param args
      * @return
      */
     Map<String, Object> searchFor(Map<String, Object> args);
-
-    /**
-     * 获取当前登陆用户对象
-     *
-     * @param request
-     * @return
-     */
-    default MhUsers getCurrentUser(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        return (MhUsers) session.getAttribute("currentUser");
-    }
-
-    /**
-     * 获取当前登陆用户名
-     *
-     * @param request
-     * @return
-     */
-    default String getCurrentUsername(HttpServletRequest request) {
-        MhUsers user = getCurrentUser(request);
-        if (user != null) {
-            return user.getUname();
-        }
-        return null;
-    }
-
-    /**
-     * 获取当前登陆用户密码
-     *
-     * @param request
-     * @return
-     */
-    default String getCurrentPassword(HttpServletRequest request) {
-        MhUsers user = getCurrentUser(request);
-        if (user != null) {
-            return user.getPword();
-        }
-        return null;
-    }
-
-    /**
-     * 获取当前登陆用户id
-     *
-     * @param request
-     * @return
-     */
-    default Integer getCurrentUserid(HttpServletRequest request) {
-        MhUsers user = getCurrentUser(request);
-        if (user != null) {
-            return user.getIds();
-        }
-        return null;
-    }
-
-    /**
-     * 获取当前登陆用户姓名
-     *
-     * @param request
-     * @return
-     */
-    default String getCurrentRname(HttpServletRequest request) {
-        MhUsers user = getCurrentUser(request);
-        if (user != null) {
-            return user.getRname();
-        }
-        return null;
-    }
 }

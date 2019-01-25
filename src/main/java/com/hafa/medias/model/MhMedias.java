@@ -19,8 +19,6 @@ public class MhMedias extends CommonModel {
 
     private String descp;
 
-    private Integer status;
-
     public String getFname() {
         return fname;
     }
@@ -83,13 +81,5 @@ public class MhMedias extends CommonModel {
 
     public void setDescp(String descp) {
         this.descp = descp;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }

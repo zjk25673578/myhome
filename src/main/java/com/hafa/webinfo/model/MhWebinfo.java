@@ -9,8 +9,6 @@ public class MhWebinfo extends CommonModel {
 
     private String note;
 
-    private Integer status;
-
     public String getWebname() {
         return webname;
     }
@@ -33,13 +31,5 @@ public class MhWebinfo extends CommonModel {
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }

@@ -41,7 +41,7 @@ public class MyUtil {
      * 获取随机的验证码内容(字母加数字)
      * 同时将验证码放入session中
      */
-    public static String getCodeContent(HttpSession session) {
+    static String getCodeContent(HttpSession session) {
         String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         StringBuilder code = new StringBuilder();
         for (int x = 1; x <= 4; x++) {
@@ -176,7 +176,7 @@ public class MyUtil {
      * @param list
      * @return
      */
-    public static Map<String, Object> searchForData(int count, List list) {
+    public static Map<String, Object> searchForLayData(int count, List list) {
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("count", count);
         resultMap.put("data", list);

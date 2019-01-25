@@ -9,8 +9,6 @@ public class MhFolder extends CommonModel {
 
     private String foldername;
 
-    private Integer status;
-
     public Integer getParentid() {
         return parentid;
     }
@@ -33,13 +31,5 @@ public class MhFolder extends CommonModel {
 
     public void setFoldername(String foldername) {
         this.foldername = foldername;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }

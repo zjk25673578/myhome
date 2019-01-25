@@ -23,8 +23,6 @@ public class MhUsersInfo extends CommonModel {
 
     private Date birthday;
 
-    private Integer status;
-
     public Integer getUserid() {
         return userid;
     }
@@ -95,13 +93,5 @@ public class MhUsersInfo extends CommonModel {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }

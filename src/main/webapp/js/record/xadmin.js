@@ -254,7 +254,7 @@ function timestamp2Datetime(timestamp) {
     var dateStr = timestamp2Date(timestamp);
     if (dateStr && dateStr.length > 0) {
         var time = new Date(timestamp).toTimeString().substr(0, 8);
-        return dateStr + ' ' + time;
+        return dateStr + '　' + time;
     }
     return "";
 }

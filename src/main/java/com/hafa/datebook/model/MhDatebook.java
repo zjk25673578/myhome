@@ -19,8 +19,6 @@ public class MhDatebook extends CommonModel {
 
     private String backup2;
 
-    private Integer status;
-
     public Integer getUserid() {
         return userid;
     }
@@ -75,13 +73,5 @@ public class MhDatebook extends CommonModel {
 
     public void setBackup2(String backup2) {
         this.backup2 = backup2;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }

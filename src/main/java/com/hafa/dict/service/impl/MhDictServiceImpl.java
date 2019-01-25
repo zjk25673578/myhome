@@ -1,6 +1,7 @@
 package com.hafa.dict.service.impl;
 
 import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.service.impl.CommonServiceImpl;
 import com.hafa.commons.util.MyUtil;
 import com.hafa.dict.dao.MhDictMapper;
 import com.hafa.dict.model.MhDict;
@@ -14,41 +15,30 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class MhDictServiceImpl implements MhDictService {
+public class MhDictServiceImpl extends CommonServiceImpl implements MhDictService {
 
     @Autowired
     protected MhDictMapper mhDictMapper;
 
     @Override
     public int saveOrUpdate(MhDict entity, HttpServletRequest request) {
-        if (entity.getIds() == null) {
-            entity.setStatus(1);
-            entity.setValue("c", request);
-            return mhDictMapper.insertSelective(entity);
-        } else {
-            entity.setValue("u", request);
-            return mhDictMapper.updateByPrimaryKeySelective(entity);
-        }
+        return saveOrUpdate(mhDictMapper, entity, request);
     }
 
     @Override
     public int remove(MhDict entity, HttpServletRequest request) {
-        if (entity != null && entity.getIds() != null) {
-            entity.setStatus(0);
-            return mhDictMapper.updateByPrimaryKeySelective(entity);
-        }
-        return -1;
+        return remove(mhDictMapper, entity, request);
     }
 
     @Override
     public int remove(Serializable ids, HttpServletRequest request) {
-        return 0;
+        return remove(mhDictMapper, ids, request);
     }
 
     @Override
     public Map<String, Object> searchFor(Map<String, Object> args) {
         List<Map<String, Object>> list = mhDictMapper.searchFor(args);
-        return MyUtil.searchForData(mhDictMapper.countFor(args), list);
+        return MyUtil.searchForLayData(mhDictMapper.countFor(args), list);
     }
 
     @Override

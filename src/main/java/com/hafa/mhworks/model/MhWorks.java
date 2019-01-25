@@ -23,8 +23,6 @@ public class MhWorks extends CommonModel {
 
     private Integer sal;
 
-    private Integer status;
-
     public Integer getUserid() {
         return userid;
     }
@@ -95,13 +93,5 @@ public class MhWorks extends CommonModel {
 
     public void setSal(Integer sal) {
         this.sal = sal;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }

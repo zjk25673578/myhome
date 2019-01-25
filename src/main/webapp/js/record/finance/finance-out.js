@@ -18,13 +18,27 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         url: _ctx + '/finance/out/list',
         cols: [[
             {field: '', type: 'checkbox'},
+            {field: '', title: '序号', type: 'numbers'},
             {field: 'ids', title: '代号', width: 100, hide: true},
-            {field: 'cash', title: '金额', width: 100},
-            {field: 'createtype', title: '类型'},
-            {field: 'prodate', title: '发生日期'},
+            {field: 'userid', title: '所有者', width: 120},
+            {field: 'createtype', title: '类型', width: 150},
+            {
+                field: 'prodate', title: '发生时间', width: 210, templet: function (d) {
+                    return timestamp2Datetime(d.createtime);
+                }
+            },
+            {
+                field: 'cash', title: '金额', width: 150, templet: function (d) {
+                    return "<font color='red'> -" + d.cash + "元 </font>";
+                }
+            },
             {field: 'reason', title: '备注'},
-            {field: 'createname', title: '创建人'},
-            {field: 'createtime', title: '创建时间', templet: function (d) { return timestamp2Date(d.createtime); }},
+            {field: 'createname', title: '创建人', hide: true},
+            {
+                field: 'createtime', title: '创建时间', width: 180, templet: function (d) {
+                    return timestamp2Date(d.createtime);
+                }
+            },
             {field: '', title: '管理', toolbar: '#opera-btns', fixed: 'right', width: 170}
         ]],
         toolbar: '#toolbar',

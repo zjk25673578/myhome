@@ -191,19 +191,22 @@
         updatename = #{updatename,jdbcType=VARCHAR}
         where ids = #{ids,jdbcType=INTEGER}
     </update>
-    <select id="searchFor" resultType="Map">
-        select
-        <include refid="Base_Column_List"/>
-        from mh_finance
+    <select id="searchFor" resultType="Map" parameterType="Map">
+        select f.ids,
+        (select u.rname from mh_users u where u.ids = f.userid) userid,
+        f.cash,
+        (SELECT d.dicvalue FROM mh_dict d WHERE d.ids = f.createtype and d.status='1') createtype,
+        f.prodate, f.reason, f.createtime, f.creator, f.createname, f.updatetime,
+        f.updator, f.updatename from mh_finance f
         <where>
-            status='1' and ftype=#{ftype}
+            f.status='1' and f.ftype=#{ftype} and f.userid=#{userid}
         </where>
         limit #{minpage}, #{limit}
     </select>
-    <select id="countFor" resultType="Integer">
-        select count(1) from mh_finance
+    <select id="countFor" resultType="Integer" parameterType="Map">
+        select count(1) from mh_finance f
         <where>
-            status='1' and ftype=#{ftype}
+            f.status='1' and f.ftype=#{ftype} and f.userid=#{userid}
         </where>
     </select>
 </mapper>

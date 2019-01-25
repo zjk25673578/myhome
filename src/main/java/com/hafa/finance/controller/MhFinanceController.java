@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Controller
@@ -39,9 +40,10 @@ public class MhFinanceController extends BaseController<MhFinanceService> {
      */
     @ResponseBody
     @RequestMapping("/out/list")
-    public Map<String, Object> outList(String key, PageBean pageBean) {
-        JSONObject args = JSONObject.parseObject(key); // 查询条件的转换
+    public Map<String, Object> outList(String key, PageBean pageBean, HttpServletRequest request) {
+        JSONObject args = buildArgs(key); // 查询条件的转换
         args.put("ftype", 0);
+        args.put("userid", getCurrentUserid(request));
         return buildResultMap(mhFinanceService, args, pageBean);
     }
 }

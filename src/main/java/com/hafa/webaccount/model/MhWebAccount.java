@@ -17,8 +17,6 @@ public class MhWebAccount extends CommonModel {
 
     private Integer userid;
 
-    private Integer status;
-
     public Integer getWebid() {
         return webid;
     }
@@ -73,9 +71,5 @@ public class MhWebAccount extends CommonModel {
 
     public void setUserid(Integer userid) {
         this.userid = userid;
-    }
-
-    public Integer getStatus() {
-        return status;
     }
 }

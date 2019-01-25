@@ -1,5 +1,6 @@
 package com.hafa.usermenu.service.impl;
 
+import com.hafa.commons.service.impl.CommonServiceImpl;
 import com.hafa.commons.util.MyUtil;
 import com.hafa.menu.dao.MhMenuMapper;
 import com.hafa.usermenu.dao.MhUserMenuMapper;
@@ -15,7 +16,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Repository
-public class MhUserMenuServiceImpl implements MhUserMenuService {
+public class MhUserMenuServiceImpl extends CommonServiceImpl implements MhUserMenuService {
 
     @Autowired
     protected MhUserMenuMapper mhUserMenuMapper;

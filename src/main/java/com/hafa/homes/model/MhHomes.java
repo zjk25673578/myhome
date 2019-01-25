@@ -7,8 +7,6 @@ public class MhHomes extends CommonModel {
 
     private String hname;
 
-    private Integer status;
-
     public String getHcode() {
         return hcode;
     }
@@ -23,13 +21,5 @@ public class MhHomes extends CommonModel {
 
     public void setHname(String hname) {
         this.hname = hname;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 }

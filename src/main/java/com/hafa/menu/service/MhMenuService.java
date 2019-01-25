@@ -3,6 +3,7 @@ package com.hafa.menu.service;
 import com.hafa.commons.entity.TreeModel;
 import com.hafa.commons.service.BaseService;
 import com.hafa.menu.model.MhMenu;
+import com.hafa.users.model.MhUsers;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -16,10 +17,10 @@ public interface MhMenuService extends BaseService<MhMenu> {
     /**
      * 获取当前登陆用户的菜单列表(左侧菜单栏)
      *
-     * @param request 获取当前登陆用户
+     * @param user 当前登陆用户
      * @return
      */
-    List<MhMenu> menuList(HttpServletRequest request);
+    List<MhMenu> menuList(MhUsers user);
 
     /**
      * 获取所有菜单的列表<br>

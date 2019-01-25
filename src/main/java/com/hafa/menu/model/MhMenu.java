@@ -15,8 +15,6 @@ public class MhMenu extends CommonModel {
 
     private Integer isparent;
 
-    private Integer status;
-
     public Integer getParentid() {
         return parentid;
     }
@@ -55,14 +53,6 @@ public class MhMenu extends CommonModel {
 
     public void setSort(Integer sort) {
         this.sort = sort;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 
     public Integer getIsparent() {
