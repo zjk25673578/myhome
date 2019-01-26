@@ -10,12 +10,18 @@
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
     <link rel="stylesheet" href="${ctx}/css/record/xadmin.css">
     <script type="text/javascript" src="${ctx}/res/layui/layui.js" charset="utf-8"></script>
-
+    <style>
+        #btn-submit {
+            height: 50px;
+            line-height: 50px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body class="login-bg">
 <div class="login layui-anim layui-anim-up">
     <div class="message">
-        <a href="${ctx}/blog/index"><i class="layui-icon cus-icon layui-icon-return"></i>我家博客</a>
+        <a href="${ctx}/blog/index"><i class="layui-icon cus-icon layui-icon-return"></i>前台页面</a>
     </div>
     <div id="darkbannerwrap"></div>
     <form method="post" class="layui-form">
@@ -32,23 +38,25 @@
                 <img id="validCode" src="${ctx}/validCode" width="100%" height="50"/>
             </div>
         </div>
-        <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+        <a id="btn-submit" class="layui-btn layui-btn-fluid" lay-submit lay-filter="login">登　　录</a>
         <hr class="hr20">
     </form>
 </div>
 <script>
-    if (window != top) {
+    if (window !== top) {
         top.location.href = location.href;
     }
     layui.use(['form', 'layer'], function () {
         var form = layui.form,
-                layer = layui.layer,
-                $ = layui.jquery;
+            layer = layui.layer,
+            $ = layui.jquery;
 
         /**
          * 登陆表单提交
          */
         form.on('submit(login)', function (data) {
+            var indexMsg = layer.msg("系统正在登陆, 请稍后......", {id: "info-msg", shade: 0.01, offset: "35%", time: 0, icon: 6});
+            $(this).addClass("layui-btn-disabled").attr("disabled", "disabled");
             $.ajax({
                 async: false,
                 url: "${ctx}/mhusers/login",
@@ -56,9 +64,14 @@
                 dataType: "json",
                 success: function (dataResult) {
                     if (dataResult.success) {
-                        layer.msg(dataResult.message, {icon: dataResult.iconType, time: 2000}, function () {
-                            window.location.href = "${ctx}/record/index";
-                        });
+
+                        var layerContent = document.getElementById("info-msg");
+                        console.log(layerContent.);
+                        /*layer.msg(dataResult.message, {icon: dataResult.iconType, time: 2000}, function () {
+                            window.location.href = "
+
+                        ${ctx}/record/index";
+                        });*/
                     } else {
                         layer.msg(dataResult.message, {icon: dataResult.iconType, time: 2000});
                     }

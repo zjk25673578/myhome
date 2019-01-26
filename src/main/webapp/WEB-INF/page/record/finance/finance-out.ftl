@@ -73,18 +73,14 @@
     <form id="form-finance-out" lay-filter="finance-out" class="layui-form">
         <input type="hidden" name="ids" value="{{ d.ids }}"/>
         <div class="layui-form-item">
-            <label class="layui-form-label">父级数据：</label>
+            <label class="layui-form-label">所有者：</label>
             <div class="layui-input-inline">
-                <input type="text" name="parentid"
-                       class="layui-input" value="{{ d.parentid }}"/>
+                <input type="text" name="userid"
+                       class="layui-input" value="{{ d.userid }}" placeholder="不填写默认为当前用户"/>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">CDKEY：</label>
-            <div class="layui-input-inline">
-                <input type="text" name="diccode" lay-verify="required"
-                       class="layui-input" value="{{ d.diccode }}"/>
-            </div>
+
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">值：</label>

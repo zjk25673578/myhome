@@ -66,7 +66,7 @@ layui.config({
     eleTree.on("nodeRemove(menuTree)", function (d) {
         d.stop();
         layer.confirm('确定删除<font color="blue">' + d.data.label + '</font>？', {
-            btn: ['确定', '取消'] //可以无限个按钮
+            btn: ['确定', '取消']
             , yes: function (index, layero) {
                 $.post(_ctx + "/mhmenu/removeMenu", {ids: d.data.id}, function (resultData) {
                     layer.msg(resultData.message, {icon: resultData.iconType});
@@ -150,27 +150,3 @@ layui.config({
     });
 
 });
-
-/**
- * 验证, 不允许在最外层前后添加菜单
- * @param data
- * @returns {boolean} true: 可以添加, false: 不允许添加
- */
-function validParentId(data) {
-    return data.id !== 0;
-}
-
-function appendMenu() {
-    $.ajax({
-        url: "",
-        type: "",
-        data: {},
-        dataType: "json",
-        success: function () {
-
-        },
-        error: function () {
-
-        }
-    });
-}

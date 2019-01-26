@@ -141,12 +141,13 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
      * 添加或者修改的方法
      * @param data
      * @param title
+     * @param url
      */
     function saveOrUpdate(data, title, url) {
-        var tpl = document.getElementById("dict-addOrEdit").innerHTML;
+        var tpl = document.getElementById("finance-out-addOrEdit").innerHTML;
         laytpl(tpl).render(data, function (html) {
             openDialog(html, title, ['330px', '440px'], function (idx) {
-                var formdata = $("#form-data-dict").serializeArray();
+                var formdata = $("#form-finance-out").serializeArray();
                 var result = validateForm(formdata); // 表单验证
                 if (result) {
                     $.ajax({
@@ -156,7 +157,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                         dataType: 'json',
                         success: function (data) {
                             if (data.success) {
-                                table.reload("dict-table");
+                                table.reload("finance-out-table");
                                 layer.close(idx);
                                 layer.msg(data.message, {time: 1000});
                             } else {

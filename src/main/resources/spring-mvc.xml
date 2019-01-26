@@ -89,7 +89,6 @@
         <property name="defaultEncoding" value="utf-8"/>
     </bean>
 
-
     <bean id="factoryBean"
           class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <!-- Set<Converter> converters -->
