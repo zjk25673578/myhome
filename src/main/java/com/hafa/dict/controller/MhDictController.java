@@ -3,8 +3,8 @@ package com.hafa.dict.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.hafa.commons.controller.BaseController;
 import com.hafa.commons.entity.Message;
-import com.hafa.commons.util.MyUtil;
-import com.hafa.commons.util.PageBean;
+import com.hafa.commons.entity.PageBean;
+import com.hafa.commons.util.msg.MsgUtil;
 import com.hafa.dict.model.MhDict;
 import com.hafa.dict.service.MhDictService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +62,7 @@ public class MhDictController extends BaseController<MhDictService> {
     @ResponseBody
     @RequestMapping("/deleteDict")
     public Message deleteDict() {
-        return MyUtil.msg(false, "功能未开发...");
+        return MsgUtil.msg(false, "功能未开发...");
     }
 
     /**
@@ -73,7 +73,7 @@ public class MhDictController extends BaseController<MhDictService> {
     @ResponseBody
     @RequestMapping("/deleteMultiple")
     public Message deleteMultiple() {
-        return MyUtil.msg(false, "功能未开发...");
+        return MsgUtil.msg(false, "功能未开发...");
     }
 
     /**
@@ -87,7 +87,7 @@ public class MhDictController extends BaseController<MhDictService> {
     @RequestMapping("/save")
     public Message save(MhDict dict, HttpServletRequest request) {
         int r = mhDictService.saveOrUpdate(dict, request);
-        return MyUtil.msg(r);
+        return MsgUtil.msg(r);
     }
 
     /**
@@ -101,7 +101,7 @@ public class MhDictController extends BaseController<MhDictService> {
     @RequestMapping("/saveMultiple")
     public Message saveMultiple(MhDict dict, HttpServletRequest request) {
         int r = mhDictService.saveMultiple(dict, request);
-        return MyUtil.msg(r);
+        return MsgUtil.msg(r);
     }
 
     /**
@@ -115,6 +115,6 @@ public class MhDictController extends BaseController<MhDictService> {
     @RequestMapping("/update")
     public Message update(MhDict dict, HttpServletRequest request) {
         int r = mhDictService.saveOrUpdate(dict, request);
-        return MyUtil.msg(r);
+        return MsgUtil.msg(r);
     }
 }

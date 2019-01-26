@@ -1,4 +1,4 @@
-package com.hafa.commons.util;
+package com.hafa.commons.entity;
 
 /**
  * 分页类

@@ -4,15 +4,6 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         laytpl = layui.laytpl,
         layer = layui.layer;
 
-    // 添加, 修改表单的数据模型
-    var tempData = {
-        ids: "",
-        parentid: "",
-        diccode: "",
-        dicvalue: "",
-        desp: ""
-    };
-
     table.render({
         elem: '#finance-out-table',
         url: _ctx + '/finance/out/list',
@@ -21,7 +12,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
             {field: '', title: '序号', type: 'numbers'},
             {field: 'ids', title: '代号', width: 100, hide: true},
             {field: 'userid', title: '所有者', width: 120},
-            {field: 'createtype', title: '类型', width: 150},
+            {field: 'createtypename', title: '类型', width: 150},
             {
                 field: 'prodate', title: '发生时间', width: 210, templet: function (d) {
                     return timestamp2Datetime(d.createtime);
@@ -63,24 +54,19 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
             });
         },
 
-        // 添加数据
-        add: function () {
-            saveOrUpdate(tempData, "新增出账记录", _ctx + "/dict/saveMultiple");
-        },
-
         // 修改数据
         update: function (obj) {
-            saveOrUpdate(parseData(obj.data), "修改出账记录", _ctx + "/dict/update");
+            saveOrUpdate(parseData(obj.data), "修改出账记录", _ctx + "/finance/update");
         },
 
         // 删除数据
         del: function (obj) {
             var row = obj.data;
-            layer.confirm("确定删除 <font color='blue'>" + row.dicvalue + " </font>吗 ?", {icon: 3}, function (index) {
+            layer.confirm("确定删除 <font color='blue'>" + row.createtypename + " </font>这条记录吗 ?", {icon: 3}, function (index) {
                 var ids = row.ids;
-                $.post(_ctx + "/dict/deleteDict", {ids: ids}, function (data) {
+                $.post(_ctx + "/finance/delete", {ids: ids}, function (data) {
                     if (data.success) {
-                        table.reload("users-table");
+                        table.reload("finance-out-table");
                     }
                     layer.close(index);
                     layer.msg(data.message, {icon: data.iconType});
@@ -104,9 +90,9 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                                 ids += ",";
                             }
                         }
-                        $.post(_ctx + "/dict/deleteMultiple", {ids: ids}, function (data) {
+                        $.post(_ctx + "/finance/deleteMultiple", {ids: ids}, function (data) {
                             if (data.success) {
-                                table.reload("dict-table");
+                                table.reload("finance-out-table");
                             }
                             layer.close(index);
                             layer.msg(data.message, {icon: data.iconType});
@@ -144,7 +130,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
      * @param url
      */
     function saveOrUpdate(data, title, url) {
-        var tpl = document.getElementById("finance-out-addOrEdit").innerHTML;
+        var tpl = document.getElementById("finance-out-edit").innerHTML;
         laytpl(tpl).render(data, function (html) {
             openDialog(html, title, ['330px', '440px'], function (idx) {
                 var formdata = $("#form-finance-out").serializeArray();
@@ -180,7 +166,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
      * @returns {*}
      */
     function parseData(updateData) {
-        for (var p in tempData) {
+        for (var p in updateData) {
             if (updateData[p] === undefined) {
                 updateData[p] = "";
             }
@@ -190,16 +176,23 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
 
     // 自定义表单验证规则
     var form_validation = {
-        diccode: function (value) {
+        createtype: function (value) {
             if (!value.length > 0) {
-                layer.msg("必须填写CDKEY !", {icon: 5});
+                layer.msg("必须选择类型 !", {icon: 5});
                 return false;
             }
             return true;
         },
-        dicvalue: function (value) {
-            if (value == null || value == undefined || value == "") {
-                layer.msg("必须填写值 !", {icon: 5});
+        reason: function (value) {
+            if (value == null || value === "") {
+                layer.msg("必须填写备注 !", {icon: 5});
+                return false;
+            }
+            return true;
+        },
+        cash: function (value) {
+            if (value == null || value === "") {
+                layer.msg("必须填写金额 !", {icon: 5});
                 return false;
             }
             return true;

@@ -54,8 +54,12 @@
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-input-block">
-                            <button class="layui-btn" lay-submit lay-filter="menuForm">保存</button>
-                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            <button class="layui-btn" lay-submit lay-filter="menuForm">
+                                <i class="fa fa-save fa-lg"></i> 保存
+                            </button>
+                            <button type="reset" class="layui-btn layui-btn-primary">
+                                <i class="fa fa-undo fa-lg"></i> 重置
+                            </button>
                         </div>
                     </div>
                 </form>

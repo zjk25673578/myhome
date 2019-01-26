@@ -4,8 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.hafa.commons.controller.BaseController;
 import com.hafa.commons.entity.Message;
+import com.hafa.commons.entity.PageBean;
 import com.hafa.commons.util.MyUtil;
-import com.hafa.commons.util.PageBean;
+import com.hafa.commons.util.msg.MsgUtil;
 import com.hafa.users.model.MhUsers;
 import com.hafa.users.service.MhUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,20 +66,20 @@ public class MhUsersController extends BaseController<MhUsersService> {
     public Message login(MhUsers user, String validCode, HttpSession session) {
         Object sessionValidCode = session.getAttribute("validCode");
         if (sessionValidCode == null) { // 验证码失效
-            return MyUtil.msg(-4);
+            return MsgUtil.msg(-4);
         }
 /*        if (!sessionValidCode.toString().equalsIgnoreCase(validCode)) { // 验证码错误
             return MyUtil.msg(-6);
         }*/
         MhUsers currentUser = mhUsersService.getUserByUnamePword(user);
         if (currentUser == null) { // 用户名或密码错误
-            return MyUtil.msg(-400);
+            return MsgUtil.msg(-400);
         }
         if (currentUser.getSetups() == null || currentUser.getSetups() != 1) { // 账号被禁用
-            return MyUtil.msg(-7);
+            return MsgUtil.msg(-7);
         }
         session.setAttribute("currentUser", currentUser);
-        return MyUtil.msg(1, "登陆成功 ! 系统正在跳转...<br>但是不知道验证码对不对");
+        return MsgUtil.msg(1, "<font color='green'>验证通过 ! 系统正在跳转...</font>");
     }
 
     /**
@@ -106,7 +107,7 @@ public class MhUsersController extends BaseController<MhUsersService> {
         } else {
             msg = "mhUsersService.searchFor返回结果为null";
         }
-        MyUtil.layData(result, code, msg); // 组装layui的数据表格的结构
+        MsgUtil.layData(result, code, msg); // 组装layui的数据表格的结构
         return result;
     }
 
@@ -121,7 +122,7 @@ public class MhUsersController extends BaseController<MhUsersService> {
     @RequestMapping("/saveUser")
     public Message saveUser(MhUsers mhUsers, HttpServletRequest request) {
         int r = mhUsersService.saveOrUpdate(mhUsers, request);
-        return MyUtil.msg(r);
+        return MsgUtil.msg(r);
     }
 
     /**
@@ -135,7 +136,7 @@ public class MhUsersController extends BaseController<MhUsersService> {
     @RequestMapping("/updateUser")
     public Message updateUser(MhUsers mhUsers, HttpServletRequest request) {
         int r = mhUsersService.saveOrUpdate(mhUsers, request);
-        return MyUtil.msg(r);
+        return MsgUtil.msg(r);
     }
 
     /**
@@ -149,7 +150,7 @@ public class MhUsersController extends BaseController<MhUsersService> {
     @RequestMapping("/deleteUser")
     public Message deleteUser(String ids, HttpServletRequest request) {
         int r = mhUsersService.remove(Integer.parseInt(ids), request);
-        return MyUtil.msg(r);
+        return MsgUtil.msg(r);
     }
 
     /**
@@ -167,9 +168,9 @@ public class MhUsersController extends BaseController<MhUsersService> {
             result = mhUsersService.deleteUsers(ids, request);
         } catch (Exception e) {
             e.printStackTrace();
-            return MyUtil.msg(false, "com.hafa.users.service.MhUsersService.deleteUsers方法异常");
+            return MsgUtil.msg(false, "com.hafa.users.service.MhUsersService.deleteUsers方法异常");
         }
-        return MyUtil.msg(result);
+        return MsgUtil.msg(result);
     }
 
     /**
@@ -184,6 +185,6 @@ public class MhUsersController extends BaseController<MhUsersService> {
     @RequestMapping("/updateSetups")
     public Message updateSetups(String ids, String setups, HttpServletRequest request) {
         int result = mhUsersService.updateSetups(ids, setups, request);
-        return MyUtil.msg(result);
+        return MsgUtil.msg(result);
     }
 }

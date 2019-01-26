@@ -27,13 +27,13 @@
                         <div class="layui-col-lg2 layui-col-md3 layui-col-sm6 layui-col-xs12">
                             <select name="diccode">
                                 <option value="">下拉以选择</option>
-                                <#list dicList as dic>
-                                    <option value="${dic.diccode}">${dic.desp}</option>
+                                <#list financeOutList as financeOut>
+                                    <option value="${financeOut.ids}">${financeOut.dicvalue}</option>
                                 </#list>
                             </select>
                         </div>
                         <div class="layui-col-lg2 layui-col-md3 layui-col-sm6 layui-col-xs12">
-                            <input class="layui-input" name="dicvalue" placeholder="值">
+                            <input class="layui-input" name="dicvalue" placeholder="">
                         </div>
                         <div class="layui-col-lg1 layui-col-md2 layui-col-sm12 layui-col-xs12">
                             <button class="layui-btn layui-btn-primary layui-btn-fluid layui-btn-sm" lay-submit
@@ -53,9 +53,6 @@
 <script type="text/html" id="toolbar">
     <!-- 顶部功能菜单 -->
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="add">
-            <i class="fa fa fa-plus-circle fa-fw"></i> 添加
-        </button>
         <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del_multiple">
             <i class="fa fa fa-minus-circle fa-fw"></i> 删除
         </button>
@@ -68,43 +65,32 @@
     <a lay-event="del" lay-data="{{ d.ids }}"
        class="layui-btn layui-btn-xs layui-btn-danger">删除</a>
 </script>
-<script type="text/html" id="finance-out-addOrEdit">
+<script type="text/html" id="finance-out-edit">
     <div class="layui-form-item"></div>
     <form id="form-finance-out" lay-filter="finance-out" class="layui-form">
         <input type="hidden" name="ids" value="{{ d.ids }}"/>
         <div class="layui-form-item">
-            <label class="layui-form-label">所有者：</label>
+            <label class="layui-form-label">类型：</label>
             <div class="layui-input-inline">
-                <input type="text" name="userid"
-                       class="layui-input" value="{{ d.userid }}" placeholder="不填写默认为当前用户"/>
+                <select name="createtype" lay-verify="required">
+                    <option value=""></option>
+                    <#list financeOutList as financeOut>
+                        <option value="${financeOut.ids}" {{ d.createtype == ${financeOut.ids} ? 'selected' : '' }}>${financeOut.dicvalue}</option>
+                    </#list>
+                </select>
             </div>
         </div>
         <div class="layui-form-item">
-
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">值：</label>
+            <label class="layui-form-label">金额：</label>
             <div class="layui-input-inline">
-                <input type="text" lay-verify="required" name="dicvalue"
-                       class="layui-input" value="{{ d.dicvalue }}" placeholder="值可以写多个, 逗号隔开"/>
+                <input type="text" name="cash" lay-verify="required|number" class="layui-input" value="{{ d.cash }}"/>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">描述：</label>
+            <label class="layui-form-label">备注：</label>
             <div class="layui-input-inline">
-                <input type="text" lay-verify="required" name="desp"
-                       class="layui-input" value="{{ d.desp }}"/>
+                <textarea name="reason" lay-verify="required" class="layui-textarea">{{ d.reason }}</textarea>
             </div>
-        </div>
-        <div class="layui-form-item" style="padding:0 20px;">
-            <fieldset class="layui-elem-field">
-                <legend>说明</legend>
-                <div class="layui-field-box">
-                    CDKEY代表分类, 同一类别的字典数据CDKEY请写成相同的<br>
-                    比如: 性别有"男", "女"<br>
-                    CDKEY可以记录为"xingbie"
-                </div>
-            </fieldset>
         </div>
     </form>
 </script>

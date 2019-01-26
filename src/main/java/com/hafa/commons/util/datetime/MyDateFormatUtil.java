@@ -1,4 +1,4 @@
-package com.hafa.commons.util;
+package com.hafa.commons.util.datetime;
 
 import org.springframework.core.convert.converter.Converter;
 
@@ -14,8 +14,8 @@ import java.util.Date;
 public class MyDateFormatUtil implements Converter<String, Date> {
 
     private static SimpleDateFormat[] sdfs = {
-            new SimpleDateFormat("yyyy-MM-dd"),
             new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"),
+            new SimpleDateFormat("yyyy-MM-dd"),
             new SimpleDateFormat("yyyyMMdd"),
             new SimpleDateFormat("yyyy/MM/dd")
     };

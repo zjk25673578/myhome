@@ -1,4 +1,4 @@
-package com.hafa.commons.util;
+package com.hafa.commons.util.validcode;
 
 import java.awt.*;
 import java.util.Random;

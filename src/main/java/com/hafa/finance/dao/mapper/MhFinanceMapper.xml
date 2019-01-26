@@ -194,8 +194,8 @@
     <select id="searchFor" resultType="Map" parameterType="Map">
         select f.ids,
         (select u.rname from mh_users u where u.ids = f.userid) userid,
-        f.cash,
-        (SELECT d.dicvalue FROM mh_dict d WHERE d.ids = f.createtype and d.status='1') createtype,
+        f.cash,f.createtype,
+        (SELECT d.dicvalue FROM mh_dict d WHERE d.ids = f.createtype and d.status='1') createtypename,
         f.prodate, f.reason, f.createtime, f.creator, f.createname, f.updatetime,
         f.updator, f.updatename from mh_finance f
         <where>

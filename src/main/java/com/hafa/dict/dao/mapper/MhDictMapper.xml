@@ -176,14 +176,14 @@
         updator, updatename
         from mh_dict
         <where>
-            <if test="diccode != null and diccode != ''">
-                diccode=#{diccode}
-            </if>
             <if test="dicvalue != null and dicvalue != ''">
                 and dicvalue like concat('%',#{dicvalue},'%')
             </if>
-            <if test="desp != null and desp != ''">
-                and desp like concat('%',#{desp},'%')
+            <if test="diccode != null and diccode != ''">
+                and diccode=#{diccode}
+            </if>
+            <if test="cdKey != null and cdKey != ''">
+                and diccode = #{cdKey}
             </if>
             and status='1'
         </where>
@@ -196,14 +196,14 @@
         count(1)
         from mh_dict
         <where>
-            <if test="diccode != null and diccode != ''">
-                diccode=#{diccode}
-            </if>
             <if test="dicvalue != null and dicvalue != ''">
                 and dicvalue like concat('%',#{dicvalue},'%')
             </if>
-            <if test="desp != null and desp != ''">
-                and desp like concat('%',#{desp},'%')
+            <if test="diccode != null and diccode != ''">
+                and diccode=#{diccode}
+            </if>
+            <if test="cdKey != null and cdKey != ''">
+                and diccode = #{cdKey}
             </if>
             and status='1'
         </where>

@@ -3,7 +3,7 @@ package com.hafa.menu.controller;
 import com.hafa.commons.controller.BaseController;
 import com.hafa.commons.entity.Message;
 import com.hafa.commons.entity.TreeModel;
-import com.hafa.commons.util.MyUtil;
+import com.hafa.commons.util.msg.MsgUtil;
 import com.hafa.menu.model.MhMenu;
 import com.hafa.menu.service.MhMenuService;
 import com.hafa.usermenu.service.MhUserMenuService;
@@ -66,9 +66,9 @@ public class MhMenuController extends BaseController<MhMenuService> {
         Message msg;
         List<MhMenu> list = mhMenuService.menuList(getCurrentUser(request));
         if (list != null && list.size() > 0) {
-            msg = MyUtil.msg(1, "成功返回数据", list);
+            msg = MsgUtil.msg(1, "成功返回数据", list);
         } else {
-            msg = MyUtil.msg(-2); // 没有数据
+            msg = MsgUtil.msg(-2); // 没有数据
         }
         return msg;
     }
@@ -108,7 +108,7 @@ public class MhMenuController extends BaseController<MhMenuService> {
     @RequestMapping("/updateMenuStructure")
     public Message updateMenuStructure(String currentId, String targetId) {
         int result = mhMenuService.updateMenuStructure(currentId, targetId);
-        return MyUtil.msg(result);
+        return MsgUtil.msg(result);
     }
 
     /**
@@ -122,7 +122,7 @@ public class MhMenuController extends BaseController<MhMenuService> {
     @RequestMapping("/updateMenu")
     public Message updateMenu(MhMenu menu, HttpServletRequest request) {
         int result = mhMenuService.updateByPrimaryKeySelective(menu, request);
-        return MyUtil.msg(result);
+        return MsgUtil.msg(result);
     }
 
     /**
@@ -137,9 +137,9 @@ public class MhMenuController extends BaseController<MhMenuService> {
         List<Map<String, Object>> menuList = mhMenuService.listByParentId(id);
         Map<String, Object> msg;
         if (menuList != null) {
-            msg = MyUtil.layData(0, "成功返回数据", menuList.size(), menuList);
+            msg = MsgUtil.layData(0, "成功返回数据", menuList.size(), menuList);
         } else {
-            msg = MyUtil.layData(-1, "没有子菜单", 0, null);
+            msg = MsgUtil.layData(-1, "没有子菜单", 0, null);
         }
         return msg;
     }
@@ -155,7 +155,7 @@ public class MhMenuController extends BaseController<MhMenuService> {
     @RequestMapping("/appendMenu")
     public Message appendMenu(MhMenu menu, HttpServletRequest request) {
         int r = mhMenuService.saveOrUpdate(menu, request);
-        return MyUtil.msg(r);
+        return MsgUtil.msg(r);
     }
 
     /**
@@ -169,7 +169,7 @@ public class MhMenuController extends BaseController<MhMenuService> {
     @RequestMapping("/removeMenu")
     public Message removeMenu(String ids, HttpServletRequest request) {
         int r = mhMenuService.removeMenu(ids, request);
-        return MyUtil.msg(r);
+        return MsgUtil.msg(r);
     }
 
     /**
@@ -179,9 +179,9 @@ public class MhMenuController extends BaseController<MhMenuService> {
     public Map<String, Object> layData(List<TreeModel> list) {
         Map<String, Object> msg;
         if (list != null && list.size() > 0) {
-            msg = MyUtil.layData(0, "成功返回数据", list.size(), list);
+            msg = MsgUtil.layData(0, "成功返回数据", list.size(), list);
         } else {
-            msg = MyUtil.layData(-1, "list=" + list, 0, null);
+            msg = MsgUtil.layData(-1, "list=" + list, 0, null);
         }
         return msg;
     }

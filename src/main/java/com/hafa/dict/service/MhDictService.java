@@ -24,4 +24,13 @@ public interface MhDictService extends BaseService<MhDict> {
      * @return
      */
     List<Map<String, Object>> getDicCodeList();
+
+    /**
+     * 根据指定的CDKEY获取字典列表
+     * 主要应用于各页面的下拉框
+     *
+     * @param caiwuleibieout
+     * @return
+     */
+    List<Map<String, Object>> getDicCodeListByCdkey(String caiwuleibieout);
 }

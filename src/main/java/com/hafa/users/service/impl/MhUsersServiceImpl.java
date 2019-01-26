@@ -2,7 +2,7 @@ package com.hafa.users.service.impl;
 
 import com.hafa.commons.entity.CommonModel;
 import com.hafa.commons.service.impl.CommonServiceImpl;
-import com.hafa.commons.util.MyUtil;
+import com.hafa.commons.util.msg.MsgUtil;
 import com.hafa.users.dao.MhUsersMapper;
 import com.hafa.users.model.MhUsers;
 import com.hafa.users.service.MhUsersService;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class MhUsersServiceImpl extends CommonServiceImpl implements MhUsersService {
+public class MhUsersServiceImpl extends CommonServiceImpl<MhUsers> implements MhUsersService {
 
     @Autowired
     protected MhUsersMapper mhUsersMapper;
@@ -34,7 +34,7 @@ public class MhUsersServiceImpl extends CommonServiceImpl implements MhUsersServ
     public Map<String, Object> searchFor(Map<String, Object> args) {
         // 根据指定条件查询用户列表
         List<Map<String, Object>> list = mhUsersMapper.searchFor(args);
-        return MyUtil.searchForLayData(mhUsersMapper.countFor(args), list); // 返回layui需要的数据结构
+        return MsgUtil.searchForLayData(mhUsersMapper.countFor(args), list); // 返回layui需要的数据结构
     }
 
     @Override

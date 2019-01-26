@@ -1,6 +1,6 @@
 package com.hafa.commons.controller;
 
-import com.hafa.commons.util.ValidCodeUtil;
+import com.hafa.commons.util.validcode.ValidCodeUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;

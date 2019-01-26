@@ -1,9 +1,10 @@
 package com.hafa.commons.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.hafa.commons.entity.PageBean;
 import com.hafa.commons.service.BaseService;
 import com.hafa.commons.util.MyUtil;
-import com.hafa.commons.util.PageBean;
+import com.hafa.commons.util.msg.MsgUtil;
 import com.hafa.users.model.MhUsers;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,10 +35,10 @@ public class BaseController<E extends BaseService> {
             e.printStackTrace();
         }
         if (resultMap != null) {
-            MyUtil.layData(resultMap, 0, "");
+            MsgUtil.layData(resultMap, 0, "");
             return resultMap;
         }
-        return MyUtil.layData(-1, "", 0, null);
+        return MsgUtil.layData(-1, "", 0, null);
     }
 
     /**

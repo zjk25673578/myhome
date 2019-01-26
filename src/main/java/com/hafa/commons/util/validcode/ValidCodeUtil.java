@@ -1,7 +1,8 @@
-package com.hafa.commons.util;
+package com.hafa.commons.util.validcode;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
@@ -54,7 +55,7 @@ public class ValidCodeUtil {
         //四个参数(前面两个是起笔位置, 后面两个是宽高)
         g.drawRect(1, 1, width - 3, height - 3);
         //画出图片验证码的内容
-        String data = MyUtil.getCodeContent(request.getSession());
+        String data = getCodeContent(request.getSession());
         int _x = 5;
         for (int i = 0; i < data.length(); i++) {
             //定义旋转的弧度
@@ -70,5 +71,21 @@ public class ValidCodeUtil {
             _x += width / data.length();
         }
         return bufImg;
+    }
+
+    /**
+     * 获取随机的验证码内容(字母加数字)
+     * 同时将验证码放入session中
+     */
+    static String getCodeContent(HttpSession session) {
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder code = new StringBuilder();
+        for (int x = 1; x <= 4; x++) {
+            Random a = new Random();
+            int m = a.nextInt(str.length());
+            code.append(str.charAt(m));
+        }
+        session.setAttribute("validCode", code.toString());
+        return code.toString();
     }
 }

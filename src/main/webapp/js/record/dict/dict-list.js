@@ -114,6 +114,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         active["search"](data.field);
         return false;
     });
+    // 监听查询表单的重置事件
+    form.on("submit(searchReset)", function (data) {
+        data.form.reset();
+        return false;
+    });
 
     // 监听表格上方按钮的事件
     table.on("toolbar(dict-table)", function (obj) {

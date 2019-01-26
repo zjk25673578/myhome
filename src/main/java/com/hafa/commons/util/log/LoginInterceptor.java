@@ -1,7 +1,8 @@
-package com.hafa.commons.util;
+package com.hafa.commons.util.log;
 
 import com.hafa.users.model.MhUsers;
 import org.apache.log4j.Logger;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * springmvc登陆拦截器
+ *
  * @ClassName: LoginInterceptor
  * @Description: TODO
  * @author: dp
@@ -17,10 +19,30 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginInterceptor extends HandlerInterceptorAdapter {
     Logger logger = Logger.getLogger(this.getClass());
 
+    public LoginInterceptor() {
+        super();
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+        System.out.println("postHandle方法: handler: " + handler + ", modelAndView: " + modelAndView);
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        System.out.println("afterCompletion方法: handler: " + handler + ", modelAndView: " + ex);
+    }
+
+    @Override
+    public void afterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("afterConcurrentHandlingStarted方法: handler: " + handler);
+    }
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         String requestUri = request.getRequestURI();
+        System.out.println("preHandle方法: 访问" + requestUri + "请求之前..");
         /**
          * 需要跳转的路径
          */

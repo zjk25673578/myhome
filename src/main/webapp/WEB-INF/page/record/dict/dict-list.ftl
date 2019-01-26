@@ -35,11 +35,19 @@
                         <div class="layui-col-lg2 layui-col-md3 layui-col-sm6 layui-col-xs12">
                             <input class="layui-input" name="dicvalue" placeholder="值">
                         </div>
-                        <div class="layui-col-lg1 layui-col-md2 layui-col-sm12 layui-col-xs12">
-                            <button class="layui-btn layui-btn-primary layui-btn-fluid layui-btn-sm" lay-submit
-                                    lay-filter="searchSubmit">
-                                <i class="fa fa-search fa-lg"></i> 搜索
-                            </button>
+                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm12 layui-col-xs12">
+                            <div class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs6 p-r-5">
+                                <button class="layui-btn layui-btn-fluid layui-btn-sm" lay-submit
+                                        lay-filter="searchSubmit">
+                                    <i class="fa fa-search fa-lg"></i> 搜索
+                                </button>
+                            </div>
+                            <div class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs6 p-l-5">
+                                <button class="layui-btn layui-btn-primary layui-btn-fluid layui-btn-sm" lay-submit
+                                        lay-filter="searchReset">
+                                    <i class="fa fa-eraser fa-lg"></i> 清空
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </form>

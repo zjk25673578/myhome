@@ -1,9 +1,9 @@
-package com.hafa.commons.util;
+package com.hafa.commons.util.encrypt;
 
 /**
  * MD5编码工具类
  */
-public class MD5Code {
+public class MD5Util {
     static final int S11 = 7;
 
     static final int S12 = 12;
@@ -65,7 +65,7 @@ public class MD5Code {
         return digestHexStr;
     }
 
-    public MD5Code() {
+    public MD5Util() {
         md5Init();
         return;
     }

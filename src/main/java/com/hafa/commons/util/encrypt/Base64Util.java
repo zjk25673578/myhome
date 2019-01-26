@@ -1,4 +1,4 @@
-package com.hafa.commons.util;
+package com.hafa.commons.util.encrypt;
 
 import java.io.*;
 

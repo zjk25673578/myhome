@@ -3,6 +3,7 @@ package com.hafa.dict.service.impl;
 import com.hafa.commons.entity.CommonModel;
 import com.hafa.commons.service.impl.CommonServiceImpl;
 import com.hafa.commons.util.MyUtil;
+import com.hafa.commons.util.msg.MsgUtil;
 import com.hafa.dict.dao.MhDictMapper;
 import com.hafa.dict.model.MhDict;
 import com.hafa.dict.service.MhDictService;
@@ -38,7 +39,7 @@ public class MhDictServiceImpl extends CommonServiceImpl implements MhDictServic
     @Override
     public Map<String, Object> searchFor(Map<String, Object> args) {
         List<Map<String, Object>> list = mhDictMapper.searchFor(args);
-        return MyUtil.searchForLayData(mhDictMapper.countFor(args), list);
+        return MsgUtil.searchForLayData(mhDictMapper.countFor(args), list);
     }
 
     @Override
@@ -65,5 +66,11 @@ public class MhDictServiceImpl extends CommonServiceImpl implements MhDictServic
     @Override
     public List<Map<String, Object>> getDicCodeList() {
         return mhDictMapper.getDicCodeList();
+    }
+
+    @Override
+    public List<Map<String, Object>> getDicCodeListByCdkey(String cdkey) {
+        Map<String, Object> args = MyUtil.searchForArgs("cdKey", cdkey, "minpage", 0, "limit", 1000);
+        return mhDictMapper.searchFor(args);
     }
 }

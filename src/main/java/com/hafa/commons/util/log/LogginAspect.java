@@ -1,4 +1,4 @@
-package com.hafa.commons.util;
+package com.hafa.commons.util.log;
 
 import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;

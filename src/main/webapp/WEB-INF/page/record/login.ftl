@@ -38,7 +38,8 @@
                 <img id="validCode" src="${ctx}/validCode" width="100%" height="50"/>
             </div>
         </div>
-        <a id="btn-submit" class="layui-btn layui-btn-fluid" lay-submit lay-filter="login">登　　录</a>
+        <#--<a id="btn-submit" class="layui-btn layui-btn-fluid" lay-submit lay-filter="login">登　　录</a>-->
+        <input type="submit" lay-submit lay-filter="login" value="登　　录">
         <hr class="hr20">
     </form>
 </div>
@@ -55,8 +56,14 @@
          * 登陆表单提交
          */
         form.on('submit(login)', function (data) {
-            var indexMsg = layer.msg("系统正在登陆, 请稍后......", {id: "info-msg", shade: 0.01, offset: "35%", time: 0, icon: 6});
-            $(this).addClass("layui-btn-disabled").attr("disabled", "disabled");
+            // var that = this;
+            // $(that).addClass("layui-btn-disabled").attr("disabled", "disabled");
+            var index = layer.msg("<span id='info-msg'>系统正在登陆, 请稍后....</span>", {
+                shade: 0.01,
+                offset: "35%",
+                time: 0,
+                icon: 6
+            });
             $.ajax({
                 async: false,
                 url: "${ctx}/mhusers/login",
@@ -64,20 +71,22 @@
                 dataType: "json",
                 success: function (dataResult) {
                     if (dataResult.success) {
-
-                        var layerContent = document.getElementById("info-msg");
-                        console.log(layerContent.);
-                        /*layer.msg(dataResult.message, {icon: dataResult.iconType, time: 2000}, function () {
-                            window.location.href = "
-
-                        ${ctx}/record/index";
-                        });*/
+                        setTimeout(function () {
+                            $("#info-msg").html('(๑•̀ㅂ•́)و✧' + dataResult.message);
+                            setTimeout(function() {
+                                window.location.href = "${ctx}/record/index";
+                            }, 300);
+                        }, 500); // 假装有延时
                     } else {
-                        layer.msg(dataResult.message, {icon: dataResult.iconType, time: 2000});
+                        layer.close(index);
+                        layer.alert('Σ( ° △ °|||)︴ <font color="red">' + dataResult.message + '</font>', {icon: dataResult.iconType, offset: "35%", time: 0});
+                        // $(that).removeClass("layui-btn-disabled").removeAttr("disabled");
                     }
                 },
                 error: function (rm) {
-                    layer.msg(rm.responseText, {icon: 5});
+                    layer.close(index);
+                    layer.alert(rm.responseText, {icon: 5, offset: "35%", time: 0});
+                    // $(that).removeClass("layui-btn-disabled").removeAttr("disabled");
                 }
             });
             return false;

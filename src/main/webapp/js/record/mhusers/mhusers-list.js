@@ -154,6 +154,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         active["search"](data.field);
         return false;
     });
+    // 监听查询表单的重置事件
+    form.on("submit(searchReset)", function (data) {
+        data.form.reset();
+        return false;
+    });
 
     // 表格的行双击事件
     table.on('rowDouble(users-table)', function (obj) {
@@ -179,6 +184,10 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
 
     // 监听表格右侧的工具栏
     table.on("tool(users-table)", function (obj) {
+        if (obj.data.userType === 1) {
+            layer.alert("超级管理员不允许在这里修改...", {icon: 0});
+            return;
+        }
         active[obj.event](obj);
     });
 
