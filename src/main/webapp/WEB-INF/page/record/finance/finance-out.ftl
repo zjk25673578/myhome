@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
-    <@header.baseConfig />
+    <@macros.headConfig />
     <script type="text/javascript" src="${ctx}/js/record/finance/finance-out.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
@@ -24,22 +24,40 @@
                 <!-- 查询表单 -->
                 <form id="search-form" class="layui-form layui-col-md12">
                     <div class="layui-form-item layui-col-space20">
-                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm6 layui-col-xs12">
-                            <select name="diccode">
-                                <option value="">下拉以选择</option>
+                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm4 layui-col-xs12">
+                            <select name="createtype">
+                                <option value="">选择类型</option>
                                 <#list financeOutList as financeOut>
                                     <option value="${financeOut.ids}">${financeOut.dicvalue}</option>
                                 </#list>
                             </select>
                         </div>
-                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm6 layui-col-xs12">
-                            <input class="layui-input" name="dicvalue" placeholder="">
+                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm4 layui-col-xs12">
+                            <input id="prodate" class="layui-input" name="prodate" placeholder="发生时间(只支持月份查询)">
                         </div>
-                        <div class="layui-col-lg1 layui-col-md2 layui-col-sm12 layui-col-xs12">
-                            <button class="layui-btn layui-btn-primary layui-btn-fluid layui-btn-sm" lay-submit
-                                    lay-filter="searchSubmit">
-                                <i class="fa fa-search fa-lg"></i> 搜索
-                            </button>
+                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm4 layui-col-xs6">
+                            <div class="layui-input-inline" style="width: 85px;">
+                                <input type="text" name="minprice" placeholder="￥最小" autocomplete="off"
+                                       class="layui-input">
+                            </div>
+                            <div class="layui-input-inline" style="width: 85px;">
+                                <input type="text" name="maxprice" placeholder="￥最多" autocomplete="off"
+                                       class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-col-lg2 layui-col-md2 layui-col-sm4 layui-col-xs6">
+                            <div class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs6 p-r-5">
+                                <button class="layui-btn layui-btn-fluid layui-btn-sm" lay-submit
+                                        lay-filter="searchSubmit">
+                                    <i class="fa fa-search fa-lg"></i> 搜索
+                                </button>
+                            </div>
+                            <div class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs6 p-l-5">
+                                <button class="layui-btn layui-btn-primary layui-btn-fluid layui-btn-sm" lay-submit
+                                        lay-filter="searchReset">
+                                    <i class="fa fa-eraser fa-lg"></i> 清空
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -75,9 +93,16 @@
                 <select name="createtype" lay-verify="required">
                     <option value=""></option>
                     <#list financeOutList as financeOut>
-                        <option value="${financeOut.ids}" {{ d.createtype == ${financeOut.ids} ? 'selected' : '' }}>${financeOut.dicvalue}</option>
+                        <option value="${financeOut.ids}" {{ d.createtype== ${financeOut.ids}
+                                ? 'selected' : '' }}>${financeOut.dicvalue}</option>
                     </#list>
                 </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">发生时间：</label>
+            <div class="layui-input-inline">
+                <input type="text" id="prodate-field" name="prodate" lay-verify="required" readonly="readonly" class="layui-input" value="{{ d.prodate }}"/>
             </div>
         </div>
         <div class="layui-form-item">

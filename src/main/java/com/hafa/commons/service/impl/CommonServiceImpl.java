@@ -67,6 +67,12 @@ public abstract class CommonServiceImpl<E extends CommonModel> {
             return -1;
         }
         int id = -1;
+
+        // 因为Mapper中已经指定了jdbcType=INTEGER, 所以无法传入字符串类型的值进行查询
+        // 这里需要根据实际的业务逻辑来进行判断
+        // 要注意的是, 这种情况的出现一定要在构建项目的初期就应该考虑到
+        // 要么全Integer, 要么全String, 主键常用类型无非就这两种
+        // 本项目中使用的主键全部为Integer, 所以在这里就直接转了
         if (ids.toString().trim().length() > 0) {
             try {
                 id = Integer.parseInt(ids.toString());
@@ -76,11 +82,6 @@ public abstract class CommonServiceImpl<E extends CommonModel> {
                 return -1;
             }
         }
-        // 因为Mapper中已经指定了jdbcType=INTEGER, 所以无法传入字符串类型的值进行查询
-        // 这里需要根据实际的业务逻辑来进行判断
-        // 要注意的是, 这种情况的出现一定要在构建项目的初期就应该考虑到
-        // 要么全Integer, 要么全String, 主键常用类型无非就这两种
-        // 本项目中使用的主键全部为Integer, 所以在这里就直接转了
         E entity = mapper.selectByPrimaryKey(id);
         return remove(mapper, entity, request);
     }

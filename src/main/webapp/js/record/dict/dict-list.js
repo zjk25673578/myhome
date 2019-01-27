@@ -52,7 +52,6 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                 }
             });
         },
-
         // 添加数据
         add: function () {
             saveOrUpdate(tempData, "新增字典数据", _ctx + "/dict/saveMultiple");
@@ -60,7 +59,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
 
         // 修改数据
         update: function (obj) {
-            saveOrUpdate(parseData(obj.data), "修改字典数据", _ctx + "/dict/update");
+            saveOrUpdate(handleUndefinedAndNull(obj.data), "修改字典数据", _ctx + "/dict/update");
         },
 
         // 删除数据
@@ -114,11 +113,6 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         active["search"](data.field);
         return false;
     });
-    // 监听查询表单的重置事件
-    form.on("submit(searchReset)", function (data) {
-        data.form.reset();
-        return false;
-    });
 
     // 监听表格上方按钮的事件
     table.on("toolbar(dict-table)", function (obj) {
@@ -136,13 +130,14 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
      * 添加或者修改的方法
      * @param data
      * @param title
+     * @param url
      */
     function saveOrUpdate(data, title, url) {
         var tpl = document.getElementById("dict-addOrEdit").innerHTML;
         laytpl(tpl).render(data, function (html) {
             openDialog(html, title, ['330px', '440px'], function (idx) {
                 var formdata = $("#form-data-dict").serializeArray();
-                var result = validateForm(formdata); // 表单验证
+                var result = validJqueryForm(formdata); // 表单验证
                 if (result) {
                     $.ajax({
                         url: url,
@@ -165,57 +160,5 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                 }
             });
         });
-    }
-
-    /**
-     * 格式化一下数据
-     * layui表格中取出的行对象如果没有对应的值则设置为空字符串
-     * @param updateData
-     * @returns {*}
-     */
-    function parseData(updateData) {
-        for (var p in tempData) {
-            if (updateData[p] === undefined) {
-                updateData[p] = "";
-            }
-        }
-        return updateData;
-    }
-
-    // 自定义表单验证规则
-    var form_validation = {
-        diccode: function (value) {
-            if (!value.length > 0) {
-                layer.msg("必须填写CDKEY !", {icon: 5});
-                return false;
-            }
-            return true;
-        },
-        dicvalue: function (value) {
-            if (value == null || value == undefined || value == "") {
-                layer.msg("必须填写值 !", {icon: 5});
-                return false;
-            }
-            return true;
-        }
-    };
-
-    /**
-     * 表单验证
-     * @param formObj
-     * @returns {*}
-     */
-    function validateForm(formObj) {
-        var temp = {};
-        for (var attr in formObj) {
-            temp[formObj[attr].name] = formObj[attr].value;
-        }
-        for (var attr in form_validation) {
-            var r = form_validation[attr](temp[attr]);
-            if (!r) {
-                return false;
-            }
-        }
-        return true;
     }
 });

@@ -76,7 +76,6 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                 }
             });
         },
-
         // 添加数据
         add: function () {
             saveOrUpdate(tempData, "新增用户", _ctx + "/mhusers/saveUser");
@@ -84,7 +83,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
 
         // 修改数据
         update: function (obj) {
-            saveOrUpdate(parseData(obj.data), "编辑用户", _ctx + "/mhusers/updateUser");
+            saveOrUpdate(handleUndefinedAndNull(obj.data), "编辑用户", _ctx + "/mhusers/updateUser");
         },
 
         // 删除数据
@@ -154,22 +153,18 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         active["search"](data.field);
         return false;
     });
-    // 监听查询表单的重置事件
-    form.on("submit(searchReset)", function (data) {
-        data.form.reset();
-        return false;
-    });
 
     // 表格的行双击事件
     table.on('rowDouble(users-table)', function (obj) {
         if (obj.data.userType !== 1) {
-            layer.open({
+            x_admin_show("<font color='blue'>" + obj.data.rname + "</font> 的权限", _ctx + "/mhmenu/tree?ids=" + obj.data.ids, 300, 550);
+            /*layer.open({
                 type: 2,
                 content: _ctx + "/mhmenu/tree?ids=" + obj.data.ids,
                 title: "<font color='blue'>" + obj.data.rname + "</font> 的权限",
-                area: ["300px", "600px"],
-                offset: "10%"
-            });
+                area: ["300px", "600px"]//,
+                // offset: "35%"
+            });*/
         } else {
             layer.alert("超级管理员默认拥有所有菜单权限 !");
         }
@@ -203,7 +198,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         laytpl(tpl).render(data, function (html) {
             openDialog(html, title, ['330px', '370px'], function (idx) {
                 var formdata = $("#form-data-user").serializeArray();
-                var result = validateForm(formdata); // 表单验证
+                var result = validJqueryForm(formdata); // 表单验证
                 if (result) {
                     $.ajax({
                         url: url,
@@ -226,64 +221,5 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                 }
             });
         });
-    }
-
-    /**
-     * 格式化一下数据
-     * layui表格中取出的行对象如果没有对应的值则设置为空字符串
-     * @param updateData
-     * @returns {*}
-     */
-    function parseData(updateData) {
-        for (var p in tempData) {
-            if (updateData[p] === undefined) {
-                updateData[p] = "";
-            }
-        }
-        return updateData;
-    }
-
-    // 自定义表单验证规则
-    var form_validation = {
-        uname: function (value) {
-            if (!value.length > 0) {
-                layer.msg("必须填写用户名 !", {icon: 5});
-                return false;
-            }
-            return true;
-        },
-        rname: function (value) {
-            if (value == null || value == undefined || value == "") {
-                layer.msg("必须填写姓名 !", {icon: 5});
-                return false;
-            }
-            return true;
-        },
-        userType: function (value) {
-            if (value == null || value == undefined || value == "") {
-                layer.msg("必须选择用户类型 !", {icon: 5});
-                return false;
-            }
-            return true;
-        }
-    };
-
-    /**
-     * 表单验证
-     * @param formObj
-     * @returns {*}
-     */
-    function validateForm(formObj) {
-        var temp = {};
-        for (var attr in formObj) {
-            temp[formObj[attr].name] = formObj[attr].value;
-        }
-        for (var attr in form_validation) {
-            var r = form_validation[attr](temp[attr]);
-            if (!r) {
-                return false;
-            }
-        }
-        return true;
     }
 });

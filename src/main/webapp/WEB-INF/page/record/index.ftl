@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
-    <@header.baseConfig />
+    <@macros.headConfig />
     <script type="text/javascript" src="${ctx}/js/record/index/index.js"></script>
 </head>
 <body>
@@ -205,7 +205,7 @@
 <!-- 右侧主体结束 -->
 <!-- 中部结束 -->
 <!-- 底部开始 -->
-<@copyright.footer year='2018' company="小熊科技" />
+<@macros.footer year='2019' company="小熊科技" />
 <!-- 底部结束 -->
 </body>
 </html>

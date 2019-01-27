@@ -140,7 +140,7 @@ body {
 .x-body {
     padding: 20px;
     height: 100%;
-    overflow: auto;
+    /*overflow: auto;*/
 }
 
 .x-nav {

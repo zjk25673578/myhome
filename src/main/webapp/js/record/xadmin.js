@@ -1,9 +1,11 @@
 $(function () {
     // 加载弹出层
-    layui.use(['form', 'element', 'laydate', 'form'], function () {
+    layui.use(['form', 'element', 'laydate', 'form', 'laytpl', 'table'], function () {
         layer = layui.layer;
         element = layui.element;
         laydate = layui.laydate;
+        table = layui.table;
+        laytpl = layui.laytpl;
         form = layui.form;
     });
 
@@ -165,7 +167,6 @@ $(function () {
 var cateIds = [];
 
 function getCateId(cateId) {
-
     $("tbody tr[fid=" + cateId + "]").each(function (index, el) {
         id = $(el).attr('cate-id');
         cateIds.push(id);
@@ -201,7 +202,7 @@ function x_admin_show(title, url, w, h) {
         fix: false, // 不固定
         maxmin: true,
         offset: '15%',
-        shadeClose: true,
+        // shadeClose: true,
         shade: 0.3,
         title: title,
         content: url
@@ -222,7 +223,9 @@ function openDialog(tpl, title, area, callback, dates) {
         content: tpl,
         title: title,
         area: area,
-        // shade: 0.2,
+        maxmin: true,
+        // shade: false,
+        // shadeClose: true,
         offset: "25%",
         btn: ["保存", "取消"],
         yes: function (idx) {
@@ -291,3 +294,73 @@ function handleUndefinedAndNull(obj) {
     }
     return obj;
 }
+
+// 全局自定义表单验证规则
+var formValid = {
+    // 支出记录验证
+    createtype: function (value) {
+        if (!value.length > 0) {
+            layer.msg("必须选择类型 !", {icon: 5});
+            return false;
+        }
+        return true;
+    },
+    reason: function (value) {
+        if (value == null || value === "") {
+            layer.msg("必须填写备注 !", {icon: 5});
+            return false;
+        }
+        return true;
+    },
+    prodate: function (value) {
+        if (value == null || value === "") {
+            layer.msg("必须选择发生日期 !", {icon: 5});
+            return false;
+        }
+        return true;
+    },
+    cash: function (value) {
+        if (value == null || value === "") {
+            layer.msg("必须填写金额 !", {icon: 5});
+            return false;
+        }
+        return true;
+    },
+    // 用户列表页面验证
+    uname: function (value) {
+        if (!value.length > 0) {
+            layer.msg("必须填写用户名 !", {icon: 5});
+            return false;
+        }
+        return true;
+    },
+    rname: function (value) {
+        if (value == null || value == undefined || value == "") {
+            layer.msg("必须填写姓名 !", {icon: 5});
+            return false;
+        }
+        return true;
+    },
+    userType: function (value) {
+        if (value == null || value == undefined || value == "") {
+            layer.msg("必须选择用户类型 !", {icon: 5});
+            return false;
+        }
+        return true;
+    },
+    // 字典管理验证
+    diccode: function (value) {
+        if (!value.length > 0) {
+            layer.msg("必须填写CDKEY !", {icon: 5});
+            return false;
+        }
+        return true;
+    },
+    dicvalue: function (value) {
+        if (value == null || value == undefined || value == "") {
+            layer.msg("必须填写值 !", {icon: 5});
+            return false;
+        }
+        return true;
+    }
+};

@@ -10,7 +10,7 @@ import com.hafa.commons.util.enums.MessageEnum;
 public class TestDemo {
 
     public static void main(String[] args) {
-        String key = "";
+        String key = "{\"createtype\":\"31\",\"prodate\":\"\",\"minprice\":\"\",\"maxprice\":\"\"}";
         System.out.println(JSONObject.parse(key));
     }
 

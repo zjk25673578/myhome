@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
-    <@header.baseConfig />
+    <@macros.headConfig />
     <script type="text/javascript" src="${ctx}/js/record/dict/dict-list.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
@@ -26,7 +26,7 @@
                     <div class="layui-form-item layui-col-space20">
                         <div class="layui-col-lg2 layui-col-md3 layui-col-sm6 layui-col-xs12">
                             <select name="diccode">
-                                <option value="">下拉以选择</option>
+                                <option value="">CDKEY</option>
                                 <#list dicList as dic>
                                     <option value="${dic.diccode}">${dic.desp}</option>
                                 </#list>

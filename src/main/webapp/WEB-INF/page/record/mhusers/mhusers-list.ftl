@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
-    <@header.baseConfig />
+    <@macros.headConfig />
     <link rel="stylesheet" href="${ctx}/res/layui/css/eleTree.css">
     <script type="text/javascript" src="${ctx}/js/record/mhusers/mhusers-list.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->

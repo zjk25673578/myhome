@@ -7,6 +7,7 @@ layui.config({
         table = layui.table,
         eleTree = layui.eleTree;
 
+    // 树形菜单
     var el = eleTree.render({
         elem: '#menu-tree',
         method: 'post',
@@ -112,10 +113,8 @@ layui.config({
                 $.post(_ctx + '/mhmenu/updateMenu', data.field, function (resultData) {
                     if (resultData.success) {
                         el.reload();
-                        layer.msg(resultData.message);
-                    } else {
-                        layer.msg(resultData.message);
                     }
+                    layer.msg(resultData.message);
                 }, 'json');
                 layer.close(index);
             }

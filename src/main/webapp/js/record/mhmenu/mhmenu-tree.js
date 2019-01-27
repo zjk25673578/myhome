@@ -11,7 +11,7 @@ layui.config({
 
     $.post(_ctx + "/usermenu/getChecked", {ids: ids}, function (data) {
         if (data.success) {
-            var el = eleTree.render({
+            eleTree.render({
                 elem: '#menu-tree',
                 method: 'post',
                 url: _ctx + '/mhmenu/menuTree/authority',

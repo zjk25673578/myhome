@@ -220,7 +220,7 @@
             <if test="rname != null and rname != ''">
                 and rname like concat('%',#{rname},'%')
             </if>
-            and status='1'
+            and status='1' order by createtime desc
         </where>
         limit #{minpage}, #{limit}
     </select>

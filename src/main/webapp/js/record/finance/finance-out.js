@@ -1,8 +1,13 @@
-layui.use(['form', 'table', 'layer', 'laytpl'], function () {
+layui.use(['table', 'layer', 'laydate'], function () {
     var table = layui.table,
         form = layui.form,
-        laytpl = layui.laytpl,
+        laydate = layui.laydate,
         layer = layui.layer;
+
+    laydate.render({
+        elem: "#prodate",
+        type: "month"
+    });
 
     table.render({
         elem: '#finance-out-table',
@@ -15,7 +20,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
             {field: 'createtypename', title: '类型', width: 150},
             {
                 field: 'prodate', title: '发生时间', width: 210, templet: function (d) {
-                    return timestamp2Datetime(d.createtime);
+                    return timestamp2Datetime(d.prodate);
                 }
             },
             {
@@ -53,10 +58,9 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                 }
             });
         },
-
         // 修改数据
         update: function (obj) {
-            saveOrUpdate(parseData(obj.data), "修改出账记录", _ctx + "/finance/update");
+            saveOrUpdate(handleUndefinedAndNull(obj.data), "修改出账记录", _ctx + "/finance/update");
         },
 
         // 删除数据
@@ -134,7 +138,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         laytpl(tpl).render(data, function (html) {
             openDialog(html, title, ['330px', '440px'], function (idx) {
                 var formdata = $("#form-finance-out").serializeArray();
-                var result = validateForm(formdata); // 表单验证
+                var result = validJqueryForm(formdata); // 表单验证
                 if (result) {
                     $.ajax({
                         url: url,
@@ -156,65 +160,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                     });
                 }
             });
+            laydate.render({
+                elem: "#prodate-field",
+                type: "datetime",
+                value: new Date(data.prodate)
+            });
         });
-    }
-
-    /**
-     * 格式化一下数据
-     * layui表格中取出的行对象如果没有对应的值则设置为空字符串
-     * @param updateData
-     * @returns {*}
-     */
-    function parseData(updateData) {
-        for (var p in updateData) {
-            if (updateData[p] === undefined) {
-                updateData[p] = "";
-            }
-        }
-        return updateData;
-    }
-
-    // 自定义表单验证规则
-    var form_validation = {
-        createtype: function (value) {
-            if (!value.length > 0) {
-                layer.msg("必须选择类型 !", {icon: 5});
-                return false;
-            }
-            return true;
-        },
-        reason: function (value) {
-            if (value == null || value === "") {
-                layer.msg("必须填写备注 !", {icon: 5});
-                return false;
-            }
-            return true;
-        },
-        cash: function (value) {
-            if (value == null || value === "") {
-                layer.msg("必须填写金额 !", {icon: 5});
-                return false;
-            }
-            return true;
-        }
-    };
-
-    /**
-     * 表单验证
-     * @param formObj
-     * @returns {*}
-     */
-    function validateForm(formObj) {
-        var temp = {};
-        for (var attr in formObj) {
-            temp[formObj[attr].name] = formObj[attr].value;
-        }
-        for (var attr in form_validation) {
-            var r = form_validation[attr](temp[attr]);
-            if (!r) {
-                return false;
-            }
-        }
-        return true;
     }
 });

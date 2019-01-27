@@ -199,14 +199,38 @@
         f.prodate, f.reason, f.createtime, f.creator, f.createname, f.updatetime,
         f.updator, f.updatename from mh_finance f
         <where>
-            f.status='1' and f.ftype=#{ftype} and f.userid=#{userid}
+            <if test="createtype != null and createtype != ''">
+                f.createtype=#{createtype}
+            </if>
+            <if test="prodate != null and prodate != ''">
+                and date_format(f.prodate, '%Y-%m')=#{prodate}
+            </if>
+            <if test="minprice != null and minprice != ''">
+                and f.cash &gt; #{minprice}
+            </if>
+            <if test="maxprice != null and maxprice != ''">
+                and f.cash &lt; #{maxprice}
+            </if>
+            and f.status='1' and f.ftype=#{ftype} and f.userid=#{userid}
         </where>
         limit #{minpage}, #{limit}
     </select>
     <select id="countFor" resultType="Integer" parameterType="Map">
         select count(1) from mh_finance f
         <where>
-            f.status='1' and f.ftype=#{ftype} and f.userid=#{userid}
+            <if test="createtype != null and createtype != ''">
+                f.createtype=#{createtype}
+            </if>
+            <if test="prodate != null and prodate != ''">
+                and date_format(f.prodate, '%Y-%m')=date_format(#{prodate}, '%Y-%m')
+            </if>
+            <if test="minprice != null and minprice != ''">
+                and f.cash &gt;= #{minprice}
+            </if>
+            <if test="maxprice != null and maxprice != ''">
+                and f.cash &lt;= #{maxprice}
+            </if>
+            and f.status='1' and f.ftype=#{ftype} and f.userid=#{userid}
         </where>
     </select>
 </mapper>
