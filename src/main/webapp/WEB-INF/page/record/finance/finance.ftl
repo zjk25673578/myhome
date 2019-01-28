@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>支出记录</title>
+    <title>${label}记录</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
     <@macros.headConfig />
-    <script type="text/javascript" src="${ctx}/js/record/finance/finance-out.js"></script>
+    <script type="text/javascript" src="${ctx}/js/record/finance/finance.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -19,16 +19,20 @@
 <div class="x-body">
     <div class="layui-row">
         <fieldset class="layui-elem-field">
-            <legend><i class="fa fa-search-plus fa-fw" aria-hidden="true"></i>数据搜索</legend>
+            <legend><i class="fa fa-search-plus fa-fw" aria-hidden="true"></i>${label}记录</legend>
             <div class="layui-field-box">
                 <!-- 查询表单 -->
                 <form id="search-form" class="layui-form layui-col-md12">
+
+                    <!-- 1: 收入记录, 2: 支出记录 -->
+                    <input type="hidden" id="ftype" name="ftype" value="${ftype}">
+
                     <div class="layui-form-item layui-col-space20">
                         <div class="layui-col-lg2 layui-col-md3 layui-col-sm4 layui-col-xs12">
                             <select name="createtype">
                                 <option value="">选择类型</option>
-                                <#list financeOutList as financeOut>
-                                    <option value="${financeOut.ids}">${financeOut.dicvalue}</option>
+                                <#list financeTypeList as financeType>
+                                    <option value="${financeType.ids}">${financeType.dicvalue}</option>
                                 </#list>
                             </select>
                         </div>
@@ -63,7 +67,7 @@
             </div>
         </fieldset>
     </div>
-    <table id="finance-out-table" class="layui-table" lay-filter="finance-out-table"></table>
+    <table id="finance-table" class="layui-table" lay-filter="finance-table"></table>
 </div>
 
 <!-- layui模板 -->
@@ -82,18 +86,17 @@
     <a lay-event="del" lay-data="{{ d.ids }}"
        class="layui-btn layui-btn-xs layui-btn-danger">删除</a>
 </script>
-<script type="text/html" id="finance-out-edit">
+<script type="text/html" id="finance-edit">
     <div class="layui-form-item"></div>
-    <form id="form-finance-out" lay-filter="finance-out" class="layui-form">
+    <form id="form-finance" lay-filter="finance" class="layui-form">
         <input type="hidden" name="ids" value="{{ d.ids }}"/>
         <div class="layui-form-item">
             <label class="layui-form-label">类型：</label>
             <div class="layui-input-inline">
                 <select name="createtype" lay-verify="required">
                     <option value=""></option>
-                    <#list financeOutList as financeOut>
-                        <option value="${financeOut.ids}" {{ d.createtype== ${financeOut.ids}
-                                ? 'selected' : '' }}>${financeOut.dicvalue}</option>
+                    <#list financeTypeList as financeType>
+                        <option value="${financeType.ids}" {{ d.createtype == ${financeType.ids} ? 'selected' : '' }}>${financeType.dicvalue}</option>
                     </#list>
                 </select>
             </div>

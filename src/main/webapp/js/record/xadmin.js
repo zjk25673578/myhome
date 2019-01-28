@@ -226,7 +226,7 @@ function openDialog(tpl, title, area, callback, dates) {
         maxmin: true,
         // shade: false,
         // shadeClose: true,
-        offset: "25%",
+        offset: "20%",
         btn: ["保存", "取消"],
         yes: function (idx) {
             callback(idx);
@@ -257,7 +257,7 @@ function timestamp2Datetime(timestamp) {
     var dateStr = timestamp2Date(timestamp);
     if (dateStr && dateStr.length > 0) {
         var time = new Date(timestamp).toTimeString().substr(0, 8);
-        return dateStr + '　' + time;
+        return dateStr + ' ' + time;
     }
     return "";
 }

@@ -11,7 +11,6 @@ import com.hafa.finance.service.MhFinanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,24 +27,64 @@ public class MhFinanceController extends BaseController<MhFinanceService> {
     @Autowired
     private MhDictService mhDictService;
 
+    /* ===============页面跳转 start============== */
+
     /**
-     * 页面跳转
+     * 财务支出列表页
      *
-     * @param page
+     * @param model
      * @return
      */
-    @RequestMapping("/{page}")
-    public String index(@PathVariable("page") String page, Model model) {
-        if ("finance-in".equals(page) || "finance-add".equals(page)) { // 新增记录或者收入记录
-            List<Map<String, Object>> financeInList = mhDictService.getDicCodeListByCdkey("caiwuleibiein");
-            model.addAttribute("financeInList", financeInList);
-        }
-        if ("finance-out".equals(page) || "finance-add".equals(page)) { // 新增记录或者支出记录
-            List<Map<String, Object>> financeOutList = mhDictService.getDicCodeListByCdkey("caiwuleibieout");
-            model.addAttribute("financeOutList", financeOutList);
-        }
-        return "record/finance/" + page;
+    @RequestMapping("/out")
+    public String out(Model model) {
+        List<Map<String, Object>> financeOutList = mhDictService.getDicCodeListByCdkey("caiwuleibieout");
+        model.addAttribute("financeTypeList", financeOutList);
+        model.addAttribute("label", "支出");
+        model.addAttribute("ftype", "0");
+        return "record/finance/finance";
     }
+
+    /**
+     * 财务收入列表页
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/in")
+    public String in(Model model) {
+        List<Map<String, Object>> financeInList = mhDictService.getDicCodeListByCdkey("caiwuleibiein");
+        model.addAttribute("financeTypeList", financeInList);
+        model.addAttribute("label", "收入");
+        model.addAttribute("ftype", "1");
+        return "record/finance/finance";
+    }
+
+    /**
+     * 财务信息录入
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/add")
+    public String add(Model model) {
+        List<Map<String, Object>> financeInList = mhDictService.getDicCodeListByCdkey("caiwuleibiein");
+        model.addAttribute("financeTypeInList", financeInList);
+        List<Map<String, Object>> financeOutList = mhDictService.getDicCodeListByCdkey("caiwuleibieout");
+        model.addAttribute("financeTypeOutList", financeOutList);
+        return "record/finance/finance-add";
+    }
+
+    /**
+     * 统计视图
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/view")
+    public String view(Model model) {
+        return "record/finance/finance-month-view";
+    }
+    /* ===============页面跳转 end============== */
 
     /**
      * 请求出账记录列表
@@ -55,10 +94,9 @@ public class MhFinanceController extends BaseController<MhFinanceService> {
      * @return
      */
     @ResponseBody
-    @RequestMapping("/out/list")
+    @RequestMapping("/list")
     public Map<String, Object> outList(String key, PageBean pageBean, HttpServletRequest request) {
         JSONObject args = buildArgs(key); // 查询条件的转换
-        args.put("ftype", 0);
         args.put("userid", getCurrentUserid(request));
         return buildResultMap(mhFinanceService, args, pageBean);
     }

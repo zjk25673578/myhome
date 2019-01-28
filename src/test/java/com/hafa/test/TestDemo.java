@@ -1,17 +1,26 @@
 package com.hafa.test;
 
-import com.alibaba.fastjson.JSONObject;
+import com.hafa.commons.util.encrypt.Base64Util;
+import com.hafa.commons.util.encrypt.MD5Util;
+import com.hafa.commons.util.enums.MessageEnum;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.hafa.commons.util.enums.MessageEnum;
-
 public class TestDemo {
 
     public static void main(String[] args) {
-        String key = "{\"createtype\":\"31\",\"prodate\":\"\",\"minprice\":\"\",\"maxprice\":\"\"}";
-        System.out.println(JSONObject.parse(key));
+        /*String key = "{\"createtype\":\"31\",\"prodate\":\"\",\"minprice\":\"\",\"maxprice\":\"\"}";
+        System.out.println(JSONObject.parse(key));*/
+        String password = "123456";
+        System.out.println(Base64Util.encode(password));
+        // System.out.println(EscapeUtil.escape(password));
+        // System.out.println(EscapeUtil.unescape(password));
+        MD5Util md5Util = new MD5Util();
+        System.out.println(md5Util.getMD5ofStr(Base64Util.encode(password)));
+        System.out.println(md5Util.getMD5ofStr(Base64Util.encode(password)));
+        System.out.println(md5Util.getMD5ofStr(Base64Util.encode(password)));
+        System.out.println(md5Util.getMD5ofStr(Base64Util.encode(password)));
     }
 
     public static void main222(String[] args) {

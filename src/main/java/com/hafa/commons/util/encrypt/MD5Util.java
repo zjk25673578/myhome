@@ -4,39 +4,23 @@ package com.hafa.commons.util.encrypt;
  * MD5编码工具类
  */
 public class MD5Util {
-    static final int S11 = 7;
-
-    static final int S12 = 12;
-
-    static final int S13 = 17;
-
-    static final int S14 = 22;
-
-    static final int S21 = 5;
-
-    static final int S22 = 9;
-
-    static final int S23 = 14;
-
-    static final int S24 = 20;
-
-    static final int S31 = 4;
-
-    static final int S32 = 11;
-
-    static final int S33 = 16;
-
-    static final int S34 = 23;
-
-    static final int S41 = 6;
-
-    static final int S42 = 10;
-
-    static final int S43 = 15;
-
-    static final int S44 = 21;
-
-    static final byte[] PADDING = {-128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    private static final int S11 = 7;
+    private static final int S12 = 12;
+    private static final int S13 = 17;
+    private static final int S14 = 22;
+    private static final int S21 = 5;
+    private static final int S22 = 9;
+    private static final int S23 = 14;
+    private static final int S24 = 20;
+    private static final int S31 = 4;
+    private static final int S32 = 11;
+    private static final int S33 = 16;
+    private static final int S34 = 23;
+    private static final int S41 = 6;
+    private static final int S42 = 10;
+    private static final int S43 = 15;
+    private static final int S44 = 21;
+    private static final byte[] PADDING = {-128, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0};
@@ -49,25 +33,21 @@ public class MD5Util {
 
     private byte[] buffer = new byte[64]; // input buffer
 
-
-    public String digestHexStr;
-
     private byte[] digest = new byte[16];
 
     public String getMD5ofStr(String inbuf) {
         md5Init();
         md5Update(inbuf.getBytes(), inbuf.length());
         md5Final();
-        digestHexStr = "";
+        StringBuilder digestHexStr = new StringBuilder();
         for (int i = 0; i < 16; i++) {
-            digestHexStr += byteHEX(digest[i]);
+            digestHexStr.append(byteHEX(digest[i]));
         }
-        return digestHexStr;
+        return digestHexStr.toString();
     }
 
     public MD5Util() {
         md5Init();
-        return;
     }
 
     private void md5Init() {
@@ -78,7 +58,6 @@ public class MD5Util {
         state[1] = 0xefcdab89L;
         state[2] = 0x98badcfeL;
         state[3] = 0x10325476L;
-        return;
     }
 
     private long F(long x, long y, long z) {
@@ -171,7 +150,7 @@ public class MD5Util {
             output[outpos + i] = input[inpos + i];
     }
 
-    private void md5Transform(byte block[]) {
+    private void md5Transform(byte[] block) {
         long a = state[0], b = state[1], c = state[2], d = state[3];
         long[] x = new long[16];
         Decode(x, block, 64);
@@ -264,7 +243,6 @@ public class MD5Util {
         for (i = 0, j = 0; j < len; i++, j += 4)
             output[i] = b2iu(input[j]) | (b2iu(input[j + 1]) << 8)
                     | (b2iu(input[j + 2]) << 16) | (b2iu(input[j + 3]) << 24);
-        return;
     }
 
     private static long b2iu(byte b) {

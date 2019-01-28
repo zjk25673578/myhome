@@ -4,43 +4,53 @@ layui.use(['table', 'layer', 'laydate'], function () {
         laydate = layui.laydate,
         layer = layui.layer;
 
+    var ftype = $("#ftype").val();
+
     laydate.render({
         elem: "#prodate",
         type: "month"
     });
 
     table.render({
-        elem: '#finance-out-table',
-        url: _ctx + '/finance/out/list',
+        elem: '#finance-table',
+        url: _ctx + '/finance/list',
         cols: [[
             {field: '', type: 'checkbox'},
             {field: '', title: '序号', type: 'numbers'},
             {field: 'ids', title: '代号', width: 100, hide: true},
             {field: 'userid', title: '所有者', width: 120},
-            {field: 'createtypename', title: '类型', width: 150},
+            {field: 'createtypename', title: '类型', width: 120},
             {
-                field: 'prodate', title: '发生时间', width: 210, templet: function (d) {
+                field: 'prodate', title: '发生时间', width: 180, templet: function (d) {
                     return timestamp2Datetime(d.prodate);
                 }
             },
             {
-                field: 'cash', title: '金额', width: 150, templet: function (d) {
-                    return "<font color='red'> -" + d.cash + "元 </font>";
+                field: 'cash', title: '金额', width: 100, templet: function (d) {
+                    if (ftype === "0") {
+                        return "<font color='#ff0000'> -" + d.cash + "元 </font>";
+                    }
+                    if (ftype === "1") {
+                        return "<font color='#006400'> +" + d.cash + "元 </font>";
+                    }
                 }
             },
             {field: 'reason', title: '备注'},
             {field: 'createname', title: '创建人', hide: true},
             {
-                field: 'createtime', title: '创建时间', width: 180, templet: function (d) {
+                field: 'createtime', title: '创建时间', width: 120, templet: function (d) {
                     return timestamp2Date(d.createtime);
                 }
             },
-            {field: '', title: '管理', toolbar: '#opera-btns', fixed: 'right', width: 170}
+            {field: '', title: '管理', toolbar: '#opera-btns', fixed: 'right', width: 120}
         ]],
         toolbar: '#toolbar',
         page: true,
         limit: 8,
-        limits: [8, 16, 40, 80]
+        limits: [8, 16, 40, 80],
+        where: {
+            key: JSON.stringify({ftype: ftype})
+        }
     });
 
     // 定义页面中的方法
@@ -48,7 +58,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
         // 查询数据
         search: function (field) {
             var key = JSON.stringify(field);
-            table.reload("finance-out-table", {
+            table.reload("finance-table", {
                 where: {
                     key: key
                 },
@@ -70,7 +80,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
                 var ids = row.ids;
                 $.post(_ctx + "/finance/delete", {ids: ids}, function (data) {
                     if (data.success) {
-                        table.reload("finance-out-table");
+                        table.reload("finance-table");
                     }
                     layer.close(index);
                     layer.msg(data.message, {icon: data.iconType});
@@ -96,7 +106,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
                         }
                         $.post(_ctx + "/finance/deleteMultiple", {ids: ids}, function (data) {
                             if (data.success) {
-                                table.reload("finance-out-table");
+                                table.reload("finance-table");
                             }
                             layer.close(index);
                             layer.msg(data.message, {icon: data.iconType});
@@ -116,14 +126,14 @@ layui.use(['table', 'layer', 'laydate'], function () {
     });
 
     // 监听表格上方按钮的事件
-    table.on("toolbar(finance-out-table)", function (obj) {
+    table.on("toolbar(finance-table)", function (obj) {
         if (!(obj.event.indexOf('LAYTABLE') >= 0)) {
             active[obj.event](obj);
         }
     });
 
     // 监听表格右侧的工具栏
-    table.on("tool(finance-out-table)", function (obj) {
+    table.on("tool(finance-table)", function (obj) {
         active[obj.event](obj);
     });
 
@@ -134,10 +144,10 @@ layui.use(['table', 'layer', 'laydate'], function () {
      * @param url
      */
     function saveOrUpdate(data, title, url) {
-        var tpl = document.getElementById("finance-out-edit").innerHTML;
+        var tpl = document.getElementById("finance-edit").innerHTML;
         laytpl(tpl).render(data, function (html) {
             openDialog(html, title, ['330px', '440px'], function (idx) {
-                var formdata = $("#form-finance-out").serializeArray();
+                var formdata = $("#form-finance").serializeArray();
                 var result = validJqueryForm(formdata); // 表单验证
                 if (result) {
                     $.ajax({
@@ -147,7 +157,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
                         dataType: 'json',
                         success: function (data) {
                             if (data.success) {
-                                table.reload("finance-out-table");
+                                table.reload("finance-table");
                                 layer.close(idx);
                                 layer.msg(data.message, {time: 1000});
                             } else {
