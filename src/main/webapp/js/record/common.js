@@ -1,11 +1,11 @@
 layui.use(['form', 'table', 'layer', 'laytpl'], function () {
-    var form = layui.form;
+    // var form = layui.form;
 
     // 监听查询表单的重置事件
-    form.on("submit(searchReset)", function (data) {
+/*    form.on("submit(searchReset)", function (data) {
         data.form.reset();
         return false;
-    });
+    });*/
 });
 
 /**
