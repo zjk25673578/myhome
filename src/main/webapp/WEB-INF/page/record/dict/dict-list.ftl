@@ -84,7 +84,7 @@
             <label class="layui-form-label">父级数据：</label>
             <div class="layui-input-inline">
                 <input type="text" name="parentid"
-                       class="layui-input" value="{{ d.parentid }}"/>
+                       class="layui-input" value=""/>
             </div>
         </div>
         <div class="layui-form-item">

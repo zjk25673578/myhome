@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class MhMenuServiceImpl extends CommonServiceImpl implements MhMenuService {
+public class MhMenuServiceImpl extends CommonServiceImpl<MhMenu> implements MhMenuService {
 
     @Autowired
     private MhMenuMapper mhMenuMapper;

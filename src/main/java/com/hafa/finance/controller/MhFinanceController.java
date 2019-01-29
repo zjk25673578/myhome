@@ -75,6 +75,18 @@ public class MhFinanceController extends BaseController<MhFinanceService> {
     }
 
     /**
+     * 财务信息录入
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/saveData")
+    public String saveData(Model model, MhFinance mhFinance) {
+        System.out.println(mhFinance);
+        return "record/finance/result";
+    }
+
+    /**
      * 统计视图
      *
      * @param model

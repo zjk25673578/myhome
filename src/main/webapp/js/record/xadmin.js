@@ -15,15 +15,13 @@ $(function () {
             // 新增一个Tab项
             element.tabAdd('xbs_tab', {
                 title: title,
-                content: '<iframe tab-id="' + id + '" frameborder="0" src="'
-                    + url + '" scrolling="yes" class="x-iframe"></iframe>',
+                content: '<iframe tab-id="' + id + '" frameborder="0" src="' + url + '" scrolling="yes" class="x-iframe"></iframe>',
                 id: id
             })
         },
         tabDelete: function (othis) {
             // 删除指定Tab项
             element.tabDelete('xbs_tab', '44'); // 删除：“商品管理”
-
             othis.addClass('layui-btn-disabled');
         },
         tabChange: function (id) {
@@ -39,14 +37,12 @@ $(function () {
                     if ($(this).hasClass('layui-form-checked')) {
                         $(this).removeClass('layui-form-checked');
                         if ($(this).hasClass('header')) {
-                            $(".layui-form-checkbox").removeClass(
-                                'layui-form-checked');
+                            $(".layui-form-checkbox").removeClass('layui-form-checked');
                         }
                     } else {
                         $(this).addClass('layui-form-checked');
                         if ($(this).hasClass('header')) {
-                            $(".layui-form-checkbox").addClass(
-                                'layui-form-checked');
+                            $(".layui-form-checkbox").addClass('layui-form-checked');
                         }
                     }
                 });
@@ -84,7 +80,6 @@ $(function () {
                 $('.page-content-bg').show();
             }
         }
-
     });
 
     $('.page-content-bg').click(function (event) {

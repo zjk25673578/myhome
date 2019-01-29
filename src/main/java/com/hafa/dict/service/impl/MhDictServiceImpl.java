@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class MhDictServiceImpl extends CommonServiceImpl implements MhDictService {
+public class MhDictServiceImpl extends CommonServiceImpl<MhDict> implements MhDictService {
 
     @Autowired
     protected MhDictMapper mhDictMapper;

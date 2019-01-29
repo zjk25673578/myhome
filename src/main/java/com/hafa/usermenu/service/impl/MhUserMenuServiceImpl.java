@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Repository
-public class MhUserMenuServiceImpl extends CommonServiceImpl implements MhUserMenuService {
+public class MhUserMenuServiceImpl extends CommonServiceImpl<MhUserMenu> implements MhUserMenuService {
 
     @Autowired
     protected MhUserMenuMapper mhUserMenuMapper;
@@ -57,7 +57,7 @@ public class MhUserMenuServiceImpl extends CommonServiceImpl implements MhUserMe
 
     @Override
     public int saveOrUpdate(MhUserMenu entity, HttpServletRequest request) {
-        return 0;
+        return saveOrUpdate(mhUserMenuMapper, entity, request);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class MhUserMenuServiceImpl extends CommonServiceImpl implements MhUserMe
 
     @Override
     public int remove(Serializable ids, HttpServletRequest request) {
-        return 0;
+        return remove(mhUserMenuMapper, ids, request);
     }
 
     @Override
