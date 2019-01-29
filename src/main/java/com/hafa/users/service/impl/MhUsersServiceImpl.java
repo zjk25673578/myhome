@@ -77,7 +77,8 @@ public class MhUsersServiceImpl extends CommonServiceImpl<MhUsers> implements Mh
             return -9; // 超级管理员有且必须只能有一个
         }
         if (entity.getIds() == null) { // 添加操作
-            entity.setPword(md5Util.getMD5ofStr(Base64Util.encode("123456"))); // 默认密码
+            // 默认密码, 先用Base64编码加密, 再使用MD5加密
+            entity.setPword(md5Util.getMD5ofStr(Base64Util.encode("123456")));
             entity.setStatus(1); // 有效标志
             entity.setSetups(1); // 启用状态
             entity.setValue("c", request);
