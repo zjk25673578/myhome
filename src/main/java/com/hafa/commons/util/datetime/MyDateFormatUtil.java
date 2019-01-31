@@ -22,8 +22,6 @@ public class MyDateFormatUtil implements Converter<String, Date> {
 
     @Override
     public Date convert(String arg0) {
-        System.out.println("==========================" + arg0);
-        // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         for (SimpleDateFormat sdf : sdfs) {
             try {
                 return sdf.parse(arg0);

@@ -33,4 +33,11 @@ public interface MhDictService extends BaseService<MhDict> {
      * @return
      */
     List<Map<String, Object>> getDicCodeListByCdkey(String caiwuleibieout);
+
+    /**
+     * 所有父级数据字典
+     *
+     * @return
+     */
+    List<Map<String, Object>> getParentList();
 }

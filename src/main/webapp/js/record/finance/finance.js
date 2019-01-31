@@ -164,9 +164,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
                                 layer.alert(data.message, {icon: data.iconType});
                             }
                         },
-                        error: function () {
-                            layer.msg('出现异常 !');
-                        }
+                        error: ajaxError
                     });
                 }
             });

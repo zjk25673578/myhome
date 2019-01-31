@@ -22,4 +22,11 @@ public interface MhDictMapper extends BaseMapper<MhDict> {
      * @return
      */
     List<Map<String, Object>> getDicCodeList();
+
+    /**
+     * 所有父级数据字典
+     *
+     * @return
+     */
+    List<Map<String, Object>> getParentList();
 }

@@ -45,10 +45,7 @@ layui.config({
                     layer.msg(resultData.msg, {icon: 2, shade: 0.01});
                 }
             },
-            error: function (resp) {
-                layer.close(index);
-                layer.alert(resp.responseText, {icon: 2, title: "出现异常 !"});
-            }
+            error: ajaxError
         });
     })
 });

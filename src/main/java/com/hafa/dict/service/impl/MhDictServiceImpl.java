@@ -53,6 +53,7 @@ public class MhDictServiceImpl extends CommonServiceImpl<MhDict> implements MhDi
                 e.printStackTrace();
             }
             if (args != null && args.size() > 0) {
+                args.put("parentid", dict.getParentid());
                 args.put("diccode", dict.getDiccode());
                 args.put("dicvalue", dicvalues);
                 args.put("desp", dict.getDesp());
@@ -72,5 +73,10 @@ public class MhDictServiceImpl extends CommonServiceImpl<MhDict> implements MhDi
     public List<Map<String, Object>> getDicCodeListByCdkey(String cdkey) {
         Map<String, Object> args = MyUtil.searchForArgs("cdKey", cdkey, "minpage", 0, "limit", 1000);
         return mhDictMapper.searchFor(args);
+    }
+
+    @Override
+    public List<Map<String, Object>> getParentList() {
+        return mhDictMapper.getParentList();
     }
 }

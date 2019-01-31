@@ -5,6 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-111111111111111111
+添加记录的结果跳转页面
 </body>
 </html>

@@ -37,6 +37,8 @@ public class MhDictController extends BaseController<MhDictService> {
     public String index(Model model) {
         List<Map<String, Object>> dicCodeList = mhDictService.getDicCodeList(); // 获取数据字典中所有分类
         model.addAttribute("dicList", dicCodeList);
+        List<Map<String, Object>> parentList = mhDictService.getParentList(); // 获取数据字典中所有父级分类
+        model.addAttribute("parentList", parentList);
         return "record/dict/dict-list";
     }
 

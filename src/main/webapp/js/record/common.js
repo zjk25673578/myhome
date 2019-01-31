@@ -1,12 +1,3 @@
-layui.use(['form', 'table', 'layer', 'laytpl'], function () {
-    // var form = layui.form;
-
-    // 监听查询表单的重置事件
-/*    form.on("submit(searchReset)", function (data) {
-        data.form.reset();
-        return false;
-    });*/
-});
 
 /**
  * 全局表单验证公共方法
@@ -48,4 +39,10 @@ function validLayForm(formObj) {
         }
     }
     return false;
+}
+
+function ajaxError(resp) {
+    layer.closeAll();
+    layer.alert('出现异常: ' + resp.status, {icon: 2});
+    console.log(resp);
 }

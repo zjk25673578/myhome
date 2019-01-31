@@ -35,7 +35,15 @@
                         <div class="layui-col-lg2 layui-col-md3 layui-col-sm6 layui-col-xs12">
                             <input class="layui-input" name="dicvalue" placeholder="值">
                         </div>
-                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm12 layui-col-xs12">
+                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm6 layui-col-xs12">
+                            <select name="parentid">
+                                <option value="">下拉以选择</option>
+                                <#list parentList as parent>
+                                    <option value="${parent.ids}">${parent.dicvalue}</option>
+                                </#list>
+                            </select>
+                        </div>
+                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm6 layui-col-xs12">
                             <div class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs6 p-r-5">
                                 <button class="layui-btn layui-btn-fluid layui-btn-sm" lay-submit
                                         lay-filter="searchSubmit">
@@ -83,8 +91,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">父级数据：</label>
             <div class="layui-input-inline">
-                <input type="text" name="parentid"
-                       class="layui-input" value=""/>
+                <select name="parentid" lay-verify="required">
+                    <option value="">下拉以选择</option>
+                    <option value="0">父级数据</option>
+                    <#list parentList as parent>
+                        <option value="${parent.ids}" {{ d.parentid == ${parent.ids} ? 'selected' : '' }}>${parent.dicvalue}</option>
+                    </#list>
+                </select>
             </div>
         </div>
         <div class="layui-form-item">
@@ -104,7 +117,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">描述：</label>
             <div class="layui-input-inline">
-                <input type="text" lay-verify="required" name="desp"
+                <input type="text" name="desp"
                        class="layui-input" value="{{ d.desp }}"/>
             </div>
         </div>

@@ -157,14 +157,8 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
     // 表格的行双击事件
     table.on('rowDouble(users-table)', function (obj) {
         if (obj.data.userType !== 1) {
-            x_admin_show("<font color='blue'>" + obj.data.rname + "</font> 的权限", _ctx + "/mhmenu/tree?ids=" + obj.data.ids, 300, 550);
-            /*layer.open({
-                type: 2,
-                content: _ctx + "/mhmenu/tree?ids=" + obj.data.ids,
-                title: "<font color='blue'>" + obj.data.rname + "</font> 的权限",
-                area: ["300px", "600px"]//,
-                // offset: "35%"
-            });*/
+            x_admin_show("<font color='blue'>" + obj.data.rname + "</font> 的权限",
+                _ctx + "/mhmenu/tree?ids=" + obj.data.ids, 300, 550);
         } else {
             layer.alert("超级管理员默认拥有所有菜单权限 !");
         }
@@ -214,9 +208,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                                 layer.alert(data.message, {icon: data.iconType});
                             }
                         },
-                        error: function () {
-                            layer.msg('出现异常 !');
-                        }
+                        error: ajaxError
                     });
                 }
             });

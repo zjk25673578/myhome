@@ -32,13 +32,11 @@
     <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.dict.model.MhDict"
             useGeneratedKeys="true">
         insert into mh_dict (parentid, diccode, dicvalue, desp, status, createtime, creator, createname, updatetime,
-        updator, updatename
-          )
+        updator, updatename)
         values (#{parentid,jdbcType=INTEGER}, #{diccode,jdbcType=VARCHAR}, #{dicvalue,jdbcType=VARCHAR},
           #{desp,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
           #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
-          #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR}
-          )
+          #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.dict.model.MhDict"
             useGeneratedKeys="true">
@@ -171,21 +169,24 @@
 
     <select id="searchFor" resultType="Map" parameterType="Map">
         select
-        ids, (select dicvalue from mh_dict where ids=parentid) parentName, diccode, dicvalue, desp, status, createtime,
-        creator, createname, updatetime,
-        updator, updatename
-        from mh_dict
+        p.ids, p.parentid, (select r.dicvalue from mh_dict r where r.ids=p.parentid) parentName, p.diccode, p.dicvalue,
+        p.desp, p.status,
+        p.createtime, p.creator, p.createname, p.updatetime, p.updator, p.updatename
+        from mh_dict p
         <where>
             <if test="dicvalue != null and dicvalue != ''">
-                and dicvalue like concat('%',#{dicvalue},'%')
+                and p.dicvalue like concat('%',#{dicvalue},'%')
             </if>
             <if test="diccode != null and diccode != ''">
-                and diccode=#{diccode}
+                and p.diccode=#{diccode}
+            </if>
+            <if test="parentid != null and parentid != ''">
+                and p.parentid=#{parentid}
             </if>
             <if test="cdKey != null and cdKey != ''">
-                and diccode = #{cdKey}
+                and p.diccode=#{cdKey}
             </if>
-            and status='1'
+            and status='1' and IFNULL(parentid,'') != '0'
         </where>
         order by diccode
         limit #{minpage}, #{limit}
@@ -202,22 +203,26 @@
             <if test="diccode != null and diccode != ''">
                 and diccode=#{diccode}
             </if>
-            <if test="cdKey != null and cdKey != ''">
-                and diccode = #{cdKey}
+            <if test="parentid != null and parentid != ''">
+                and parentid=#{parentid}
             </if>
-            and status='1'
+            and status='1' and IFNULL(parentid,'') != '0'
         </where>
     </select>
 
     <insert id="saveMultiple" parameterType="Map">
-        insert into mh_dict (diccode, dicvalue, desp, status, createtime, creator, createname) values
+        insert into mh_dict (parentid, diccode, dicvalue, desp, status, createtime, creator, createname) values
         <foreach collection="dicvalue" separator="," item="dv">
-            (#{diccode}, #{dv}, #{desp}, #{status}, #{createtime}, #{creator}, #{createname})
+            (#{parentid}, #{diccode}, #{dv}, #{desp}, #{status}, #{createtime}, #{creator}, #{createname})
         </foreach>
     </insert>
 
     <select id="getDicCodeList" resultType="Map">
-        SELECT diccode, desp FROM mh_dict WHERE STATUS='1' GROUP BY
+        SELECT diccode, desp FROM mh_dict WHERE STATUS='1' and IFNULL(parentid,'') != '0' GROUP BY
         diccode, desp
+    </select>
+
+    <select id="getParentList" resultType="Map">
+        SELECT ids, dicvalue FROM mh_dict WHERE STATUS = '1' AND parentid='0'
     </select>
 </mapper>
