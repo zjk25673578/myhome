@@ -1,10 +1,10 @@
 package com.hafa.datebook.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
 import java.util.Date;
 
-public class MhDatebook extends CommonModel {
+public class MhDatebook extends CommonEntity {
     private Integer userid;
 
     private String title;

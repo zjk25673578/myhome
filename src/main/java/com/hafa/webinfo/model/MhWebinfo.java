@@ -1,8 +1,8 @@
 package com.hafa.webinfo.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
-public class MhWebinfo extends CommonModel {
+public class MhWebinfo extends CommonEntity {
     private String webname;
 
     private String webadd;

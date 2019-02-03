@@ -1,10 +1,10 @@
 package com.hafa.homemember.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
 import java.util.Date;
 
-public class MhHomeMember extends CommonModel {
+public class MhHomeMember extends CommonEntity {
     private String mname;
 
     private Date mbirthday;

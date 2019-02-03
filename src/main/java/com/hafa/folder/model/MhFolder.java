@@ -1,8 +1,8 @@
 package com.hafa.folder.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
-public class MhFolder extends CommonModel {
+public class MhFolder extends CommonEntity {
     private Integer parentid;
 
     private Integer userid;

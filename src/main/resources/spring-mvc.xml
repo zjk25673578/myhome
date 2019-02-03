@@ -94,7 +94,7 @@
         <!-- Set<Converter> converters -->
         <property name="converters">
             <set>
-                <ref bean="myDateFormat"/>
+                <ref bean="myDateConverter"/>
             </set>
         </property>
     </bean>

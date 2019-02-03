@@ -1,8 +1,8 @@
 package com.hafa.notebook.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
-public class MhNotebook extends CommonModel {
+public class MhNotebook extends CommonEntity {
     private String conte;
 
     private Integer touser;

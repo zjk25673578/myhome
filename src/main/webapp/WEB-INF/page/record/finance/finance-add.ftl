@@ -17,85 +17,98 @@
 </head>
 <body>
 <div class="layui-container">
-    <fieldset class="layui-elem-field layui-field-title">
-        <legend>添加 - 财务信息记录</legend>
-    </fieldset>
-    <form class="layui-form" action="${ctx}/finance/saveData" method="post">
-        <div class="layui-form-item">
-            <label class="layui-form-label">输入框</label>
-            <div class="layui-input-inline">
-                <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off"
-                       class="layui-input">
+    <div class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs12">
+        <div class="layui-tab">
+            <ul class="layui-tab-title">
+                <li class="layui-this">租住费用</li>
+                <li>日常消费</li>
+                <li>收入</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>租住费用</legend>
+                    </fieldset>
+                    <form action="${ctx}/finance/lease" class="layui-form2" method="post">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">水费</label>
+                            <div class="layui-input-inline">
+                                <input name="water" lay-verify="number"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">电费</label>
+                            <div class="layui-input-inline">
+                                <input name="electric" lay-verify="number"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">煤气费</label>
+                            <div class="layui-input-inline">
+                                <input name="gas" lay-verify="number"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">暖气费</label>
+                            <div class="layui-input-inline">
+                                <input name="warm" lay-verify="number"
+                                       autocomplete="off" class="layui-input" value="0.0">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">物业费</label>
+                            <div class="layui-input-inline">
+                                <input name="property" lay-verify="number"
+                                       autocomplete="off" class="layui-input" value="0.0">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">发生月份</label>
+                            <div class="layui-input-inline">
+                                <input id="createtime" name="createtime" placeholder="不填写默认当前月份"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <!-- lease: 租住, 租赁 -->
+                                <button class="layui-btn layui-btn-sm" lay-submit lay-filter="lease">
+                                    <i class="fa fa-save fa-lg"></i> 保存
+                                </button>
+                                <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary">
+                                    <i class="fa fa-undo fa-lg"></i> 重置
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-tab-item">内容2</div>
+                <div class="layui-tab-item">内容3</div>
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">密码框</label>
-            <div class="layui-input-inline">
-                <input type="password" name="password" required lay-verify="required" placeholder="请输入密码"
-                       autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">选择框</label>
-            <div class="layui-input-inline">
-                <select name="city" lay-verify="required">
-                    <option value=""></option>
-                    <option value="0">北京</option>
-                    <option value="1">上海</option>
-                    <option value="2">广州</option>
-                    <option value="3">深圳</option>
-                    <option value="4">杭州</option>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">复选框</label>
-            <div class="layui-input-block">
-                <input type="checkbox" name="like[write]" title="写作">
-                <input type="checkbox" name="like[read]" title="阅读" checked>
-                <input type="checkbox" name="like[dai]" title="发呆">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">开关</label>
-            <div class="layui-input-inline">
-                <input type="checkbox" name="switch" lay-skin="switch">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">单选框</label>
-            <div class="layui-input-inline">
-                <input type="radio" name="sex" value="男" title="男">
-                <input type="radio" name="sex" value="女" title="女" checked>
-            </div>
-        </div>
-        <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">文本域</label>
-            <div class="layui-input-block">
-                <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn layui-btn-sm" lay-submit lay-filter="menuForm">
-                    <i class="fa fa-save fa-lg"></i> 保存
-                </button>
-                <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary">
-                    <i class="fa fa-undo fa-lg"></i> 重置
-                </button>
-            </div>
-        </div>
-    </form>
+    </div>
+    <div class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs12">
+
+    </div>
 </div>
 
 <script>
-    //Demo
-    layui.use(['form'], function () {
-        var form = layui.form;
+    layui.use(['form', 'element', 'laydate'], function () {
+        var form = layui.form,
+            laydate = layui.laydate,
+            element = layui.element;
+
+        laydate.render({
+            elem: '#createtime',
+            type: 'month'
+        });
 
         //监听提交
-        form.on('submit(formDemo)', function (data) {
-            layer.msg(JSON.stringify(data.field));
+        form.on('submit(lease)', function (data) {
+            console.log(JSON.stringify(data.field));
             return true;
         });
     });

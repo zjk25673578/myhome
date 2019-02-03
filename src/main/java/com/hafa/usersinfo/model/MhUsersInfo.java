@@ -1,10 +1,10 @@
 package com.hafa.usersinfo.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
 import java.util.Date;
 
-public class MhUsersInfo extends CommonModel {
+public class MhUsersInfo extends CommonEntity {
     private Integer userid;
 
     private String feeling;

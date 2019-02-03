@@ -1,11 +1,27 @@
 package com.hafa.homes.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
-public class MhHomes extends CommonModel {
+import java.util.Date;
+
+public class MhHomes extends CommonEntity {
     private String hcode;
 
+    private String community;
+
     private String hname;
+
+    private String address;
+
+    private Integer province;
+
+    private Integer city;
+
+    private Integer area;
+
+    private Date begintime;
+
+    private Date endtime;
 
     public String getHcode() {
         return hcode;
@@ -15,11 +31,67 @@ public class MhHomes extends CommonModel {
         this.hcode = hcode;
     }
 
+    public String getCommunity() {
+        return community;
+    }
+
+    public void setCommunity(String community) {
+        this.community = community;
+    }
+
     public String getHname() {
         return hname;
     }
 
     public void setHname(String hname) {
         this.hname = hname;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Integer getProvince() {
+        return province;
+    }
+
+    public void setProvince(Integer province) {
+        this.province = province;
+    }
+
+    public Integer getCity() {
+        return city;
+    }
+
+    public void setCity(Integer city) {
+        this.city = city;
+    }
+
+    public Integer getArea() {
+        return area;
+    }
+
+    public void setArea(Integer area) {
+        this.area = area;
+    }
+
+    public Date getBegintime() {
+        return begintime;
+    }
+
+    public void setBegintime(Date begintime) {
+        this.begintime = begintime;
+    }
+
+    public Date getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(Date endtime) {
+        this.endtime = endtime;
     }
 }

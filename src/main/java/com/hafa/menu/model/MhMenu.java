@@ -1,8 +1,8 @@
 package com.hafa.menu.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
-public class MhMenu extends CommonModel {
+public class MhMenu extends CommonEntity {
     private Integer parentid;
 
     private String menuname;

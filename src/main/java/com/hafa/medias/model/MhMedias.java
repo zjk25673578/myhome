@@ -1,8 +1,8 @@
 package com.hafa.medias.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
-public class MhMedias extends CommonModel {
+public class MhMedias extends CommonEntity {
     private String fname;
 
     private String filename;

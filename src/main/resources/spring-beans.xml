@@ -10,7 +10,7 @@
     <bean id="logginAspect" class="com.hafa.commons.util.log.LogginAspect"/>
 
     <!-- 日期类型的转换器 -->
-    <bean id="myDateFormat" class="com.hafa.commons.util.datetime.MyDateFormatUtil"/>
+    <bean id="myDateConverter" class="com.hafa.commons.util.datetime.MyDateConverter"/>
 
     <!--MD5加密-->
     <bean class="com.hafa.commons.util.encrypt.MD5Util"/>

@@ -1,10 +1,10 @@
 package com.hafa.mhworks.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
 import java.util.Date;
 
-public class MhWorks extends CommonModel {
+public class MhWorks extends CommonEntity {
     private Integer userid;
 
     private String company;

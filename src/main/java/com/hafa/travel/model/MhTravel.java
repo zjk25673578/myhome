@@ -1,8 +1,8 @@
 package com.hafa.travel.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
-public class MhTravel extends CommonModel {
+public class MhTravel extends CommonEntity {
     private Integer homeid;
 
     private Integer userid;

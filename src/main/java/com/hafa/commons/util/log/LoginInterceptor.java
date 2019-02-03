@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * @date: 2016年8月23日 上午9:10:56
  */
 public class LoginInterceptor extends HandlerInterceptorAdapter {
-    Logger logger = Logger.getLogger(this.getClass());
+    private Logger logger = Logger.getLogger(this.getClass());
 
     public LoginInterceptor() {
         super();
@@ -43,9 +43,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             throws Exception {
         String requestUri = request.getRequestURI();
         System.out.println("preHandle方法: 访问" + requestUri + "请求之前..");
-        /**
-         * 需要跳转的路径
-         */
+
+        // 需要跳转的路径
         String redirectUrl = request.getContextPath();
 
         if ((redirectUrl + "/").equals(requestUri)) { // 如果是根目录跳转至博客首页

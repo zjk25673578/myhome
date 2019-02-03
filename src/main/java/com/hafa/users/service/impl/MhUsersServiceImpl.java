@@ -1,6 +1,6 @@
 package com.hafa.users.service.impl;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 import com.hafa.commons.service.impl.CommonServiceImpl;
 import com.hafa.commons.util.encrypt.Base64Util;
 import com.hafa.commons.util.encrypt.MD5Util;
@@ -46,7 +46,7 @@ public class MhUsersServiceImpl extends CommonServiceImpl<MhUsers> implements Mh
     @Override
     public int deleteUsers(String ids, HttpServletRequest request) throws Exception {
         // 获取批量删除的修改时间, 修改人
-        Map<String, Object> args = CommonModel.get("u", request);
+        Map<String, Object> args = CommonEntity.get("u", request);
         if (args != null) {
             String[] _ids = ids.split(",");
             if (mhUsersMapper.checkAdmin(_ids) > 0) {

@@ -27,10 +27,10 @@ layui.use(['table', 'layer', 'laydate'], function () {
             },
             {
                 field: 'cash', title: '金额', width: 100, templet: function (d) {
-                    if (ftype === "0") {
+                    if (ftype === "0") { // 支出显示
                         return "<font color='#ff0000'> -" + d.cash + "元 </font>";
                     }
-                    if (ftype === "1") {
+                    if (ftype === "1") { // 收入显示
                         return "<font color='#006400'> +" + d.cash + "元 </font>";
                     }
                 }

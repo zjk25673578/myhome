@@ -11,13 +11,14 @@ import java.util.Date;
  *
  * @author Administrator
  */
-public class MyDateFormatUtil implements Converter<String, Date> {
+public class MyDateConverter implements Converter<String, Date> {
 
     private static SimpleDateFormat[] sdfs = {
             new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"),
             new SimpleDateFormat("yyyy-MM-dd"),
             new SimpleDateFormat("yyyyMMdd"),
-            new SimpleDateFormat("yyyy/MM/dd")
+            new SimpleDateFormat("yyyy/MM/dd"),
+            new SimpleDateFormat("yyyy-MM")
     };
 
     @Override

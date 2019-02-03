@@ -74,6 +74,9 @@
 <script type="text/html" id="toolbar">
     <!-- 顶部功能菜单 -->
     <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">
+            <i class="fa fa fa-plus-circle fa-fw"></i> 添加
+        </button>
         <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del_multiple">
             <i class="fa fa fa-minus-circle fa-fw"></i> 删除
         </button>

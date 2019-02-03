@@ -1,8 +1,8 @@
 package com.hafa.usermember.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
-public class MhUserMember extends CommonModel {
+public class MhUserMember extends CommonEntity {
     private Integer userid;
 
     private Integer memberid;

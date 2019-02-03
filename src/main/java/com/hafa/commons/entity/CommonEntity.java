@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * 实体类数据模型公共类
  */
-public class CommonModel implements Serializable {
+public class CommonEntity implements Serializable {
 
     /**
      * 
@@ -161,7 +161,7 @@ public class CommonModel implements Serializable {
      * @throws IllegalAccessException
      */
     public static Map<String, Object> get(String type, HttpServletRequest request) throws InvocationTargetException, IllegalAccessException {
-        CommonModel cm = new CommonModel();
+        CommonEntity cm = new CommonEntity();
         cm.setValue(type, request);
         return cm.toMap();
     }

@@ -4,7 +4,14 @@
   <resultMap id="BaseResultMap" type="com.hafa.homes.model.MhHomes">
     <id column="ids" jdbcType="INTEGER" property="ids" />
     <result column="hcode" jdbcType="VARCHAR" property="hcode" />
+    <result column="community" jdbcType="VARCHAR" property="community" />
     <result column="hname" jdbcType="VARCHAR" property="hname" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="province" jdbcType="INTEGER" property="province" />
+    <result column="city" jdbcType="INTEGER" property="city" />
+    <result column="area" jdbcType="INTEGER" property="area" />
+    <result column="begintime" jdbcType="TIMESTAMP" property="begintime" />
+    <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="creator" jdbcType="INTEGER" property="creator" />
@@ -14,8 +21,8 @@
     <result column="updatename" jdbcType="VARCHAR" property="updatename" />
   </resultMap>
   <sql id="Base_Column_List">
-    ids, hcode, hname, status, createtime, creator, createname, updatetime,
-    updator, updatename
+    ids, hcode, community, hname, address, province, city, area, begintime, endtime, 
+    status, createtime, creator, createname, updatetime, updator, updatename
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -28,13 +35,18 @@
     where ids = #{ids,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.homes.model.MhHomes" useGeneratedKeys="true">
-    insert into mh_homes (hcode, hname, status, createtime, creator, createname, updatetime,
-    updator, updatename
-      )
-    values (#{hcode,jdbcType=VARCHAR}, #{hname,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
-      #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
-      #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR}
-      )
+    insert into mh_homes (hcode, community, hname, 
+      address, province, city, 
+      area, begintime, endtime, 
+      status, createtime, creator, 
+      createname, updatetime, updator, 
+      updatename)
+    values (#{hcode,jdbcType=VARCHAR}, #{community,jdbcType=VARCHAR}, #{hname,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{province,jdbcType=INTEGER}, #{city,jdbcType=INTEGER}, 
+      #{area,jdbcType=INTEGER}, #{begintime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{creator,jdbcType=INTEGER}, 
+      #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{updator,jdbcType=INTEGER}, 
+      #{updatename,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.homes.model.MhHomes" useGeneratedKeys="true">
     insert into mh_homes
@@ -42,8 +54,29 @@
       <if test="hcode != null">
         hcode,
       </if>
+      <if test="community != null">
+        community,
+      </if>
       <if test="hname != null">
         hname,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="begintime != null">
+        begintime,
+      </if>
+      <if test="endtime != null">
+        endtime,
       </if>
       <if test="status != null">
         status,
@@ -71,8 +104,29 @@
       <if test="hcode != null">
         #{hcode,jdbcType=VARCHAR},
       </if>
+      <if test="community != null">
+        #{community,jdbcType=VARCHAR},
+      </if>
       <if test="hname != null">
         #{hname,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=INTEGER},
+      </if>
+      <if test="begintime != null">
+        #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -103,8 +157,29 @@
       <if test="hcode != null">
         hcode = #{hcode,jdbcType=VARCHAR},
       </if>
+      <if test="community != null">
+        community = #{community,jdbcType=VARCHAR},
+      </if>
       <if test="hname != null">
         hname = #{hname,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=INTEGER},
+      </if>
+      <if test="begintime != null">
+        begintime = #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        endtime = #{endtime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -133,7 +208,14 @@
   <update id="updateByPrimaryKey" parameterType="com.hafa.homes.model.MhHomes">
     update mh_homes
     set hcode = #{hcode,jdbcType=VARCHAR},
+      community = #{community,jdbcType=VARCHAR},
       hname = #{hname,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      province = #{province,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      area = #{area,jdbcType=INTEGER},
+      begintime = #{begintime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=INTEGER},
       createtime = #{createtime,jdbcType=TIMESTAMP},
       creator = #{creator,jdbcType=INTEGER},

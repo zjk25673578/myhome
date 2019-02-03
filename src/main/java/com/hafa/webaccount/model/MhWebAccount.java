@@ -1,8 +1,8 @@
 package com.hafa.webaccount.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
-public class MhWebAccount extends CommonModel {
+public class MhWebAccount extends CommonEntity {
     private Integer webid;
 
     private String accounts;

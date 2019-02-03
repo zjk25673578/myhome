@@ -1,8 +1,8 @@
 package com.hafa.dict.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
-public class MhDict extends CommonModel {
+public class MhDict extends CommonEntity {
     private Integer parentid;
 
     private String diccode;

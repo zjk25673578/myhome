@@ -2,6 +2,7 @@ package com.hafa.finance.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hafa.commons.controller.BaseController;
+import com.hafa.commons.entity.LeaseEntity;
 import com.hafa.commons.entity.Message;
 import com.hafa.commons.entity.PageBean;
 import com.hafa.commons.util.msg.MsgUtil;
@@ -75,14 +76,14 @@ public class MhFinanceController extends BaseController<MhFinanceService> {
     }
 
     /**
-     * 财务信息录入
+     * 租住费用数据保存
      *
      * @param model
      * @return
      */
-    @RequestMapping("/saveData")
-    public String saveData(Model model, MhFinance mhFinance) {
-        System.out.println(mhFinance);
+    @RequestMapping("/lease")
+    public String lease(Model model, LeaseEntity leaseEntity) {
+        System.out.println(leaseEntity);
         return "record/finance/result";
     }
 

@@ -1,7 +1,7 @@
 package com.hafa.commons.service.impl;
 
 import com.hafa.commons.dao.BaseMapper;
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 import com.hafa.commons.util.msg.MsgUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * 公共业务逻辑处理类
  */
-public abstract class CommonServiceImpl<E extends CommonModel> {
+public abstract class CommonServiceImpl<E extends CommonEntity> {
 
     /**
      * 通用的保存修改的方法

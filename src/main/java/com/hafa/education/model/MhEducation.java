@@ -1,10 +1,10 @@
 package com.hafa.education.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
 import java.util.Date;
 
-public class MhEducation extends CommonModel {
+public class MhEducation extends CommonEntity {
     private Integer userid;
 
     private String school;

@@ -1,10 +1,10 @@
 package com.hafa.pwordhis.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
 import java.util.Date;
 
-public class MhPwordHis extends CommonModel {
+public class MhPwordHis extends CommonEntity {
     private Integer accid;
 
     private String pword;

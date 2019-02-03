@@ -1,8 +1,8 @@
 package com.hafa.usermenu.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
-public class MhUserMenu extends CommonModel {
+public class MhUserMenu extends CommonEntity {
     private Integer userid;
 
     private Integer menuid;

@@ -1,10 +1,10 @@
 package com.hafa.finance.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
 import java.util.Date;
 
-public class MhFinance extends CommonModel {
+public class MhFinance extends CommonEntity {
     private Integer userid;
 
     private Integer ftype;

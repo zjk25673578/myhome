@@ -1,6 +1,6 @@
 package com.hafa.dict.service.impl;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 import com.hafa.commons.service.impl.CommonServiceImpl;
 import com.hafa.commons.util.MyUtil;
 import com.hafa.commons.util.msg.MsgUtil;
@@ -48,7 +48,7 @@ public class MhDictServiceImpl extends CommonServiceImpl<MhDict> implements MhDi
             String[] dicvalues = dict.getDicvalue().split("[,，]+");
             Map<String, Object> args = null;
             try {
-                args = CommonModel.get("c", request);
+                args = CommonEntity.get("c", request);
             } catch (Exception e) {
                 e.printStackTrace();
             }

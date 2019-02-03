@@ -33,15 +33,15 @@
                             </select>
                         </div>
                         <div class="layui-col-lg2 layui-col-md3 layui-col-sm6 layui-col-xs12">
-                            <input class="layui-input" name="dicvalue" placeholder="值">
-                        </div>
-                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm6 layui-col-xs12">
                             <select name="parentid">
-                                <option value="">下拉以选择</option>
+                                <option value="">父级数据</option>
                                 <#list parentList as parent>
                                     <option value="${parent.ids}">${parent.dicvalue}</option>
                                 </#list>
                             </select>
+                        </div>
+                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm6 layui-col-xs12">
+                            <input class="layui-input" name="dicvalue" placeholder="值">
                         </div>
                         <div class="layui-col-lg2 layui-col-md3 layui-col-sm6 layui-col-xs12">
                             <div class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs6 p-r-5">

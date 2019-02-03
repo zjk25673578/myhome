@@ -1,11 +1,11 @@
 package com.hafa.users.model;
 
-import com.hafa.commons.entity.CommonModel;
+import com.hafa.commons.entity.CommonEntity;
 
 /**
  * 系统用户实体类
  */
-public class MhUsers extends CommonModel {
+public class MhUsers extends CommonEntity {
     private String uname;
 
     private String pword;
