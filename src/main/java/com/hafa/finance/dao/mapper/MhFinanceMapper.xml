@@ -206,10 +206,10 @@
                 and date_format(f.prodate, '%Y-%m')=#{prodate}
             </if>
             <if test="minprice != null and minprice != ''">
-                and f.cash &gt; #{minprice}
+                and f.cash &gt;= #{minprice}
             </if>
             <if test="maxprice != null and maxprice != ''">
-                and f.cash &lt; #{maxprice}
+                and f.cash &lt;= #{maxprice}
             </if>
             and f.status='1' and f.ftype=#{ftype} and f.userid=#{userid}
         </where>
@@ -222,7 +222,7 @@
                 f.createtype=#{createtype}
             </if>
             <if test="prodate != null and prodate != ''">
-                and date_format(f.prodate, '%Y-%m')=date_format(#{prodate}, '%Y-%m')
+                and date_format(f.prodate, '%Y-%m')=#{prodate}
             </if>
             <if test="minprice != null and minprice != ''">
                 and f.cash &gt;= #{minprice}

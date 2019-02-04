@@ -5,7 +5,19 @@ layui.use(['table', 'layer', 'laydate'], function () {
         layer = layui.layer;
 
     var ftype = $("#ftype").val();
+    var tempAddObj = {ids: "", createtype: "", prodate: timestamp2Date(new Date().getTime()), cash: "", reason: ""};
+    var label = "";
 
+    switch (ftype) {
+        case "1":
+            label = "收入";
+            break;
+        case "2":
+            label = "支出";
+            break;
+    }
+
+    // 发生时间日期控件
     laydate.render({
         elem: "#prodate",
         type: "month"
@@ -21,7 +33,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
             {field: 'userid', title: '所有者', width: 120},
             {field: 'createtypename', title: '类型', width: 120},
             {
-                field: 'prodate', title: '发生时间', width: 180, templet: function (d) {
+                field: 'prodate', title: '发生时间', width: 120, templet: function (d) {
                     return timestamp2Date(d.prodate);
                 }
             },
@@ -62,15 +74,18 @@ layui.use(['table', 'layer', 'laydate'], function () {
                 where: {
                     key: key
                 },
-                method: "post"
-                , page: {
+                method: "post",
+                page: {
                     curr: 1
                 }
             });
         },
+        add: function (obj) {
+            saveOrUpdate(tempAddObj, "添加" + label + "记录", _ctx + "/finance/update");
+        },
         // 修改数据
         update: function (obj) {
-            saveOrUpdate(handleUndefinedAndNull(obj.data), "修改出账记录", _ctx + "/finance/update");
+            saveOrUpdate(handleUndefinedAndNull(obj.data), "修改" + label + "记录", _ctx + "/finance/update");
         },
 
         // 删除数据
@@ -144,7 +159,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
      * @param url
      */
     function saveOrUpdate(data, title, url) {
-        var tpl = document.getElementById("finance-edit").innerHTML;
+        var tpl = document.getElementById("finance-addOrEdit").innerHTML;
         laytpl(tpl).render(data, function (html) {
             openDialog(html, title, ['330px', '440px'], function (idx) {
                 var formdata = $("#form-finance").serializeArray();
@@ -168,9 +183,9 @@ layui.use(['table', 'layer', 'laydate'], function () {
                     });
                 }
             });
+
             laydate.render({
                 elem: "#prodate-field",
-                type: "datetime",
                 value: new Date(data.prodate)
             });
         });

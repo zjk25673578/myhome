@@ -162,6 +162,7 @@ public class MhFinanceController extends BaseController<MhFinanceService> {
         if (mhFinance == null) {
             return MsgUtil.msg(-1);
         }
+        mhFinance.setUserid(getCurrentUserid(request));
         int r = mhFinanceService.saveOrUpdate(mhFinance, request);
         return MsgUtil.msg(r);
     }

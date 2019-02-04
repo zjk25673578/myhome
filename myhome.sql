@@ -10,13 +10,13 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2019-02-03 15:04:51
+Date: 2019-02-04 19:05:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for mh_datebook
+-- Table structure for `mh_datebook`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_datebook`;
 CREATE TABLE `mh_datebook` (
@@ -43,7 +43,7 @@ CREATE TABLE `mh_datebook` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for mh_dict
+-- Table structure for `mh_dict`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_dict`;
 CREATE TABLE `mh_dict` (
@@ -88,7 +88,7 @@ INSERT INTO `mh_dict` VALUES ('33', '57', 'caiwuleibiein', '工资', '财务类�
 INSERT INTO `mh_dict` VALUES ('34', '60', 'caiwuleibiein', '彩票', '财务类别(收入)', '1', '2019-01-08 19:26:37', '1', 'admin', '2019-01-31 22:46:34', '1', 'admin');
 INSERT INTO `mh_dict` VALUES ('35', '59', 'caiwuleibiein', '啃老', '财务类别(收入)', '1', '2019-01-08 19:26:37', '1', 'admin', '2019-01-31 22:45:28', '1', 'admin');
 INSERT INTO `mh_dict` VALUES ('36', '59', 'caiwuleibiein', '赌博', '财务类别(收入)', '1', '2019-01-08 19:26:37', '1', 'admin', '2019-01-31 22:45:40', '1', 'admin');
-INSERT INTO `mh_dict` VALUES ('37', '59', 'caiwuleibiein', '贩毒', '财务类别(收入)', '1', '2019-01-08 19:26:37', '1', 'admin', '2019-01-31 22:45:45', '1', 'admin');
+INSERT INTO `mh_dict` VALUES ('37', '59', 'caiwuleibiein', '红包', '财务类别(收入)', '1', '2019-01-08 19:26:37', '1', 'admin', '2019-01-31 22:45:45', '1', 'admin');
 INSERT INTO `mh_dict` VALUES ('38', '59', 'caiwuleibiein', '地上捡的', '财务类别(收入)', '1', '2019-01-08 19:26:37', '1', 'admin', '2019-01-31 22:45:52', '1', 'admin');
 INSERT INTO `mh_dict` VALUES ('39', '53', 'xingbie', '不男不女', '性别', '1', '2019-01-22 21:46:12', '1', 'admin', '2019-01-31 22:14:29', '1', 'admin');
 INSERT INTO `mh_dict` VALUES ('40', '53', 'xingbie', '未知', '性别', '1', '2019-01-22 21:46:12', '1', 'admin', '2019-01-31 22:15:12', '1', 'admin');
@@ -114,7 +114,7 @@ INSERT INTO `mh_dict` VALUES ('59', '0', 'buyizhicai', '不义之财', '瞎写�
 INSERT INTO `mh_dict` VALUES ('60', '0', 'zuomeng', '梦想', '呵呵呵呵....', '1', '2019-01-31 22:46:26', '1', 'admin', null, null, null);
 
 -- ----------------------------
--- Table structure for mh_education
+-- Table structure for `mh_education`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_education`;
 CREATE TABLE `mh_education` (
@@ -142,7 +142,7 @@ CREATE TABLE `mh_education` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for mh_finance
+-- Table structure for `mh_finance`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_finance`;
 CREATE TABLE `mh_finance` (
@@ -161,7 +161,7 @@ CREATE TABLE `mh_finance` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='财务信息记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='财务信息记录表';
 
 -- ----------------------------
 -- Records of mh_finance
@@ -174,9 +174,24 @@ INSERT INTO `mh_finance` VALUES ('5', '1', '1', '180.00', '33', '2018-09-17 21:0
 INSERT INTO `mh_finance` VALUES ('6', '1', '1', '50.00', '34', '2019-01-28 22:35:51', '呵呵', '1', '2019-01-23 21:44:31', '1', 'admin', '2019-01-28 22:37:02', '1', 'admin');
 INSERT INTO `mh_finance` VALUES ('7', '1', '1', '10.00', '38', '2018-11-14 21:44:31', '嘿嘿嘿', '1', '2019-01-23 21:44:31', '1', 'admin', '2019-01-28 22:38:12', '1', 'admin');
 INSERT INTO `mh_finance` VALUES ('8', '1', '1', '1000.00', '58', '2019-01-27 21:04:39', '结账啦', '1', '2019-01-23 21:44:31', '1', 'admin', '2019-01-31 23:35:46', '1', 'admin');
+INSERT INTO `mh_finance` VALUES ('9', '1', '0', '12.00', '31', '2018-12-02 00:00:00', 'what ?!', '1', '2019-02-04 10:28:10', '1', 'admin', '2019-02-04 16:09:16', '1', 'admin');
+INSERT INTO `mh_finance` VALUES ('10', '1', '0', '34.80', '30', '2018-12-02 00:00:00', '租住房煤气(天然气)缴费', '1', '2019-02-04 10:28:10', '1', 'admin', '2019-02-04 17:02:01', '1', 'admin');
+INSERT INTO `mh_finance` VALUES ('11', '1', '0', '23.00', '29', '2018-12-02 00:00:00', '租住房用电量缴费', '1', '2019-02-04 10:28:10', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('12', '1', '0', '45.00', '55', '2018-12-02 00:00:00', '租住房暖气缴费', '1', '2019-02-04 10:28:10', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('13', '1', '0', '33.00', '45', '2018-12-02 00:00:00', '租住房物业缴费', '1', '2019-02-04 10:28:10', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('14', '1', '0', '11.00', '28', '2018-12-25 00:00:00', '租住房用水缴费', '1', '2019-02-04 10:35:26', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('15', '1', '0', '33.00', '30', '2018-12-25 00:00:00', '租住房煤气(天然气)缴费', '1', '2019-02-04 10:35:26', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('16', '1', '0', '22.00', '29', '2018-12-25 00:00:00', '租住房用电量缴费', '1', '2019-02-04 10:35:26', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('17', '1', '0', '44.00', '55', '2018-12-25 00:00:00', '租住房暖气缴费', '1', '2019-02-04 10:35:26', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('18', '1', '0', '55.00', '45', '2018-12-25 00:00:00', '租住房物业缴费', '1', '2019-02-04 10:35:26', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('19', '1', '1', '100.00', '37', '2019-02-04 00:00:00', '过年给的红包', '1', '2019-02-04 16:34:29', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('20', '1', '1', '7100.00', '33', '2019-02-04 00:00:00', '正常发工资', '1', '2019-02-04 16:45:17', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('21', '1', '1', '7000.00', '33', '2019-02-04 00:00:00', '又发工资了', '1', '2019-02-04 16:45:49', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('22', '1', '0', '12.50', '31', '2019-02-04 00:00:00', '买菜买菜', '1', '2019-02-04 17:04:29', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('23', '1', '1', '150.00', '37', '2019-02-04 00:00:00', '又给了个红包', '1', '2019-02-04 17:05:23', '1', 'admin', null, null, null);
 
 -- ----------------------------
--- Table structure for mh_folder
+-- Table structure for `mh_folder`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_folder`;
 CREATE TABLE `mh_folder` (
@@ -199,7 +214,7 @@ CREATE TABLE `mh_folder` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for mh_homes
+-- Table structure for `mh_homes`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_homes`;
 CREATE TABLE `mh_homes` (
@@ -228,7 +243,7 @@ CREATE TABLE `mh_homes` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for mh_home_member
+-- Table structure for `mh_home_member`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_home_member`;
 CREATE TABLE `mh_home_member` (
@@ -256,7 +271,7 @@ CREATE TABLE `mh_home_member` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for mh_medias
+-- Table structure for `mh_medias`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_medias`;
 CREATE TABLE `mh_medias` (
@@ -284,7 +299,7 @@ CREATE TABLE `mh_medias` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for mh_menu
+-- Table structure for `mh_menu`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_menu`;
 CREATE TABLE `mh_menu` (
@@ -316,7 +331,7 @@ INSERT INTO `mh_menu` VALUES ('5', '1', '我的朋友圈', '', 'fa fa-user-circl
 INSERT INTO `mh_menu` VALUES ('6', '1', '日记本', '', 'fa fa-odnoklassniki-square', '2', '0', '1', null, null, null, '2019-01-07 13:39:21', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('7', '0', '我家', '', 'fa fa-s15', '3', '1', '1', null, null, null, '2018-12-30 22:15:01', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('8', '7', '相册', '', 'fa fa-photo', '1', '0', '1', null, null, null, '2018-12-23 13:11:13', '1', 'zhaodashuai');
-INSERT INTO `mh_menu` VALUES ('9', '7', '家庭留言本', '', 'fa fa-rocket', '2', '0', '1', null, null, null, '2018-12-23 13:11:16', '1', 'zhaodashuai');
+INSERT INTO `mh_menu` VALUES ('9', '7', '家庭留言本', '', 'fa fa-rocket', '3', '0', '1', null, null, null, '2019-02-04 16:26:11', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('10', '0', '大事记', '', 'fa fa-tags', '4', '0', '1', null, null, null, '2018-12-23 12:54:53', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('11', '0', '财政信息', '', 'fa fa-database', '5', '1', '1', null, null, null, '2019-01-09 22:47:52', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('12', '11', '收入记录', '/finance/in', 'fa fa-wheelchair', '2', '0', '1', null, null, null, '2019-01-28 22:08:33', '1', 'admin');
@@ -337,14 +352,14 @@ INSERT INTO `mh_menu` VALUES ('39', '38', '新的菜单', null, 'fa fa-circle', 
 INSERT INTO `mh_menu` VALUES ('40', '39', '新的菜单', null, 'fa fa-circle', null, null, '0', '2019-01-09 22:27:30', '1', 'admin', '2019-01-09 22:47:33', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('41', '2', '新的菜单2222', '', 'fa fa-circle', '3', null, '0', '2019-01-09 23:17:14', '1', 'admin', '2019-01-25 21:38:59', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('42', '2', '新的菜单', '', 'fa fa-circle', '1', null, '0', '2019-01-25 21:38:48', '1', 'admin', '2019-01-25 21:39:07', '1', 'admin');
-INSERT INTO `mh_menu` VALUES ('43', '11', '添加记录', '/finance/add', 'fa fa-cny', '0', null, '1', '2019-01-26 21:04:36', '1', 'admin', '2019-02-02 15:38:29', '1', 'admin');
+INSERT INTO `mh_menu` VALUES ('43', '7', '租住房费用', '/finance/add', 'fa fa-cny', '2', null, '1', '2019-01-26 21:04:36', '1', 'admin', '2019-02-04 16:26:46', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('44', '2', '新的菜单33331', 'fgffgh', 'fa fa-circle', '78', null, '0', '2019-01-27 19:48:46', '1', 'admin', '2019-01-27 20:12:33', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('45', '43', '生活缴费', '/finance/add', 'fa fa-coffee', '1', null, '0', '2019-01-31 22:53:26', '1', 'admin', '2019-01-31 23:02:51', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('46', '43', '日常支出', '/finance/add', 'fa fa-glass', '2', null, '0', '2019-01-31 22:53:57', '1', 'admin', '2019-01-31 23:02:55', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('47', '7', '新的菜单', '', 'fa fa-circle', null, null, '0', '2019-02-03 12:42:38', '1', 'admin', '2019-02-03 12:44:26', '1', 'admin');
 
 -- ----------------------------
--- Table structure for mh_notebook
+-- Table structure for `mh_notebook`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_notebook`;
 CREATE TABLE `mh_notebook` (
@@ -366,7 +381,7 @@ CREATE TABLE `mh_notebook` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for mh_pword_his
+-- Table structure for `mh_pword_his`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_pword_his`;
 CREATE TABLE `mh_pword_his` (
@@ -388,7 +403,7 @@ CREATE TABLE `mh_pword_his` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for mh_travel
+-- Table structure for `mh_travel`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_travel`;
 CREATE TABLE `mh_travel` (
@@ -415,7 +430,7 @@ CREATE TABLE `mh_travel` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for mh_users
+-- Table structure for `mh_users`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_users`;
 CREATE TABLE `mh_users` (
@@ -454,7 +469,7 @@ INSERT INTO `mh_users` VALUES ('22', 'zhifou', '87D9BB400C0634691F0E3BAAF1E2FD0D
 INSERT INTO `mh_users` VALUES ('24', 'baimuda', '87D9BB400C0634691F0E3BAAF1E2FD0D', '百慕大', null, '0', null, '1', '1', '2019-01-28 23:09:26', '1', 'admin', '2019-01-28 23:09:47', '1', 'admin');
 
 -- ----------------------------
--- Table structure for mh_users_info
+-- Table structure for `mh_users_info`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_users_info`;
 CREATE TABLE `mh_users_info` (
@@ -483,7 +498,7 @@ CREATE TABLE `mh_users_info` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for mh_user_member
+-- Table structure for `mh_user_member`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_user_member`;
 CREATE TABLE `mh_user_member` (
@@ -505,7 +520,7 @@ CREATE TABLE `mh_user_member` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for mh_user_menu
+-- Table structure for `mh_user_menu`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_user_menu`;
 CREATE TABLE `mh_user_menu` (
@@ -580,7 +595,7 @@ INSERT INTO `mh_user_menu` VALUES ('73', '24', '45', null, null, null, null, nul
 INSERT INTO `mh_user_menu` VALUES ('74', '24', '46', null, null, null, null, null, null);
 
 -- ----------------------------
--- Table structure for mh_webinfo
+-- Table structure for `mh_webinfo`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_webinfo`;
 CREATE TABLE `mh_webinfo` (
@@ -603,7 +618,7 @@ CREATE TABLE `mh_webinfo` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for mh_web_account
+-- Table structure for `mh_web_account`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_web_account`;
 CREATE TABLE `mh_web_account` (
@@ -631,7 +646,7 @@ CREATE TABLE `mh_web_account` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for mh_works
+-- Table structure for `mh_works`
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_works`;
 CREATE TABLE `mh_works` (
@@ -660,7 +675,7 @@ CREATE TABLE `mh_works` (
 -- ----------------------------
 
 -- ----------------------------
--- Function structure for getChildList
+-- Function structure for `getChildList`
 -- ----------------------------
 DROP FUNCTION IF EXISTS `getChildList`;
 DELIMITER ;;
@@ -680,7 +695,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Function structure for getParentList
+-- Function structure for `getParentList`
 -- ----------------------------
 DROP FUNCTION IF EXISTS `getParentList`;
 DELIMITER ;;

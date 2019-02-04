@@ -319,6 +319,10 @@ var formValid = {
             layer.msg("必须填写金额 !", {icon: 5});
             return false;
         }
+        if (!(/\d{1,6}\.\d{1,2}/.test(value))) {
+            layer.msg("整数位最多6位, 小数位最多2位 !", {icon: 5});
+            return false;
+        }
         return true;
     },
     // 用户列表页面验证

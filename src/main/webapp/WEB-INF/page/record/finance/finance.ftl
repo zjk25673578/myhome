@@ -74,9 +74,9 @@
 <script type="text/html" id="toolbar">
     <!-- 顶部功能菜单 -->
     <div class="layui-btn-container">
-        <#--<button class="layui-btn layui-btn-sm" lay-event="add">
+        <button class="layui-btn layui-btn-sm" lay-event="add">
             <i class="fa fa fa-plus-circle fa-fw"></i> 添加
-        </button>-->
+        </button>
         <button class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del_multiple">
             <i class="fa fa fa-minus-circle fa-fw"></i> 删除
         </button>
@@ -89,10 +89,15 @@
     <a lay-event="del" lay-data="{{ d.ids }}"
        class="layui-btn layui-btn-xs layui-btn-danger">删除</a>
 </script>
-<script type="text/html" id="finance-edit">
+<script type="text/html" id="finance-addOrEdit">
     <div class="layui-form-item"></div>
     <form id="form-finance" lay-filter="finance" class="layui-form">
+
+        <!-- 数据主键 -->
         <input type="hidden" name="ids" value="{{ d.ids }}"/>
+        <!-- 类型, 1: 收入, 0: 支出 -->
+        <input type="hidden" name="ftype" value="${ftype}"/>
+
         <div class="layui-form-item">
             <label class="layui-form-label">类型：</label>
             <div class="layui-input-inline">
