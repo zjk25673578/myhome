@@ -34,21 +34,21 @@
                             <label class="layui-form-label">水费</label>
                             <div class="layui-input-inline">
                                 <input name="water" lay-verify="number"
-                                       autocomplete="off" class="layui-input">
+                                       autocomplete="off" class="layui-input" value="0.0">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">电费</label>
                             <div class="layui-input-inline">
                                 <input name="electric" lay-verify="number"
-                                       autocomplete="off" class="layui-input">
+                                       autocomplete="off" class="layui-input" value="0.0">
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">煤气费</label>
                             <div class="layui-input-inline">
                                 <input name="gas" lay-verify="number"
-                                       autocomplete="off" class="layui-input">
+                                       autocomplete="off" class="layui-input" value="0.0">
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">发生月份</label>
+                            <label class="layui-form-label">发生时间</label>
                             <div class="layui-input-inline">
                                 <input id="createtime" name="createtime" placeholder="不填写默认当前月份"
                                        autocomplete="off" class="layui-input">
@@ -102,8 +102,7 @@
             element = layui.element;
 
         laydate.render({
-            elem: '#createtime',
-            type: 'month'
+            elem: '#createtime'
         });
 
         //监听提交

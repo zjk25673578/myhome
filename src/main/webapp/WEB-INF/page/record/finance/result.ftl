@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-添加记录的结果跳转页面
+<h1>${label}</h1>
 <hr>
 <a href="${ctx}/finance/add">返回添加页面</a>
 </body>

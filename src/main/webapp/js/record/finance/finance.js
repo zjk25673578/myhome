@@ -22,7 +22,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
             {field: 'createtypename', title: '类型', width: 120},
             {
                 field: 'prodate', title: '发生时间', width: 180, templet: function (d) {
-                    return timestamp2Datetime(d.prodate);
+                    return timestamp2Date(d.prodate);
                 }
             },
             {

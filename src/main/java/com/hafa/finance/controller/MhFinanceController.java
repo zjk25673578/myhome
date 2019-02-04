@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -61,7 +62,7 @@ public class MhFinanceController extends BaseController<MhFinanceService> {
     }
 
     /**
-     * 财务信息录入
+     * 跳转至数据添加界面
      *
      * @param model
      * @return
@@ -82,8 +83,9 @@ public class MhFinanceController extends BaseController<MhFinanceService> {
      * @return
      */
     @RequestMapping("/lease")
-    public String lease(Model model, LeaseEntity leaseEntity) {
-        System.out.println(leaseEntity);
+    public String lease(Model model, LeaseEntity leaseEntity, HttpServletRequest request) {
+        int r = mhFinanceService.insertMultiple(leaseEntity, getCurrentUser(request), request);
+        model.addAttribute("label", MsgUtil.msg(r).getMessage());
         return "record/finance/result";
     }
 
