@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +42,7 @@ public class MhFinanceController extends BaseController<MhFinanceService> {
         model.addAttribute("financeTypeList", financeOutList);
         model.addAttribute("label", "支出");
         model.addAttribute("ftype", "0");
-        return "record/finance/finance";
+        return "record/finance/finance-list";
     }
 
     /**
@@ -58,7 +57,7 @@ public class MhFinanceController extends BaseController<MhFinanceService> {
         model.addAttribute("financeTypeList", financeInList);
         model.addAttribute("label", "收入");
         model.addAttribute("ftype", "1");
-        return "record/finance/finance";
+        return "record/finance/finance-list";
     }
 
     /**

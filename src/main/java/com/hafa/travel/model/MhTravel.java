@@ -3,7 +3,7 @@ package com.hafa.travel.model;
 import com.hafa.commons.entity.CommonEntity;
 
 public class MhTravel extends CommonEntity {
-    private Integer homeid;
+    private Integer groupid;
 
     private Integer userid;
 
@@ -17,12 +17,12 @@ public class MhTravel extends CommonEntity {
 
     private Integer isimpl;
 
-    public Integer getHomeid() {
-        return homeid;
+    public Integer getGroupid() {
+        return groupid;
     }
 
-    public void setHomeid(Integer homeid) {
-        this.homeid = homeid;
+    public void setGroupid(Integer groupid) {
+        this.groupid = groupid;
     }
 
     public Integer getUserid() {

@@ -8,19 +8,19 @@
         <result column="rname" jdbcType="VARCHAR" property="rname"/>
         <result column="pic" jdbcType="VARCHAR" property="pic"/>
         <result column="userType" jdbcType="VARCHAR" property="userType"/>
-        <result column="homeid" jdbcType="INTEGER" property="homeid"/>
+        <result column="groupid" jdbcType="INTEGER" property="groupid"/>
         <result column="setups" jdbcType="INTEGER" property="setups"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
-        <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
-        <result column="creator" jdbcType="INTEGER" property="creator" />
-        <result column="createname" jdbcType="VARCHAR" property="createname" />
-        <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
-        <result column="updator" jdbcType="INTEGER" property="updator" />
-        <result column="updatename" jdbcType="VARCHAR" property="updatename" />
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="creator" jdbcType="INTEGER" property="creator"/>
+        <result column="createname" jdbcType="VARCHAR" property="createname"/>
+        <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime"/>
+        <result column="updator" jdbcType="INTEGER" property="updator"/>
+        <result column="updatename" jdbcType="VARCHAR" property="updatename"/>
     </resultMap>
     <sql id="Base_Column_List">
-        ids, uname, pword, rname, pic, userType, homeid, setups, status, createtime, creator, createname, updatetime,
-    updator, updatename
+        ids, uname, pword, rname, pic, userType, groupid, setups, status, createtime, creator, createname, updatetime,
+        updator, updatename
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
@@ -29,21 +29,21 @@
         where ids = #{ids,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from mh_users
-    where ids = #{ids,jdbcType=INTEGER}
-  </delete>
+        delete from mh_users
+        where ids = #{ids,jdbcType=INTEGER}
+    </delete>
     <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.users.model.MhUsers"
             useGeneratedKeys="true">
-    insert into mh_users (uname, pword, rname, 
-      pic, userType, homeid, setups, status, createtime, creator, createname, updatetime,
-    updator, updatename
-      )
-    values (#{uname,jdbcType=VARCHAR}, #{pword,jdbcType=VARCHAR}, #{rname,jdbcType=VARCHAR}, 
-      #{pic,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, #{homeid,jdbcType=INTEGER}, #{setups,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
-      #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
-      #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR}
-      )
-  </insert>
+        insert into mh_users (uname, pword, rname,
+        pic, userType, groupid, setups, status, createtime, creator, createname, updatetime,
+        updator, updatename
+        )
+        values (#{uname,jdbcType=VARCHAR}, #{pword,jdbcType=VARCHAR}, #{rname,jdbcType=VARCHAR},
+        #{pic,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, #{groupid,jdbcType=INTEGER}, #{setups,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+        #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
+        #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR}
+        )
+    </insert>
     <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.users.model.MhUsers"
             useGeneratedKeys="true">
         insert into mh_users
@@ -63,8 +63,8 @@
             <if test="userType != null">
                 userType,
             </if>
-            <if test="homeid != null">
-                homeid,
+            <if test="groupid != null">
+                groupid,
             </if>
             <if test="setups != null">
                 setups,
@@ -107,8 +107,8 @@
             <if test="userType != null">
                 #{userType,jdbcType=VARCHAR},
             </if>
-            <if test="homeid != null">
-                #{homeid,jdbcType=INTEGER},
+            <if test="groupid != null">
+                #{groupid,jdbcType=INTEGER},
             </if>
             <if test="setups != null">
                 #{setups,jdbcType=INTEGER},
@@ -154,8 +154,8 @@
             <if test="userType != null">
                 userType = #{userType,jdbcType=VARCHAR},
             </if>
-            <if test="homeid != null">
-                homeid = #{homeid,jdbcType=INTEGER},
+            <if test="groupid != null">
+                groupid = #{groupid,jdbcType=INTEGER},
             </if>
             <if test="setups != null">
                 setups = #{setups,jdbcType=INTEGER},
@@ -185,23 +185,23 @@
         where ids = #{ids,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.hafa.users.model.MhUsers">
-    update mh_users
-    set uname = #{uname,jdbcType=VARCHAR},
-      pword = #{pword,jdbcType=VARCHAR},
-      rname = #{rname,jdbcType=VARCHAR},
-      pic = #{pic,jdbcType=VARCHAR},
-      userType = #{userType,jdbcType=VARCHAR},
-      homeid = #{homeid,jdbcType=INTEGER},
-      setups = #{setups,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER},
-      createtime = #{createtime,jdbcType=TIMESTAMP},
-      creator = #{creator,jdbcType=INTEGER},
-      createname = #{createname,jdbcType=VARCHAR},
-      updatetime = #{updatetime,jdbcType=TIMESTAMP},
-      updator = #{updator,jdbcType=INTEGER},
-      updatename = #{updatename,jdbcType=VARCHAR}
-    where ids = #{ids,jdbcType=INTEGER}
-  </update>
+        update mh_users
+        set uname = #{uname,jdbcType=VARCHAR},
+        pword = #{pword,jdbcType=VARCHAR},
+        rname = #{rname,jdbcType=VARCHAR},
+        pic = #{pic,jdbcType=VARCHAR},
+        userType = #{userType,jdbcType=VARCHAR},
+        groupid = #{groupid,jdbcType=INTEGER},
+        setups = #{setups,jdbcType=INTEGER},
+        status = #{status,jdbcType=INTEGER},
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+        creator = #{creator,jdbcType=INTEGER},
+        createname = #{createname,jdbcType=VARCHAR},
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+        updator = #{updator,jdbcType=INTEGER},
+        updatename = #{updatename,jdbcType=VARCHAR}
+        where ids = #{ids,jdbcType=INTEGER}
+    </update>
 
     <select id="selectByUnamePword" resultMap="BaseResultMap">
         select

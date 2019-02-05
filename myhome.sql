@@ -10,13 +10,13 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2019-02-04 19:05:10
+Date: 2019-02-05 16:43:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `mh_datebook`
+-- Table structure for mh_datebook
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_datebook`;
 CREATE TABLE `mh_datebook` (
@@ -43,7 +43,7 @@ CREATE TABLE `mh_datebook` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_dict`
+-- Table structure for mh_dict
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_dict`;
 CREATE TABLE `mh_dict` (
@@ -114,7 +114,7 @@ INSERT INTO `mh_dict` VALUES ('59', '0', 'buyizhicai', '不义之财', '瞎写�
 INSERT INTO `mh_dict` VALUES ('60', '0', 'zuomeng', '梦想', '呵呵呵呵....', '1', '2019-01-31 22:46:26', '1', 'admin', null, null, null);
 
 -- ----------------------------
--- Table structure for `mh_education`
+-- Table structure for mh_education
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_education`;
 CREATE TABLE `mh_education` (
@@ -142,7 +142,7 @@ CREATE TABLE `mh_education` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_finance`
+-- Table structure for mh_finance
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_finance`;
 CREATE TABLE `mh_finance` (
@@ -161,7 +161,7 @@ CREATE TABLE `mh_finance` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='财务信息记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='财务信息记录表';
 
 -- ----------------------------
 -- Records of mh_finance
@@ -189,9 +189,14 @@ INSERT INTO `mh_finance` VALUES ('20', '1', '1', '7100.00', '33', '2019-02-04 00
 INSERT INTO `mh_finance` VALUES ('21', '1', '1', '7000.00', '33', '2019-02-04 00:00:00', '又发工资了', '1', '2019-02-04 16:45:49', '1', 'admin', null, null, null);
 INSERT INTO `mh_finance` VALUES ('22', '1', '0', '12.50', '31', '2019-02-04 00:00:00', '买菜买菜', '1', '2019-02-04 17:04:29', '1', 'admin', null, null, null);
 INSERT INTO `mh_finance` VALUES ('23', '1', '1', '150.00', '37', '2019-02-04 00:00:00', '又给了个红包', '1', '2019-02-04 17:05:23', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('24', '1', '0', '0.00', '28', '2019-02-05 14:30:34', '租住房用水缴费', '1', '2019-02-05 14:30:34', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('25', '1', '0', '0.00', '30', '2019-02-05 14:30:34', '租住房煤气(天然气)缴费', '1', '2019-02-05 14:30:34', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('26', '1', '0', '0.00', '29', '2019-02-05 14:30:34', '租住房用电量缴费', '1', '2019-02-05 14:30:34', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('27', '1', '0', '0.00', '55', '2019-02-05 14:30:34', '租住房暖气缴费', '1', '2019-02-05 14:30:34', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('28', '1', '0', '0.00', '45', '2019-02-05 14:30:34', '租住房物业缴费', '1', '2019-02-05 14:30:34', '1', 'admin', null, null, null);
 
 -- ----------------------------
--- Table structure for `mh_folder`
+-- Table structure for mh_folder
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_folder`;
 CREATE TABLE `mh_folder` (
@@ -214,7 +219,7 @@ CREATE TABLE `mh_folder` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_homes`
+-- Table structure for mh_homes
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_homes`;
 CREATE TABLE `mh_homes` (
@@ -223,6 +228,7 @@ CREATE TABLE `mh_homes` (
   `community` varchar(50) DEFAULT NULL COMMENT '小区名称',
   `hname` varchar(50) DEFAULT NULL COMMENT '名称',
   `address` varchar(300) DEFAULT NULL COMMENT '小区所在的详细地址(几号楼等...)',
+  `living` int(4) DEFAULT NULL COMMENT '启用标志, 当时是否正在使用',
   `province` int(11) DEFAULT NULL COMMENT '省',
   `city` int(11) DEFAULT NULL COMMENT '市',
   `area` int(11) DEFAULT NULL COMMENT '区县',
@@ -243,7 +249,7 @@ CREATE TABLE `mh_homes` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_home_member`
+-- Table structure for mh_home_member
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_home_member`;
 CREATE TABLE `mh_home_member` (
@@ -271,7 +277,35 @@ CREATE TABLE `mh_home_member` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_medias`
+-- Table structure for mh_house_outlay
+-- ----------------------------
+DROP TABLE IF EXISTS `mh_house_outlay`;
+CREATE TABLE `mh_house_outlay` (
+  `ids` int(8) NOT NULL AUTO_INCREMENT,
+  `homeid` int(8) DEFAULT NULL COMMENT '居住的详细地址等情况',
+  `groupid` int(8) DEFAULT NULL COMMENT '该用户组下的所有用户都能看到',
+  `ptype` int(8) DEFAULT NULL COMMENT '关联字典表',
+  `cash` double(10,2) DEFAULT NULL,
+  `prodate` datetime DEFAULT NULL,
+  `transfer` int(4) DEFAULT NULL COMMENT '1:转账; 2:现金',
+  `userid` int(8) DEFAULT NULL,
+  `pic` varchar(300) DEFAULT NULL,
+  `status` int(4) DEFAULT NULL,
+  `createtime` datetime DEFAULT NULL,
+  `creator` int(8) DEFAULT NULL,
+  `createname` varchar(50) DEFAULT NULL,
+  `updatetime` datetime DEFAULT NULL,
+  `updator` int(8) DEFAULT NULL,
+  `updatename` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`ids`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='租住房缴费信息表, 基本信息包含房租(房贷), 水费, 物业费, 电费, 取暖费, 煤气费, 装修购置费等';
+
+-- ----------------------------
+-- Records of mh_house_outlay
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for mh_medias
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_medias`;
 CREATE TABLE `mh_medias` (
@@ -299,7 +333,7 @@ CREATE TABLE `mh_medias` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_menu`
+-- Table structure for mh_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_menu`;
 CREATE TABLE `mh_menu` (
@@ -359,7 +393,7 @@ INSERT INTO `mh_menu` VALUES ('46', '43', '日常支出', '/finance/add', 'fa fa
 INSERT INTO `mh_menu` VALUES ('47', '7', '新的菜单', '', 'fa fa-circle', null, null, '0', '2019-02-03 12:42:38', '1', 'admin', '2019-02-03 12:44:26', '1', 'admin');
 
 -- ----------------------------
--- Table structure for `mh_notebook`
+-- Table structure for mh_notebook
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_notebook`;
 CREATE TABLE `mh_notebook` (
@@ -381,7 +415,7 @@ CREATE TABLE `mh_notebook` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_pword_his`
+-- Table structure for mh_pword_his
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_pword_his`;
 CREATE TABLE `mh_pword_his` (
@@ -403,12 +437,12 @@ CREATE TABLE `mh_pword_his` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_travel`
+-- Table structure for mh_travel
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_travel`;
 CREATE TABLE `mh_travel` (
   `ids` int(8) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `homeid` int(8) DEFAULT NULL COMMENT '家庭id',
+  `groupid` int(8) DEFAULT NULL COMMENT '用户组id',
   `userid` int(8) DEFAULT NULL COMMENT '计划人',
   `targets` varchar(50) DEFAULT NULL COMMENT '目的地',
   `detail` varchar(500) DEFAULT NULL COMMENT '目标地详情',
@@ -430,7 +464,7 @@ CREATE TABLE `mh_travel` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_users`
+-- Table structure for mh_users
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_users`;
 CREATE TABLE `mh_users` (
@@ -440,7 +474,7 @@ CREATE TABLE `mh_users` (
   `rname` varchar(50) DEFAULT NULL COMMENT '姓名',
   `pic` varchar(100) DEFAULT NULL COMMENT '头像',
   `userType` int(4) DEFAULT NULL COMMENT '用户类型: 1,超级管理员; 0:普通用户',
-  `homeid` int(8) DEFAULT NULL COMMENT '家庭id',
+  `groupid` int(8) DEFAULT NULL COMMENT '用户组id',
   `setups` int(4) DEFAULT NULL COMMENT '1:启用,other:禁用状态',
   `status` int(4) DEFAULT NULL COMMENT '有效标志',
   `createtime` datetime DEFAULT NULL COMMENT '创建日期',
@@ -469,7 +503,31 @@ INSERT INTO `mh_users` VALUES ('22', 'zhifou', '87D9BB400C0634691F0E3BAAF1E2FD0D
 INSERT INTO `mh_users` VALUES ('24', 'baimuda', '87D9BB400C0634691F0E3BAAF1E2FD0D', '百慕大', null, '0', null, '1', '1', '2019-01-28 23:09:26', '1', 'admin', '2019-01-28 23:09:47', '1', 'admin');
 
 -- ----------------------------
--- Table structure for `mh_users_info`
+-- Table structure for mh_users_group
+-- ----------------------------
+DROP TABLE IF EXISTS `mh_users_group`;
+CREATE TABLE `mh_users_group` (
+  `ids` int(8) NOT NULL AUTO_INCREMENT,
+  `master` int(8) DEFAULT NULL COMMENT '户主',
+  `groupcode` varchar(100) DEFAULT NULL COMMENT '群组编号',
+  `groupname` varchar(100) DEFAULT NULL COMMENT '群组名称',
+  `homeid` int(8) DEFAULT NULL COMMENT '家庭信息主键',
+  `status` int(4) DEFAULT NULL COMMENT '有效标志',
+  `createtime` datetime DEFAULT NULL COMMENT '创建日期',
+  `creator` int(8) DEFAULT NULL COMMENT '创建人',
+  `createname` varchar(100) DEFAULT NULL COMMENT '创建人名称',
+  `updatetime` datetime DEFAULT NULL COMMENT '修改日期',
+  `updator` int(8) DEFAULT NULL COMMENT '修改人',
+  `updatename` varchar(100) DEFAULT NULL COMMENT '修改人名称',
+  PRIMARY KEY (`ids`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='记录一个家庭用户群体';
+
+-- ----------------------------
+-- Records of mh_users_group
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for mh_users_info
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_users_info`;
 CREATE TABLE `mh_users_info` (
@@ -498,7 +556,7 @@ CREATE TABLE `mh_users_info` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_user_member`
+-- Table structure for mh_user_member
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_user_member`;
 CREATE TABLE `mh_user_member` (
@@ -520,7 +578,7 @@ CREATE TABLE `mh_user_member` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_user_menu`
+-- Table structure for mh_user_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_user_menu`;
 CREATE TABLE `mh_user_menu` (
@@ -595,7 +653,7 @@ INSERT INTO `mh_user_menu` VALUES ('73', '24', '45', null, null, null, null, nul
 INSERT INTO `mh_user_menu` VALUES ('74', '24', '46', null, null, null, null, null, null);
 
 -- ----------------------------
--- Table structure for `mh_webinfo`
+-- Table structure for mh_webinfo
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_webinfo`;
 CREATE TABLE `mh_webinfo` (
@@ -618,7 +676,7 @@ CREATE TABLE `mh_webinfo` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_web_account`
+-- Table structure for mh_web_account
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_web_account`;
 CREATE TABLE `mh_web_account` (
@@ -646,7 +704,7 @@ CREATE TABLE `mh_web_account` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `mh_works`
+-- Table structure for mh_works
 -- ----------------------------
 DROP TABLE IF EXISTS `mh_works`;
 CREATE TABLE `mh_works` (
@@ -675,7 +733,7 @@ CREATE TABLE `mh_works` (
 -- ----------------------------
 
 -- ----------------------------
--- Function structure for `getChildList`
+-- Function structure for getChildList
 -- ----------------------------
 DROP FUNCTION IF EXISTS `getChildList`;
 DELIMITER ;;
@@ -695,7 +753,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Function structure for `getParentList`
+-- Function structure for getParentList
 -- ----------------------------
 DROP FUNCTION IF EXISTS `getParentList`;
 DELIMITER ;;

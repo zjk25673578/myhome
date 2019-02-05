@@ -13,6 +13,8 @@ public class MhHomes extends CommonEntity {
 
     private String address;
 
+    private Integer living;
+
     private Integer province;
 
     private Integer city;
@@ -93,5 +95,13 @@ public class MhHomes extends CommonEntity {
 
     public void setEndtime(Date endtime) {
         this.endtime = endtime;
+    }
+
+    public Integer getLiving() {
+        return living;
+    }
+
+    public void setLiving(Integer living) {
+        this.living = living;
     }
 }

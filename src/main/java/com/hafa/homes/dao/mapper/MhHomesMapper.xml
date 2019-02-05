@@ -7,6 +7,7 @@
     <result column="community" jdbcType="VARCHAR" property="community" />
     <result column="hname" jdbcType="VARCHAR" property="hname" />
     <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="living" jdbcType="INTEGER" property="living" />
     <result column="province" jdbcType="INTEGER" property="province" />
     <result column="city" jdbcType="INTEGER" property="city" />
     <result column="area" jdbcType="INTEGER" property="area" />
@@ -21,7 +22,7 @@
     <result column="updatename" jdbcType="VARCHAR" property="updatename" />
   </resultMap>
   <sql id="Base_Column_List">
-    ids, hcode, community, hname, address, province, city, area, begintime, endtime, 
+    ids, hcode, community, hname, address, living, province, city, area, begintime, endtime,
     status, createtime, creator, createname, updatetime, updator, updatename
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -36,13 +37,13 @@
   </delete>
   <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.homes.model.MhHomes" useGeneratedKeys="true">
     insert into mh_homes (hcode, community, hname, 
-      address, province, city, 
+      address, living, province, city,
       area, begintime, endtime, 
       status, createtime, creator, 
       createname, updatetime, updator, 
       updatename)
     values (#{hcode,jdbcType=VARCHAR}, #{community,jdbcType=VARCHAR}, #{hname,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{province,jdbcType=INTEGER}, #{city,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{living,jdbcType=INTEGER}, #{province,jdbcType=INTEGER}, #{city,jdbcType=INTEGER},
       #{area,jdbcType=INTEGER}, #{begintime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, 
       #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{creator,jdbcType=INTEGER}, 
       #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{updator,jdbcType=INTEGER}, 
@@ -62,6 +63,9 @@
       </if>
       <if test="address != null">
         address,
+      </if>
+      <if test="living != null">
+        living,
       </if>
       <if test="province != null">
         province,
@@ -112,6 +116,9 @@
       </if>
       <if test="address != null">
         #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="living != null">
+        #{living,jdbcType=INTEGER},
       </if>
       <if test="province != null">
         #{province,jdbcType=INTEGER},
@@ -166,6 +173,9 @@
       <if test="address != null">
         address = #{address,jdbcType=VARCHAR},
       </if>
+      <if test="living != null">
+        living = #{living,jdbcType=INTEGER},
+      </if>
       <if test="province != null">
         province = #{province,jdbcType=INTEGER},
       </if>
@@ -211,6 +221,7 @@
       community = #{community,jdbcType=VARCHAR},
       hname = #{hname,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
+      living = #{living,jdbcType=INTEGER},
       province = #{province,jdbcType=INTEGER},
       city = #{city,jdbcType=INTEGER},
       area = #{area,jdbcType=INTEGER},

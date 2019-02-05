@@ -103,10 +103,16 @@
             <div class="layui-input-inline">
                 <select name="userType" lay-verify="required">
                     <option value="">选择用户类型</option>
-                    <option value="0" {{ d.userType== 0 ?
-                    'selected' : '' }}>普通用户</option>
-                    <option value="1" {{ d.userType== 1 ?
-                    'selected' : '' }}>超级管理员</option>
+                    <option value="0" {{ d.userType== 0 ? 'selected' : '' }}>普通用户</option>
+                    <option value="1" {{ d.userType== 1 ? 'selected' : '' }}>超级管理员</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">分组：</label>
+            <div class="layui-input-inline">
+                <select name="groupid" lay-verify="required">
+                    <option value="">下拉选择用户组</option>
                 </select>
             </div>
         </div>

@@ -25,22 +25,30 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
             {
                 field: 'userType', title: '用户类型', templet: function (d) {
                     var formatValue = "--";
-                    if (d.userType == 0) {
+                    if (d.userType === 0) {
                         formatValue = '普通用户';
                     }
-                    if (d.userType == 1) {
+                    if (d.userType === 1) {
                         formatValue = '超级管理员';
                     }
                     return formatValue;
                 }
             },
             {
+                field: 'groupid', title: '用户组', templet: function (d) {
+                    if (!d.groupid) {
+                        return "<font color='#FFB800'>未列入分组</font>";
+                    }
+                    return d.groupid;
+                }
+            },
+            {
                 field: 'setups', title: '状态', templet: function (d) {
                     var formatValue = "--";
-                    if (d.setups == 0) {
+                    if (d.setups === 0) {
                         formatValue = '<font color="#FFB800">已禁用</font>';
                     }
-                    if (d.setups == 1) {
+                    if (d.setups === 1) {
                         formatValue = '<font color="green">已启用</font>';
                     }
                     return formatValue;

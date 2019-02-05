@@ -16,7 +16,7 @@ public class MhUsers extends CommonEntity {
 
     private Integer userType; // 用户类型: 1,超级管理员; 0:普通用户
 
-    private Integer homeid;
+    private Integer groupid;
 
     private Integer setups; // 1: 启用, 其他: 禁用
 
@@ -52,12 +52,12 @@ public class MhUsers extends CommonEntity {
         this.pic = pic;
     }
 
-    public Integer getHomeid() {
-        return homeid;
+    public Integer getGroupid() {
+        return groupid;
     }
 
-    public void setHomeid(Integer homeid) {
-        this.homeid = homeid;
+    public void setGroupid(Integer groupid) {
+        this.groupid = groupid;
     }
 
     public Integer getUserType() {
