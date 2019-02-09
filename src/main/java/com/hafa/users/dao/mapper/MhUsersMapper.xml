@@ -210,9 +210,9 @@
     </select>
 
     <select id="searchFor" resultType="Map" parameterType="Map">
-        select
-        <include refid="Base_Column_List"/>
-        from mh_users
+        select ids, uname, pword, rname, pic, userType, (select groupname from mh_users_group g where g.ids=groupid)
+        groupname, groupid, setups, status, createtime, creator, createname, updatetime,
+        updator, updatename from mh_users
         <where>
             <if test="uname != null and uname != ''">
                 and uname like concat('%',#{uname},'%')
@@ -278,5 +278,15 @@
         <foreach collection="array" close=")" item="id" open="(" separator=",">
             #{id}
         </foreach>
+    </select>
+    <select id="countByUname" resultType="Integer">
+        select count(*) from mh_users
+        where uname = #{uname,jdbcType=VARCHAR}
+        <if test="ids != null and ids != ''">
+            and ids != #{ids,jdbcType=INTEGER}
+        </if>
+    </select>
+    <select id="selectUsersByGroupId" resultType="com.hafa.users.model.MhUsers">
+        select ids, rname, setups from mh_users where groupid=#{gid} and status='1'
     </select>
 </mapper>

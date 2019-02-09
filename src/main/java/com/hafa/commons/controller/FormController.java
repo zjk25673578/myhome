@@ -1,7 +1,9 @@
 package com.hafa.commons.controller;
 
+import com.hafa.commons.util.datetime.MyDateUtil;
 import com.hafa.commons.util.validcode.ValidCodeUtil;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -63,7 +65,9 @@ public class FormController {
      * @return
      */
     @RequestMapping("/record/index")
-    public String recordIndex() {
+    public String recordIndex(Model model) {
+        int currentYear = MyDateUtil.getCurrYear();
+        model.addAttribute("currentYear", currentYear);
         return "record/index";
     }
 

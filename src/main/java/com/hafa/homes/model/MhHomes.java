@@ -5,6 +5,8 @@ import com.hafa.commons.entity.CommonEntity;
 import java.util.Date;
 
 public class MhHomes extends CommonEntity {
+    private Integer groupid;
+
     private String hcode;
 
     private String community;
@@ -103,5 +105,13 @@ public class MhHomes extends CommonEntity {
 
     public void setLiving(Integer living) {
         this.living = living;
+    }
+
+    public Integer getGroupid() {
+        return groupid;
+    }
+
+    public void setGroupid(Integer groupid) {
+        this.groupid = groupid;
     }
 }

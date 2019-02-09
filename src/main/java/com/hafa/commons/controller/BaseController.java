@@ -124,4 +124,18 @@ public class BaseController<E extends BaseService> {
         }
         return null;
     }
+
+    /**
+     * 获取当前登陆用户所在组的id
+     *
+     * @param request
+     * @return
+     */
+    protected Integer getCurrentGroupId(HttpServletRequest request) {
+        MhUsers user = getCurrentUser(request);
+        if (user != null) {
+            return user.getGroupid();
+        }
+        return null;
+    }
 }

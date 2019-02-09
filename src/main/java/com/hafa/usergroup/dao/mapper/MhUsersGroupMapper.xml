@@ -1,169 +1,204 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hafa.usergroup.dao.MhUsersGroupMapper">
-  <resultMap id="BaseResultMap" type="com.hafa.usergroup.model.MhUsersGroup">
-    <id column="ids" jdbcType="INTEGER" property="ids" />
-    <result column="master" jdbcType="INTEGER" property="master" />
-    <result column="groupcode" jdbcType="VARCHAR" property="groupcode" />
-    <result column="groupname" jdbcType="VARCHAR" property="groupname" />
-    <result column="homeid" jdbcType="INTEGER" property="homeid" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="creator" jdbcType="INTEGER" property="creator" />
-    <result column="createname" jdbcType="VARCHAR" property="createname" />
-    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
-    <result column="updator" jdbcType="INTEGER" property="updator" />
-    <result column="updatename" jdbcType="VARCHAR" property="updatename" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    ids, master, groupcode, groupname, homeid, status, createtime, creator, createname, 
-    updatetime, updator, updatename
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from mh_users_group
-    where ids = #{ids,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from mh_users_group
-    where ids = #{ids,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.usergroup.model.MhUsersGroup" useGeneratedKeys="true">
-    insert into mh_users_group (master, groupcode, groupname, 
-      homeid, status, createtime, 
-      creator, createname, updatetime, 
-      updator, updatename)
-    values (#{master,jdbcType=INTEGER}, #{groupcode,jdbcType=VARCHAR}, #{groupname,jdbcType=VARCHAR}, 
-      #{homeid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
-      #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.usergroup.model.MhUsersGroup" useGeneratedKeys="true">
-    insert into mh_users_group
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="master != null">
-        master,
-      </if>
-      <if test="groupcode != null">
-        groupcode,
-      </if>
-      <if test="groupname != null">
-        groupname,
-      </if>
-      <if test="homeid != null">
-        homeid,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="createtime != null">
-        createtime,
-      </if>
-      <if test="creator != null">
-        creator,
-      </if>
-      <if test="createname != null">
-        createname,
-      </if>
-      <if test="updatetime != null">
-        updatetime,
-      </if>
-      <if test="updator != null">
-        updator,
-      </if>
-      <if test="updatename != null">
-        updatename,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="master != null">
-        #{master,jdbcType=INTEGER},
-      </if>
-      <if test="groupcode != null">
-        #{groupcode,jdbcType=VARCHAR},
-      </if>
-      <if test="groupname != null">
-        #{groupname,jdbcType=VARCHAR},
-      </if>
-      <if test="homeid != null">
-        #{homeid,jdbcType=INTEGER},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creator != null">
-        #{creator,jdbcType=INTEGER},
-      </if>
-      <if test="createname != null">
-        #{createname,jdbcType=VARCHAR},
-      </if>
-      <if test="updatetime != null">
-        #{updatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updator != null">
-        #{updator,jdbcType=INTEGER},
-      </if>
-      <if test="updatename != null">
-        #{updatename,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hafa.usergroup.model.MhUsersGroup">
-    update mh_users_group
-    <set>
-      <if test="master != null">
-        master = #{master,jdbcType=INTEGER},
-      </if>
-      <if test="groupcode != null">
+    <resultMap id="BaseResultMap" type="com.hafa.usergroup.model.MhUsersGroup">
+        <id column="ids" jdbcType="INTEGER" property="ids"/>
+        <result column="master" jdbcType="INTEGER" property="master"/>
+        <result column="groupcode" jdbcType="VARCHAR" property="groupcode"/>
+        <result column="groupname" jdbcType="VARCHAR" property="groupname"/>
+        <result column="homeid" jdbcType="INTEGER" property="homeid"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="creator" jdbcType="INTEGER" property="creator"/>
+        <result column="createname" jdbcType="VARCHAR" property="createname"/>
+        <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime"/>
+        <result column="updator" jdbcType="INTEGER" property="updator"/>
+        <result column="updatename" jdbcType="VARCHAR" property="updatename"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ids, master, groupcode, groupname, homeid, status, createtime, creator, createname,
+        updatetime, updator, updatename
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from mh_users_group
+        where ids = #{ids,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from mh_users_group
+        where ids = #{ids,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.usergroup.model.MhUsersGroup"
+            useGeneratedKeys="true">
+        insert into mh_users_group (master, groupcode, groupname,
+        homeid, status, createtime,
+        creator, createname, updatetime,
+        updator, updatename)
+        values (#{master,jdbcType=INTEGER}, #{groupcode,jdbcType=VARCHAR}, #{groupname,jdbcType=VARCHAR},
+        #{homeid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+        #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP},
+        #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.usergroup.model.MhUsersGroup"
+            useGeneratedKeys="true">
+        insert into mh_users_group
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="master != null">
+                master,
+            </if>
+            <if test="groupcode != null">
+                groupcode,
+            </if>
+            <if test="groupname != null">
+                groupname,
+            </if>
+            <if test="homeid != null">
+                homeid,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createname != null">
+                createname,
+            </if>
+            <if test="updatetime != null">
+                updatetime,
+            </if>
+            <if test="updator != null">
+                updator,
+            </if>
+            <if test="updatename != null">
+                updatename,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="master != null">
+                #{master,jdbcType=INTEGER},
+            </if>
+            <if test="groupcode != null">
+                #{groupcode,jdbcType=VARCHAR},
+            </if>
+            <if test="groupname != null">
+                #{groupname,jdbcType=VARCHAR},
+            </if>
+            <if test="homeid != null">
+                #{homeid,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="createname != null">
+                #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updator != null">
+                #{updator,jdbcType=INTEGER},
+            </if>
+            <if test="updatename != null">
+                #{updatename,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hafa.usergroup.model.MhUsersGroup">
+        update mh_users_group
+        <set>
+            <if test="master != null">
+                master = #{master,jdbcType=INTEGER},
+            </if>
+            <if test="groupcode != null">
+                groupcode = #{groupcode,jdbcType=VARCHAR},
+            </if>
+            <if test="groupname != null">
+                groupname = #{groupname,jdbcType=VARCHAR},
+            </if>
+            <if test="homeid != null">
+                homeid = #{homeid,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="createname != null">
+                createname = #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                updatetime = #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updator != null">
+                updator = #{updator,jdbcType=INTEGER},
+            </if>
+            <if test="updatename != null">
+                updatename = #{updatename,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ids = #{ids,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hafa.usergroup.model.MhUsersGroup">
+        update mh_users_group
+        set master = #{master,jdbcType=INTEGER},
         groupcode = #{groupcode,jdbcType=VARCHAR},
-      </if>
-      <if test="groupname != null">
         groupname = #{groupname,jdbcType=VARCHAR},
-      </if>
-      <if test="homeid != null">
         homeid = #{homeid,jdbcType=INTEGER},
-      </if>
-      <if test="status != null">
         status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createtime != null">
         createtime = #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creator != null">
         creator = #{creator,jdbcType=INTEGER},
-      </if>
-      <if test="createname != null">
         createname = #{createname,jdbcType=VARCHAR},
-      </if>
-      <if test="updatetime != null">
         updatetime = #{updatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updator != null">
         updator = #{updator,jdbcType=INTEGER},
-      </if>
-      <if test="updatename != null">
-        updatename = #{updatename,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where ids = #{ids,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.hafa.usergroup.model.MhUsersGroup">
-    update mh_users_group
-    set master = #{master,jdbcType=INTEGER},
-      groupcode = #{groupcode,jdbcType=VARCHAR},
-      groupname = #{groupname,jdbcType=VARCHAR},
-      homeid = #{homeid,jdbcType=INTEGER},
-      status = #{status,jdbcType=INTEGER},
-      createtime = #{createtime,jdbcType=TIMESTAMP},
-      creator = #{creator,jdbcType=INTEGER},
-      createname = #{createname,jdbcType=VARCHAR},
-      updatetime = #{updatetime,jdbcType=TIMESTAMP},
-      updator = #{updator,jdbcType=INTEGER},
-      updatename = #{updatename,jdbcType=VARCHAR}
-    where ids = #{ids,jdbcType=INTEGER}
-  </update>
+        updatename = #{updatename,jdbcType=VARCHAR}
+        where ids = #{ids,jdbcType=INTEGER}
+    </update>
+    <select id="searchFor" parameterType="Map" resultType="Map">
+        SELECT g.ids, g.master, (SELECT concat(u.rname, case when u.setups='1' then '' else '(已禁用)' end) FROM mh_users u WHERE u.ids = g.master) rname, g.groupcode, g.groupname, g.homeid, (SELECT
+        h.hname FROM mh_homes h WHERE h.ids = g.homeid) hname, g.status, g.createtime, g.creator, g.createname, g.updatetime, g.updator, g.updatename
+        FROM mh_users_group g
+        <where>
+            <if test="groupname != null and groupname != ''">
+                g.groupname like concat('%',#{groupname},'%')
+            </if>
+            and g.status='1'
+        </where>
+        order by g.createtime desc
+        limit #{minpage}, #{limit}
+    </select>
+    <select id="countFor" parameterType="Map" resultType="Integer">
+        SELECT count(*)
+        FROM mh_users_group g
+        <where>
+            <if test="groupname != null and groupname != ''">
+                g.groupname like concat('%',#{groupname},'%')
+            </if>
+            and g.status='1'
+        </where>
+    </select>
+    <select id="selectList" resultType="Map">
+        select ids, groupname from mh_users_group where status='1'
+    </select>
+    <select id="countByCode" parameterType="String" resultType="Integer">
+        select count(*) from mh_users_group
+        where groupcode is not null and groupcode=#{groupcode,jdbcType=VARCHAR}
+        <if test="ids != null and ids != ''">
+            and ids != #{ids,jdbcType=INTEGER}
+        </if>
+    </select>
 </mapper>

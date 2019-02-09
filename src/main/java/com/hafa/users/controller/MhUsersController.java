@@ -7,15 +7,18 @@ import com.hafa.commons.entity.Message;
 import com.hafa.commons.entity.PageBean;
 import com.hafa.commons.util.MyUtil;
 import com.hafa.commons.util.msg.MsgUtil;
+import com.hafa.usergroup.service.MhUsersGroupService;
 import com.hafa.users.model.MhUsers;
 import com.hafa.users.service.MhUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,6 +30,9 @@ public class MhUsersController extends BaseController<MhUsersService> {
 
     @Autowired
     protected MhUsersService mhUsersService;
+
+    @Autowired
+    protected MhUsersGroupService mhUsersGroupService;
 
     /**
      * 跳转至登陆页面
@@ -49,7 +55,9 @@ public class MhUsersController extends BaseController<MhUsersService> {
      * @return
      */
     @RequestMapping("/list")
-    public String mhUsersList() {
+    public String mhUsersList(Model model) {
+        List<Map<String, Object>> groupList = mhUsersGroupService.selectList();
+        model.addAttribute("groupList", groupList);
         return "record/mhusers/mhusers-list";
     }
 

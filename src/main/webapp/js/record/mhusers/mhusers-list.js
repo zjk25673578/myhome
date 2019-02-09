@@ -35,11 +35,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                 }
             },
             {
-                field: 'groupid', title: '用户组', templet: function (d) {
+                field: 'groupname', title: '用户组', templet: function (d) {
                     if (!d.groupid) {
                         return "<font color='#FFB800'>未列入分组</font>";
                     }
-                    return d.groupid;
+                    return d.groupname;
                 }
             },
             {
@@ -198,7 +198,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         // 获取指定模板
         var tpl = document.getElementById("user-addOrEdit").innerHTML;
         laytpl(tpl).render(data, function (html) {
-            openDialog(html, title, ['330px', '370px'], function (idx) {
+            openDialog(html, title, ['330px', '380px'], function (idx) {
                 var formdata = $("#form-data-user").serializeArray();
                 var result = validJqueryForm(formdata); // 表单验证
                 if (result) {

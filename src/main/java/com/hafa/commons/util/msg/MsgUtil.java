@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 用于构建$.post, $.get, $.load等简单ajax结构返回数据
+ * 用于构建$.ajax, $.post, $.get, $.load等简单ajax结构返回数据
  */
 public class MsgUtil {
 

@@ -83,11 +83,12 @@
         </ul>
         <div class="layui-tab-content">
             <div class="layui-tab-item layui-show layui-anim layui-anim-fadein">
-            <#--<iframe src='${ctx}/record/welcome' frameborder="0" scrolling="yes"
-                    class="x-iframe"></iframe>-->
+                <#--<iframe src='${ctx}/record/welcome' frameborder="0" scrolling="yes"
+                        class="x-iframe"></iframe>-->
                 <div class="x-body">
                     <blockquote class="layui-elem-quote">
-                        欢迎：<#if currentUser.userType == 1><span class="x-red">超级管理员</span></#if> <span>${currentUser.rname}</span>
+                        欢迎：<#if currentUser.userType == 1><span class="x-red">超级管理员</span></#if>
+                        <span>${currentUser.rname}</span>
                     </blockquote>
                     <fieldset class="layui-elem-field">
                         <legend>数据统计</legend>
@@ -112,35 +113,40 @@
                                                         <a href="javascript:;" class="x-admin-backlog-body">
                                                             <h3>会员数</h3>
                                                             <p>
-                                                                <cite>12</cite></p>
+                                                                <cite>12</cite>
+                                                            </p>
                                                         </a>
                                                     </li>
                                                     <li class="layui-col-xs2">
                                                         <a href="javascript:;" class="x-admin-backlog-body">
                                                             <h3>回复数</h3>
                                                             <p>
-                                                                <cite>99</cite></p>
+                                                                <cite>99</cite>
+                                                            </p>
                                                         </a>
                                                     </li>
                                                     <li class="layui-col-xs2">
                                                         <a href="javascript:;" class="x-admin-backlog-body">
                                                             <h3>商品数</h3>
                                                             <p>
-                                                                <cite>67</cite></p>
+                                                                <cite>67</cite>
+                                                            </p>
                                                         </a>
                                                     </li>
                                                     <li class="layui-col-xs2">
                                                         <a href="javascript:;" class="x-admin-backlog-body">
                                                             <h3>文章数</h3>
                                                             <p>
-                                                                <cite>67</cite></p>
+                                                                <cite>67</cite>
+                                                            </p>
                                                         </a>
                                                     </li>
                                                     <li class="layui-col-xs2">
                                                         <a href="javascript:;" class="x-admin-backlog-body">
                                                             <h3>文章数</h3>
                                                             <p>
-                                                                <cite>6766</cite></p>
+                                                                <cite>6766</cite>
+                                                            </p>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -189,12 +195,12 @@
                         </div>
                     </fieldset>
                     <#if currentUser.userType == 1>
-                    <fieldset class="layui-elem-field">
-                        <legend>其他信息</legend>
-                        <div class="layui-field-box">
-                            啦啦啦啦啦
-                        </div>
-                    </fieldset>
+                        <fieldset class="layui-elem-field">
+                            <legend>其他信息</legend>
+                            <div class="layui-field-box">
+                                啦啦啦啦啦
+                            </div>
+                        </fieldset>
                     </#if>
                     <div style="height: 100px;"></div>
                 </div>
@@ -205,7 +211,7 @@
 <!-- 右侧主体结束 -->
 <!-- 中部结束 -->
 <!-- 底部开始 -->
-<@macros.footer year='2019' company="小熊科技" />
+<@macros.footer year='${currentYear}' company="小熊科技" />
 <!-- 底部结束 -->
 </body>
 </html>

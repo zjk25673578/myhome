@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2019-02-05 16:43:40
+Date: 2019-02-09 21:57:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -224,17 +224,18 @@ CREATE TABLE `mh_folder` (
 DROP TABLE IF EXISTS `mh_homes`;
 CREATE TABLE `mh_homes` (
   `ids` int(8) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `groupid` int(8) DEFAULT NULL COMMENT '用户组主键',
   `hcode` varchar(100) DEFAULT NULL COMMENT '使用加密后的字符串生成',
   `community` varchar(50) DEFAULT NULL COMMENT '小区名称',
-  `hname` varchar(50) DEFAULT NULL COMMENT '名称',
+  `hname` varchar(50) DEFAULT NULL COMMENT '家庭昵称(比如超级无敌五好家庭)',
   `address` varchar(300) DEFAULT NULL COMMENT '小区所在的详细地址(几号楼等...)',
   `living` int(4) DEFAULT NULL COMMENT '启用标志, 当时是否正在使用',
-  `province` int(11) DEFAULT NULL COMMENT '省',
-  `city` int(11) DEFAULT NULL COMMENT '市',
-  `area` int(11) DEFAULT NULL COMMENT '区县',
+  `province` int(8) DEFAULT NULL COMMENT '省',
+  `city` int(8) DEFAULT NULL COMMENT '市',
+  `area` int(8) DEFAULT NULL COMMENT '区县',
   `begintime` datetime DEFAULT NULL COMMENT '开始入住的时间',
   `endtime` datetime DEFAULT NULL COMMENT '离开的时间',
-  `status` int(11) DEFAULT NULL COMMENT '有效标志',
+  `status` int(4) DEFAULT NULL COMMENT '有效标志',
   `createtime` datetime DEFAULT NULL COMMENT '创建日期',
   `creator` int(8) DEFAULT NULL COMMENT '创建人',
   `createname` varchar(50) DEFAULT NULL COMMENT '创建人名称',
@@ -284,11 +285,11 @@ CREATE TABLE `mh_house_outlay` (
   `ids` int(8) NOT NULL AUTO_INCREMENT,
   `homeid` int(8) DEFAULT NULL COMMENT '居住的详细地址等情况',
   `groupid` int(8) DEFAULT NULL COMMENT '该用户组下的所有用户都能看到',
-  `ptype` int(8) DEFAULT NULL COMMENT '关联字典表',
-  `cash` double(10,2) DEFAULT NULL,
-  `prodate` datetime DEFAULT NULL,
+  `ptype` int(8) DEFAULT NULL COMMENT '关联字典表mh_dict中diccode为caiwuleibieout的主键是28, 29, 30, 45, 55',
+  `cash` double(10,2) DEFAULT NULL COMMENT '多少钱',
+  `prodate` datetime DEFAULT NULL COMMENT '发生日期',
   `transfer` int(4) DEFAULT NULL COMMENT '1:转账; 2:现金',
-  `userid` int(8) DEFAULT NULL,
+  `userid` int(8) DEFAULT NULL COMMENT '缴费人',
   `pic` varchar(300) DEFAULT NULL,
   `status` int(4) DEFAULT NULL,
   `createtime` datetime DEFAULT NULL,
@@ -352,7 +353,7 @@ CREATE TABLE `mh_menu` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
 
 -- ----------------------------
 -- Records of mh_menu
@@ -375,12 +376,12 @@ INSERT INTO `mh_menu` VALUES ('15', '0', '旅行计划', '', 'fa fa-train', '6',
 INSERT INTO `mh_menu` VALUES ('16', '15', '旅行记录', '', 'fa fa-map', '2', '0', '1', null, null, null, '2018-12-23 13:11:42', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('17', '15', '旅行日记', '', 'fa fa-file-text', '1', '0', '1', null, null, null, '2018-12-23 13:11:38', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('18', '0', '我的奏折', '', 'fa fa-black-tie', '7', '0', '1', null, null, null, '2019-01-07 13:39:46', '1', 'admin');
-INSERT INTO `mh_menu` VALUES ('19', '0', '系统设置', 'aaabbb', 'fa fa-gears', '8', '1', '1', null, null, null, '2018-12-23 22:53:27', '1', 'zhaodashuai');
-INSERT INTO `mh_menu` VALUES ('20', '19', '菜单管理', '/mhmenu/list', 'fa fa-list', '2', '0', '1', null, null, null, '2018-12-23 13:12:06', '1', 'zhaodashuai');
+INSERT INTO `mh_menu` VALUES ('19', '0', '系统设置', '', 'fa fa-gears', '8', '1', '1', null, null, null, '2019-02-09 11:13:42', '1', 'admin');
+INSERT INTO `mh_menu` VALUES ('20', '19', '菜单管理', '/mhmenu/list', 'fa fa-list', '3', '0', '1', null, null, null, '2019-02-09 11:24:49', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('21', '19', '用户管理', '/mhusers/list', 'fa fa-grav', '1', '0', '1', null, null, null, '2018-12-24 22:23:38', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('23', '19', '流程定义', '', 'fa fa-ravelry', '5', '0', '1', null, null, null, '2018-12-24 22:25:08', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('31', '19', '字典管理', '/dict/list', 'fa fa-paper-plane', '4', '0', '1', null, null, null, '2019-01-03 23:22:35', '1', 'zhaodashuai');
-INSERT INTO `mh_menu` VALUES ('32', '19', '测试页面', '/mh/test', 'fa fa-ambulance', '6', '0', '1', null, null, null, null, null, null);
+INSERT INTO `mh_menu` VALUES ('32', '19', '测试页面', '/mh/test', 'fa fa-ambulance', '6', '0', '0', null, null, null, null, null, null);
 INSERT INTO `mh_menu` VALUES ('38', '2', '新的菜单', '', 'fa fa-circle', '1', null, '0', '2019-01-07 23:09:49', '1', 'admin', '2019-01-09 22:47:40', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('39', '38', '新的菜单', null, 'fa fa-circle', null, null, '0', '2019-01-09 22:26:36', '1', 'admin', '2019-01-09 22:47:37', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('40', '39', '新的菜单', null, 'fa fa-circle', null, null, '0', '2019-01-09 22:27:30', '1', 'admin', '2019-01-09 22:47:33', '1', 'admin');
@@ -391,6 +392,7 @@ INSERT INTO `mh_menu` VALUES ('44', '2', '新的菜单33331', 'fgffgh', 'fa fa-c
 INSERT INTO `mh_menu` VALUES ('45', '43', '生活缴费', '/finance/add', 'fa fa-coffee', '1', null, '0', '2019-01-31 22:53:26', '1', 'admin', '2019-01-31 23:02:51', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('46', '43', '日常支出', '/finance/add', 'fa fa-glass', '2', null, '0', '2019-01-31 22:53:57', '1', 'admin', '2019-01-31 23:02:55', '1', 'admin');
 INSERT INTO `mh_menu` VALUES ('47', '7', '新的菜单', '', 'fa fa-circle', null, null, '0', '2019-02-03 12:42:38', '1', 'admin', '2019-02-03 12:44:26', '1', 'admin');
+INSERT INTO `mh_menu` VALUES ('48', '19', '用户组管理', '/group/list', 'fa fa-users', '2', null, '1', '2019-02-09 08:42:31', '1', 'admin', '2019-02-09 11:14:05', '1', 'admin');
 
 -- ----------------------------
 -- Table structure for mh_notebook
@@ -484,23 +486,25 @@ CREATE TABLE `mh_users` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='系统用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COMMENT='系统用户表';
 
 -- ----------------------------
 -- Records of mh_users
 -- ----------------------------
-INSERT INTO `mh_users` VALUES ('1', 'admin', '87D9BB400C0634691F0E3BAAF1E2FD0D', '赵大帅', null, '1', null, '1', '1', '2018-12-06 23:10:46', '0', 'GOD', '2018-12-16 14:37:26', '1', 'zhaodashuai');
-INSERT INTO `mh_users` VALUES ('13', 'xiaohuang', '87D9BB400C0634691F0E3BAAF1E2FD0D', '小黄', null, '0', null, '0', '1', '2019-01-06 23:00:42', '1', 'zhaodashuai', '2019-01-23 23:20:08', '1', 'admin');
-INSERT INTO `mh_users` VALUES ('14', 'xiaolv', '87D9BB400C0634691F0E3BAAF1E2FD0D', '小绿', null, '0', null, '1', '1', '2019-01-06 23:01:11', '1', 'zhaodashuai', '2019-01-23 23:19:19', '1', 'admin');
-INSERT INTO `mh_users` VALUES ('15', 'xiaozi', '87D9BB400C0634691F0E3BAAF1E2FD0D', '小紫', null, '0', null, '1', '1', '2019-01-06 23:02:22', '1', 'admin', '2019-01-27 01:05:11', '1', 'admin');
-INSERT INTO `mh_users` VALUES ('16', 'xiaohong', '87D9BB400C0634691F0E3BAAF1E2FD0D', '小红', null, '0', null, '0', '1', '2019-01-07 15:24:30', '1', 'admin', '2019-01-25 21:37:51', '1', 'admin');
-INSERT INTO `mh_users` VALUES ('17', 'xiaocheng2', '87D9BB400C0634691F0E3BAAF1E2FD0D', '小橙', null, '0', null, '0', '1', '2019-01-07 15:24:45', '1', 'admin', '2019-01-25 21:38:06', '1', 'admin');
+INSERT INTO `mh_users` VALUES ('1', 'admin', '87D9BB400C0634691F0E3BAAF1E2FD0D', '赵大帅', null, '1', '17', '1', '1', '2018-12-06 23:10:46', '0', 'GOD', '2018-12-16 14:37:26', '1', 'zhaodashuai');
+INSERT INTO `mh_users` VALUES ('13', 'xiaohuang', '87D9BB400C0634691F0E3BAAF1E2FD0D', '小黄', null, '0', '21', '0', '1', '2019-01-06 23:00:42', '1', 'zhaodashuai', '2019-02-09 20:39:00', '1', 'admin');
+INSERT INTO `mh_users` VALUES ('14', 'xiaolv', '87D9BB400C0634691F0E3BAAF1E2FD0D', '小绿', null, '0', '18', '1', '1', '2019-01-06 23:01:11', '1', 'zhaodashuai', '2019-02-09 14:25:18', '1', 'admin');
+INSERT INTO `mh_users` VALUES ('15', 'xiaozi', '87D9BB400C0634691F0E3BAAF1E2FD0D', '小紫', null, '0', '19', '1', '1', '2019-01-06 23:02:22', '1', 'admin', '2019-02-09 14:25:08', '1', 'admin');
+INSERT INTO `mh_users` VALUES ('16', 'xiaohong', '87D9BB400C0634691F0E3BAAF1E2FD0D', '小红', null, '0', '18', '0', '1', '2019-01-07 15:24:30', '1', 'admin', '2019-02-09 14:25:04', '1', 'admin');
+INSERT INTO `mh_users` VALUES ('17', 'xiaocheng2', '87D9BB400C0634691F0E3BAAF1E2FD0D', '小橙', null, '0', '17', '0', '1', '2019-01-07 15:24:45', '1', 'admin', '2019-02-09 14:25:00', '1', 'admin');
 INSERT INTO `mh_users` VALUES ('18', 'xiaoqing', '87D9BB400C0634691F0E3BAAF1E2FD0D', '小青', null, '0', null, '1', '0', '2019-01-07 15:24:58', '1', 'admin', '2019-01-27 19:44:17', '1', 'admin');
-INSERT INTO `mh_users` VALUES ('19', 'xiaolan', '87D9BB400C0634691F0E3BAAF1E2FD0D', '小兰', null, '0', null, '1', '1', '2019-01-07 15:25:07', '1', 'admin', '2019-01-28 23:11:48', '1', 'admin');
-INSERT INTO `mh_users` VALUES ('20', 'xiaoshi', '87D9BB400C0634691F0E3BAAF1E2FD0D', '小屎', null, '0', null, '1', '1', '2019-01-07 15:25:32', '1', 'admin', '2019-01-28 23:11:46', '1', 'admin');
-INSERT INTO `mh_users` VALUES ('21', 'Android', '87D9BB400C0634691F0E3BAAF1E2FD0D', '安卓', null, '0', null, '0', '1', '2019-01-25 21:37:01', '1', 'admin', '2019-01-28 23:11:39', '1', 'admin');
-INSERT INTO `mh_users` VALUES ('22', 'zhifou', '87D9BB400C0634691F0E3BAAF1E2FD0D', '知否', null, '0', null, '1', '1', '2019-01-27 19:43:58', '1', 'admin', '2019-01-27 19:45:13', '1', 'admin');
-INSERT INTO `mh_users` VALUES ('24', 'baimuda', '87D9BB400C0634691F0E3BAAF1E2FD0D', '百慕大', null, '0', null, '1', '1', '2019-01-28 23:09:26', '1', 'admin', '2019-01-28 23:09:47', '1', 'admin');
+INSERT INTO `mh_users` VALUES ('19', 'xiaolan', '87D9BB400C0634691F0E3BAAF1E2FD0D', '小兰', null, '0', '19', '0', '1', '2019-01-07 15:25:07', '1', 'admin', '2019-02-09 21:10:41', '1', 'admin');
+INSERT INTO `mh_users` VALUES ('20', 'xiaoshi', '87D9BB400C0634691F0E3BAAF1E2FD0D', '小屎', null, '0', '17', '1', '1', '2019-01-07 15:25:32', '1', 'admin', '2019-02-09 14:23:48', '1', 'admin');
+INSERT INTO `mh_users` VALUES ('21', 'Android', '87D9BB400C0634691F0E3BAAF1E2FD0D', '安卓', null, '0', '20', '0', '1', '2019-01-25 21:37:01', '1', 'admin', '2019-02-09 14:24:56', '1', 'admin');
+INSERT INTO `mh_users` VALUES ('22', 'zhifou', '87D9BB400C0634691F0E3BAAF1E2FD0D', '知否', null, '0', '18', '1', '1', '2019-01-27 19:43:58', '1', 'admin', '2019-02-09 14:02:50', '1', 'admin');
+INSERT INTO `mh_users` VALUES ('24', 'baimuda', '87D9BB400C0634691F0E3BAAF1E2FD0D', '百慕大', null, '0', '20', '1', '1', '2019-01-28 23:09:26', '1', 'admin', '2019-02-09 14:24:51', '1', 'admin');
+INSERT INTO `mh_users` VALUES ('25', 'wangxh', '87D9BB400C0634691F0E3BAAF1E2FD0D', '王献涵', null, '0', '17', '1', '1', '2019-02-09 14:25:51', '1', 'admin', null, null, null);
+INSERT INTO `mh_users` VALUES ('26', 'wangxh2', '87D9BB400C0634691F0E3BAAF1E2FD0D', '王献涵2', null, '0', '17', '1', '0', '2019-02-09 14:28:20', '1', 'admin', '2019-02-09 14:28:24', '1', 'admin');
 
 -- ----------------------------
 -- Table structure for mh_users_group
@@ -509,7 +513,7 @@ DROP TABLE IF EXISTS `mh_users_group`;
 CREATE TABLE `mh_users_group` (
   `ids` int(8) NOT NULL AUTO_INCREMENT,
   `master` int(8) DEFAULT NULL COMMENT '户主',
-  `groupcode` varchar(100) DEFAULT NULL COMMENT '群组编号',
+  `groupcode` varchar(300) DEFAULT NULL COMMENT '群组编号',
   `groupname` varchar(100) DEFAULT NULL COMMENT '群组名称',
   `homeid` int(8) DEFAULT NULL COMMENT '家庭信息主键',
   `status` int(4) DEFAULT NULL COMMENT '有效标志',
@@ -520,11 +524,16 @@ CREATE TABLE `mh_users_group` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(100) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='记录一个家庭用户群体';
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='记录一个家庭用户群体';
 
 -- ----------------------------
 -- Records of mh_users_group
 -- ----------------------------
+INSERT INTO `mh_users_group` VALUES ('17', '25', 'uLSz8NXfwarDyw==', '复仇者联盟', null, '1', '2019-02-09 13:46:52', '1', 'admin', '2019-02-09 20:56:50', '1', 'admin');
+INSERT INTO `mh_users_group` VALUES ('18', '14', 'yMzV38nxueo=', '忍者神龟', null, '1', '2019-02-09 13:46:58', '1', 'admin', '2019-02-09 20:53:39', '1', 'admin');
+INSERT INTO `mh_users_group` VALUES ('19', '15', 'tuvh0sXJ', '峨嵋派', null, '1', '2019-02-09 13:47:04', '1', 'admin', '2019-02-09 21:10:56', '1', 'admin');
+INSERT INTO `mh_users_group` VALUES ('20', '24', 'v8a1z8q10enK0g==', '科迪实验室', null, '1', '2019-02-09 13:47:15', '1', 'admin', '2019-02-09 21:09:48', '1', 'admin');
+INSERT INTO `mh_users_group` VALUES ('21', '13', 'sNTM7Lui', '霸天虎', null, '1', '2019-02-09 20:38:25', '1', 'admin', '2019-02-09 20:49:29', '1', 'admin');
 
 -- ----------------------------
 -- Table structure for mh_users_info
@@ -592,7 +601,7 @@ CREATE TABLE `mh_user_menu` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8 COMMENT='用户菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8 COMMENT='用户菜单表';
 
 -- ----------------------------
 -- Records of mh_user_menu
@@ -651,6 +660,37 @@ INSERT INTO `mh_user_menu` VALUES ('71', '24', '43', null, null, null, null, nul
 INSERT INTO `mh_user_menu` VALUES ('72', '24', '11', null, null, null, null, null, null);
 INSERT INTO `mh_user_menu` VALUES ('73', '24', '45', null, null, null, null, null, null);
 INSERT INTO `mh_user_menu` VALUES ('74', '24', '46', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('75', '25', '1', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('76', '25', '3', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('77', '25', '4', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('78', '25', '5', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('79', '25', '6', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('80', '25', '2', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('81', '25', '7', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('82', '25', '8', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('83', '25', '9', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('84', '25', '43', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('85', '25', '10', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('86', '25', '11', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('87', '25', '12', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('88', '25', '13', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('89', '25', '14', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('90', '25', '16', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('91', '25', '17', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('92', '25', '15', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('93', '25', '18', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('94', '25', '48', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('95', '25', '19', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('96', '25', '20', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('97', '25', '21', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('98', '25', '23', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('99', '25', '31', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('100', '24', '7', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('101', '24', '8', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('102', '24', '9', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('103', '24', '1', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('104', '24', '3', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('105', '24', '6', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for mh_webinfo

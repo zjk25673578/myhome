@@ -71,7 +71,29 @@ public class MhUsersServiceImpl extends CommonServiceImpl<MhUsers> implements Mh
     }
 
     @Override
+    public List<MhUsers> listUsersByGroup(String groupid) {
+        if (groupid != null) {
+            int gid;
+            try {
+                gid = Integer.parseInt(groupid);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                return null;
+            }
+            return mhUsersMapper.selectUsersByGroupId(gid);
+        }
+        return null;
+    }
+
+    @Override
     public int saveOrUpdate(MhUsers entity, HttpServletRequest request) {
+        if (entity == null || entity.getUname() == null) {
+            return -1;
+        }
+        int u = mhUsersMapper.countByUname(entity.getUname(), entity.getIds());
+        if (u > 0) {
+            return -11; // 用户名已存在
+        }
         int adminCount = mhUsersMapper.selectAdmins();
         if (entity.getUserType() == 1 && adminCount > 0) {
             return -9; // 超级管理员有且必须只能有一个

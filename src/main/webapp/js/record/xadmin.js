@@ -292,6 +292,7 @@ function handleUndefinedAndNull(obj) {
 
 // 全局自定义表单验证规则
 var formValid = {
+
     // 支出记录验证
     createtype: function (value) {
         if (!value.length > 0) {
@@ -325,6 +326,7 @@ var formValid = {
         }
         return true;
     },
+
     // 用户列表页面验证
     uname: function (value) {
         if (!value.length > 0) {
@@ -347,6 +349,7 @@ var formValid = {
         }
         return true;
     },
+
     // 字典管理验证
     diccode: function (value) {
         if (!value.length > 0) {
@@ -358,6 +361,15 @@ var formValid = {
     dicvalue: function (value) {
         if (value == null || value == undefined || value == "") {
             layer.msg("必须填写值 !", {icon: 5});
+            return false;
+        }
+        return true;
+    },
+
+    // 用户组管理验证
+    groupname: function (value) {
+        if (value == null || value == undefined || value == "") {
+            layer.msg("必须填写用户组名称 !", {icon: 5});
             return false;
         }
         return true;

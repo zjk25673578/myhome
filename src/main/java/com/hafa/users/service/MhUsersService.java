@@ -5,6 +5,7 @@ import com.hafa.users.model.MhUsers;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 /**
  * 系统用户业务处理类
@@ -39,4 +40,12 @@ public interface MhUsersService extends BaseService<MhUsers> {
      * @return
      */
     int updateSetups(String ids, String setups, HttpServletRequest request);
+
+    /**
+     * 获取指定用户组下的用户列表
+     *
+     * @param groupid
+     * @return
+     */
+    List<MhUsers> listUsersByGroup(String groupid);
 }

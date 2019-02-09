@@ -7,6 +7,7 @@ package com.hafa.commons.util.enums;
 public enum MessageEnum {
 
     INVALIDATE_USERNAME_PASSWORD(-400, "用户名或密码错误"),
+    USERNAME_DUPLICATE(-11, "用户名已经存在 !"),
     ADMIN_NOT_DELETE(-10, "不能删除超级管理员"),
     ADMIN_DUPLICATE(-9, "超级管理员有且必须只能有一个"),
     ADMIN_ERROR(-8, "超级管理员的信息只能由本人从个人信息页面修改"),

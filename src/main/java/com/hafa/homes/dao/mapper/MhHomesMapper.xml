@@ -3,6 +3,7 @@
 <mapper namespace="com.hafa.homes.dao.MhHomesMapper">
   <resultMap id="BaseResultMap" type="com.hafa.homes.model.MhHomes">
     <id column="ids" jdbcType="INTEGER" property="ids" />
+    <result column="groupid" jdbcType="INTEGER" property="groupid" />
     <result column="hcode" jdbcType="VARCHAR" property="hcode" />
     <result column="community" jdbcType="VARCHAR" property="community" />
     <result column="hname" jdbcType="VARCHAR" property="hname" />
@@ -22,7 +23,7 @@
     <result column="updatename" jdbcType="VARCHAR" property="updatename" />
   </resultMap>
   <sql id="Base_Column_List">
-    ids, hcode, community, hname, address, living, province, city, area, begintime, endtime,
+    ids, groupid, hcode, community, hname, address, living, province, city, area, begintime, endtime,
     status, createtime, creator, createname, updatetime, updator, updatename
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -36,13 +37,13 @@
     where ids = #{ids,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.homes.model.MhHomes" useGeneratedKeys="true">
-    insert into mh_homes (hcode, community, hname, 
+    insert into mh_homes (groupid, hcode, community, hname,
       address, living, province, city,
       area, begintime, endtime, 
       status, createtime, creator, 
       createname, updatetime, updator, 
       updatename)
-    values (#{hcode,jdbcType=VARCHAR}, #{community,jdbcType=VARCHAR}, #{hname,jdbcType=VARCHAR}, 
+    values (#{groupid,jdbcType=INTEGER}, #{hcode,jdbcType=VARCHAR}, #{community,jdbcType=VARCHAR}, #{hname,jdbcType=VARCHAR},
       #{address,jdbcType=VARCHAR}, #{living,jdbcType=INTEGER}, #{province,jdbcType=INTEGER}, #{city,jdbcType=INTEGER},
       #{area,jdbcType=INTEGER}, #{begintime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, 
       #{status,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{creator,jdbcType=INTEGER}, 
@@ -52,6 +53,9 @@
   <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.homes.model.MhHomes" useGeneratedKeys="true">
     insert into mh_homes
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="groupid != null">
+        groupid,
+      </if>
       <if test="hcode != null">
         hcode,
       </if>
@@ -105,6 +109,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="groupid != null">
+        #{groupid,jdbcType=VARCHAR},
+      </if>
       <if test="hcode != null">
         #{hcode,jdbcType=VARCHAR},
       </if>
@@ -161,6 +168,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.hafa.homes.model.MhHomes">
     update mh_homes
     <set>
+      <if test="groupid != null">
+        groupid = #{groupid,jdbcType=INTEGER},
+      </if>
       <if test="hcode != null">
         hcode = #{hcode,jdbcType=VARCHAR},
       </if>
@@ -217,7 +227,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hafa.homes.model.MhHomes">
     update mh_homes
-    set hcode = #{hcode,jdbcType=VARCHAR},
+    set groupid = #{groupid,jdbcType=INTEGER},
+       hcode = #{hcode,jdbcType=VARCHAR},
       community = #{community,jdbcType=VARCHAR},
       hname = #{hname,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},

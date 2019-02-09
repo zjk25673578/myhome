@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * ajax相应数据模型
+ *
  * @author Administrator
  */
 public class Message {

@@ -1,6 +1,9 @@
 package com.hafa.usergroup.model;
 
-public class MhUsersGroup {
+import com.hafa.commons.entity.CommonEntity;
+
+public class MhUsersGroup extends CommonEntity {
+
     private Integer master;
 
     private String groupcode;

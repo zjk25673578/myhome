@@ -35,13 +35,16 @@ public class MhUserMenuServiceImpl extends CommonServiceImpl<MhUserMenu> impleme
         // 获取子菜单集合
         String childrenIds = mhMenuMapper.getChildrenMenuIds(menuid);
         // 需要更改的菜单按钮
-        // 因为Set特点时不重复
+        // 因为Set不重复
         Set<Integer> insertMenuIds = MyUtil.concatMenuIds(childrenIds, parentMenuIds);
 
         if (flag) { // 选中, 做添加操作
             // 查询出当前用户拥有的菜单
             List<Integer> hadMenuIds = mhUserMenuMapper.listMenuIdByUserId(userId);
-            // 移除已经有的菜单权限, 数据库中取出来的一定小于等于需要添加的
+            // 移除已经有的菜单权限, 数据库中取出来的一定小于等于需要添加的, 这个逻辑写的太吊了
+            /**
+             * 放TM屁 ! 已经出bug了 !
+             */
             insertMenuIds.removeAll(hadMenuIds);
             if (insertMenuIds.size() > 0) {
                 return mhUserMenuMapper.insertUserIdMenuIds(userId, insertMenuIds) > 0;

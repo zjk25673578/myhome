@@ -176,6 +176,10 @@
     padding: 5px 15px;
 }
 
+/*.layui-unselect dl {
+    max-height: 150px;
+}*/
+
 .layui-form-select dl dd, .layui-form-select dl dt {
     line-height: 30px;
 }

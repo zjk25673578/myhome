@@ -40,4 +40,21 @@ public interface MhUsersMapper extends BaseMapper<MhUsers> {
      * @return
      */
     Integer checkAdmin(String[] ids);
+
+    /**
+     * 查询指定的用户名的数量
+     *
+     * @param uname
+     * @param ids
+     * @return
+     */
+    int countByUname(@Param("uname") String uname, @Param("ids") Integer ids);
+
+    /**
+     * 查询指定用户组的用户列表
+     *
+     * @param gid
+     * @return
+     */
+    List<MhUsers> selectUsersByGroupId(int gid);
 }

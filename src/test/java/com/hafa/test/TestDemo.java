@@ -6,10 +6,17 @@ import com.hafa.commons.util.enums.MessageEnum;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.Conventions;
 
 public class TestDemo {
 
     public static void main(String[] args) {
+        int abc = 11111;
+        String vn = Conventions.getVariableName(abc);
+        System.out.println(vn);
+    }
+
+    public static void main111(String[] args) {
         /*String key = "{\"createtype\":\"31\",\"prodate\":\"\",\"minprice\":\"\",\"maxprice\":\"\"}";
         System.out.println(JSONObject.parse(key));*/
         String password = "123456";
