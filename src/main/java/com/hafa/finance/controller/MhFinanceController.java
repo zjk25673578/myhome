@@ -2,7 +2,6 @@ package com.hafa.finance.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hafa.commons.controller.BaseController;
-import com.hafa.commons.entity.LeaseEntity;
 import com.hafa.commons.entity.Message;
 import com.hafa.commons.entity.PageBean;
 import com.hafa.commons.util.msg.MsgUtil;
@@ -58,34 +57,6 @@ public class MhFinanceController extends BaseController<MhFinanceService> {
         model.addAttribute("label", "收入");
         model.addAttribute("ftype", "1");
         return "record/finance/finance-list";
-    }
-
-    /**
-     * 跳转至数据添加界面
-     *
-     * @param model
-     * @return
-     */
-    @RequestMapping("/add")
-    public String add(Model model) {
-        List<Map<String, Object>> financeInList = mhDictService.getDicCodeListByCdkey("caiwuleibiein");
-        model.addAttribute("financeTypeInList", financeInList);
-        List<Map<String, Object>> financeOutList = mhDictService.getDicCodeListByCdkey("caiwuleibieout");
-        model.addAttribute("financeTypeOutList", financeOutList);
-        return "record/finance/finance-add";
-    }
-
-    /**
-     * 租住费用数据保存
-     *
-     * @param model
-     * @return
-     */
-    @RequestMapping("/lease")
-    public String lease(Model model, LeaseEntity leaseEntity, HttpServletRequest request) {
-        int r = mhFinanceService.insertMultiple(leaseEntity, getCurrentUser(request), request);
-        model.addAttribute("label", MsgUtil.msg(r).getMessage());
-        return "record/finance/result";
     }
 
     /**

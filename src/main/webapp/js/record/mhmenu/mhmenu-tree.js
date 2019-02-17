@@ -31,6 +31,7 @@ layui.config({
     eleTree.on("nodeChecked(menuTree)", function (d) {
         var index = layer.load();
         $.ajax({
+            async: false,
             type: "post",
             url: _ctx + "/usermenu/updateAuthority",
             data: {

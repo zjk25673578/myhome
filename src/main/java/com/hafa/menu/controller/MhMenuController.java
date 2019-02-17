@@ -154,6 +154,12 @@ public class MhMenuController extends BaseController<MhMenuService> {
     @ResponseBody
     @RequestMapping("/appendMenu")
     public Message appendMenu(MhMenu menu, HttpServletRequest request) {
+        if (menu.getParentid() == 0) { // 判断有没有父级id
+            menu.setIsparent(1); // 如果有, 设置isparent属性
+        } else {
+            menu.setIsparent(0);
+        }
+        System.out.println(menu);
         int r = mhMenuService.saveOrUpdate(menu, request);
         return MsgUtil.msg(r);
     }

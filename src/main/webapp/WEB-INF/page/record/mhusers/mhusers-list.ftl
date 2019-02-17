@@ -26,13 +26,21 @@
                 <!-- 查询表单 -->
                 <form id="search-form" class="layui-form layui-col-md12">
                     <div class="layui-form-item layui-col-space10">
-                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm4 layui-col-xs12">
+                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm6 layui-col-xs12">
                             <input class="layui-input" name="uname" placeholder="用户名">
                         </div>
-                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm4 layui-col-xs12">
+                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm6 layui-col-xs12">
                             <input class="layui-input" name="rname" placeholder="姓名">
                         </div>
-                        <div class="layui-col-lg2 layui-col-md2 layui-col-sm4 layui-col-xs12">
+                        <div class="layui-col-lg2 layui-col-md3 layui-col-sm6 layui-col-xs12">
+                            <select name="groupid" id="groupid">
+                                <option value="">选择用户组</option>
+                                <#list groupList as group>
+                                    <option value="${group.ids}">${group.groupname}</option>
+                                </#list>
+                            </select>
+                        </div>
+                        <div class="layui-col-lg2 layui-col-md2 layui-col-sm6 layui-col-xs12">
                             <div class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs6 p-r-5">
                                 <button class="layui-btn layui-btn-fluid layui-btn-sm" lay-submit
                                         lay-filter="searchSubmit">

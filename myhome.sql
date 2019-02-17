@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2019-02-09 21:57:21
+Date: 2019-02-17 22:26:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -161,7 +161,7 @@ CREATE TABLE `mh_finance` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='财务信息记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='财务信息记录表';
 
 -- ----------------------------
 -- Records of mh_finance
@@ -194,6 +194,7 @@ INSERT INTO `mh_finance` VALUES ('25', '1', '0', '0.00', '30', '2019-02-05 14:30
 INSERT INTO `mh_finance` VALUES ('26', '1', '0', '0.00', '29', '2019-02-05 14:30:34', '租住房用电量缴费', '1', '2019-02-05 14:30:34', '1', 'admin', null, null, null);
 INSERT INTO `mh_finance` VALUES ('27', '1', '0', '0.00', '55', '2019-02-05 14:30:34', '租住房暖气缴费', '1', '2019-02-05 14:30:34', '1', 'admin', null, null, null);
 INSERT INTO `mh_finance` VALUES ('28', '1', '0', '0.00', '45', '2019-02-05 14:30:34', '租住房物业缴费', '1', '2019-02-05 14:30:34', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('29', '1', '0', '102.10', '31', '2019-02-17 00:00:00', '华联超市购物', '1', '2019-02-17 21:51:59', '1', 'admin', null, null, null);
 
 -- ----------------------------
 -- Table structure for mh_folder
@@ -353,7 +354,7 @@ CREATE TABLE `mh_menu` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COMMENT='系统菜单表';
 
 -- ----------------------------
 -- Records of mh_menu
@@ -382,17 +383,9 @@ INSERT INTO `mh_menu` VALUES ('21', '19', '用户管理', '/mhusers/list', 'fa f
 INSERT INTO `mh_menu` VALUES ('23', '19', '流程定义', '', 'fa fa-ravelry', '5', '0', '1', null, null, null, '2018-12-24 22:25:08', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('31', '19', '字典管理', '/dict/list', 'fa fa-paper-plane', '4', '0', '1', null, null, null, '2019-01-03 23:22:35', '1', 'zhaodashuai');
 INSERT INTO `mh_menu` VALUES ('32', '19', '测试页面', '/mh/test', 'fa fa-ambulance', '6', '0', '0', null, null, null, null, null, null);
-INSERT INTO `mh_menu` VALUES ('38', '2', '新的菜单', '', 'fa fa-circle', '1', null, '0', '2019-01-07 23:09:49', '1', 'admin', '2019-01-09 22:47:40', '1', 'admin');
-INSERT INTO `mh_menu` VALUES ('39', '38', '新的菜单', null, 'fa fa-circle', null, null, '0', '2019-01-09 22:26:36', '1', 'admin', '2019-01-09 22:47:37', '1', 'admin');
-INSERT INTO `mh_menu` VALUES ('40', '39', '新的菜单', null, 'fa fa-circle', null, null, '0', '2019-01-09 22:27:30', '1', 'admin', '2019-01-09 22:47:33', '1', 'admin');
-INSERT INTO `mh_menu` VALUES ('41', '2', '新的菜单2222', '', 'fa fa-circle', '3', null, '0', '2019-01-09 23:17:14', '1', 'admin', '2019-01-25 21:38:59', '1', 'admin');
-INSERT INTO `mh_menu` VALUES ('42', '2', '新的菜单', '', 'fa fa-circle', '1', null, '0', '2019-01-25 21:38:48', '1', 'admin', '2019-01-25 21:39:07', '1', 'admin');
-INSERT INTO `mh_menu` VALUES ('43', '7', '租住房费用', '/finance/add', 'fa fa-cny', '2', null, '1', '2019-01-26 21:04:36', '1', 'admin', '2019-02-04 16:26:46', '1', 'admin');
-INSERT INTO `mh_menu` VALUES ('44', '2', '新的菜单33331', 'fgffgh', 'fa fa-circle', '78', null, '0', '2019-01-27 19:48:46', '1', 'admin', '2019-01-27 20:12:33', '1', 'admin');
-INSERT INTO `mh_menu` VALUES ('45', '43', '生活缴费', '/finance/add', 'fa fa-coffee', '1', null, '0', '2019-01-31 22:53:26', '1', 'admin', '2019-01-31 23:02:51', '1', 'admin');
-INSERT INTO `mh_menu` VALUES ('46', '43', '日常支出', '/finance/add', 'fa fa-glass', '2', null, '0', '2019-01-31 22:53:57', '1', 'admin', '2019-01-31 23:02:55', '1', 'admin');
-INSERT INTO `mh_menu` VALUES ('47', '7', '新的菜单', '', 'fa fa-circle', null, null, '0', '2019-02-03 12:42:38', '1', 'admin', '2019-02-03 12:44:26', '1', 'admin');
-INSERT INTO `mh_menu` VALUES ('48', '19', '用户组管理', '/group/list', 'fa fa-users', '2', null, '1', '2019-02-09 08:42:31', '1', 'admin', '2019-02-09 11:14:05', '1', 'admin');
+INSERT INTO `mh_menu` VALUES ('43', '7', '租住房费用', '/outlay/add', 'fa fa-cny', '2', '0', '1', '2019-01-26 21:04:36', '1', 'admin', '2019-02-17 21:58:23', '1', 'admin');
+INSERT INTO `mh_menu` VALUES ('48', '19', '用户组管理', '/group/list', 'fa fa-users', '2', '0', '1', '2019-02-09 08:42:31', '1', 'admin', '2019-02-09 11:14:05', '1', 'admin');
+INSERT INTO `mh_menu` VALUES ('51', '17', '新的菜单', null, 'fa fa-circle', null, '0', '0', '2019-02-17 22:08:01', '1', 'admin', null, null, null);
 
 -- ----------------------------
 -- Table structure for mh_notebook
@@ -601,96 +594,26 @@ CREATE TABLE `mh_user_menu` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8 COMMENT='用户菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='用户菜单表';
 
 -- ----------------------------
 -- Records of mh_user_menu
 -- ----------------------------
-INSERT INTO `mh_user_menu` VALUES ('1', '15', '1', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('2', '15', '3', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('3', '15', '6', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('4', '15', '5', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('5', '15', '2', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('6', '15', '11', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('7', '15', '12', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('8', '15', '13', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('9', '15', '14', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('22', '13', '2', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('23', '17', '11', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('31', '16', '1', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('32', '16', '3', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('33', '16', '4', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('34', '16', '5', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('35', '16', '6', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('36', '16', '11', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('37', '16', '12', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('38', '16', '13', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('39', '16', '14', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('40', '16', '7', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('41', '16', '8', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('42', '16', '9', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('43', '20', '18', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('44', '20', '16', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('45', '20', '17', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('46', '20', '15', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('47', '20', '11', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('48', '20', '12', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('49', '20', '13', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('50', '20', '14', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('51', '20', '10', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('52', '20', '7', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('53', '20', '8', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('54', '20', '9', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('55', '20', '2', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('56', '20', '41', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('57', '20', '1', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('58', '20', '3', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('59', '20', '4', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('60', '20', '5', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('61', '20', '6', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('62', '21', '1', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('63', '21', '3', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('64', '21', '4', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('65', '21', '5', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('66', '21', '6', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('68', '15', '7', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('69', '15', '8', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('70', '15', '9', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('71', '24', '43', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('72', '24', '11', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('73', '24', '45', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('74', '24', '46', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('75', '25', '1', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('76', '25', '3', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('77', '25', '4', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('78', '25', '5', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('79', '25', '6', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('80', '25', '2', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('81', '25', '7', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('82', '25', '8', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('83', '25', '9', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('84', '25', '43', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('85', '25', '10', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('86', '25', '11', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('87', '25', '12', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('88', '25', '13', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('89', '25', '14', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('90', '25', '16', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('91', '25', '17', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('92', '25', '15', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('93', '25', '18', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('94', '25', '48', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('95', '25', '19', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('96', '25', '20', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('97', '25', '21', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('98', '25', '23', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('99', '25', '31', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('100', '24', '7', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('101', '24', '8', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('102', '24', '9', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('103', '24', '1', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('104', '24', '3', null, null, null, null, null, null);
-INSERT INTO `mh_user_menu` VALUES ('105', '24', '6', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('1', '25', '7', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('2', '25', '8', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('3', '25', '9', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('6', '25', '43', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('7', '25', '1', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('8', '25', '3', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('9', '25', '4', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('10', '25', '5', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('11', '25', '6', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('12', '25', '48', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('13', '25', '19', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('14', '25', '20', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('15', '25', '21', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('16', '25', '23', null, null, null, null, null, null);
+INSERT INTO `mh_user_menu` VALUES ('17', '25', '31', null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for mh_webinfo

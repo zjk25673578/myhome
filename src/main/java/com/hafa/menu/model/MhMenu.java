@@ -62,4 +62,16 @@ public class MhMenu extends CommonEntity {
     public void setIsparent(Integer isparent) {
         this.isparent = isparent;
     }
+
+    @Override
+    public String toString() {
+        return "MhMenu{" +
+                "parentid=" + parentid +
+                ", menuname='" + menuname + '\'' +
+                ", murl='" + murl + '\'' +
+                ", icon='" + icon + '\'' +
+                ", sort=" + sort +
+                ", isparent=" + isparent +
+                '}';
+    }
 }

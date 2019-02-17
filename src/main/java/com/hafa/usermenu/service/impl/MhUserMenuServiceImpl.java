@@ -41,10 +41,8 @@ public class MhUserMenuServiceImpl extends CommonServiceImpl<MhUserMenu> impleme
         if (flag) { // 选中, 做添加操作
             // 查询出当前用户拥有的菜单
             List<Integer> hadMenuIds = mhUserMenuMapper.listMenuIdByUserId(userId);
-            // 移除已经有的菜单权限, 数据库中取出来的一定小于等于需要添加的, 这个逻辑写的太吊了
-            /**
-             * 放TM屁 ! 已经出bug了 !
-             */
+            // 移除已经有的菜单权限
+            // 这里有一个bug, 如果菜单中isparent属性为null, 则会出现查询异常
             insertMenuIds.removeAll(hadMenuIds);
             if (insertMenuIds.size() > 0) {
                 return mhUserMenuMapper.insertUserIdMenuIds(userId, insertMenuIds) > 0;
