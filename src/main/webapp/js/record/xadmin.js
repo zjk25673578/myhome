@@ -221,7 +221,7 @@ function openDialog(tpl, title, area, callback, dates) {
         maxmin: true,
         // shade: false,
         // shadeClose: true,
-        offset: "20%",
+        // offset: "20%",
         btn: ["保存", "取消"],
         yes: function (idx) {
             callback(idx);
@@ -286,6 +286,12 @@ function handleUndefinedAndNull(obj) {
             continue;
         }
         obj[p] = '';
+    }
+    for (var k = 1; k < arguments.length; k++) {
+        var timestamp = obj[arguments[k]];
+        console.log(timestamp);
+        obj[arguments[k]] = timestamp2Date(timestamp);
+        console.log(obj[arguments[k]]);
     }
     return obj;
 }
@@ -370,6 +376,36 @@ var formValid = {
     groupname: function (value) {
         if (value == null || value == undefined || value == "") {
             layer.msg("必须填写用户组名称 !", {icon: 5});
+            return false;
+        }
+        return true;
+    },
+
+    // 家庭地址验证
+    community: function (value) {
+        if (value == null || value == undefined || value == "") {
+            layer.msg("必须填写小区名称 !", {icon: 5});
+            return false;
+        }
+        return true;
+    },
+    province: function (value) {
+        if (value == null || value == undefined || value == "") {
+            layer.msg("必须选择省 !", {icon: 5});
+            return false;
+        }
+        return true;
+    },
+    city: function (value) {
+        if (value == null || value == undefined || value == "") {
+            layer.msg("必须选择市 !", {icon: 5});
+            return false;
+        }
+        return true;
+    },
+    area: function (value) {
+        if (value == null || value == undefined || value == "") {
+            layer.msg("必须选择所在区县 !", {icon: 5});
             return false;
         }
         return true;

@@ -114,4 +114,21 @@ public class MhHomes extends CommonEntity {
     public void setGroupid(Integer groupid) {
         this.groupid = groupid;
     }
+
+    @Override
+    public String toString() {
+        return "MhHomes{" +
+                "groupid=" + groupid +
+                ", hcode='" + hcode + '\'' +
+                ", community='" + community + '\'' +
+                ", hname='" + hname + '\'' +
+                ", address='" + address + '\'' +
+                ", living=" + living +
+                ", province=" + province +
+                ", city=" + city +
+                ", area=" + area +
+                ", begintime=" + begintime +
+                ", endtime=" + endtime +
+                '}';
+    }
 }

@@ -1,13 +1,6 @@
 package com.hafa.commons.entity;
 
-import com.hafa.finance.model.MhFinance;
-import freemarker.template.utility.StringUtil;
-import org.apache.commons.lang3.StringUtils;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * 财政信息 -> 租住费用 -> 添加纪录
@@ -19,9 +12,8 @@ public class LeaseEntity {
     private String electric;
     private String warm;
     private String property;
+    private String loanrent;
     private Date createtime;
-
-    private List<MhFinance> list;
 
     public String getWater() {
         return water;
@@ -71,16 +63,24 @@ public class LeaseEntity {
         this.createtime = createtime;
     }
 
+    public String getLoanrent() {
+        return loanrent;
+    }
+
+    public void setLoanrent(String loanrent) {
+        this.loanrent = loanrent;
+    }
+
     @Override
     public String toString() {
         return "LeaseEntity{" +
-                "water=" + water +
-                ", gas=" + gas +
-                ", electric=" + electric +
-                ", warm=" + warm +
-                ", property=" + property +
+                "water='" + water + '\'' +
+                ", gas='" + gas + '\'' +
+                ", electric='" + electric + '\'' +
+                ", warm='" + warm + '\'' +
+                ", property='" + property + '\'' +
+                ", loanrent='" + loanrent + '\'' +
                 ", createtime=" + createtime +
                 '}';
     }
-
 }

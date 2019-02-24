@@ -5,10 +5,11 @@ import com.hafa.commons.entity.CommonEntity;
 import java.util.Date;
 
 public class MhHouseOutlay extends CommonEntity {
-    private Integer homeid;
-
     private Integer groupid;
 
+    /**
+     * 费用类型: (关联字典表diccode为caiwuleibieout的字段)
+     */
     private Integer ptype;
 
     private Double cash;
@@ -20,14 +21,6 @@ public class MhHouseOutlay extends CommonEntity {
     private Integer userid;
 
     private String pic;
-
-    public Integer getHomeid() {
-        return homeid;
-    }
-
-    public void setHomeid(Integer homeid) {
-        this.homeid = homeid;
-    }
 
     public Integer getGroupid() {
         return groupid;

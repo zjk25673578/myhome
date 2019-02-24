@@ -55,6 +55,7 @@
                 <!-- 每次重新检测, 更新模板的间隔时间 -->
                 <!-- 设置为0表示每次请求都是从服务器拉取模板 -->
                 <prop key="template_update_delay">${template_update_delay}</prop>
+
                 <prop key="url_escaping_charset">${url_escaping_charset}</prop>
                 <prop key="locale">${locale}</prop>
                 <prop key="datetime_format">${datetime_format}</prop>
@@ -144,7 +145,7 @@
             <mvc:exclude-mapping path="/validCode"/>
             <mvc:exclude-mapping path="/error404"/>
             <mvc:exclude-mapping path="/error500"/>
-            <ref bean="loginInterceptor" />
+            <ref bean="loginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>

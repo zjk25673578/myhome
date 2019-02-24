@@ -213,6 +213,7 @@
             </if>
             and f.status='1' and f.ftype=#{ftype} and f.userid=#{userid}
         </where>
+        order by f.prodate desc
         limit #{minpage}, #{limit}
     </select>
     <select id="countFor" resultType="Integer" parameterType="Map">

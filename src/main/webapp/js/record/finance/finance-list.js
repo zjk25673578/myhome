@@ -85,7 +85,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
         },
         // 修改数据
         update: function (obj) {
-            saveOrUpdate(handleUndefinedAndNull(obj.data), "修改" + label + "记录", _ctx + "/finance/update");
+            saveOrUpdate(handleUndefinedAndNull(obj.data, "prodate"), "修改" + label + "记录", _ctx + "/finance/update");
         },
 
         // 删除数据
@@ -182,12 +182,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
                         error: ajaxError
                     });
                 }
-            });
-
-            laydate.render({
-                elem: "#prodate-field",
-                value: new Date(data.prodate)
-            });
+            }, ["#prodate-field"]);
         });
     }
 });

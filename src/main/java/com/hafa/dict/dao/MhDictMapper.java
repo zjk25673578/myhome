@@ -29,4 +29,12 @@ public interface MhDictMapper extends BaseMapper<MhDict> {
      * @return
      */
     List<Map<String, Object>> getParentList();
+
+    /**
+     * 查询地区相关字典数据
+     *
+     * @param parentid 父级数据id
+     * @return
+     */
+    List<MhDict> getDistrictByParentId(int parentid);
 }

@@ -79,4 +79,9 @@ public class MhDictServiceImpl extends CommonServiceImpl<MhDict> implements MhDi
     public List<Map<String, Object>> getParentList() {
         return mhDictMapper.getParentList();
     }
+
+    @Override
+    public List<MhDict> selectDistrictByParentId(int parentid) {
+        return mhDictMapper.getDistrictByParentId(parentid);
+    }
 }

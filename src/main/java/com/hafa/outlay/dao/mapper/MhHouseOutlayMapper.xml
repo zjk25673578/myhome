@@ -1,217 +1,208 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hafa.outlay.dao.MhHouseOutlayMapper">
-  <resultMap id="BaseResultMap" type="com.hafa.outlay.model.MhHouseOutlay">
-    <id column="ids" jdbcType="INTEGER" property="ids" />
-    <result column="homeid" jdbcType="INTEGER" property="homeid" />
-    <result column="groupid" jdbcType="INTEGER" property="groupid" />
-    <result column="ptype" jdbcType="INTEGER" property="ptype" />
-    <result column="cash" jdbcType="DECIMAL" property="cash" />
-    <result column="prodate" jdbcType="TIMESTAMP" property="prodate" />
-    <result column="transfer" jdbcType="INTEGER" property="transfer" />
-    <result column="userid" jdbcType="INTEGER" property="userid" />
-    <result column="pic" jdbcType="VARCHAR" property="pic" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="creator" jdbcType="INTEGER" property="creator" />
-    <result column="createname" jdbcType="VARCHAR" property="createname" />
-    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
-    <result column="updator" jdbcType="INTEGER" property="updator" />
-    <result column="updatename" jdbcType="VARCHAR" property="updatename" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    ids, homeid, groupid, ptype, cash, prodate, transfer, userid, pic, status, createtime, 
-    creator, createname, updatetime, updator, updatename
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from mh_house_outlay
-    where ids = #{ids,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from mh_house_outlay
-    where ids = #{ids,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.outlay.model.MhHouseOutlay" useGeneratedKeys="true">
-    insert into mh_house_outlay (homeid, groupid, ptype, 
-      cash, prodate, transfer, 
-      userid, pic, status, 
-      createtime, creator, createname, 
-      updatetime, updator, updatename
-      )
-    values (#{homeid,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER}, #{ptype,jdbcType=INTEGER}, 
-      #{cash,jdbcType=DECIMAL}, #{prodate,jdbcType=TIMESTAMP}, #{transfer,jdbcType=INTEGER},
-      #{userid,jdbcType=INTEGER}, #{pic,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, 
-      #{updatetime,jdbcType=TIMESTAMP}, #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.outlay.model.MhHouseOutlay" useGeneratedKeys="true">
-    insert into mh_house_outlay
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="homeid != null">
-        homeid,
-      </if>
-      <if test="groupid != null">
-        groupid,
-      </if>
-      <if test="ptype != null">
-        ptype,
-      </if>
-      <if test="cash != null">
-        cash,
-      </if>
-      <if test="prodate != null">
-        prodate,
-      </if>
-      <if test="transfer != null">
-        transfer,
-      </if>
-      <if test="userid != null">
-        userid,
-      </if>
-      <if test="pic != null">
-        pic,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="createtime != null">
-        createtime,
-      </if>
-      <if test="creator != null">
-        creator,
-      </if>
-      <if test="createname != null">
-        createname,
-      </if>
-      <if test="updatetime != null">
-        updatetime,
-      </if>
-      <if test="updator != null">
-        updator,
-      </if>
-      <if test="updatename != null">
-        updatename,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="homeid != null">
-        #{homeid,jdbcType=INTEGER},
-      </if>
-      <if test="groupid != null">
-        #{groupid,jdbcType=INTEGER},
-      </if>
-      <if test="ptype != null">
-        #{ptype,jdbcType=INTEGER},
-      </if>
-      <if test="cash != null">
-        #{cash,jdbcType=DECIMAL},
-      </if>
-      <if test="prodate != null">
-        #{prodate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="transfer != null">
-        #{transfer,jdbcType=INTEGER},
-      </if>
-      <if test="userid != null">
-        #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="pic != null">
-        #{pic,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creator != null">
-        #{creator,jdbcType=INTEGER},
-      </if>
-      <if test="createname != null">
-        #{createname,jdbcType=VARCHAR},
-      </if>
-      <if test="updatetime != null">
-        #{updatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updator != null">
-        #{updator,jdbcType=INTEGER},
-      </if>
-      <if test="updatename != null">
-        #{updatename,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hafa.outlay.model.MhHouseOutlay">
-    update mh_house_outlay
-    <set>
-      <if test="homeid != null">
-        homeid = #{homeid,jdbcType=INTEGER},
-      </if>
-      <if test="groupid != null">
-        groupid = #{groupid,jdbcType=INTEGER},
-      </if>
-      <if test="ptype != null">
+    <resultMap id="BaseResultMap" type="com.hafa.outlay.model.MhHouseOutlay">
+        <id column="ids" jdbcType="INTEGER" property="ids"/>
+        <result column="groupid" jdbcType="INTEGER" property="groupid"/>
+        <result column="ptype" jdbcType="INTEGER" property="ptype"/>
+        <result column="cash" jdbcType="DECIMAL" property="cash"/>
+        <result column="prodate" jdbcType="TIMESTAMP" property="prodate"/>
+        <result column="transfer" jdbcType="INTEGER" property="transfer"/>
+        <result column="userid" jdbcType="INTEGER" property="userid"/>
+        <result column="pic" jdbcType="VARCHAR" property="pic"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
+        <result column="creator" jdbcType="INTEGER" property="creator"/>
+        <result column="createname" jdbcType="VARCHAR" property="createname"/>
+        <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime"/>
+        <result column="updator" jdbcType="INTEGER" property="updator"/>
+        <result column="updatename" jdbcType="VARCHAR" property="updatename"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ids, groupid, ptype, cash, prodate, transfer, userid, pic, status, createtime,
+        creator, createname, updatetime, updator, updatename
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from mh_house_outlay
+        where ids = #{ids,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from mh_house_outlay
+        where ids = #{ids,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.outlay.model.MhHouseOutlay"
+            useGeneratedKeys="true">
+        insert into mh_house_outlay (groupid, ptype,
+        cash, prodate, transfer,
+        userid, pic, status,
+        createtime, creator, createname,
+        updatetime, updator, updatename
+        )
+        values (#{groupid,jdbcType=INTEGER}, #{ptype,jdbcType=INTEGER},
+        #{cash,jdbcType=DECIMAL}, #{prodate,jdbcType=TIMESTAMP}, #{transfer,jdbcType=INTEGER},
+        #{userid,jdbcType=INTEGER}, #{pic,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+        #{createtime,jdbcType=TIMESTAMP}, #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR},
+        #{updatetime,jdbcType=TIMESTAMP}, #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.outlay.model.MhHouseOutlay"
+            useGeneratedKeys="true">
+        insert into mh_house_outlay
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="groupid != null">
+                groupid,
+            </if>
+            <if test="ptype != null">
+                ptype,
+            </if>
+            <if test="cash != null">
+                cash,
+            </if>
+            <if test="prodate != null">
+                prodate,
+            </if>
+            <if test="transfer != null">
+                transfer,
+            </if>
+            <if test="userid != null">
+                userid,
+            </if>
+            <if test="pic != null">
+                pic,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createtime != null">
+                createtime,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createname != null">
+                createname,
+            </if>
+            <if test="updatetime != null">
+                updatetime,
+            </if>
+            <if test="updator != null">
+                updator,
+            </if>
+            <if test="updatename != null">
+                updatename,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="groupid != null">
+                #{groupid,jdbcType=INTEGER},
+            </if>
+            <if test="ptype != null">
+                #{ptype,jdbcType=INTEGER},
+            </if>
+            <if test="cash != null">
+                #{cash,jdbcType=DECIMAL},
+            </if>
+            <if test="prodate != null">
+                #{prodate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="transfer != null">
+                #{transfer,jdbcType=INTEGER},
+            </if>
+            <if test="userid != null">
+                #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="pic != null">
+                #{pic,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="createname != null">
+                #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updator != null">
+                #{updator,jdbcType=INTEGER},
+            </if>
+            <if test="updatename != null">
+                #{updatename,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hafa.outlay.model.MhHouseOutlay">
+        update mh_house_outlay
+        <set>
+            <if test="groupid != null">
+                groupid = #{groupid,jdbcType=INTEGER},
+            </if>
+            <if test="ptype != null">
+                ptype = #{ptype,jdbcType=INTEGER},
+            </if>
+            <if test="cash != null">
+                cash = #{cash,jdbcType=DECIMAL},
+            </if>
+            <if test="prodate != null">
+                prodate = #{prodate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="transfer != null">
+                transfer = #{transfer,jdbcType=INTEGER},
+            </if>
+            <if test="userid != null">
+                userid = #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="pic != null">
+                pic = #{pic,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=INTEGER},
+            </if>
+            <if test="createname != null">
+                createname = #{createname,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                updatetime = #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updator != null">
+                updator = #{updator,jdbcType=INTEGER},
+            </if>
+            <if test="updatename != null">
+                updatename = #{updatename,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ids = #{ids,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hafa.outlay.model.MhHouseOutlay">
+        update mh_house_outlay
+        set groupid = #{groupid,jdbcType=INTEGER},
         ptype = #{ptype,jdbcType=INTEGER},
-      </if>
-      <if test="cash != null">
         cash = #{cash,jdbcType=DECIMAL},
-      </if>
-      <if test="prodate != null">
         prodate = #{prodate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="transfer != null">
         transfer = #{transfer,jdbcType=INTEGER},
-      </if>
-      <if test="userid != null">
         userid = #{userid,jdbcType=INTEGER},
-      </if>
-      <if test="pic != null">
         pic = #{pic,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
         status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createtime != null">
         createtime = #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creator != null">
         creator = #{creator,jdbcType=INTEGER},
-      </if>
-      <if test="createname != null">
         createname = #{createname,jdbcType=VARCHAR},
-      </if>
-      <if test="updatetime != null">
         updatetime = #{updatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updator != null">
         updator = #{updator,jdbcType=INTEGER},
-      </if>
-      <if test="updatename != null">
-        updatename = #{updatename,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where ids = #{ids,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.hafa.outlay.model.MhHouseOutlay">
-    update mh_house_outlay
-    set homeid = #{homeid,jdbcType=INTEGER},
-      groupid = #{groupid,jdbcType=INTEGER},
-      ptype = #{ptype,jdbcType=INTEGER},
-      cash = #{cash,jdbcType=DECIMAL},
-      prodate = #{prodate,jdbcType=TIMESTAMP},
-      transfer = #{transfer,jdbcType=INTEGER},
-      userid = #{userid,jdbcType=INTEGER},
-      pic = #{pic,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      createtime = #{createtime,jdbcType=TIMESTAMP},
-      creator = #{creator,jdbcType=INTEGER},
-      createname = #{createname,jdbcType=VARCHAR},
-      updatetime = #{updatetime,jdbcType=TIMESTAMP},
-      updator = #{updator,jdbcType=INTEGER},
-      updatename = #{updatename,jdbcType=VARCHAR}
-    where ids = #{ids,jdbcType=INTEGER}
-  </update>
+        updatename = #{updatename,jdbcType=VARCHAR}
+        where ids = #{ids,jdbcType=INTEGER}
+    </update>
 </mapper>

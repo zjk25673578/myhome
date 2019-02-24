@@ -11,6 +11,8 @@ public class MhDict extends CommonEntity {
 
     private String desp;
 
+    private String note;
+
     public Integer getParentid() {
         return parentid;
     }
@@ -41,5 +43,13 @@ public class MhDict extends CommonEntity {
 
     public void setDesp(String desp) {
         this.desp = desp;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

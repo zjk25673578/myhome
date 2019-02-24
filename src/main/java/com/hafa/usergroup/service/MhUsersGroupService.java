@@ -27,7 +27,7 @@ public interface MhUsersGroupService extends BaseService<MhUsersGroup> {
     boolean selectGroupByName(String groupname, Integer ids);
 
     /**
-     * 查询指定主键的
+     * 查询指定主键的用户组
      *
      * @param ids
      * @return

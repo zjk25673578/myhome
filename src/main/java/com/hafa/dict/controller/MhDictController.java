@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -118,5 +119,22 @@ public class MhDictController extends BaseController<MhDictService> {
     public Message update(MhDict dict, HttpServletRequest request) {
         int r = mhDictService.saveOrUpdate(dict, request);
         return MsgUtil.msg(r);
+    }
+
+    @ResponseBody
+    @RequestMapping("/children/district")
+    public Message update(@RequestParam(value = "parentid", defaultValue = "-1") String parentid) {
+        int pid;
+        try {
+            pid = Integer.parseInt(parentid);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return MsgUtil.msg(-1);
+        }
+        if (pid <= 0) {
+            return MsgUtil.msg(-1);
+        }
+        List<MhDict> childrenList = mhDictService.selectDistrictByParentId(pid);
+        return MsgUtil.msg(1, "操作成功 !", childrenList);
     }
 }

@@ -22,7 +22,9 @@ public interface BaseMapper<T> {
 
     int updateByPrimaryKey(T record);
 
-    List<Map<String, Object>> searchFor(Map<String, Object> args);
-
+    // 自定义方法 start
     int countFor(Map<String, Object> args);
+
+    List<Map<String, Object>> searchFor(Map<String, Object> args);
+    // 自定义方法 end
 }
