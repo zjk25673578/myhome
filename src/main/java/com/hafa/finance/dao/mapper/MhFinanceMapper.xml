@@ -234,4 +234,10 @@
             and f.status='1' and f.ftype=#{ftype} and f.userid=#{userid}
         </where>
     </select>
+    <update id="removeMultiple" parameterType="Map">
+        update mh_finance set status='0', updatetime=#{updatetime}, updator=#{updator} where ids in
+        <foreach collection="ids" separator="," open="(" item="id" close=")">
+            #{id}
+        </foreach>
+    </update>
 </mapper>

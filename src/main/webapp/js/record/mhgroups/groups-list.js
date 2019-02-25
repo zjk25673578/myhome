@@ -11,7 +11,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         homeid: ""
     };
 
-    table.render({
+    var tableIns = table.render({
         elem: '#usergroup-table',
         url: _ctx + '/group/groupList',
         cols: [[
@@ -48,7 +48,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         // 查询数据
         search: function (field) {
             var key = JSON.stringify(field);
-            table.reload("usergroup-table", {
+            tableIns.reload({
                 where: {
                     key: key
                 },
@@ -75,7 +75,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                 var ids = row.ids;
                 $.post(_ctx + "/group/deleteGroup", {ids: ids}, function (data) {
                     if (data.success) {
-                        table.reload("usergroup-table");
+                        tableIns.reload({
+                            page: {
+                                curr: 1
+                            }
+                        });
                     }
                     layer.close(index);
                     layer.msg(data.message, {icon: data.iconType});
@@ -128,7 +132,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                         dataType: 'json',
                         success: function (data) {
                             if (data.success) {
-                                table.reload("usergroup-table");
+                                tableIns.reload({
+                                    page: {
+                                        curr: 1
+                                    }
+                                });
                                 layer.close(idx);
                                 layer.msg(data.message, {time: 1000});
                             } else {

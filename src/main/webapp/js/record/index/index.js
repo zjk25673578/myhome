@@ -22,7 +22,7 @@ $(function () {
                 var href = d.murl ? '_href="' + _ctx + d.murl + '"' : 'href="javascript:;"';
                 str += '<li><a ' + href + '><cite><i class="' + d.icon + ' fa-fw fa-lg"></i> ' + d.menuname + '</cite>';
                 if (hasChildren(d.ids, list)) {
-                    str += '<i class="fa fa-angle-left nav_right"></i>';
+                    str += '<i class="fa fa-angle-right nav_right"></i>';
                 }
                 str += '</a>';
                 if (hasChildren(d.ids, list)) {

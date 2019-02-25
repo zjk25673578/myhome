@@ -12,7 +12,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         userType: ""
     };
 
-    table.render({
+    var tableIns = table.render({
         elem: '#users-table',
         url: _ctx + '/mhusers/userList',
         cols: [[
@@ -74,7 +74,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         // 查询数据
         search: function (field) {
             var key = JSON.stringify(field);
-            table.reload("users-table", {
+            tableIns.reload({
                 where: {
                     key: key
                 },
@@ -101,7 +101,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                 var ids = row.ids;
                 $.post(_ctx + "/mhusers/deleteUser", {ids: ids}, function (data) {
                     if (data.success) {
-                        table.reload("users-table");
+                        tableIns.reload({
+                            page: {
+                                curr: 1
+                            }
+                        });
                     }
                     layer.close(index);
                     layer.msg(data.message, {icon: data.iconType});
@@ -117,7 +121,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
             layer.confirm("确定" + ((setups == 1) ? "禁用" : "启用") + " <font color='blue'>" + row.uname + " </font>吗 ?", {icon: 3}, function (index) {
                 $.post(_ctx + "/mhusers/updateSetups", {ids: ids, setups: (setups == 1) ? "0" : "1"}, function (data) {
                     if (data.success) {
-                        table.reload("users-table");
+                        tableIns.reload({
+                            page: {
+                                curr: 1
+                            }
+                        });
                     }
                     layer.close(index);
                     layer.msg(data.message, {icon: data.iconType});
@@ -143,7 +151,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                         }
                         $.post(_ctx + "/mhusers/deleteUsers", {ids: ids}, function (data) {
                             if (data.success) {
-                                table.reload("users-table");
+                                tableIns.reload({
+                                    page: {
+                                        curr: 1
+                                    }
+                                });
                             }
                             layer.close(index);
                             layer.msg(data.message, {icon: data.iconType});
@@ -209,7 +221,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                         dataType: 'json',
                         success: function (data) {
                             if (data.success) {
-                                table.reload("users-table");
+                                tableIns.reload({
+                                    page: {
+                                        curr: 1
+                                    }
+                                });
                                 layer.close(idx);
                                 layer.msg(data.message, {time: 1000});
                             } else {

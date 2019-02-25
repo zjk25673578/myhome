@@ -23,7 +23,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
         type: "month"
     });
 
-    table.render({
+    var tableIns = table.render({
         elem: '#finance-table',
         url: _ctx + '/finance/list',
         cols: [[
@@ -38,7 +38,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
                 }
             },
             {
-                field: 'cash', title: '金额', width: 100, templet: function (d) {
+                field: 'cash', title: '金额', width: 120, templet: function (d) {
                     if (ftype === "0") { // 支出显示
                         return "<font color='#ff0000'> -" + d.cash + "元 </font>";
                     }
@@ -70,7 +70,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
         // 查询数据
         search: function (field) {
             var key = JSON.stringify(field);
-            table.reload("finance-table", {
+            tableIns.reload({
                 where: {
                     key: key
                 },
@@ -80,7 +80,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
                 }
             });
         },
-        add: function (obj) {
+        add: function () {
             saveOrUpdate(tempAddObj, "添加" + label + "记录", _ctx + "/finance/update");
         },
         // 修改数据
@@ -95,7 +95,11 @@ layui.use(['table', 'layer', 'laydate'], function () {
                 var ids = row.ids;
                 $.post(_ctx + "/finance/delete", {ids: ids}, function (data) {
                     if (data.success) {
-                        table.reload("finance-table");
+                        tableIns.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
                     }
                     layer.close(index);
                     layer.msg(data.message, {icon: data.iconType});
@@ -121,10 +125,14 @@ layui.use(['table', 'layer', 'laydate'], function () {
                         }
                         $.post(_ctx + "/finance/deleteMultiple", {ids: ids}, function (data) {
                             if (data.success) {
-                                table.reload("finance-table");
+                                tableIns.reload({
+                                    page: {
+                                        curr: 1 //重新从第 1 页开始
+                                    }
+                                });
                             }
                             layer.close(index);
-                            layer.msg(data.message, {icon: data.iconType});
+                            layer.msg(data.message, {icon: data.iconType, time: 1000});
                         }, "json");
                     }
                 });
@@ -172,7 +180,11 @@ layui.use(['table', 'layer', 'laydate'], function () {
                         dataType: 'json',
                         success: function (data) {
                             if (data.success) {
-                                table.reload("finance-table");
+                                tableIns.reload({
+                                    page: {
+                                        curr: 1 //重新从第 1 页开始
+                                    }
+                                });
                                 layer.close(idx);
                                 layer.msg(data.message, {time: 1000});
                             } else {

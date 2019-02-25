@@ -7,6 +7,32 @@ layui.config({
         table = layui.table,
         eleTree = layui.eleTree;
 
+    /**
+     * 渲染表格
+     */
+    var tableIns = table.render({
+        elem: '#tableMenu'
+        , url: _ctx + '/mhmenu/listByParentId' //数据接口
+        , cols: [[ //表头
+            {field: 'ids', title: 'ID', width: 60}
+            , {field: 'parentname', title: '父级菜单', width: 100}
+            , {field: 'menuname', title: '菜单名称', width: 150}
+            , {field: 'sort', title: '排序', width: 60}
+            , {
+                field: 'createtime', title: '创建时间', templet: function (d) {
+                    return timestamp2Date(d.createtime);
+                }
+            }
+            , {field: 'createname', title: '创建人'}
+            , {
+                field: 'updatetime', title: '最后修改时间', templet: function (d) {
+                    return timestamp2Date(d.updatetime);
+                }
+            }
+            , {field: 'updatename', title: '修改人'}
+        ]]
+    });
+
     // 树形菜单
     var el = eleTree.render({
         elem: '#menu-tree',
@@ -85,7 +111,7 @@ layui.config({
     eleTree.on('nodeClick(menuTree)', function (d) {
         var treeData = d.data.currentData;
 
-        table.reload('tableMenu', {
+        tableIns.reload({
             where: {
                 id: treeData.id
             }
@@ -120,32 +146,6 @@ layui.config({
             }
         });
         return false;
-    });
-
-    /**
-     * 渲染表格
-     */
-    table.render({
-        elem: '#tableMenu'
-        , url: _ctx + '/mhmenu/listByParentId' //数据接口
-        , cols: [[ //表头
-            {field: 'ids', title: 'ID', width: 60}
-            , {field: 'parentname', title: '父级菜单', width: 100}
-            , {field: 'menuname', title: '菜单名称', width: 150}
-            , {field: 'sort', title: '排序', width: 60}
-            , {
-                field: 'createtime', title: '创建时间', templet: function (d) {
-                    return timestamp2Date(d.createtime);
-                }
-            }
-            , {field: 'createname', title: '创建人'}
-            , {
-                field: 'updatetime', title: '最后修改时间', templet: function (d) {
-                    return timestamp2Date(d.updatetime);
-                }
-            }
-            , {field: 'updatename', title: '修改人'}
-        ]]
     });
 
 });

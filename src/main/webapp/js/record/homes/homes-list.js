@@ -16,7 +16,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
         address: ""
     };
 
-    table.render({
+    var tableIns = table.render({
         elem: '#homes-table',
         url: _ctx + '/homes/list',
         cols: [[
@@ -64,7 +64,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
         // 查询数据
         search: function (field) {
             var key = JSON.stringify(field);
-            table.reload("homes-table", {
+            tableIns.reload({
                 where: {
                     key: key
                 },
@@ -104,7 +104,11 @@ layui.use(['table', 'layer', 'laydate'], function () {
                 var ids = row.ids;
                 $.post(_ctx + "/homes/delete", {ids: ids}, function (data) {
                     if (data.success) {
-                        table.reload("homes-table");
+                        tableIns.reload({
+                            page: {
+                                curr: 1
+                            }
+                        });
                     }
                     layer.close(index);
                     layer.msg(data.message, {icon: data.iconType});
@@ -130,7 +134,11 @@ layui.use(['table', 'layer', 'laydate'], function () {
                         }
                         $.post(_ctx + "/homes/deleteMultiple", {ids: ids}, function (data) {
                             if (data.success) {
-                                table.reload("homes-table");
+                                tableIns.reload({
+                                    page: {
+                                        curr: 1
+                                    }
+                                });
                             }
                             layer.close(index);
                             layer.msg(data.message, {icon: data.iconType});
@@ -194,7 +202,11 @@ layui.use(['table', 'layer', 'laydate'], function () {
                         dataType: 'json',
                         success: function (data) {
                             if (data.success) {
-                                table.reload("homes-table");
+                                tableIns.reload({
+                                    page: {
+                                        curr: 1
+                                    }
+                                });
                                 layer.close(idx);
                                 layer.msg(data.message, {time: 1000});
                             } else {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>添加财政数据</title>
+    <title>租住房费用</title>
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -20,9 +20,9 @@
         }
     </style>
 </head>
-<body>
+<body class="layui-anim layui-anim-fadein">
 <div class="x-body">
-    <div class="layui-col-lg3 layui-col-md5 layui-col-sm6 layui-col-xs12">
+    <div class="layui-col-lg3 layui-col-lg-offset1 layui-col-md5 layui-col-md-offset1 layui-col-sm6 layui-col-sm-offset1 layui-col-xs12">
         <div class="layui-form-item tac">
             <div class="layui-form-item">
                 <input id="year" type="hidden" value="${year}">
@@ -30,8 +30,15 @@
                 <div id="laydateSelector"></div>
             </div>
             <div class="layui-form-item">
-                <button class="layui-btn layui-btn-sm layui-btn-normal" type="button">添加</button>
-                <button class="layui-btn layui-btn-sm layui-btn-warm" type="button">现在</button>
+                <button class="layui-btn layui-btn-sm layui-btn-normal" type="button">
+                    <i class="fa fa-anchor"></i> 添加
+                </button>
+                <button class="layui-btn layui-btn-sm layui-btn-warm" type="button">
+                    <i class="fa fa-circle-o-notch"></i> 现在
+                </button>
+                <button class="layui-btn layui-btn-sm layui-btn-primary" type="button">
+                    <i class="fa fa-bar-chart"></i> 生成柱状图
+                </button>
             </div>
         </div>
         <div class="layui-form-item tac">

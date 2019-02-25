@@ -1,5 +1,6 @@
 package com.hafa.finance.service.impl;
 
+import com.hafa.commons.entity.CommonEntity;
 import com.hafa.commons.service.impl.CommonServiceImpl;
 import com.hafa.finance.dao.MhFinanceMapper;
 import com.hafa.finance.model.MhFinance;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 @Repository
@@ -39,10 +41,13 @@ public class MhFinanceServiceImpl extends CommonServiceImpl<MhFinance> implement
 
     @Override
     public int deleteMultiple(String[] ids, HttpServletRequest request) {
-        int r = 0;
-        for (String id : ids) {
-            r += remove(id, request);
+        Map<String, Object> args = null;
+        try {
+            args = CommonEntity.get("u", request);
+            args.put("ids", ids);
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
         }
-        return r;
+        return mhFinanceMapper.removeMultiple(args);
     }
 }

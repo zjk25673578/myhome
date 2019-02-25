@@ -13,7 +13,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         desp: ""
     };
 
-    table.render({
+    var tableIns = table.render({
         elem: '#dict-table',
         url: _ctx + '/dict/dictList',
         cols: [[
@@ -42,7 +42,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         // 查询数据
         search: function (field) {
             var key = JSON.stringify(field);
-            table.reload("dict-table", {
+            tableIns.reload({
                 where: {
                     key: key
                 },
@@ -69,7 +69,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                 var ids = row.ids;
                 $.post(_ctx + "/dict/deleteDict", {ids: ids}, function (data) {
                     if (data.success) {
-                        table.reload("users-table");
+                        tableIns.reload({
+                            page: {
+                                curr: 1 //重新从第 1 页开始
+                            }
+                        });
                     }
                     layer.close(index);
                     layer.msg(data.message, {icon: data.iconType});
@@ -95,7 +99,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                         }
                         $.post(_ctx + "/dict/deleteMultiple", {ids: ids}, function (data) {
                             if (data.success) {
-                                table.reload("dict-table");
+                                tableIns.reload({
+                                    page: {
+                                        curr: 1 //重新从第 1 页开始
+                                    }
+                                });
                             }
                             layer.close(index);
                             layer.msg(data.message, {icon: data.iconType});
@@ -146,7 +154,11 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                         dataType: 'json',
                         success: function (data) {
                             if (data.success) {
-                                table.reload("dict-table");
+                                tableIns.reload({
+                                    page: {
+                                        curr: 1 //重新从第 1 页开始
+                                    }
+                                });
                                 layer.close(idx);
                                 layer.msg(data.message, {time: 1000});
                             } else {
