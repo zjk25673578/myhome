@@ -20,7 +20,7 @@ html {
 
 body {
     width: 100%;
-    /*min-height: 100%;*/
+    min-height: 100%;
 }
 
 .login-bg {
@@ -138,9 +138,9 @@ body {
 }
 
 .x-body {
-    padding: 20px;
+    padding: 25px;
     height: 100%;
-    overflow: auto;
+    /*overflow: auto;*/
 }
 
 .x-nav {

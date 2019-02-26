@@ -1,4 +1,25 @@
 /* 全局样式 */
+
+/* 出现滚动条而不影响页面宽度 start */
+html {
+    overflow-y: scroll;
+}
+
+:root {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+:root body {
+    position: absolute;
+}
+
+body {
+    width: 100vw;
+    overflow: hidden;
+}
+/* 出现滚动条而不影响页面宽度 end */
+
 .test {
     box-shadow: 0 0 1px red;
 }
