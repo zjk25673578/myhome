@@ -15,10 +15,6 @@
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-        .layui-timeline-content {
-            padding-left: 50px;
-        }
-
         .layui-colla-content {
             padding: 0;
         }
@@ -31,12 +27,16 @@
             position: relative;
         }
 
-        .layui-colla-title + .btn-update {
+        .layui-colla-title .btn-update {
             display: none;
-            float: left;
+            float: right;
             position: absolute;
-            top: 11px;
-            left: 140px;
+            top: 10px;
+            right: 20px;
+        }
+
+        .layui-colla-title:hover {
+            background: #e5e5e5;
         }
     </style>
 </head>
@@ -71,525 +71,54 @@
     <div class="layui-col-lg3 layui-col-lg-offset1 layui-col-md5 layui-col-md-offset1 layui-col-sm4 layui-col-sm-offset1 layui-col-xs12">
         <div class="layui-form-item">
             <div class="layui-collapse" lay-accordion lay-filter="outlay">
-                <div class="layui-colla-item">
-                    <h2 class="layui-colla-title">1月份</h2>
-                    <a class="layui-btn layui-btn-normal layui-btn-xs btn-update" href="javascript:;">修改</a>
-                    <div class="layui-colla-content layui-show">
-                        <table class="layui-table" lay-size="sm">
-                            <thead>
-                            <tr>
-                                <th>类型</th>
-                                <th>金额</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>水费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>电费</td>
-                                <td>67元</td>
-                            </tr>
-                            <tr>
-                                <td>煤气费</td>
-                                <td>7元</td>
-                            </tr>
-                            <tr>
-                                <td>暖气费</td>
-                                <td>50元</td>
-                            </tr>
-                            <tr>
-                                <td>物业费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>按揭/房租</td>
-                                <td>1800元</td>
-                            </tr>
-                            <tr>
-                                <td>合计</td>
-                                <td>1972元</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                <#list 0..11 as i>
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">
+                            <span>${i + 1}月份</span>
+                            <a class="layui-btn layui-btn-normal layui-btn-xs btn-update" href="javascript:;">修改</a>
+                        </h2>
+                        <div class="layui-colla-content">
+                            <table class="layui-table" lay-size="sm">
+                                <thead>
+                                <tr>
+                                    <th>类型</th>
+                                    <th>金额</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>水费</td>
+                                    <td>24元</td>
+                                </tr>
+                                <tr>
+                                    <td>电费</td>
+                                    <td>67元</td>
+                                </tr>
+                                <tr>
+                                    <td>煤气费</td>
+                                    <td>7元</td>
+                                </tr>
+                                <tr>
+                                    <td>暖气费</td>
+                                    <td>50元</td>
+                                </tr>
+                                <tr>
+                                    <td>物业费</td>
+                                    <td>24元</td>
+                                </tr>
+                                <tr>
+                                    <td>按揭/房租</td>
+                                    <td>1800元</td>
+                                </tr>
+                                <tr>
+                                    <td>合计</td>
+                                    <td>1972元</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-                <div class="layui-colla-item">
-                    <h2 class="layui-colla-title">2月份</h2>
-                    <a class="layui-btn layui-btn-normal layui-btn-xs btn-update" href="javascript:;">修改</a>
-                    <div class="layui-colla-content">
-                        <table class="layui-table" lay-size="sm">
-                            <thead>
-                            <tr>
-                                <th>类型</th>
-                                <th>金额</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>水费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>电费</td>
-                                <td>67元</td>
-                            </tr>
-                            <tr>
-                                <td>煤气费</td>
-                                <td>7元</td>
-                            </tr>
-                            <tr>
-                                <td>暖气费</td>
-                                <td>50元</td>
-                            </tr>
-                            <tr>
-                                <td>物业费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>按揭/房租</td>
-                                <td>1800元</td>
-                            </tr>
-                            <tr>
-                                <td>合计</td>
-                                <td>1972元</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="layui-colla-item">
-                    <h2 class="layui-colla-title">3月份</h2>
-                    <a class="layui-btn layui-btn-normal layui-btn-xs btn-update" href="javascript:;">修改</a>
-                    <div class="layui-colla-content">
-                        <table class="layui-table" lay-size="sm">
-                            <thead>
-                            <tr>
-                                <th>类型</th>
-                                <th>金额</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>水费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>电费</td>
-                                <td>67元</td>
-                            </tr>
-                            <tr>
-                                <td>煤气费</td>
-                                <td>7元</td>
-                            </tr>
-                            <tr>
-                                <td>暖气费</td>
-                                <td>50元</td>
-                            </tr>
-                            <tr>
-                                <td>物业费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>按揭/房租</td>
-                                <td>1800元</td>
-                            </tr>
-                            <tr>
-                                <td>合计</td>
-                                <td>1972元</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="layui-colla-item">
-                    <h2 class="layui-colla-title">4月份</h2>
-                    <div class="layui-colla-content">
-                        <table class="layui-table" lay-size="sm">
-                            <thead>
-                            <tr>
-                                <th>类型</th>
-                                <th>金额</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>水费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>电费</td>
-                                <td>67元</td>
-                            </tr>
-                            <tr>
-                                <td>煤气费</td>
-                                <td>7元</td>
-                            </tr>
-                            <tr>
-                                <td>暖气费</td>
-                                <td>50元</td>
-                            </tr>
-                            <tr>
-                                <td>物业费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>按揭/房租</td>
-                                <td>1800元</td>
-                            </tr>
-                            <tr>
-                                <td>合计</td>
-                                <td>1972元</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="layui-colla-item">
-                    <h2 class="layui-colla-title">5月份</h2>
-                    <div class="layui-colla-content">
-                        <table class="layui-table" lay-size="sm">
-                            <thead>
-                            <tr>
-                                <th>类型</th>
-                                <th>金额</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>水费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>电费</td>
-                                <td>67元</td>
-                            </tr>
-                            <tr>
-                                <td>煤气费</td>
-                                <td>7元</td>
-                            </tr>
-                            <tr>
-                                <td>暖气费</td>
-                                <td>50元</td>
-                            </tr>
-                            <tr>
-                                <td>物业费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>按揭/房租</td>
-                                <td>1800元</td>
-                            </tr>
-                            <tr>
-                                <td>合计</td>
-                                <td>1972元</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="layui-colla-item">
-                    <h2 class="layui-colla-title">6月份</h2>
-                    <div class="layui-colla-content">
-                        <table class="layui-table" lay-size="sm">
-                            <thead>
-                            <tr>
-                                <th>类型</th>
-                                <th>金额</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>水费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>电费</td>
-                                <td>67元</td>
-                            </tr>
-                            <tr>
-                                <td>煤气费</td>
-                                <td>7元</td>
-                            </tr>
-                            <tr>
-                                <td>暖气费</td>
-                                <td>50元</td>
-                            </tr>
-                            <tr>
-                                <td>物业费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>按揭/房租</td>
-                                <td>1800元</td>
-                            </tr>
-                            <tr>
-                                <td>合计</td>
-                                <td>1972元</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="layui-colla-item">
-                    <h2 class="layui-colla-title">7月份</h2>
-                    <div class="layui-colla-content">
-                        <table class="layui-table" lay-size="sm">
-                            <thead>
-                            <tr>
-                                <th>类型</th>
-                                <th>金额</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>水费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>电费</td>
-                                <td>67元</td>
-                            </tr>
-                            <tr>
-                                <td>煤气费</td>
-                                <td>7元</td>
-                            </tr>
-                            <tr>
-                                <td>暖气费</td>
-                                <td>50元</td>
-                            </tr>
-                            <tr>
-                                <td>物业费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>按揭/房租</td>
-                                <td>1800元</td>
-                            </tr>
-                            <tr>
-                                <td>合计</td>
-                                <td>1972元</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="layui-colla-item">
-                    <h2 class="layui-colla-title">8月份</h2>
-                    <div class="layui-colla-content">
-                        <table class="layui-table" lay-size="sm">
-                            <thead>
-                            <tr>
-                                <th>类型</th>
-                                <th>金额</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>水费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>电费</td>
-                                <td>67元</td>
-                            </tr>
-                            <tr>
-                                <td>煤气费</td>
-                                <td>7元</td>
-                            </tr>
-                            <tr>
-                                <td>暖气费</td>
-                                <td>50元</td>
-                            </tr>
-                            <tr>
-                                <td>物业费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>按揭/房租</td>
-                                <td>1800元</td>
-                            </tr>
-                            <tr>
-                                <td>合计</td>
-                                <td>1972元</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="layui-colla-item">
-                    <h2 class="layui-colla-title">9月份</h2>
-                    <div class="layui-colla-content">
-                        <table class="layui-table" lay-size="sm">
-                            <thead>
-                            <tr>
-                                <th>类型</th>
-                                <th>金额</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>水费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>电费</td>
-                                <td>67元</td>
-                            </tr>
-                            <tr>
-                                <td>煤气费</td>
-                                <td>7元</td>
-                            </tr>
-                            <tr>
-                                <td>暖气费</td>
-                                <td>50元</td>
-                            </tr>
-                            <tr>
-                                <td>物业费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>按揭/房租</td>
-                                <td>1800元</td>
-                            </tr>
-                            <tr>
-                                <td>合计</td>
-                                <td>1972元</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="layui-colla-item">
-                    <h2 class="layui-colla-title">10月份</h2>
-                    <div class="layui-colla-content">
-                        <table class="layui-table" lay-size="sm">
-                            <thead>
-                            <tr>
-                                <th>类型</th>
-                                <th>金额</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>水费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>电费</td>
-                                <td>67元</td>
-                            </tr>
-                            <tr>
-                                <td>煤气费</td>
-                                <td>7元</td>
-                            </tr>
-                            <tr>
-                                <td>暖气费</td>
-                                <td>50元</td>
-                            </tr>
-                            <tr>
-                                <td>物业费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>按揭/房租</td>
-                                <td>1800元</td>
-                            </tr>
-                            <tr>
-                                <td>合计</td>
-                                <td>1972元</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="layui-colla-item">
-                    <h2 class="layui-colla-title">11月份</h2>
-                    <div class="layui-colla-content">
-                        <table class="layui-table" lay-size="sm">
-                            <thead>
-                            <tr>
-                                <th>类型</th>
-                                <th>金额</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>水费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>电费</td>
-                                <td>67元</td>
-                            </tr>
-                            <tr>
-                                <td>煤气费</td>
-                                <td>7元</td>
-                            </tr>
-                            <tr>
-                                <td>暖气费</td>
-                                <td>50元</td>
-                            </tr>
-                            <tr>
-                                <td>物业费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>按揭/房租</td>
-                                <td>1800元</td>
-                            </tr>
-                            <tr>
-                                <td>合计</td>
-                                <td>1972元</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="layui-colla-item">
-                    <h2 class="layui-colla-title">12月份</h2>
-                    <div class="layui-colla-content">
-                        <table class="layui-table" lay-size="sm">
-                            <thead>
-                            <tr>
-                                <th>类型</th>
-                                <th>金额</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>水费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>电费</td>
-                                <td>67元</td>
-                            </tr>
-                            <tr>
-                                <td>煤气费</td>
-                                <td>7元</td>
-                            </tr>
-                            <tr>
-                                <td>暖气费</td>
-                                <td>50元</td>
-                            </tr>
-                            <tr>
-                                <td>物业费</td>
-                                <td>24元</td>
-                            </tr>
-                            <tr>
-                                <td>按揭/房租</td>
-                                <td>1800元</td>
-                            </tr>
-                            <tr>
-                                <td>合计</td>
-                                <td>1972元</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                </#list>
             </div>
         </div>
     </div>

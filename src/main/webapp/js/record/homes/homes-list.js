@@ -41,15 +41,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
                 }
             },
             {
-                field: 'living', title: '居住状态', width: 120, templet: function (d) {
-                    switch (d.living) {
-                        case 0:
-                            return '';
-                        case 1:
-                            return '<font color="green">当前住所</font>';
-                        default:
-                    }
-                }
+                field: 'living', title: '当前住所', width: 120, templet: '#livingTpl'
             },
             {field: '', title: '管理', toolbar: '#opera-btns', fixed: 'right', width: 120}
         ]],
@@ -150,6 +142,10 @@ layui.use(['table', 'layer', 'laydate'], function () {
             }
         }
     };
+
+    form.on('switch(living)', function(obj){
+        layer.tips(this.value + ' ' + this.name + ' '+ obj.elem.checked, obj.othis);
+    });
 
     // 监听查询表单的提交事件
     form.on("submit(searchSubmit)", function (data) {

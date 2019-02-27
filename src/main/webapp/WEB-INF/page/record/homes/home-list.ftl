@@ -114,7 +114,8 @@
                         <select name="province" lay-verify="required" lay-filter="province">
                             <option value="">下拉以选择</option>
                             <#list provinceList as province>
-                                <option value="${province.ids}" {{ d.province == ${province.ids} ? 'selected' : '' }}>${province.dicvalue}</option>
+                                <option value="${province.ids}" {{ d.province== ${province.ids}
+                                        ? 'selected' : '' }}>${province.dicvalue}</option>
                             </#list>
                         </select>
                     </div>
@@ -164,7 +165,8 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">居住状态：</label>
                     <div class="layui-input-block">
-                        <input type="checkbox" name="living" value="1" {{ d.living == '1' ? 'checked' : '' }} title="当前住所">
+                        <input type="checkbox" name="living" value="1" {{ d.living== '1' ? 'checked' : '' }}
+                        title="当前住所">
                     </div>
                 </div>
             </div>
@@ -178,6 +180,10 @@
             </div>
         </div>
     </form>
+</script>
+<script type="text/html" id="livingTpl">
+    <input type="checkbox" name="living" value="{{ d.ids }}" lay-skin="switch" lay-text="开 | 关" lay-filter="living" {{
+           d.living== 1 ? 'checked' : '' }}>
 </script>
 </body>
 </html>
