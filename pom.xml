@@ -23,6 +23,7 @@
         <!-- log4j日志文件管理包版本 -->
         <slf4j.version>1.7.7</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
+        <log4jdbc.version>1.2</log4jdbc.version>
     </properties>
 
     <!-- maven依赖 -->
@@ -127,6 +128,11 @@
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.googlecode.log4jdbc</groupId>
+            <artifactId>log4jdbc</artifactId>
+            <version>${log4jdbc.version}</version>
+        </dependency>
         <!-- 格式化对象，方便输出日志 -->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -180,11 +186,11 @@
             <version>1.9</version>
         </dependency>
         <!-- ORM -->
-        <dependency>
+<!--        <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>
             <version>1.3.2</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <build>
