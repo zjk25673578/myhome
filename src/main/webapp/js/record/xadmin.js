@@ -314,7 +314,7 @@ var formValid = {
         }
         return true;
     },
-    prodate: function (value) {
+    prodate: function (value) { // 兼顾验证租住房费用的发生时间
         if (value == null || value === "") {
             layer.msg("必须选择发生日期 !", {icon: 5});
             return false;
@@ -410,4 +410,7 @@ var formValid = {
         }
         return true;
     }
+
+    // 租住房费用表单验证
+
 };

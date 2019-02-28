@@ -84,10 +84,10 @@
         <aop:advisor pointcut-ref="service-cut" advice-ref="txadvice"/>
         <!-- 定义切面类的执行方法 -->
         <aop:aspect ref="logginAspect">
-            <aop:after method="after" pointcut-ref="service-cut"/>
+<!--            <aop:after method="after" pointcut-ref="service-cut"/>
             <aop:before method="before" pointcut-ref="service-cut"/>
             <aop:after-returning method="returnObject" returning="object" pointcut-ref="service-cut"/>
-            <aop:after-throwing method="throwObject" throwing="exception" pointcut-ref="service-cut"/>
+            <aop:after-throwing method="throwObject" throwing="exception" pointcut-ref="service-cut"/>-->
         </aop:aspect>
     </aop:config>
 

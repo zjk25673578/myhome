@@ -10,6 +10,7 @@
         <result column="transfer" jdbcType="INTEGER" property="transfer"/>
         <result column="userid" jdbcType="INTEGER" property="userid"/>
         <result column="pic" jdbcType="VARCHAR" property="pic"/>
+        <result column="note" jdbcType="VARCHAR" property="note"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
         <result column="createtime" jdbcType="TIMESTAMP" property="createtime"/>
         <result column="creator" jdbcType="INTEGER" property="creator"/>
@@ -19,7 +20,7 @@
         <result column="updatename" jdbcType="VARCHAR" property="updatename"/>
     </resultMap>
     <sql id="Base_Column_List">
-        ids, groupid, ptype, cash, prodate, transfer, userid, pic, status, createtime,
+        ids, groupid, ptype, cash, prodate, transfer, userid, pic, note, status, createtime,
         creator, createname, updatetime, updator, updatename
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -36,13 +37,13 @@
             useGeneratedKeys="true">
         insert into mh_house_outlay (groupid, ptype,
         cash, prodate, transfer,
-        userid, pic, status,
+        userid, pic, note, status,
         createtime, creator, createname,
         updatetime, updator, updatename
         )
         values (#{groupid,jdbcType=INTEGER}, #{ptype,jdbcType=INTEGER},
         #{cash,jdbcType=DECIMAL}, #{prodate,jdbcType=TIMESTAMP}, #{transfer,jdbcType=INTEGER},
-        #{userid,jdbcType=INTEGER}, #{pic,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+        #{userid,jdbcType=INTEGER}, #{pic,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
         #{createtime,jdbcType=TIMESTAMP}, #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR},
         #{updatetime,jdbcType=TIMESTAMP}, #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR}
         )
@@ -71,6 +72,9 @@
             </if>
             <if test="pic != null">
                 pic,
+            </if>
+            <if test="note != null">
+                note,
             </if>
             <if test="status != null">
                 status,
@@ -115,6 +119,9 @@
             </if>
             <if test="pic != null">
                 #{pic,jdbcType=VARCHAR},
+            </if>
+            <if test="note != null">
+                #{note,jdbcType=VARCHAR},
             </if>
             <if test="status != null">
                 #{status,jdbcType=INTEGER},
@@ -163,6 +170,9 @@
             <if test="pic != null">
                 pic = #{pic,jdbcType=VARCHAR},
             </if>
+            <if test="note != null">
+                note = #{note,jdbcType=VARCHAR},
+            </if>
             <if test="status != null">
                 status = #{status,jdbcType=INTEGER},
             </if>
@@ -196,6 +206,7 @@
         transfer = #{transfer,jdbcType=INTEGER},
         userid = #{userid,jdbcType=INTEGER},
         pic = #{pic,jdbcType=VARCHAR},
+        note = #{note,jdbcType=VARCHAR},
         status = #{status,jdbcType=INTEGER},
         createtime = #{createtime,jdbcType=TIMESTAMP},
         creator = #{creator,jdbcType=INTEGER},

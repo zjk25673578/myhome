@@ -1,13 +1,17 @@
 package com.hafa.outlay.controller;
 
 import com.hafa.commons.controller.BaseController;
+import com.hafa.commons.entity.LeaseEntity;
+import com.hafa.commons.entity.Message;
 import com.hafa.commons.util.datetime.MyDateUtil;
+import com.hafa.commons.util.msg.MsgUtil;
 import com.hafa.homes.service.MhHomesService;
 import com.hafa.outlay.service.MhHouseOutlayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -33,4 +37,10 @@ public class MhHouseOutlayController extends BaseController<MhHouseOutlayService
         return "record/outlay/outlay-list";
     }
 
+    @ResponseBody
+    @RequestMapping("/update")
+    public Message update(LeaseEntity leaseEntity, HttpServletRequest request) {
+        System.out.println(leaseEntity);
+        return MsgUtil.msg(-1);
+    }
 }

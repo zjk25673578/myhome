@@ -13,7 +13,8 @@ public class LeaseEntity {
     private String warm;
     private String property;
     private String loanrent;
-    private Date createtime;
+    private Date prodate;
+    private String note;
 
     public String getWater() {
         return water;
@@ -55,20 +56,28 @@ public class LeaseEntity {
         this.property = property;
     }
 
-    public Date getCreatetime() {
-        return createtime;
-    }
-
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
-    }
-
     public String getLoanrent() {
         return loanrent;
     }
 
     public void setLoanrent(String loanrent) {
         this.loanrent = loanrent;
+    }
+
+    public Date getProdate() {
+        return prodate;
+    }
+
+    public void setProdate(Date prodate) {
+        this.prodate = prodate;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     @Override
@@ -80,7 +89,8 @@ public class LeaseEntity {
                 ", warm='" + warm + '\'' +
                 ", property='" + property + '\'' +
                 ", loanrent='" + loanrent + '\'' +
-                ", createtime=" + createtime +
+                ", prodate=" + prodate +
+                ", note=" + note +
                 '}';
     }
 }

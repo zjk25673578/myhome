@@ -5,6 +5,7 @@ import com.hafa.commons.entity.CommonEntity;
 import java.util.Date;
 
 public class MhHouseOutlay extends CommonEntity {
+
     private Integer groupid;
 
     /**
@@ -21,6 +22,8 @@ public class MhHouseOutlay extends CommonEntity {
     private Integer userid;
 
     private String pic;
+
+    private String note;
 
     public Integer getGroupid() {
         return groupid;
@@ -76,5 +79,13 @@ public class MhHouseOutlay extends CommonEntity {
 
     public void setPic(String pic) {
         this.pic = pic;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

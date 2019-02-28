@@ -25,24 +25,24 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        System.out.println("postHandle方法: handler: " + handler + ", modelAndView: " + modelAndView);
+        // System.out.println("postHandle方法: handler: " + handler + ", modelAndView: " + modelAndView);
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        System.out.println("afterCompletion方法: handler: " + handler + ", modelAndView: " + ex);
+        // System.out.println("afterCompletion方法: handler: " + handler + ", modelAndView: " + ex);
     }
 
     @Override
     public void afterConcurrentHandlingStarted(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("afterConcurrentHandlingStarted方法: handler: " + handler);
+        // System.out.println("afterConcurrentHandlingStarted方法: handler: " + handler);
     }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         String requestUri = request.getRequestURI();
-        System.out.println("preHandle方法: 访问" + requestUri + "请求之前..");
+        // System.out.println("preHandle方法: 访问" + requestUri + "请求之前..");
 
         // 需要跳转的路径
         String redirectUrl = request.getContextPath();

@@ -34,11 +34,11 @@ function validLayForm(formObj) {
             }
             var r = formValid[p](formObj);
             if (!r) {
-                break;
+                return false;
             }
         }
     }
-    return false;
+    return true;
 }
 
 function ajaxError(resp) {

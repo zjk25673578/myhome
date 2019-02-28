@@ -43,20 +43,20 @@
 <body class="layui-anim layui-anim-fadein">
 <div class="x-body">
     <div class="layui-col-lg3 layui-col-lg-offset1 layui-col-md5 layui-col-md-offset1 layui-col-sm6 layui-col-sm-offset1 layui-col-xs12">
-        <div class="layui-form-item tac">
+        <div class="layui-form-item tac layui-form">
             <div class="layui-form-item">
                 <input id="year" type="hidden" value="${year}">
                 <h1 id="view">${year}年</h1>
                 <div id="laydateSelector"></div>
             </div>
             <div class="layui-form-item">
-                <button class="layui-btn layui-btn-sm layui-btn-normal" type="button">
+                <button class="layui-btn layui-btn-sm layui-btn-normal" type="button" lay-filter="add" lay-submit>
                     <i class="fa fa-anchor"></i> 添加
                 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-warm" type="button">
+                <button class="layui-btn layui-btn-sm layui-btn-warm" type="button" lay-filter="now" lay-submit>
                     <i class="fa fa-circle-o-notch"></i> 现在
                 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-primary" type="button">
+                <button class="layui-btn layui-btn-sm layui-btn-primary" type="button" lay-filter="bar" lay-submit>
                     <i class="fa fa-bar-chart"></i> 生成柱状图
                 </button>
             </div>
@@ -123,5 +123,75 @@
         </div>
     </div>
 </div>
+<script type="text/html" id="outlay-addOrEdit">
+    <div class="form-box">
+        <form class="layui-form" id="outlay-form-data">
+            <div class="layui-col-lg5 layui-col-md5 layui-col-sm10 layui-col-xs10">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">水费</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="water" class="layui-input" value="{{ d.water }}">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-lg5 layui-col-md5 layui-col-sm10 layui-col-xs10">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">电费</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="electric" class="layui-input" value="{{ d.electric }}">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-lg5 layui-col-md5 layui-col-sm10 layui-col-xs10">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">煤气费</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="gas" class="layui-input" value="{{ d.gas }}">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-lg5 layui-col-md5 layui-col-sm10 layui-col-xs10">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">暖气费</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="warm" class="layui-input" value="{{ d.warm }}">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-lg5 layui-col-md5 layui-col-sm10 layui-col-xs10">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">物业费</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="property" class="layui-input" value="{{ d.property }}">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-lg5 layui-col-md5 layui-col-sm10 layui-col-xs10">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">按揭/房租</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="loanrent" class="layui-input" value="{{ d.loanrent }}">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-lg10 layui-col-md10 layui-col-sm10 layui-col-xs10">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">缴费日期</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="prodate" name="prodate" class="layui-input" value="{{ d.prodate }}">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-lg10 layui-col-md10 layui-col-sm10 layui-col-xs10">
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-block">
+                        <textarea name="note" placeholder="请输入内容" class="layui-textarea">{{ d.note }}</textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
 </body>
 </html>
