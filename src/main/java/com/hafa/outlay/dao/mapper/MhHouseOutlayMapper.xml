@@ -4,11 +4,12 @@
     <resultMap id="BaseResultMap" type="com.hafa.outlay.model.MhHouseOutlay">
         <id column="ids" jdbcType="INTEGER" property="ids"/>
         <result column="groupid" jdbcType="INTEGER" property="groupid"/>
-        <result column="ptype" jdbcType="INTEGER" property="ptype"/>
+        <result column="ptname" jdbcType="VARCHAR" property="ptname"/>
         <result column="cash" jdbcType="DECIMAL" property="cash"/>
         <result column="prodate" jdbcType="TIMESTAMP" property="prodate"/>
         <result column="transfer" jdbcType="INTEGER" property="transfer"/>
         <result column="userid" jdbcType="INTEGER" property="userid"/>
+        <result column="bedate" jdbcType="VARCHAR" property="bedate"/>
         <result column="pic" jdbcType="VARCHAR" property="pic"/>
         <result column="note" jdbcType="VARCHAR" property="note"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
@@ -20,7 +21,7 @@
         <result column="updatename" jdbcType="VARCHAR" property="updatename"/>
     </resultMap>
     <sql id="Base_Column_List">
-        ids, groupid, ptype, cash, prodate, transfer, userid, pic, note, status, createtime,
+        ids, groupid, ptname, cash, prodate, transfer, userid, bedate, pic, note, status, createtime,
         creator, createname, updatetime, updator, updatename
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -35,15 +36,15 @@
     </delete>
     <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.outlay.model.MhHouseOutlay"
             useGeneratedKeys="true">
-        insert into mh_house_outlay (groupid, ptype,
+        insert into mh_house_outlay (groupid, ptname,
         cash, prodate, transfer,
-        userid, pic, note, status,
+        userid, bedate, pic, note, status,
         createtime, creator, createname,
         updatetime, updator, updatename
         )
-        values (#{groupid,jdbcType=INTEGER}, #{ptype,jdbcType=INTEGER},
+        values (#{groupid,jdbcType=INTEGER}, #{ptname,jdbcType=VARCHAR},
         #{cash,jdbcType=DECIMAL}, #{prodate,jdbcType=TIMESTAMP}, #{transfer,jdbcType=INTEGER},
-        #{userid,jdbcType=INTEGER}, #{pic,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+        #{userid,jdbcType=INTEGER}, #{bedate,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
         #{createtime,jdbcType=TIMESTAMP}, #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR},
         #{updatetime,jdbcType=TIMESTAMP}, #{updator,jdbcType=INTEGER}, #{updatename,jdbcType=VARCHAR}
         )
@@ -55,8 +56,8 @@
             <if test="groupid != null">
                 groupid,
             </if>
-            <if test="ptype != null">
-                ptype,
+            <if test="ptname != null">
+                ptname,
             </if>
             <if test="cash != null">
                 cash,
@@ -69,6 +70,9 @@
             </if>
             <if test="userid != null">
                 userid,
+            </if>
+            <if test="bedate != null">
+                bedate,
             </if>
             <if test="pic != null">
                 pic,
@@ -102,8 +106,8 @@
             <if test="groupid != null">
                 #{groupid,jdbcType=INTEGER},
             </if>
-            <if test="ptype != null">
-                #{ptype,jdbcType=INTEGER},
+            <if test="ptname != null">
+                #{ptname,jdbcType=VARCHAR},
             </if>
             <if test="cash != null">
                 #{cash,jdbcType=DECIMAL},
@@ -116,6 +120,9 @@
             </if>
             <if test="userid != null">
                 #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="bedate != null">
+                #{bedate,jdbcType=VARCHAR},
             </if>
             <if test="pic != null">
                 #{pic,jdbcType=VARCHAR},
@@ -152,8 +159,8 @@
             <if test="groupid != null">
                 groupid = #{groupid,jdbcType=INTEGER},
             </if>
-            <if test="ptype != null">
-                ptype = #{ptype,jdbcType=INTEGER},
+            <if test="ptname != null">
+                ptname = #{ptname,jdbcType=VARCHAR},
             </if>
             <if test="cash != null">
                 cash = #{cash,jdbcType=DECIMAL},
@@ -166,6 +173,9 @@
             </if>
             <if test="userid != null">
                 userid = #{userid,jdbcType=INTEGER},
+            </if>
+            <if test="bedate != null">
+                bedate = #{bedate,jdbcType=VARCHAR},
             </if>
             <if test="pic != null">
                 pic = #{pic,jdbcType=VARCHAR},
@@ -200,11 +210,12 @@
     <update id="updateByPrimaryKey" parameterType="com.hafa.outlay.model.MhHouseOutlay">
         update mh_house_outlay
         set groupid = #{groupid,jdbcType=INTEGER},
-        ptype = #{ptype,jdbcType=INTEGER},
+        ptname = #{ptname,jdbcType=INTEGER},
         cash = #{cash,jdbcType=DECIMAL},
         prodate = #{prodate,jdbcType=TIMESTAMP},
         transfer = #{transfer,jdbcType=INTEGER},
         userid = #{userid,jdbcType=INTEGER},
+        bedate = #{bedate,jdbcType=VARCHAR},
         pic = #{pic,jdbcType=VARCHAR},
         note = #{note,jdbcType=VARCHAR},
         status = #{status,jdbcType=INTEGER},

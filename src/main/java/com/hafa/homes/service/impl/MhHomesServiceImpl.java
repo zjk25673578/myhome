@@ -4,6 +4,7 @@ import com.hafa.commons.service.impl.CommonServiceImpl;
 import com.hafa.homes.dao.MhHomesMapper;
 import com.hafa.homes.model.MhHomes;
 import com.hafa.homes.service.MhHomesService;
+import com.hafa.outlay.model.LeaseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

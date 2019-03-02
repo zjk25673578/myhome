@@ -19,7 +19,7 @@ public interface MhUsersGroupService extends BaseService<MhUsersGroup> {
     List<Map<String, Object>> selectList();
 
     /**
-     * 查询指定groupname的分组是否存在
+     * 查询指定名称的分组是否存在
      *
      * @param groupname 分组名称
      * @return true: 存在, false: 不存在

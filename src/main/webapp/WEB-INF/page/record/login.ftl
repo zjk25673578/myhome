@@ -5,18 +5,10 @@
     <title>欢迎登陆</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport"
-          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8"/>
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
     <link rel="stylesheet" href="${ctx}/css/record/xadmin.css">
     <script type="text/javascript" src="${ctx}/res/layui/layui.js" charset="utf-8"></script>
-    <style>
-        #btn-submit {
-            height: 50px;
-            line-height: 50px;
-            font-size: 16px;
-        }
-    </style>
 </head>
 <body class="login-bg">
 <div class="login layui-anim layui-anim-up">
@@ -58,11 +50,12 @@
         form.on('submit(login)', function (data) {
             // var that = this;
             // $(that).addClass("layui-btn-disabled").attr("disabled", "disabled");
-            var index = layer.msg("<span id='info-msg'>系统正在登陆, 请稍后....</span>", {
+            var index = layer.open({
                 shade: 0.01,
                 offset: "35%",
-                time: 0,
-                icon: 6
+                content: "<span id='info-msg'>系统正在登陆, 请稍后....</span>",
+                // icon: 6,
+                time: 0
             });
             $.ajax({
                 async: false,
@@ -70,25 +63,25 @@
                 data: data.field,
                 dataType: "json",
                 success: function (dataResult) {
-                    if (dataResult.success) {
-                        setTimeout(function () {
+                    setTimeout(function () {
+                        if (dataResult.success) {
                             $("#info-msg").html('(๑•̀ㅂ•́)و✧' + dataResult.message);
-                            setTimeout(function() {
+                            setTimeout(function () {
+                                layer.close(index);
                                 window.location.href = "${ctx}/record/index";
-                            }, 300);
-                        }, 500); // 假装有延时
-                    } else {
-                        layer.close(index);
-                        layer.alert('Σ( ° △ °|||)︴ <font color="red">' + dataResult.message + '</font>', {icon: dataResult.iconType, offset: "35%", time: 0});
-                        // $(that).removeClass("layui-btn-disabled").removeAttr("disabled");
-                    }
+                            }, 500);
+                        } else {
+                            $("#info-msg").html('Σ( ° △ °|||)︴ <font color="red">' + dataResult.message + '</font>');
+                        }
+                    }, 500);
                 },
-                error: function (rm) {
-                    layer.close(index);
-                    layer.alert(rm.responseText, {icon: 5, offset: "35%", time: 0});
-                    // $(that).removeClass("layui-btn-disabled").removeAttr("disabled");
+                error: function (resp) {
+                    layer.closeAll();
+                    layer.alert('出现异常: ' + resp.status, {icon: 2});
+                    console.log(resp);
                 }
             });
+            // $(that).removeClass("layui-btn-disabled").removeAttr("disabled");
             return false;
         });
 

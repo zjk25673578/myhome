@@ -96,11 +96,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
                 var ids = row.ids;
                 $.post(_ctx + "/homes/delete", {ids: ids}, function (data) {
                     if (data.success) {
-                        tableIns.reload({
-                            page: {
-                                curr: 1
-                            }
-                        });
+                        tableIns.reload();
                     }
                     layer.close(index);
                     layer.msg(data.message, {icon: data.iconType});
@@ -117,20 +113,13 @@ layui.use(['table', 'layer', 'laydate'], function () {
                     btn: ["确定", "取消"], icon: 3,
                     btn1: function (index) {
                         var data = checkStatus.data;
-                        var ids = "";
+                        var ids = [];
                         for (var i = 0; i < len; i++) {
-                            ids += data[i].ids;
-                            if (i !== len - 1) {
-                                ids += ",";
-                            }
+                            ids.push(data[i].ids);
                         }
-                        $.post(_ctx + "/homes/deleteMultiple", {ids: ids}, function (data) {
+                        $.post(_ctx + "/homes/deleteMultiple", {ids: ids.join(",")}, function (data) {
                             if (data.success) {
-                                tableIns.reload({
-                                    page: {
-                                        curr: 1
-                                    }
-                                });
+                                tableIns.reload();
                             }
                             layer.close(index);
                             layer.msg(data.message, {icon: data.iconType});
@@ -143,8 +132,8 @@ layui.use(['table', 'layer', 'laydate'], function () {
         }
     };
 
-    form.on('switch(living)', function(obj){
-        layer.tips(this.value + ' ' + this.name + ' '+ obj.elem.checked, obj.othis);
+    form.on('switch(living)', function (obj) {
+        layer.tips(this.value + ' ' + this.name + ' ' + obj.elem.checked, obj.othis);
     });
 
     // 监听查询表单的提交事件
@@ -185,8 +174,8 @@ layui.use(['table', 'layer', 'laydate'], function () {
     function saveOrUpdate(data, title, url) {
         var tpl = document.getElementById("homes-addOrEdit").innerHTML;
         laytpl(tpl).render(data, function (html) {
-            var width = ($(window).width() * 0.6);
-            var height = ($(window).height() * 0.65);
+            var width = ($(window).width() * 0.7);
+            var height = ($(window).height() * 0.6);
             openDialog(html, title, [width + 'px', height + 'px'], function (idx) {
                 var formdata = $("#form-homes").serializeArray();
                 var result = validJqueryForm(formdata); // 表单验证
@@ -198,11 +187,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
                         dataType: 'json',
                         success: function (data) {
                             if (data.success) {
-                                tableIns.reload({
-                                    page: {
-                                        curr: 1
-                                    }
-                                });
+                                tableIns.reload();
                                 layer.close(idx);
                                 layer.msg(data.message, {time: 1000});
                             } else {
@@ -216,11 +201,20 @@ layui.use(['table', 'layer', 'laydate'], function () {
         });
     }
 
+    /**
+     * 三级联动监听改变事件, 清空下级下拉框
+     * @param inputElem
+     */
     function clearSelector(inputElem) {
         inputElem.empty();
         inputElem.append("<option value=''>下拉以选择</option>");
     }
 
+    /**
+     * 获取子级地区
+     * @param id 子级下拉框的id, 用于选取dom对象
+     * @param parentid
+     */
     function getChildrenDistrict(id, parentid) {
         $.post(_ctx + "/dict/children/district", {
             parentid: parentid
@@ -239,6 +233,11 @@ layui.use(['table', 'layer', 'laydate'], function () {
         }, "json");
     }
 
+    /**
+     * 获取子级下拉框的数据
+     * @param parentid
+     * @returns {Array}
+     */
     function buildSelector(parentid) {
         var dataList = [];
         $.ajax({

@@ -69,11 +69,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                 var ids = row.ids;
                 $.post(_ctx + "/dict/deleteDict", {ids: ids}, function (data) {
                     if (data.success) {
-                        tableIns.reload({
-                            page: {
-                                curr: 1 //重新从第 1 页开始
-                            }
-                        });
+                        tableIns.reload();
                     }
                     layer.close(index);
                     layer.msg(data.message, {icon: data.iconType});
@@ -90,20 +86,13 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                     btn: ["确定", "取消"], icon: 3,
                     btn1: function (index) {
                         var data = checkStatus.data;
-                        var ids = "";
+                        var ids = [];
                         for (var i = 0; i < len; i++) {
-                            ids += data[i].ids;
-                            if (i !== len - 1) {
-                                ids += ",";
-                            }
+                            ids.push(data[i].ids);
                         }
-                        $.post(_ctx + "/dict/deleteMultiple", {ids: ids}, function (data) {
+                        $.post(_ctx + "/dict/deleteMultiple", {ids: ids.join(",")}, function (data) {
                             if (data.success) {
-                                tableIns.reload({
-                                    page: {
-                                        curr: 1 //重新从第 1 页开始
-                                    }
-                                });
+                                tableIns.reload();
                             }
                             layer.close(index);
                             layer.msg(data.message, {icon: data.iconType});
@@ -154,11 +143,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                         dataType: 'json',
                         success: function (data) {
                             if (data.success) {
-                                tableIns.reload({
-                                    page: {
-                                        curr: 1 //重新从第 1 页开始
-                                    }
-                                });
+                                tableIns.reload();
                                 layer.close(idx);
                                 layer.msg(data.message, {time: 1000});
                             } else {

@@ -75,11 +75,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                 var ids = row.ids;
                 $.post(_ctx + "/group/deleteGroup", {ids: ids}, function (data) {
                     if (data.success) {
-                        tableIns.reload({
-                            page: {
-                                curr: 1
-                            }
-                        });
+                        tableIns.reload();
                     }
                     layer.close(index);
                     layer.msg(data.message, {icon: data.iconType});
@@ -132,11 +128,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
                         dataType: 'json',
                         success: function (data) {
                             if (data.success) {
-                                tableIns.reload({
-                                    page: {
-                                        curr: 1
-                                    }
-                                });
+                                tableIns.reload();
                                 layer.close(idx);
                                 layer.msg(data.message, {time: 1000});
                             } else {

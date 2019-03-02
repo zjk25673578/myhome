@@ -3,6 +3,7 @@ package com.hafa.test;
 import com.hafa.commons.util.encrypt.Base64Util;
 import com.hafa.commons.util.encrypt.MD5Util;
 import com.hafa.commons.util.enums.MessageEnum;
+import com.hafa.outlay.model.MhHouseOutlay;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -11,6 +12,12 @@ import org.springframework.core.Conventions;
 public class TestDemo {
 
     public static void main(String[] args) {
+        MhHouseOutlay mhHouseOutlay = new MhHouseOutlay();
+        mhHouseOutlay.setBedate("0000-00");
+        System.out.println(mhHouseOutlay.getBedate());
+    }
+
+    public static void main123(String[] args) {
         int abc = 11111;
         String vn = Conventions.getVariableName(abc);
         System.out.println(vn);

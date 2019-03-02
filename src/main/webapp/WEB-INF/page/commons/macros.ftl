@@ -8,6 +8,7 @@
     <script type="text/javascript" src="${ctx}/res/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="${ctx}/res/jquery/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="${ctx}/js/record/xadmin.js"></script>
+    <script type="text/javascript" src="${ctx}/js/record/form-valid.js"></script>
     <script type="text/javascript" src="${ctx}/js/record/common.js"></script>
 </#macro>
 <#macro footer company="" year="">

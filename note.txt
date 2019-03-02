@@ -16,3 +16,7 @@ com.hafa.users.service.impl.MhUsersServiceImpl.getUserByUnamePword(MhUsers)这�
 当用户拥有A菜单权限, 后来在A菜单下添加了子菜单, 相对于这个用户是不是就拥有了A菜单下的所有的权限
 
 历史地址添加弹窗有页面适配性的问题需要调整
+
+表单验证单独出来成一个js文件, 验证规则写成通用方法
+
+layer弹出层中的下拉框真是一块心病啊

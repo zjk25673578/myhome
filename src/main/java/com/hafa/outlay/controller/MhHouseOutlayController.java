@@ -1,7 +1,8 @@
 package com.hafa.outlay.controller;
 
 import com.hafa.commons.controller.BaseController;
-import com.hafa.commons.entity.LeaseEntity;
+import com.hafa.commons.entity.CommonEntity;
+import com.hafa.outlay.model.LeaseEntity;
 import com.hafa.commons.entity.Message;
 import com.hafa.commons.util.datetime.MyDateUtil;
 import com.hafa.commons.util.msg.MsgUtil;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 @Controller
@@ -22,6 +24,8 @@ public class MhHouseOutlayController extends BaseController<MhHouseOutlayService
 
     @Autowired
     protected MhHomesService mhHomesService;
+    @Autowired
+    protected MhHouseOutlayService mhHouseOutlayService;
 
     /**
      * 跳转至数据添加界面
@@ -38,9 +42,19 @@ public class MhHouseOutlayController extends BaseController<MhHouseOutlayService
     }
 
     @ResponseBody
-    @RequestMapping("/update")
+    @RequestMapping("/insert")
     public Message update(LeaseEntity leaseEntity, HttpServletRequest request) {
-        System.out.println(leaseEntity);
-        return MsgUtil.msg(-1);
+        Map<String, Object> args = null;
+        try {
+            args = CommonEntity.get("c", request);
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        if (args == null) {
+            return MsgUtil.msg(-1);
+        }
+        args.put("leaseEntity", leaseEntity);
+        int r = mhHouseOutlayService.insertData(args);
+        return MsgUtil.msg(r);
     }
 }

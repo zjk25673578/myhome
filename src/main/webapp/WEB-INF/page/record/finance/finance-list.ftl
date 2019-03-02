@@ -101,7 +101,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">类型：</label>
             <div class="layui-input-inline">
-                <select name="createtype" lay-verify="required">
+                <select name="createtype">
                     <option value=""></option>
                     <#list financeTypeList as financeType>
                         <option value="${financeType.ids}" {{ d.createtype == ${financeType.ids} ? 'selected' : '' }}>${financeType.dicvalue}</option>
@@ -112,13 +112,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">发生时间：</label>
             <div class="layui-input-inline">
-                <input type="text" id="prodate-field" name="prodate" lay-verify="required" readonly="readonly" class="layui-input" value="{{ d.prodate }}"/>
+                <input type="text" id="prodate-field" name="prodate" readonly="readonly" class="layui-input" value="{{ d.prodate }}"/>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">金额：</label>
             <div class="layui-input-inline">
-                <input type="text" name="cash" lay-verify="required|number" class="layui-input" value="{{ d.cash }}"/>
+                <input type="text" name="cash" class="layui-input" value="{{ d.cash }}"/>
             </div>
         </div>
         <div class="layui-form-item">

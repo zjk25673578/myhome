@@ -43,6 +43,13 @@ public class MhUsersGroupController extends BaseController<MhUsersGroupService> 
         return "record/group/usergroup-list";
     }
 
+    /**
+     * 打开用户组编辑页面
+     *
+     * @param ids
+     * @param model
+     * @return
+     */
     @RequestMapping("/edit")
     public String edit(String ids, Model model) {
         MhUsersGroup mhUsersGroup = mhUsersGroupService.selectByPrimary(ids);
@@ -55,6 +62,13 @@ public class MhUsersGroupController extends BaseController<MhUsersGroupService> 
         return "record/group/usergroup-edit";
     }
 
+    /**
+     * 获取用户分组列表数据
+     *
+     * @param key
+     * @param pageBean
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/groupList")
     public Map<String, Object> list(String key, PageBean pageBean) {
@@ -62,6 +76,13 @@ public class MhUsersGroupController extends BaseController<MhUsersGroupService> 
         return buildResultMap(mhUsersGroupService, jsonObject, pageBean);
     }
 
+    /**
+     * 添加分组
+     *
+     * @param mhUsersGroup
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/saveGroup")
     public Message saveGroup(MhUsersGroup mhUsersGroup, HttpServletRequest request) {
@@ -75,6 +96,13 @@ public class MhUsersGroupController extends BaseController<MhUsersGroupService> 
         return MsgUtil.msg(r);
     }
 
+    /**
+     * 修改用户组信息
+     *
+     * @param mhUsersGroup
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/updateGroup")
     public Message updateGroup(MhUsersGroup mhUsersGroup, HttpServletRequest request) {
@@ -90,6 +118,13 @@ public class MhUsersGroupController extends BaseController<MhUsersGroupService> 
         return MsgUtil.msg(r);
     }
 
+    /**
+     * 删除分组信息
+     *
+     * @param mhUsersGroup
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/deleteGroup")
     public Message deleteGroup(MhUsersGroup mhUsersGroup, HttpServletRequest request) {

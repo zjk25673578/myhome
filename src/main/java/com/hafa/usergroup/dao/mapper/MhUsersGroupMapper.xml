@@ -169,8 +169,10 @@
         where ids = #{ids,jdbcType=INTEGER}
     </update>
     <select id="searchFor" parameterType="Map" resultType="Map">
-        SELECT g.ids, g.master, (SELECT concat(u.rname, case when u.setups='1' then '' else '(已禁用)' end) FROM mh_users u WHERE u.ids = g.master) rname, g.groupcode, g.groupname, g.homeid, (SELECT
-        h.hname FROM mh_homes h WHERE h.ids = g.homeid) hname, g.status, g.createtime, g.creator, g.createname, g.updatetime, g.updator, g.updatename
+        SELECT g.ids, g.master, (SELECT concat(u.rname, case when u.setups='1' then '' else '(已禁用)' end) FROM mh_users u
+        WHERE u.ids = g.master and u.status='1') rname, g.groupcode, g.groupname, g.homeid, (SELECT
+        h.hname FROM mh_homes h WHERE h.ids = g.homeid) hname, g.status, g.createtime, g.creator,
+        g.createname, g.updatetime, g.updator, g.updatename
         FROM mh_users_group g
         <where>
             <if test="groupname != null and groupname != ''">

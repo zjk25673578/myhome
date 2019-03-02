@@ -41,8 +41,8 @@
     </style>
 </head>
 <body class="layui-anim layui-anim-fadein">
-<div class="x-body">
-    <div class="layui-col-lg3 layui-col-lg-offset1 layui-col-md5 layui-col-md-offset1 layui-col-sm6 layui-col-sm-offset1 layui-col-xs12">
+<div class="x-body layui-col-space30">
+    <div class="layui-col-lg3 layui-col-lg-offset1 layui-col-md5 layui-col-md-offset1 layui-col-sm6 layui-col-xs12">
         <div class="layui-form-item tac layui-form">
             <div class="layui-form-item">
                 <input id="year" type="hidden" value="${year}">
@@ -53,10 +53,7 @@
                 <button class="layui-btn layui-btn-sm layui-btn-normal" type="button" lay-filter="add" lay-submit>
                     <i class="fa fa-anchor"></i> 添加
                 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-warm" type="button" lay-filter="now" lay-submit>
-                    <i class="fa fa-circle-o-notch"></i> 现在
-                </button>
-                <button class="layui-btn layui-btn-sm layui-btn-primary" type="button" lay-filter="bar" lay-submit>
+                <button class="layui-btn layui-btn-sm layui-btn-warm" type="button" lay-filter="bar" lay-submit>
                     <i class="fa fa-bar-chart"></i> 生成柱状图
                 </button>
             </div>
@@ -68,51 +65,85 @@
             <hr class="layui-bg-red">
         </div>
     </div>
-    <div class="layui-col-lg3 layui-col-lg-offset1 layui-col-md5 layui-col-md-offset1 layui-col-sm4 layui-col-sm-offset1 layui-col-xs12">
+    <div class="layui-col-lg4 layui-col-lg-offset1 layui-col-md6 layui-col-sm6 layui-col-xs12">
         <div class="layui-form-item">
             <div class="layui-collapse" lay-accordion lay-filter="outlay">
                 <#list 0..11 as i>
                     <div class="layui-colla-item">
                         <h2 class="layui-colla-title">
                             <span>${i + 1}月份</span>
-                            <a class="layui-btn layui-btn-normal layui-btn-xs btn-update" href="javascript:;">修改</a>
+                            <#--<a class="layui-btn layui-btn-normal layui-btn-xs btn-update" href="javascript:;">修改</a>-->
                         </h2>
                         <div class="layui-colla-content">
                             <table class="layui-table" lay-size="sm">
+                                <colgroup>
+                                    <col>
+                                    <col>
+                                    <col>
+                                    <col width="60">
+                                </colgroup>
                                 <thead>
                                 <tr>
                                     <th>类型</th>
                                     <th>金额</th>
+                                    <th>备注</th>
+                                    <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
                                     <td>水费</td>
                                     <td>24元</td>
+                                    <td>24元</td>
+                                    <td>
+                                        <button class="layui-btn layui-btn-danger layui-btn-xs">修改</button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>电费</td>
                                     <td>67元</td>
+                                    <td>67元</td>
+                                    <td>
+                                        <button class="layui-btn layui-btn-danger layui-btn-xs">修改</button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>煤气费</td>
                                     <td>7元</td>
+                                    <td>7元</td>
+                                    <td>
+                                        <button class="layui-btn layui-btn-danger layui-btn-xs">修改</button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>暖气费</td>
                                     <td>50元</td>
+                                    <td>50元</td>
+                                    <td>
+                                        <button class="layui-btn layui-btn-danger layui-btn-xs">修改</button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>物业费</td>
                                     <td>24元</td>
+                                    <td>24元</td>
+                                    <td>
+                                        <button class="layui-btn layui-btn-danger layui-btn-xs">修改</button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>按揭/房租</td>
                                     <td>1800元</td>
+                                    <td>1800元</td>
+                                    <td>
+                                        <button class="layui-btn layui-btn-danger layui-btn-xs">修改</button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>合计</td>
                                     <td>1972元</td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -174,11 +205,19 @@
                     </div>
                 </div>
             </div>
-            <div class="layui-col-lg10 layui-col-md10 layui-col-sm10 layui-col-xs10">
+            <div class="layui-col-lg5 layui-col-md5 layui-col-sm10 layui-col-xs10">
                 <div class="layui-form-item">
                     <label class="layui-form-label">缴费日期</label>
                     <div class="layui-input-block">
                         <input type="text" id="prodate" name="prodate" class="layui-input" value="{{ d.prodate }}">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-lg5 layui-col-md5 layui-col-sm10 layui-col-xs10">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">所属月份</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="bedate" name="bedate" class="layui-input" value="{{ d.bedate }}">
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@ layui.use(['form'], function () {
                 x_admin_close();
                 parent.table.reload("usergroup-table");
             }
-            parent.layer.alert(resultData.message, {icon: resultData.iconType});
+            parent.layer.msg(resultData.message, {icon: resultData.iconType, time: 1000});
         }, "json");
         return false;
     });

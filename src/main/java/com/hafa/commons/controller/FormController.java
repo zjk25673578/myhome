@@ -2,6 +2,7 @@ package com.hafa.commons.controller;
 
 import com.hafa.commons.util.datetime.MyDateUtil;
 import com.hafa.commons.util.validcode.ValidCodeUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,36 @@ import java.awt.image.BufferedImage;
  */
 @Controller
 public class FormController {
+
+    /**
+     * 服务器操作系统
+     */
+    @Value("#{systemProperties['os.name']}")
+    private String osName;
+
+    /**
+     * 服务器地址
+     */
+    @Value("#{systemProperties['java.rmi.server.hostname']}")
+    private String serverName;
+
+    /**
+     * 运行java版本
+     */
+    @Value("#{systemProperties['java.runtime.version']}")
+    private String javaVersion;
+
+    /**
+     * 服务器所在时区
+     */
+    @Value("#{systemProperties['user.timezone']}")
+    private String timezone;
+
+    /**
+     * 数据库名称及版本
+     */
+    @Value("#{dataSource.connection.metaData.databaseProductName} - #{dataSource.connection.metaData.databaseProductVersion}")
+    private String databaseInfo;
 
     /* blog start */
     @RequestMapping("/blog/index")
@@ -65,9 +96,16 @@ public class FormController {
      * @return
      */
     @RequestMapping("/record/index")
-    public String recordIndex(Model model) {
+    public String recordIndex(Model model, HttpServletRequest request) {
         int currentYear = MyDateUtil.getCurrYear();
         model.addAttribute("currentYear", currentYear);
+        model.addAttribute("osName", osName);
+        model.addAttribute("serverName", serverName);
+        model.addAttribute("version", "1.0.0");
+        model.addAttribute("environment", request.getServletContext().getServerInfo());
+        model.addAttribute("javaVersion", javaVersion);
+        model.addAttribute("timezone", timezone);
+        model.addAttribute("databaseInfo", databaseInfo);
         return "record/index";
     }
 

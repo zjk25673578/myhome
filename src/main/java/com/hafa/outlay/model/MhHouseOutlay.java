@@ -1,6 +1,7 @@
 package com.hafa.outlay.model;
 
 import com.hafa.commons.entity.CommonEntity;
+import com.hafa.commons.util.regex.RegexUtil;
 
 import java.util.Date;
 
@@ -9,9 +10,9 @@ public class MhHouseOutlay extends CommonEntity {
     private Integer groupid;
 
     /**
-     * 费用类型: (关联字典表diccode为caiwuleibieout的字段)
+     * 费用类型: (因为是固定类型, 故不再关联字典, 直接填写汉字)
      */
-    private Integer ptype;
+    private String ptname;
 
     private Double cash;
 
@@ -20,6 +21,11 @@ public class MhHouseOutlay extends CommonEntity {
     private Integer transfer;
 
     private Integer userid;
+
+    /**
+     * 表明数据属于那个时间段, 比如2015-09, 只能是这个格式
+     */
+    private String bedate;
 
     private String pic;
 
@@ -31,14 +37,6 @@ public class MhHouseOutlay extends CommonEntity {
 
     public void setGroupid(Integer groupid) {
         this.groupid = groupid;
-    }
-
-    public Integer getPtype() {
-        return ptype;
-    }
-
-    public void setPtype(Integer ptype) {
-        this.ptype = ptype;
     }
 
     public Double getCash() {
@@ -87,5 +85,27 @@ public class MhHouseOutlay extends CommonEntity {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getBedate() {
+        return bedate;
+    }
+
+    public void setBedate(String bedate) {
+        boolean result = RegexUtil.matcher("\\d{4}-\\d{2}", bedate);
+        if (result) {
+            this.bedate = bedate;
+        } else {
+            System.err.println("setBedate方法参数格式不符合");
+            this.bedate = "0000-00";
+        }
+    }
+
+    public String getPtname() {
+        return ptname;
+    }
+
+    public void setPtname(String ptname) {
+        this.ptname = ptname;
     }
 }

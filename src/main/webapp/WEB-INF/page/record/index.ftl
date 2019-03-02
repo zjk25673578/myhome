@@ -44,7 +44,7 @@
             </a>
         </li>
     </ul>
-    <ul class="layui-nav right" lay-filter="">
+    <ul class="layui-nav right">
         <li class="layui-nav-item">
             <a href="javascript:;">
                 <#if currentUser??><#-- 或者这样写<#if currentUser?exists> -->
@@ -163,32 +163,28 @@
                             <table class="layui-table">
                                 <tbody>
                                 <tr>
-                                    <th>xxx版本</th>
-                                    <td>1.0.180420</td>
+                                    <th>管理系统版本号</th>
+                                    <td>${version}</td>
                                 </tr>
                                 <tr>
-                                    <th>服务器地址</th>
-                                    <td>x.xuebingsi.com</td>
-                                </tr>
-                                <tr>
-                                    <th>操作系统</th>
-                                    <td>WINNT</td>
+                                    <th>服务器操作系统</th>
+                                    <td>${osName}</td>
                                 </tr>
                                 <tr>
                                     <th>运行环境</th>
-                                    <td>Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9</td>
+                                    <td>${environment}</td>
                                 </tr>
                                 <tr>
-                                    <th>MYSQL版本</th>
-                                    <td>5.5.53</td>
+                                    <th>java版本</th>
+                                    <td>JRE - ${javaVersion}</td>
                                 </tr>
                                 <tr>
-                                    <th>上传附件限制</th>
-                                    <td>2M</td>
+                                    <th>当前时区</th>
+                                    <td>${timezone}</td>
                                 </tr>
                                 <tr>
-                                    <th>剩余空间</th>
-                                    <td>86015.2M</td>
+                                    <th>数据库名称及版本</th>
+                                    <td>${databaseInfo}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -196,9 +192,24 @@
                     </fieldset>
                     <#if currentUser.userType == 1>
                         <fieldset class="layui-elem-field">
-                            <legend>其他信息</legend>
+                            <legend>服务器信息</legend>
                             <div class="layui-field-box">
-                                啦啦啦啦啦
+                                <div class="layui-form-item">
+                                    <div class="layui-form-label">
+                                        服务器地址
+                                    </div>
+                                    <div class="layui-input-inline">
+                                        <span class="layui-input">${serverName}</span>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-form-label">
+                                        剩余空间
+                                    </div>
+                                    <div class="layui-input-inline">
+                                        <span class="layui-input">86015.2M</span>
+                                    </div>
+                                </div>
                             </div>
                         </fieldset>
                     </#if>

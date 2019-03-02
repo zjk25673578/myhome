@@ -5,11 +5,7 @@ import com.hafa.commons.entity.PageBean;
 import com.hafa.commons.service.BaseService;
 import com.hafa.commons.util.MyUtil;
 import com.hafa.commons.util.msg.MsgUtil;
-import com.hafa.usergroup.model.MhUsersGroup;
-import com.hafa.usergroup.service.MhUsersGroupService;
 import com.hafa.users.model.MhUsers;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,11 +16,7 @@ import java.util.Map;
  *
  * @param <E>
  */
-@Component
 public class BaseController<E extends BaseService> {
-
-    @Autowired
-    protected MhUsersGroupService mhUsersGroupService;
 
     /**
      * 构建layui的table的数据结构
@@ -145,18 +137,5 @@ public class BaseController<E extends BaseService> {
             return user.getGroupid();
         }
         return null;
-    }
-
-    /**
-     * 获取当前登陆的用户的用户组对象
-     *
-     * @return
-     */
-    protected MhUsersGroup getCurrentUsersGroup(HttpServletRequest request) {
-        Integer groupId = getCurrentGroupId(request);
-        if (groupId == null) {
-            return null;
-        }
-        return mhUsersGroupService.selectByPrimary(groupId.toString());
     }
 }

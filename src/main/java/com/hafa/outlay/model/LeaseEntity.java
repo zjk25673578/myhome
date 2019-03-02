@@ -1,4 +1,4 @@
-package com.hafa.commons.entity;
+package com.hafa.outlay.model;
 
 import java.util.Date;
 
@@ -14,6 +14,7 @@ public class LeaseEntity {
     private String property;
     private String loanrent;
     private Date prodate;
+    private String bedate;
     private String note;
 
     public String getWater() {
@@ -80,17 +81,12 @@ public class LeaseEntity {
         this.note = note;
     }
 
-    @Override
-    public String toString() {
-        return "LeaseEntity{" +
-                "water='" + water + '\'' +
-                ", gas='" + gas + '\'' +
-                ", electric='" + electric + '\'' +
-                ", warm='" + warm + '\'' +
-                ", property='" + property + '\'' +
-                ", loanrent='" + loanrent + '\'' +
-                ", prodate=" + prodate +
-                ", note=" + note +
-                '}';
+    public String getBedate() {
+        return bedate;
     }
+
+    public void setBedate(String bedate) {
+        this.bedate = bedate;
+    }
+
 }
