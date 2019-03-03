@@ -22,6 +22,8 @@ public class MhHouseOutlay extends CommonEntity {
 
     private Integer userid;
 
+    private Integer homeid;
+
     /**
      * 表明数据属于那个时间段, 比如2015-09, 只能是这个格式
      */
@@ -107,5 +109,13 @@ public class MhHouseOutlay extends CommonEntity {
 
     public void setPtname(String ptname) {
         this.ptname = ptname;
+    }
+
+    public Integer getHomeid() {
+        return homeid;
+    }
+
+    public void setHomeid(Integer homeid) {
+        this.homeid = homeid;
     }
 }

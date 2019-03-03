@@ -139,6 +139,7 @@ public class CommonEntity implements Serializable {
                     this.setCreatename(user.getUname());
                     this.setCreatetime(new Date());
                     this.setCreator(user.getIds());
+                    this.setStatus(1);
                     break;
                 case "u":
                     this.setUpdatename(user.getUname());

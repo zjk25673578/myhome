@@ -140,7 +140,8 @@ body {
 .x-body {
     padding: 25px;
     height: 100%;
-    overflow: auto;
+    /* 这里注释掉的原因是因为其他有数据表格的页面, 如果表格数据只有一条, 会出现滚动条错乱 */
+    /*overflow: auto;*/
 }
 
 .x-nav {

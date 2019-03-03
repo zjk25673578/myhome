@@ -64,10 +64,8 @@
 </script>
 <script type="text/html" id="opera-btns">
     <!-- 右侧的菜单 -->
-    <a lay-event="update" lay-data="{{ d.ids }}"
-       class="layui-btn layui-btn-xs layui-btn-normal">编辑</a>
-    <a lay-event="del" lay-data="{{ d.ids }}"
-       class="layui-btn layui-btn-xs layui-btn-danger">删除</a>
+    <a lay-event="update" class="layui-btn layui-btn-xs layui-btn-normal">编辑</a>
+    <a lay-event="del" class="layui-btn layui-btn-xs layui-btn-danger">删除</a>
 </script>
 <script type="text/html" id="usergroup-addOrEdit">
     <div class="layui-form-item"></div>

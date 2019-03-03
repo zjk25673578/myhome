@@ -9,6 +9,7 @@
         <result column="prodate" jdbcType="TIMESTAMP" property="prodate"/>
         <result column="transfer" jdbcType="INTEGER" property="transfer"/>
         <result column="userid" jdbcType="INTEGER" property="userid"/>
+        <result column="homeid" jdbcType="INTEGER" property="homeid"/>
         <result column="bedate" jdbcType="VARCHAR" property="bedate"/>
         <result column="pic" jdbcType="VARCHAR" property="pic"/>
         <result column="note" jdbcType="VARCHAR" property="note"/>
@@ -21,7 +22,7 @@
         <result column="updatename" jdbcType="VARCHAR" property="updatename"/>
     </resultMap>
     <sql id="Base_Column_List">
-        ids, groupid, ptname, cash, prodate, transfer, userid, bedate, pic, note, status, createtime,
+        ids, groupid, homeid, ptname, cash, prodate, transfer, userid, bedate, pic, note, status, createtime,
         creator, createname, updatetime, updator, updatename
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -36,13 +37,13 @@
     </delete>
     <insert id="insert" keyColumn="ids" keyProperty="ids" parameterType="com.hafa.outlay.model.MhHouseOutlay"
             useGeneratedKeys="true">
-        insert into mh_house_outlay (groupid, ptname,
+        insert into mh_house_outlay (groupid, homeid, ptname,
         cash, prodate, transfer,
         userid, bedate, pic, note, status,
         createtime, creator, createname,
         updatetime, updator, updatename
         )
-        values (#{groupid,jdbcType=INTEGER}, #{ptname,jdbcType=VARCHAR},
+        values (#{groupid,jdbcType=INTEGER}, #{homeid,jdbcType=INTEGER}, #{ptname,jdbcType=VARCHAR},
         #{cash,jdbcType=DECIMAL}, #{prodate,jdbcType=TIMESTAMP}, #{transfer,jdbcType=INTEGER},
         #{userid,jdbcType=INTEGER}, #{bedate,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
         #{createtime,jdbcType=TIMESTAMP}, #{creator,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR},
@@ -55,6 +56,9 @@
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="groupid != null">
                 groupid,
+            </if>
+            <if test="homeid != null">
+                homeid,
             </if>
             <if test="ptname != null">
                 ptname,
@@ -105,6 +109,9 @@
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="groupid != null">
                 #{groupid,jdbcType=INTEGER},
+            </if>
+            <if test="homeid != null">
+                #{homeid,jdbcType=INTEGER},
             </if>
             <if test="ptname != null">
                 #{ptname,jdbcType=VARCHAR},
@@ -159,6 +166,9 @@
             <if test="groupid != null">
                 groupid = #{groupid,jdbcType=INTEGER},
             </if>
+            <if test="homeid != null">
+                homeid = #{homeid,jdbcType=INTEGER},
+            </if>
             <if test="ptname != null">
                 ptname = #{ptname,jdbcType=VARCHAR},
             </if>
@@ -210,6 +220,7 @@
     <update id="updateByPrimaryKey" parameterType="com.hafa.outlay.model.MhHouseOutlay">
         update mh_house_outlay
         set groupid = #{groupid,jdbcType=INTEGER},
+        homeid = #{homeid,jdbcType=INTEGER},
         ptname = #{ptname,jdbcType=INTEGER},
         cash = #{cash,jdbcType=DECIMAL},
         prodate = #{prodate,jdbcType=TIMESTAMP},
@@ -227,4 +238,79 @@
         updatename = #{updatename,jdbcType=VARCHAR}
         where ids = #{ids,jdbcType=INTEGER}
     </update>
+    <insert id="insertData" parameterType="Map">
+        insert into mh_house_outlay
+        (groupid, homeid, ptname, cash, prodate, transfer, userid, bedate, note, status,
+        createtime, creator, createname)
+        <trim prefix="" prefixOverrides="union all">
+            <if test="leaseEntity.water != null">
+                union all SELECT #{groupid} as groupid, #{homeid,jdbcType=INTEGER} as homeid, '水费' as ptname, #{leaseEntity.water} as
+                cash,
+                #{leaseEntity.prodate} as prodate, #{transfer} as transfer, #{creator} as userid, #{leaseEntity.bedate} as bedate,
+                #{leaseEntity.note} as note, #{status}, #{createtime}, #{creator}, #{createname}
+            </if>
+            <if test="leaseEntity.gas != null">
+                union all SELECT #{groupid} as groupid, #{homeid,jdbcType=INTEGER} as homeid, '煤气费' as ptname, #{leaseEntity.gas} as
+                cash,
+                #{leaseEntity.prodate} as prodate, #{transfer} as transfer, #{creator} as userid, #{leaseEntity.bedate} as bedate,
+                #{leaseEntity.note} as note, #{status}, #{createtime}, #{creator}, #{createname}
+            </if>
+            <if test="leaseEntity.electric != null">
+                union all SELECT #{groupid} as groupid, #{homeid,jdbcType=INTEGER} as homeid, '电费' as ptname, #{leaseEntity.electric} as
+                cash,
+                #{leaseEntity.prodate} as prodate, #{transfer} as transfer, #{creator} as userid, #{leaseEntity.bedate} as bedate,
+                #{leaseEntity.note} as note, #{status}, #{createtime}, #{creator}, #{createname}
+            </if>
+            <if test="leaseEntity.warm != null">
+                union all SELECT #{groupid} as groupid, #{homeid,jdbcType=INTEGER} as homeid, '暖气费' as ptname, #{leaseEntity.warm} as
+                cash,
+                #{leaseEntity.prodate} as prodate, #{transfer} as transfer, #{creator} as userid, #{leaseEntity.bedate} as bedate,
+                #{leaseEntity.note} as note, #{status}, #{createtime}, #{creator}, #{createname}
+            </if>
+            <if test="leaseEntity.property != null">
+                union all SELECT #{groupid} as groupid, #{homeid,jdbcType=INTEGER} as homeid, '物业费' as ptname, #{leaseEntity.property} as
+                cash,
+                #{leaseEntity.prodate} as prodate, #{transfer} as transfer, #{creator} as userid, #{leaseEntity.bedate} as bedate,
+                #{leaseEntity.note} as note, #{status}, #{createtime}, #{creator}, #{createname}
+            </if>
+            <if test="leaseEntity.loanrent != null">
+                union all SELECT #{groupid} as groupid, #{homeid,jdbcType=INTEGER} as homeid, '房租/按揭' as ptname, #{leaseEntity.loanrent}
+                as cash,
+                #{leaseEntity.prodate} as prodate, #{transfer} as transfer, #{creator} as userid, #{leaseEntity.bedate} as bedate,
+                #{leaseEntity.note} as note, #{status}, #{createtime}, #{creator}, #{createname}
+            </if>
+        </trim>
+    </insert>
+    <select id="searchFor" parameterType="Map" resultType="Map">
+        select o.ids, o.groupid,
+        (select h.address from mh_homes h where h.ids=o.homeid and h.status='1' and h.living='1' limit 1) homeAddress,
+        o.ptname, o.cash, o.prodate,
+        (case o.transfer when '1' then '转账' when '2' then '现金' else '其他' end) transferName,
+        (select u.rname from mh_users u where u.ids=o.userid) username,
+        o.bedate, o.pic, o.note, o.createtime
+        from mh_house_outlay o
+        <where>
+            <if test="year != null and year != ''">
+                and o.bedate like concat(#{year},'-__')
+            </if>
+            <if test="month != null and month != ''">
+                and o.bedate like concat('____-', #{month})
+            </if>
+            and o.status='1'
+        </where>
+        order by o.bedate, o.ptname
+        limit #{minpage}, #{limit}
+    </select>
+    <select id="countFor" resultType="Integer" parameterType="Map">
+        select count(1) from mh_house_outlay o
+        <where>
+            <if test="year != null and year != ''">
+                and o.bedate like concat(#{year},'-__')
+            </if>
+            <if test="month != null and month != ''">
+                and o.bedate like concat('____-', #{month})
+            </if>
+            and o.status='1'
+        </where>
+    </select>
 </mapper>

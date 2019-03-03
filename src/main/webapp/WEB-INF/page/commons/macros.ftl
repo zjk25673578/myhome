@@ -11,10 +11,10 @@
     <script type="text/javascript" src="${ctx}/js/record/form-valid.js"></script>
     <script type="text/javascript" src="${ctx}/js/record/common.js"></script>
 </#macro>
-<#macro footer company="" year="">
+<#macro footer company="" year="" version="1.0">
     <div class="footer">
         <div class="copyright">
-            Copyright ©${year} ${company} v2.3 All Rights Reserved
+            Copyright ©${year} ${company} v${version} All Rights Reserved
         </div>
     </div>
 </#macro>

@@ -266,6 +266,7 @@
             and h.groupid=#{groupid}
         </where>
         order by h.begintime desc
+        limit #{minpage}, #{limit}
     </select>
     <select id="countFor" resultType="Integer" parameterType="Map">
         select count(1) from mh_homes
@@ -282,7 +283,7 @@
         </foreach>
     </update>
     <select id="getHomeInfoByGroupId" parameterType="Integer" resultType="Map">
-        select h.community, h.hname, h.address, h.living,
+        select h.ids, h.community, h.hname, h.address, h.living,
         h.province,
         (select d.dicvalue from mh_dict d where d.ids=h.province) provinceName,
         h.city,

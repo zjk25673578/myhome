@@ -85,7 +85,7 @@
             <div class="layui-tab-item layui-show layui-anim layui-anim-fadein">
                 <#--<iframe src='${ctx}/record/welcome' frameborder="0" scrolling="yes"
                         class="x-iframe"></iframe>-->
-                <div class="x-body">
+                <div class="x-body" style="overflow: auto;">
                     <blockquote class="layui-elem-quote">
                         欢迎：<#if currentUser.userType == 1><span class="x-red">超级管理员</span></#if>
                         <span>${currentUser.rname}</span>
@@ -222,7 +222,7 @@
 <!-- 右侧主体结束 -->
 <!-- 中部结束 -->
 <!-- 底部开始 -->
-<@macros.footer year='${currentYear}' company="小熊科技" />
+<@macros.footer year="${currentYear}" company="小熊科技" version="${version}" />
 <!-- 底部结束 -->
 </body>
 </html>

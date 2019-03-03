@@ -18,7 +18,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
             {field: '', type: 'checkbox'},
             {field: '', title: '序号', type: 'numbers'},
             {field: 'ids', title: 'ID', width: 50, hide: true},
-            {field: 'groupcode', title: '用户组代号', hide: true},
+            // {field: 'groupcode', title: '用户组代号', hide: true},
             {field: 'groupname', title: '用户组名'},
             {field: 'rname', title: '管理员'},
             {field: 'hname', title: '家园名称'},

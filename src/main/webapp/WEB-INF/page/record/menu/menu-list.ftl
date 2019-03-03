@@ -20,11 +20,11 @@
 <div class="x-body">
     <div class="layui-fluid">
         <div class="layui-col-lg3 layui-col-md4 layui-col-sm5 layui-col-xs10">
-            <div class="layui-form-item p-15">
+            <div class="layui-form-item">
                 <div id="menu-tree" class="eleTree" lay-filter="menuTree"></div>
             </div>
         </div>
-        <div class="layui-col-lg7 layui-col-md6 layui-col-sm5 layui-col-xs10 p-15">
+        <div class="layui-col-lg7 layui-col-md6 layui-col-sm5 layui-col-xs10">
             <div class="layui-form-item">
                 <form class="layui-form" lay-filter="formMenu">
                     <input name="ids" class="layui-input layui-hide">
@@ -49,7 +49,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">排序号</label>
                         <div class="layui-input-inline">
-                            <input name="sort" class="layui-input" style="width: 80px;">
+                            <input name="sort" class="layui-input" style="width: 60px;">
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -67,10 +67,6 @@
             <div class="layui-form-item">
                 <table id="tableMenu"></table>
             </div>
-        </div>
-        <div class="layui-col-lg2 layui-col-md2 layui-col-sm2 layui-col-xs2 tac test"
-             style="height: 300px;font-size: 18px;line-height: 300px;margin-top: 10px;">
-            广告位招租
         </div>
     </div>
 </div>

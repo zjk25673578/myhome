@@ -16,20 +16,14 @@ layui.config({
         , cols: [[ //表头
             {field: 'ids', title: 'ID', width: 60}
             , {field: 'parentname', title: '父级菜单', width: 100}
-            , {field: 'menuname', title: '菜单名称', width: 150}
+            , {field: 'menuname', title: '菜单名称'}
             , {field: 'sort', title: '排序', width: 60}
-            , {
-                field: 'createtime', title: '创建时间', templet: function (d) {
-                    return timestamp2Date(d.createtime);
-                }
-            }
-            , {field: 'createname', title: '创建人'}
             , {
                 field: 'updatetime', title: '最后修改时间', templet: function (d) {
                     return timestamp2Date(d.updatetime);
-                }
+                }, width: 120
             }
-            , {field: 'updatename', title: '修改人'}
+            , {field: 'updatename', title: '修改人', width: 150}
         ]]
     });
 

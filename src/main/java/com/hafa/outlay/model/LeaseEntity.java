@@ -89,4 +89,18 @@ public class LeaseEntity {
         this.bedate = bedate;
     }
 
+    @Override
+    public String toString() {
+        return "LeaseEntity{" +
+                "water='" + water + '\'' +
+                ", gas='" + gas + '\'' +
+                ", electric='" + electric + '\'' +
+                ", warm='" + warm + '\'' +
+                ", property='" + property + '\'' +
+                ", loanrent='" + loanrent + '\'' +
+                ", prodate=" + prodate +
+                ", bedate='" + bedate + '\'' +
+                ", note='" + note + '\'' +
+                '}';
+    }
 }

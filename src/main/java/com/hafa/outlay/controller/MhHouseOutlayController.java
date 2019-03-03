@@ -1,12 +1,14 @@
 package com.hafa.outlay.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.hafa.commons.controller.BaseController;
 import com.hafa.commons.entity.CommonEntity;
-import com.hafa.outlay.model.LeaseEntity;
 import com.hafa.commons.entity.Message;
+import com.hafa.commons.entity.PageBean;
 import com.hafa.commons.util.datetime.MyDateUtil;
 import com.hafa.commons.util.msg.MsgUtil;
 import com.hafa.homes.service.MhHomesService;
+import com.hafa.outlay.model.LeaseEntity;
 import com.hafa.outlay.service.MhHouseOutlayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,7 +56,15 @@ public class MhHouseOutlayController extends BaseController<MhHouseOutlayService
             return MsgUtil.msg(-1);
         }
         args.put("leaseEntity", leaseEntity);
+        args.put("groupid", getCurrentGroupId(request));
         int r = mhHouseOutlayService.insertData(args);
         return MsgUtil.msg(r);
+    }
+
+    @ResponseBody
+    @RequestMapping("/getList")
+    public Map<String, Object> getList(String key, PageBean pageBean) {
+        JSONObject jsonObject = buildArgs(key);
+        return buildResultMap(mhHouseOutlayService, jsonObject, pageBean);
     }
 }

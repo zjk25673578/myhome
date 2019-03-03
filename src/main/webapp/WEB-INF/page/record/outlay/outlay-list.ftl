@@ -15,34 +15,14 @@
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
-        .layui-colla-content {
-            padding: 0;
-        }
-
-        .layui-table {
-            margin: 0;
-        }
-
-        .layui-colla-item {
-            position: relative;
-        }
-
-        .layui-colla-title .btn-update {
-            display: none;
-            float: right;
-            position: absolute;
-            top: 10px;
-            right: 20px;
-        }
-
-        .layui-colla-title:hover {
-            background: #e5e5e5;
+        #view {
+            margin-bottom: 15px;
         }
     </style>
 </head>
 <body class="layui-anim layui-anim-fadein">
 <div class="x-body layui-col-space30">
-    <div class="layui-col-lg3 layui-col-lg-offset1 layui-col-md5 layui-col-md-offset1 layui-col-sm6 layui-col-xs12">
+    <div class="layui-col-lg3 layui-col-md5 layui-col-sm12 layui-col-xs12">
         <div class="layui-form-item tac layui-form">
             <div class="layui-form-item">
                 <input id="year" type="hidden" value="${year}">
@@ -53,9 +33,9 @@
                 <button class="layui-btn layui-btn-sm layui-btn-normal" type="button" lay-filter="add" lay-submit>
                     <i class="fa fa-anchor"></i> 添加
                 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-warm" type="button" lay-filter="bar" lay-submit>
+                <#--<button class="layui-btn layui-btn-sm layui-btn-warm" type="button" lay-filter="bar" lay-submit>
                     <i class="fa fa-bar-chart"></i> 生成柱状图
-                </button>
+                </button>-->
             </div>
         </div>
         <div class="layui-form-item tac">
@@ -65,95 +45,41 @@
             <hr class="layui-bg-red">
         </div>
     </div>
-    <div class="layui-col-lg4 layui-col-lg-offset1 layui-col-md6 layui-col-sm6 layui-col-xs12">
-        <div class="layui-form-item">
-            <div class="layui-collapse" lay-accordion lay-filter="outlay">
-                <#list 0..11 as i>
-                    <div class="layui-colla-item">
-                        <h2 class="layui-colla-title">
-                            <span>${i + 1}月份</span>
-                            <#--<a class="layui-btn layui-btn-normal layui-btn-xs btn-update" href="javascript:;">修改</a>-->
-                        </h2>
-                        <div class="layui-colla-content">
-                            <table class="layui-table" lay-size="sm">
-                                <colgroup>
-                                    <col>
-                                    <col>
-                                    <col>
-                                    <col width="60">
-                                </colgroup>
-                                <thead>
-                                <tr>
-                                    <th>类型</th>
-                                    <th>金额</th>
-                                    <th>备注</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>水费</td>
-                                    <td>24元</td>
-                                    <td>24元</td>
-                                    <td>
-                                        <button class="layui-btn layui-btn-danger layui-btn-xs">修改</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>电费</td>
-                                    <td>67元</td>
-                                    <td>67元</td>
-                                    <td>
-                                        <button class="layui-btn layui-btn-danger layui-btn-xs">修改</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>煤气费</td>
-                                    <td>7元</td>
-                                    <td>7元</td>
-                                    <td>
-                                        <button class="layui-btn layui-btn-danger layui-btn-xs">修改</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>暖气费</td>
-                                    <td>50元</td>
-                                    <td>50元</td>
-                                    <td>
-                                        <button class="layui-btn layui-btn-danger layui-btn-xs">修改</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>物业费</td>
-                                    <td>24元</td>
-                                    <td>24元</td>
-                                    <td>
-                                        <button class="layui-btn layui-btn-danger layui-btn-xs">修改</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>按揭/房租</td>
-                                    <td>1800元</td>
-                                    <td>1800元</td>
-                                    <td>
-                                        <button class="layui-btn layui-btn-danger layui-btn-xs">修改</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>合计</td>
-                                    <td>1972元</td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </#list>
+    <div class="layui-col-lg9 layui-col-md7 layui-col-sm12 layui-col-xs12">
+        <div class="layui-col-lg12 layui-col-md12 layui-col-sm12 layui-col-xs12">
+            <div class="layui-row">
+                dsfgdsghsdghsdfgbr
             </div>
         </div>
+        <div class="layui-col-lg12 layui-col-md12 layui-col-sm12 layui-col-xs12">
+            <div class="layui-row">
+                <table id="lease-table" lay-filter="lease-table"></table>
+            </div>
+        </div>
+
     </div>
 </div>
+<!-- layui模板 -->
+<script type="text/html" id="toolbar">
+    <!-- 顶部功能菜单 -->
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <div class="layui-form-label">月份：</div>
+            <div class="layui-input-inline" style="width: 80px;">
+                <select name="month" id="month" lay-filter="month-select">
+                    <option value="">全部</option>
+                    <#list 1..12 as m>
+                        <option value="${(m >= 10)?string('' + m, '0' + m)}">${m}月</option>
+                    </#list>
+                </select>
+            </div>
+        </div>
+    </form>
+</script>
+<script type="text/html" id="opera-btns">
+    <!-- 右侧的菜单 -->
+    <a lay-event="update" class="layui-btn layui-btn-xs layui-btn-normal">编辑</a>
+</script>
 <script type="text/html" id="outlay-addOrEdit">
     <div class="form-box">
         <form class="layui-form" id="outlay-form-data">
