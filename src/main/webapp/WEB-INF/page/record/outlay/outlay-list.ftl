@@ -9,16 +9,12 @@
     <link rel="shortcut icon" href="${ctx}/images/world.png" type="image/x-icon"/>
     <@macros.headConfig />
     <script type="text/javascript" src="${ctx}/js/record/outlay/outlay-list.js"></script>
+    <script type="text/javascript" src="${ctx}/js/echarts/echarts.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style>
-        #view {
-            margin-bottom: 15px;
-        }
-    </style>
 </head>
 <body class="layui-anim layui-anim-fadein">
 <div class="x-body layui-col-space30">
@@ -26,7 +22,7 @@
         <div class="layui-form-item tac layui-form">
             <div class="layui-form-item">
                 <input id="year" type="hidden" value="${year}">
-                <h1 id="view">${year}年</h1>
+                <h1 id="view" style="margin-bottom: 15px;">${year}年</h1>
                 <div id="laydateSelector"></div>
             </div>
             <div class="layui-form-item">
@@ -48,7 +44,7 @@
     <div class="layui-col-lg9 layui-col-md7 layui-col-sm12 layui-col-xs12">
         <div class="layui-col-lg12 layui-col-md12 layui-col-sm12 layui-col-xs12">
             <div class="layui-row">
-                dsfgdsghsdghsdfgbr
+                <div id="bar" style="width: 100%;height: 290px;"></div>
             </div>
         </div>
         <div class="layui-col-lg12 layui-col-md12 layui-col-sm12 layui-col-xs12">
@@ -59,6 +55,7 @@
 
     </div>
 </div>
+<script type="text/javascript" src="${ctx}/js/record/outlay/outlay-bar.js"></script>
 <!-- layui模板 -->
 <script type="text/html" id="toolbar">
     <!-- 顶部功能菜单 -->

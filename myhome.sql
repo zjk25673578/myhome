@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2019-03-04 00:28:17
+Date: 2019-03-05 22:31:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3914,7 +3914,7 @@ CREATE TABLE `mh_finance` (
   `updator` int(8) DEFAULT NULL COMMENT '修改人',
   `updatename` varchar(50) DEFAULT NULL COMMENT '修改人名称',
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COMMENT='财务信息记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8 COMMENT='财务信息记录表';
 
 -- ----------------------------
 -- Records of mh_finance
@@ -3958,6 +3958,15 @@ INSERT INTO `mh_finance` VALUES ('64', '1', '0', '99.80', '31', '2019-03-03 00:0
 INSERT INTO `mh_finance` VALUES ('65', '1', '0', '14.00', '3980', '2019-03-03 00:00:00', '泰山青秀', '1', '2019-03-03 22:11:38', '1', 'admin', null, null, null);
 INSERT INTO `mh_finance` VALUES ('66', '1', '0', '2.50', '31', '2019-03-03 00:00:00', '统一银座买了个打火机', '1', '2019-03-03 22:12:05', '1', 'admin', null, null, null);
 INSERT INTO `mh_finance` VALUES ('67', '1', '0', '9.00', '31', '2019-03-03 00:00:00', '去网吧', '1', '2019-03-03 22:12:25', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('68', '1', '0', '4.00', '3979', '2019-03-04 00:00:00', '早饭, 两个火烧, 土豆丝陷', '1', '2019-03-04 19:23:00', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('69', '1', '0', '22.00', '32', '2019-03-04 00:00:00', '停车费', '1', '2019-03-04 19:23:19', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('70', '1', '0', '8.00', '3979', '2019-03-04 00:00:00', '中午饭, 炒饼', '1', '2019-03-04 19:23:39', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('71', '1', '0', '4.00', '3979', '2019-03-05 00:00:00', '早饭, 两个鸡蛋火烧', '1', '2019-03-05 20:44:38', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('72', '1', '0', '10.00', '3979', '2019-03-05 00:00:00', '中午饭', '1', '2019-03-05 20:45:46', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('73', '1', '0', '10.00', '31', '2019-03-05 00:00:00', '烤冷面', '1', '2019-03-05 20:46:03', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('74', '1', '0', '8.50', '31', '2019-03-05 00:00:00', '圣女果', '1', '2019-03-05 20:46:18', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('75', '1', '0', '10.00', '31', '2019-03-05 00:00:00', '两根鸡肉串', '1', '2019-03-05 20:46:40', '1', 'admin', null, null, null);
+INSERT INTO `mh_finance` VALUES ('76', '1', '1', '6607.32', '33', '2019-03-05 00:00:00', '1月份工资', '1', '2019-03-05 20:49:31', '1', 'admin', null, null, null);
 
 -- ----------------------------
 -- Table structure for mh_folder
@@ -4070,7 +4079,7 @@ CREATE TABLE `mh_house_outlay` (
   `updator` int(8) DEFAULT NULL,
   `updatename` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ids`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='租住房缴费信息表, 基本信息包含房租(房贷), 水费, 物业费, 电费, 取暖费, 煤气费, 装修购置费等';
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='租住房缴费信息表, 基本信息包含房租(房贷), 水费, 物业费, 电费, 取暖费, 煤气费, 装修购置费等';
 
 -- ----------------------------
 -- Records of mh_house_outlay
@@ -4087,6 +4096,12 @@ INSERT INTO `mh_house_outlay` VALUES ('11', '17', '2', '电费', '160.00', '2019
 INSERT INTO `mh_house_outlay` VALUES ('12', '17', '2', '暖气费', '1300.00', '2019-03-03 00:00:00', '1', '1', '2019-02', null, '呵呵呵呵恩', '1', '2019-03-03 10:02:21', '1', 'admin', null, null, null);
 INSERT INTO `mh_house_outlay` VALUES ('13', '17', '2', '物业费', '24.00', '2019-03-03 00:00:00', '1', '1', '2019-02', null, '呵呵呵呵恩', '1', '2019-03-03 10:02:21', '1', 'admin', null, null, null);
 INSERT INTO `mh_house_outlay` VALUES ('14', '17', '2', '房租/按揭', '1800.00', '2019-03-03 00:00:00', '1', '1', '2019-02', null, '呵呵呵呵恩', '1', '2019-03-03 10:02:21', '1', 'admin', null, null, null);
+INSERT INTO `mh_house_outlay` VALUES ('15', '17', '2', '水费', '33.00', '2019-03-05 00:00:00', '2', '1', '2019-01', null, '打发打发合格的', '1', '2019-03-05 21:02:53', '1', 'admin', null, null, null);
+INSERT INTO `mh_house_outlay` VALUES ('16', '17', '2', '煤气费', '12.00', '2019-03-05 00:00:00', '2', '1', '2019-01', null, '打发打发合格的', '1', '2019-03-05 21:02:53', '1', 'admin', null, null, null);
+INSERT INTO `mh_house_outlay` VALUES ('17', '17', '2', '电费', '44.00', '2019-03-05 00:00:00', '2', '1', '2019-01', null, '打发打发合格的', '1', '2019-03-05 21:02:53', '1', 'admin', null, null, null);
+INSERT INTO `mh_house_outlay` VALUES ('18', '17', '2', '暖气费', '111.00', '2019-03-05 00:00:00', '2', '1', '2019-01', null, '打发打发合格的', '1', '2019-03-05 21:02:53', '1', 'admin', null, null, null);
+INSERT INTO `mh_house_outlay` VALUES ('19', '17', '2', '物业费', '80.00', '2019-03-05 00:00:00', '2', '1', '2019-01', null, '打发打发合格的', '1', '2019-03-05 21:02:53', '1', 'admin', null, null, null);
+INSERT INTO `mh_house_outlay` VALUES ('20', '17', '2', '房租/按揭', '1200.00', '2019-03-05 00:00:00', '2', '1', '2019-01', null, '打发打发合格的', '1', '2019-03-05 21:02:53', '1', 'admin', null, null, null);
 
 -- ----------------------------
 -- Table structure for mh_medias
