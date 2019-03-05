@@ -112,7 +112,7 @@ layui.use(['laydate', 'element', 'form', 'table', 'layer'], function () {
     function saveOrUpdate(data, title, url) {
         var tpl = document.getElementById("outlay-addOrEdit").innerHTML;
         laytpl(tpl).render(data, function (html) {
-            openDialog(html, title, ['600px', '450px'], function (idx) {
+            openDialog(html, title, ['600px', '465px'], function (idx) {
                 var formData = $("#outlay-form-data").serializeArray();
                 var result = validJqueryForm(formData); // 表单验证
                 if (result) {

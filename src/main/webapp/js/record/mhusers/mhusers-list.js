@@ -195,7 +195,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
         // 获取指定模板
         var tpl = document.getElementById("user-addOrEdit").innerHTML;
         laytpl(tpl).render(data, function (html) {
-            openDialog(html, title, ['330px', '380px'], function (idx) {
+            openDialog(html, title, ['380px', '300px'], function (idx) {
                 var formdata = $("#form-data-user").serializeArray();
                 var result = validJqueryForm(formdata); // 表单验证
                 if (result) {

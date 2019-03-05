@@ -18,44 +18,45 @@
     <![endif]-->
 </head>
 <body class="layui-anim layui-anim-fadein">
-<div class="layui-row" style="padding: 10px 30px;">
-    <div class="layui-form-item"></div>
-    <form id="form-data-usergroup" lay-filter="form-usergroup" class="layui-form">
-        <input type="hidden" name="ids" value="${mhUsersGroup.ids}"/>
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户组名：</label>
-            <div class="layui-input-inline">
-                <input type="text" name="groupname" lay-verify="required" placeholder="请输入用户组名"
-                       class="layui-input" value="${mhUsersGroup.groupname}"/>
+<div class="layui-row">
+    <div class="form-box">
+        <form id="form-data-usergroup" lay-filter="form-usergroup" class="layui-form">
+            <input type="hidden" name="ids" value="${mhUsersGroup.ids}"/>
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户组名：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="groupname" lay-verify="required" placeholder="请输入用户组名"
+                           class="layui-input" value="${mhUsersGroup.groupname}"/>
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">管理员：</label>
-            <div class="layui-input-inline">
-                <select id="master" name="master">
-                    <option value="">下拉以选择</option>
-                    <#list userList as user>
-                        <option value="${user.ids}" ${(mhUsersGroup.master == user.ids)?string('selected', '')}>${user.rname}${(user.setups == 1)?string('', '(已禁用)')}</option>
-                    </#list>
-                </select>
+            <div class="layui-form-item">
+                <label class="layui-form-label">管理员：</label>
+                <div class="layui-input-inline">
+                    <select id="master" name="master">
+                        <option value="">下拉以选择</option>
+                        <#list userList as user>
+                            <option value="${user.ids}" ${(mhUsersGroup.master == user.ids)?string('selected', '')}>${user.rname}${(user.setups == 1)?string('', '(已禁用)')}</option>
+                        </#list>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">选择家庭：</label>
-            <div class="layui-input-inline">
-                <select name="homeid">
-                    <option value="">下拉以选择</option>
-                </select>
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择家庭：</label>
+                <div class="layui-input-inline">
+                    <select name="homeid">
+                        <option value="">下拉以选择</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block tar">
-                <button class="layui-btn layui-btn-sm" lay-submit lay-filter="form-usergroup">
-                    <i class="fa fa-save fa-lg"></i> 保存
-                </button>
+            <div class="layui-form-item">
+                <div class="layui-input-block tar">
+                    <button class="layui-btn layui-btn-sm" lay-submit lay-filter="form-usergroup">
+                        <i class="fa fa-save fa-lg"></i> 保存
+                    </button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 </body>
 </html>

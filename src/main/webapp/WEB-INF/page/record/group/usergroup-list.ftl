@@ -68,17 +68,18 @@
     <a lay-event="del" class="layui-btn layui-btn-xs layui-btn-danger">删除</a>
 </script>
 <script type="text/html" id="usergroup-addOrEdit">
-    <div class="layui-form-item"></div>
-    <form id="form-data-usergroup" lay-filter="form-user" class="layui-form">
-        <input type="hidden" name="ids" value="{{ d.ids }}"/>
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户组名：</label>
-            <div class="layui-input-inline">
-                <input type="text" name="groupname" lay-verify="required" placeholder="请输入用户组名"
-                       class="layui-input" value="{{ d.groupname }}"/>
+    <div class="form-box">
+        <form id="form-data-usergroup" lay-filter="form-user" class="layui-form">
+            <input type="hidden" name="ids" value="{{ d.ids }}"/>
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户组名：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="groupname" lay-verify="required" placeholder="请输入用户组名"
+                           class="layui-input" value="{{ d.groupname }}"/>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </script>
 </body>
 </html>

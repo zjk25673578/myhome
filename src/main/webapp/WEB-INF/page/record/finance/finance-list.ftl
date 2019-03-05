@@ -88,44 +88,47 @@
     <a lay-event="del" class="layui-btn layui-btn-xs layui-btn-danger">删除</a>
 </script>
 <script type="text/html" id="finance-addOrEdit">
-    <div class="layui-form-item"></div>
-    <form id="form-finance" lay-filter="finance" class="layui-form">
+    <div class="form-box">
+        <form id="form-finance" lay-filter="finance" class="layui-form">
 
-        <!-- 数据主键 -->
-        <input type="hidden" name="ids" value="{{ d.ids }}"/>
-        <!-- 类型, 1: 收入, 0: 支出 -->
-        <input type="hidden" name="ftype" value="${ftype}"/>
+            <!-- 数据主键 -->
+            <input type="hidden" name="ids" value="{{ d.ids }}"/>
+            <!-- 类型, 1: 收入, 0: 支出 -->
+            <input type="hidden" name="ftype" value="${ftype}"/>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">类型：</label>
-            <div class="layui-input-inline">
-                <select name="createtype">
-                    <option value=""></option>
-                    <#list financeTypeList as financeType>
-                        <option value="${financeType.ids}" {{ d.createtype == ${financeType.ids} ? 'selected' : '' }}>${financeType.dicvalue}</option>
-                    </#list>
-                </select>
+            <div class="layui-form-item">
+                <label class="layui-form-label">类型：</label>
+                <div class="layui-input-inline">
+                    <select name="createtype">
+                        <option value=""></option>
+                        <#list financeTypeList as financeType>
+                            <option value="${financeType.ids}" {{
+                                                               d.createtype== ${financeType.ids} ? 'selected' : '' }}>${financeType.dicvalue}</option>
+                        </#list>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">发生时间：</label>
-            <div class="layui-input-inline">
-                <input type="text" id="prodate-field" name="prodate" readonly="readonly" class="layui-input" value="{{ d.prodate }}"/>
+            <div class="layui-form-item">
+                <label class="layui-form-label">发生时间：</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="prodate-field" name="prodate" readonly="readonly" class="layui-input"
+                           value="{{ d.prodate }}"/>
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">金额：</label>
-            <div class="layui-input-inline">
-                <input type="text" name="cash" class="layui-input" value="{{ d.cash }}"/>
+            <div class="layui-form-item">
+                <label class="layui-form-label">金额：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="cash" class="layui-input" value="{{ d.cash }}"/>
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">备注：</label>
-            <div class="layui-input-inline">
-                <textarea name="reason" lay-verify="required" class="layui-textarea">{{ d.reason }}</textarea>
+            <div class="layui-form-item">
+                <label class="layui-form-label">备注：</label>
+                <div class="layui-input-inline">
+                    <textarea name="reason" lay-verify="required" class="layui-textarea">{{ d.reason }}</textarea>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </script>
 </body>
 </html>

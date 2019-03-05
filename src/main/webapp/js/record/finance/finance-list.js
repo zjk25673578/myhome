@@ -158,7 +158,7 @@ layui.use(['table', 'layer', 'laydate'], function () {
     function saveOrUpdate(data, title, url) {
         var tpl = document.getElementById("finance-addOrEdit").innerHTML;
         laytpl(tpl).render(data, function (html) {
-            openDialog(html, title, ['330px', '440px'], function (idx) {
+            openDialog(html, title, ['380px', '380px'], function (idx) {
                 var formdata = $("#form-finance").serializeArray();
                 var result = validJqueryForm(formdata); // 表单验证
                 if (result) {

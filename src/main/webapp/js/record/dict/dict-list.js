@@ -132,7 +132,7 @@ layui.use(['form', 'table', 'layer', 'laytpl'], function () {
     function saveOrUpdate(data, title, url) {
         var tpl = document.getElementById("dict-addOrEdit").innerHTML;
         laytpl(tpl).render(data, function (html) {
-            openDialog(html, title, ['330px', '440px'], function (idx) {
+            openDialog(html, title, ['380px', '440px'], function (idx) {
                 var formdata = $("#form-data-dict").serializeArray();
                 var result = validJqueryForm(formdata); // 表单验证
                 if (result) {

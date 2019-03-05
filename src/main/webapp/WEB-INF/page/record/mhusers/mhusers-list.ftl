@@ -85,45 +85,49 @@
     {{# } }}
 </script>
 <script type="text/html" id="user-addOrEdit">
-    <div class="layui-form-item"></div>
-    <form id="form-data-user" lay-filter="form-user" class="layui-form">
-        <input type="hidden" name="ids" value="{{ d.ids }}"/>
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户名：</label>
-            <div class="layui-input-inline">
-                <input type="text" name="uname" lay-verify="required" placeholder="请输入用户名"
-                       class="layui-input" value="{{ d.uname }}"/>
+    <div class="form-box">
+        <form id="form-data-user" lay-filter="form-user" class="layui-form">
+            <input type="hidden" name="ids" value="{{ d.ids }}"/>
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="uname" lay-verify="required" placeholder="请输入用户名"
+                           class="layui-input" value="{{ d.uname }}"/>
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">姓名：</label>
-            <div class="layui-input-inline">
-                <input type="text" lay-verify="required" name="rname" placeholder="请输入姓名"
-                       class="layui-input" value="{{ d.rname }}"/>
+            <div class="layui-form-item">
+                <label class="layui-form-label">姓名：</label>
+                <div class="layui-input-inline">
+                    <input type="text" lay-verify="required" name="rname" placeholder="请输入姓名"
+                           class="layui-input" value="{{ d.rname }}"/>
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">用户类型：</label>
-            <div class="layui-input-inline">
-                <select name="userType" lay-verify="required">
-                    <option value="">选择用户类型</option>
-                    <option value="0" {{ d.userType== 0 ? 'selected' : '' }}>普通用户</option>
-                    <option value="1" {{ d.userType== 1 ? 'selected' : '' }}>超级管理员</option>
-                </select>
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户类型：</label>
+                <div class="layui-input-inline">
+                    <select name="userType" lay-verify="required">
+                        <option value="">选择用户类型</option>
+                        <option value="0" {{ d.userType== 0 ?
+                        'selected' : '' }}>普通用户</option>
+                        <option value="1" {{ d.userType== 1 ?
+                        'selected' : '' }}>超级管理员</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">分组：</label>
-            <div class="layui-input-inline">
-                <select name="groupid" lay-verify="required">
-                    <option value="">下拉选择用户组</option>
-                    <#list groupList as group>
-                        <option value="${group.ids}" {{ d.groupid== ${group.ids} ? 'selected' : '' }}>${group.groupname}</option>
-                    </#list>
-                </select>
+            <div class="layui-form-item">
+                <label class="layui-form-label">分组：</label>
+                <div class="layui-input-inline">
+                    <select name="groupid" lay-verify="required">
+                        <option value="">下拉选择用户组</option>
+                        <#list groupList as group>
+                            <option value="${group.ids}" {{
+                                                         d.groupid== ${group.ids} ? 'selected' : '' }}>${group.groupname}</option>
+                        </#list>
+                    </select>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </script>
 </body>
 </html>

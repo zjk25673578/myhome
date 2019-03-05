@@ -83,52 +83,54 @@
     <a lay-event="del" class="layui-btn layui-btn-xs layui-btn-danger">删除</a>
 </script>
 <script type="text/html" id="dict-addOrEdit">
-    <div class="layui-form-item"></div>
-    <form id="form-data-dict" class="layui-form">
-        <input type="hidden" name="ids" value="{{ d.ids }}"/>
-        <div class="layui-form-item">
-            <label class="layui-form-label">父级数据：</label>
-            <div class="layui-input-inline">
-                <select name="parentid" lay-verify="required">
-                    <option value="">下拉以选择</option>
-                    <option value="0">父级数据</option>
-                    <#list parentList as parent>
-                        <option value="${parent.ids}" {{ d.parentid == ${parent.ids} ? 'selected' : '' }}>${parent.dicvalue}</option>
-                    </#list>
-                </select>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">CDKEY：</label>
-            <div class="layui-input-inline">
-                <input type="text" name="diccode" lay-verify="required"
-                       class="layui-input" value="{{ d.diccode }}"/>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">值：</label>
-            <div class="layui-input-inline">
-                <input type="text" lay-verify="required" name="dicvalue"
-                       class="layui-input" value="{{ d.dicvalue }}" placeholder="支持多个, 逗号(不分中英)隔开"/>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">描述：</label>
-            <div class="layui-input-inline">
-                <input type="text" name="desp"
-                       class="layui-input" value="{{ d.desp }}"/>
-            </div>
-        </div>
-        <div class="layui-form-item" style="padding:0 20px;">
-            <fieldset class="layui-elem-field">
-                <legend>说明</legend>
-                <div class="layui-field-box">
-                    CDKEY代表分类, 同一类别的字典数据CDKEY请写成相同的<br>
-                    比如: 性别有"男", "女"<br>
-                    CDKEY可以记录为"xingbie"
+    <div class="form-box">
+        <form id="form-data-dict" class="layui-form">
+            <input type="hidden" name="ids" value="{{ d.ids }}"/>
+            <div class="layui-form-item">
+                <label class="layui-form-label">父级数据：</label>
+                <div class="layui-input-inline">
+                    <select name="parentid" lay-verify="required">
+                        <option value="">下拉以选择</option>
+                        <option value="0">父级数据</option>
+                        <#list parentList as parent>
+                            <option value="${parent.ids}" {{
+                                                          d.parentid== ${parent.ids} ? 'selected' : '' }}>${parent.dicvalue}</option>
+                        </#list>
+                    </select>
                 </div>
-            </fieldset>
-        </div>
-    </form>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">CDKEY：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="diccode" lay-verify="required"
+                           class="layui-input" value="{{ d.diccode }}"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">值：</label>
+                <div class="layui-input-inline">
+                    <input type="text" lay-verify="required" name="dicvalue"
+                           class="layui-input" value="{{ d.dicvalue }}" placeholder="支持多个, 逗号(不分中英)隔开"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">描述：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="desp"
+                           class="layui-input" value="{{ d.desp }}"/>
+                </div>
+            </div>
+            <div class="layui-form-item" style="padding:0 20px;">
+                <fieldset class="layui-elem-field">
+                    <legend>说明</legend>
+                    <div class="layui-field-box">
+                        CDKEY代表分类, 同一类别的字典数据CDKEY请写成相同的<br>
+                        比如: 性别有"男", "女"<br>
+                        CDKEY可以记录为"xingbie"
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+    </div>
 </script>
 </html>
